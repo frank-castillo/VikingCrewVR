@@ -1,4 +1,4 @@
-//using System;
+using System;
 
 /// <summary>
 /// Interface defining api for subscription, publication, and delivery of messages.

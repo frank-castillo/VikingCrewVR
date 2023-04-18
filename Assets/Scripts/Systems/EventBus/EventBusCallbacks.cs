@@ -6,7 +6,7 @@ public class EventBusCallbacks
     private IEventBusSystemHub _messengerHub;
     // You can also setup events to invoke when a message is handled.
     public event Action<SimpleTextMessage> SimpleTextMessageHandled = null;
-    public event Action<OnBeatInputMessage> OnBeatInputMessageHandled = null;
+    //public event Action<OnBeatInputMessage> OnBeatInputMessageHandled = null;
 
     public void Initialize()
     {

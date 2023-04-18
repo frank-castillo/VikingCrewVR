@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class ConditionalGameEvent : MonoBehaviour
 {
@@ -26,17 +27,27 @@ public class ConditionalGameEvent : MonoBehaviour
     {
         foreach (var conditionalObject in conditionalObjects)
         {
-            if (conditionalObject.TryGetComponent<IConditional>(out IConditional conditional))
+            IConditional conditional = null;
+
+            try
             {
-                conditions.Add(conditional);
-                conditional.OnComplete += CheckConditions;
+                conditional = conditionalObject.GetComponent<IConditional>();
             }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine("An exception ({0}) occurred.", e.GetType().Name);
+                Console.WriteLine("Message:\n   {0}\n", e.Message);
+            }
+
+            conditions.Add(conditional);
+            conditional.OnComplete += CheckConditions;
         }
     }
 
     public void CheckConditions()
     {
         bool isFailed = false;
+
         foreach (var condition in conditions)
         {
             if (condition.IsTrue() == false)
