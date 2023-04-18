@@ -37,6 +37,7 @@ public class ConditionalGameEvent : MonoBehaviour
             {
                 Console.WriteLine("An exception ({0}) occurred.", e.GetType().Name);
                 Console.WriteLine("Message:\n   {0}\n", e.Message);
+                return;
             }
 
             conditions.Add(conditional);
