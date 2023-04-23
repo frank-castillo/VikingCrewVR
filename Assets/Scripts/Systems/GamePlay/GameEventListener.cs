@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class GameEventListener : MonoBehaviour
 {
-    [SerializeField] GameEvent _gameEvent;
-    [SerializeField] UnityEvent _response;
+    [SerializeField] GameEvent _gameEvent = null;
+    [SerializeField] UnityEvent _response = null;
 
     void Awake() => _gameEvent.Register(this);
   
