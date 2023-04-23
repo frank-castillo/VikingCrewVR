@@ -2558,6 +2558,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1975010943659412729, guid: 16d137bf0ac0d084f9730c939c5bd498,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2528899217677917547, guid: 16d137bf0ac0d084f9730c939c5bd498, type: 3}
     - {fileID: 7186464384289999511, guid: 16d137bf0ac0d084f9730c939c5bd498, type: 3}
@@ -10081,6 +10086,7 @@ MonoBehaviour:
   sailCloths:
   - {fileID: 1973319049}
   - {fileID: 61113665}
+  sailDirection: {x: 0, y: 0, z: -20}
 --- !u!4 &719312994
 Transform:
   m_ObjectHideFlags: 0
