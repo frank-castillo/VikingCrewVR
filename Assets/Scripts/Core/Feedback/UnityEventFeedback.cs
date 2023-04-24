@@ -6,7 +6,7 @@ namespace FeedbackSystem
 {
     public class UnityEventFeedback : Feedback
     {
-        [SerializeField] private UnityEvent onPlay = null;
+        [SerializeField] private UnityEvent _onPlay = null;
         private Coroutine _coroutine = null;
 
         public override void Play()
@@ -17,14 +17,14 @@ namespace FeedbackSystem
             }
 
             base.Play();
-            onPlay?.Invoke();
+            _onPlay?.Invoke();
             _coroutine = StartCoroutine(DelayedInvokeRoutine());
         }
 
         private IEnumerator DelayedInvokeRoutine()
         {
             yield return new WaitForSeconds(initialDelay);
-            onPlay?.Invoke();
+            _onPlay?.Invoke();
             isPlaying = false;
         }
     }
