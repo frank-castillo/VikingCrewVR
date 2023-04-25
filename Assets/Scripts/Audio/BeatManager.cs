@@ -4,12 +4,15 @@ public class BeatManager : MonoBehaviour
 {
     [Header("Beat Timers")]
     [SerializeField] private float _beatDelay = 0.75f;
-    [SerializeField] private float _hitWindow = 0.2f; // On either side
+    [SerializeField] private float _hitWindowDelay = 0.2f; // On either side
 
     [Header("References")]
     [SerializeField] private FeedbackManager _feedbackManager = null;
 
-    private float _timer = 0.0f;
+    private int _beatStreak = 0;
+
+    private float _beatTimer = 0.0f;
+    private float _hitWindowTimer = 0.0f;
     private bool _isOnBeat = false;
     private bool _isPlaying = false;
 
@@ -17,7 +20,7 @@ public class BeatManager : MonoBehaviour
     public void StartBeat()
     {
         _isPlaying = true;
-        _timer = _beatDelay;
+        _beatTimer = _beatDelay;
     }
 
     public BeatManager Initialize()
@@ -36,35 +39,62 @@ public class BeatManager : MonoBehaviour
             return;
         }
 
-        _timer -= Time.deltaTime;
-
-        if (_timer < 0)
+        _beatTimer -= Time.deltaTime;
+        if (_beatTimer < 0)
         {
-            OnBeat();
+            Beat();
         }
-    }
-
-    private void OnBeat()
-    {
-        _isOnBeat = !_isOnBeat;
-        _timer = _beatDelay;
 
         if (_isOnBeat)
         {
-            Debug.Log($"Beat");
-            _timer = _hitWindow;
+            EvaluateHitWindow();
         }
     }
 
-    public void Hit()
+    private void Beat()
     {
-        if (_isOnBeat)
-        {
+        Debug.Log($"Beat");
+        _isOnBeat = true;
 
+        _beatTimer = _beatDelay;
+        _hitWindowTimer = _hitWindowDelay;
+    }
+
+    private void EvaluateHitWindow()
+    {
+        _hitWindowTimer -= Time.deltaTime;
+
+        if (_hitWindowTimer < 0)
+        {
+            _isOnBeat = false;
+        }
+    }
+
+    public void DrumHit()
+    {
+        if (_isOnBeat || _beatTimer - _hitWindowTimer < 0)
+        {
+            HitOnBeat();
         }
         else
         {
-
+            HitOffBeat();
         }
+    }
+
+    private void HitOnBeat()
+    {
+        Debug.Log($"Hit on beat");
+
+        ++_beatStreak;
+        // _feedbackManager.HitOnBeat(_beatStreak);
+    }
+
+    private void HitOffBeat()
+    {
+        Debug.Log($"Hit off beat");
+
+        _beatStreak = 0;
+        // _feedbackManager.HitOffBeat();
     }
 }
