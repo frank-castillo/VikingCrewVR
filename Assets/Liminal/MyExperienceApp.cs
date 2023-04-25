@@ -12,11 +12,15 @@ namespace Liminal.Experience
         public override void Pause()
         {
             base.Pause();
+
+            // TODO: If bugs are found in the audio playback or music, correct the pause behaviours here
         }
-        
+
         public override void Resume()
         {
             base.Resume();
+
+            // TODO: If bugs are found in the audio playback or music, correct the pause behaviours here
         }
         
         public override void EndExperience()
