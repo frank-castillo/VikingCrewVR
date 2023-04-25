@@ -40,6 +40,18 @@ public class LevelLoader : AsyncLoader
         _queuedCallbacks.Clear();
     }
 
+    private void LevelSetup()
+    {
+        Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
+
+        Initialize();
+
+        ProcessQueuedCallbacks();
+        CallOnComplete(OnComplete);
+
+        _beatManager.StartBeat();
+    }
+
     private void Initialize()
     {
         _instance = this;
@@ -65,16 +77,6 @@ public class LevelLoader : AsyncLoader
         {
             _ship.Initialize();
         }
-    }
-
-    private void LevelSetup()
-    {
-        Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
-
-        Initialize();
-
-        ProcessQueuedCallbacks();
-        CallOnComplete(OnComplete);
     }
 
     public static void CallOnComplete(Action callback)

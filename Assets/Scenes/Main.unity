@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b27d689f2a7af0468131b458619cd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _beatDelay: 0.75
+  _hitWindow: 0.2
   _feedbackManager: {fileID: 912128588}
 --- !u!1 &697951993
 GameObject:
@@ -640,7 +642,7 @@ GameObject:
   - component: {fileID: 2112550169}
   - component: {fileID: 2112550168}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: DirectionalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
