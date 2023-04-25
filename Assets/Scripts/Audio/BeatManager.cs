@@ -4,7 +4,7 @@ public class BeatManager : MonoBehaviour
 {
     [Header("Beat Timers")]
     [SerializeField] private float _beatDelay = 0.75f;
-    [SerializeField] private float _hitWindow = 0.25f;
+    [SerializeField] private float _hitWindow = 0.2f; // On either side
 
     [Header("References")]
     [SerializeField] private FeedbackManager _feedbackManager = null;
@@ -40,22 +40,19 @@ public class BeatManager : MonoBehaviour
 
         if (_timer < 0)
         {
-            OnBeatSwap();
+            OnBeat();
         }
     }
 
-    private void OnBeatSwap()
+    private void OnBeat()
     {
         _isOnBeat = !_isOnBeat;
+        _timer = _beatDelay;
+
         if (_isOnBeat)
         {
-            Debug.Log($"Start Beat: Hit now!");
+            Debug.Log($"Beat");
             _timer = _hitWindow;
-        }
-        else
-        {
-            Debug.Log($"End Beat: Stop hitting drums");
-            _timer = _beatDelay;
         }
     }
 
