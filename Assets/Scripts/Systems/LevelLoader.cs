@@ -1,16 +1,26 @@
+using Liminal.Core.Fader;
+using Liminal.SDK.Core;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class LevelLoader : AsyncLoader
 {
     [Header("Services")]
-    [SerializeField] private InputManager _inputManager = null;
     [SerializeField] private AudioManager _audioManager = null;
 
     [Header("Level")]
     [SerializeField] private BeatManager _beatManager = null;
     [SerializeField] private Ship _ship = null;
+
+    [Header("Fading Times")]
+    [SerializeField] private float _fadeInTime = 2.0f;
+    [SerializeField] private float _fadeOutTime = 2.0f;
 
     private static LevelLoader _instance = null;
     private readonly static List<Action> _queuedCallbacks = new List<Action>();
@@ -58,11 +68,6 @@ public class LevelLoader : AsyncLoader
         ServiceLocator.Register<LevelLoader>(this, true);
 
         // Services
-        if (_inputManager != null)
-        {
-            ServiceLocator.Register<InputManager>(_inputManager.Initialize(), true);
-        }
-
         if (_audioManager != null)
         {
             ServiceLocator.Register<AudioManager>(_audioManager.Initialize(), true);
@@ -93,5 +98,83 @@ public class LevelLoader : AsyncLoader
     private void OnComplete()
     {
         Debug.Log($"<color=Lime> {this.GetType()} finished setup. </color>");
+
+        StartExperience();
     }
+
+    public void StartExperience()
+    {
+        StartCoroutine(ExperienceFadeIn(_fadeInTime));
+    }
+
+    private IEnumerator ExperienceFadeIn(float fadeInTime)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeInTime)
+        {
+            elapsedTime += Time.deltaTime;
+            _audioManager.FadeAudioToStartExperience(elapsedTime / fadeInTime);
+            Debug.Log($"<color=Cyan> I am fading in the volume </color>");
+            yield return new WaitForEndOfFrame(); // Prevent the loop from finishing in a single frame
+        }
+
+        _audioManager.CurrentVolume = 1.0f;
+        Debug.Log($"<color=Cyan> I am max volume </color>");
+    }
+
+    private IEnumerator ExperienceFadeOut(float fadeOutTime)
+    {
+        float elapsedTime = 0f;
+
+        ScreenFader.Instance.FadeToBlack(fadeOutTime);
+
+        while(elapsedTime < fadeOutTime)
+        {
+            elapsedTime += Time.deltaTime;
+            _audioManager.FadeAudioToExitExperience(elapsedTime / fadeOutTime);
+            yield return new WaitForEndOfFrame(); // Prevent the loop from finishing in a single frame
+        }
+
+        _audioManager.CurrentVolume = 0.0f;
+
+        ExperienceApp.End();
+    }
+
+    public void FinalizeExperience()
+    {
+        StartCoroutine(ExperienceFadeOut(_fadeOutTime));
+    }
+
+    //TODO: Delete this after tests are done!
+    #region Editor
+
+#if UNITY_EDITOR
+    [CustomEditor(typeof(LevelLoader))]
+    public class LevelLoaderEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
+            LevelLoader customLevelLoader = (LevelLoader)target;
+
+            GUILayout.Space(10F);
+            GUILayout.BeginHorizontal("Box");
+
+            if (GUILayout.Button("Simulate End of Experience"))
+            {
+                customLevelLoader.FinalizeExperience();
+            }
+
+            if (GUILayout.Button("Simulate Start of Experience"))
+            {
+                customLevelLoader.StartExperience();
+            }
+
+            GUILayout.EndHorizontal();
+        }
+    }
+#endif
+
+#endregion
 }
