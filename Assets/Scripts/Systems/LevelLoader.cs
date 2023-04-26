@@ -13,9 +13,10 @@ public class LevelLoader : AsyncLoader
 {
     [Header("Services")]
     [SerializeField] private AudioManager _audioManager = null;
+    [SerializeField] private BeatManager _beatManager = null;
+    [SerializeField] private FeedbackManager _feedbackManager = null;
 
     [Header("Level")]
-    [SerializeField] private BeatManager _beatManager = null;
     [SerializeField] private Ship _ship = null;
 
     [Header("Fading Times")]
@@ -72,16 +73,23 @@ public class LevelLoader : AsyncLoader
         {
             ServiceLocator.Register<AudioManager>(_audioManager.Initialize(), true);
         }
-
-        // Initialize level specific things here
         if (_beatManager != null)
         {
-            _beatManager.Initialize();
+            ServiceLocator.Register<BeatManager>(_beatManager.Initialize(), true);
         }
+        if (_feedbackManager != null)
+        {
+            ServiceLocator.Register<FeedbackManager>(_feedbackManager.Initialize(), true);
+        }
+
+        // Initialize level specific things here
         if (_ship != null)
         {
             _ship.Initialize();
         }
+
+        // Set References
+        _beatManager.SetFeedBackManager(_feedbackManager);
     }
 
     public static void CallOnComplete(Action callback)
@@ -129,7 +137,7 @@ public class LevelLoader : AsyncLoader
 
         ScreenFader.Instance.FadeToBlack(fadeOutTime);
 
-        while(elapsedTime < fadeOutTime)
+        while (elapsedTime < fadeOutTime)
         {
             elapsedTime += Time.deltaTime;
             _audioManager.FadeAudioToExitExperience(elapsedTime / fadeOutTime);
@@ -176,5 +184,5 @@ public class LevelLoader : AsyncLoader
     }
 #endif
 
-#endregion
+    #endregion
 }
