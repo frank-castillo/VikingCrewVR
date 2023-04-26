@@ -56,6 +56,8 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Beat");
         _isOnBeat = true;
 
+        _feedbackManager.StandardBeatFeedback();
+
         _beatTimer = _beatDelay;
         _hitWindowTimer = _hitWindowDelay;
     }
@@ -87,7 +89,7 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Hit on beat");
 
         ++_beatStreak;
-        // _feedbackManager.HitOnBeat(_beatStreak);
+        _feedbackManager.OnBeatFeedback(_beatStreak);
     }
 
     private void HitOffBeat()
@@ -95,6 +97,6 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Hit off beat");
 
         _beatStreak = 0;
-        // _feedbackManager.HitOffBeat();
+       _feedbackManager.OffBeatFeedback();
     }
 }
