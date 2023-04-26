@@ -9,8 +9,6 @@ public class BeatManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private FeedbackManager _feedbackManager = null;
 
-    private AudioManager _audioManager = null;
-
     private int _beatStreak = 0;
 
     private float _beatTimer = 0.0f;
@@ -19,7 +17,6 @@ public class BeatManager : MonoBehaviour
     private bool _isPlaying = false;
 
     public void StopBeat() { _isPlaying = false; }
-
     public void StartBeat()
     {
         _isPlaying = true;
@@ -31,8 +28,6 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
         _feedbackManager.Initialize();
-
-        _audioManager = ServiceLocator.Get<AudioManager>();
 
         return this;
     }
@@ -92,7 +87,6 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Hit on beat");
 
         ++_beatStreak;
-        _audioManager.PlayOnBeatDrumSound();
         // _feedbackManager.HitOnBeat(_beatStreak);
     }
 
@@ -101,7 +95,6 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Hit off beat");
 
         _beatStreak = 0;
-        _audioManager.PlayOffBeatDrumSound();
         // _feedbackManager.HitOffBeat();
     }
 }
