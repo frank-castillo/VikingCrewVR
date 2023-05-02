@@ -9,6 +9,7 @@ public class DrumFeedbackHandler : MonoBehaviour
     [SerializeField] private List<Feedback> _onBeatT1Feedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onBeatT2Feedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onBeatT3Feedbacks = new List<Feedback>();
+    [SerializeField] private List<Feedback> _onAnyBeatTierFeedbacks = new List<Feedback>();
 
     private FeedbackManager _feedbackManager = null;
 
@@ -35,6 +36,8 @@ public class DrumFeedbackHandler : MonoBehaviour
 
     private void OnHitFeedback(OnHitBeatType beatType)
     {
+        PlayFeedbacks(_onAnyBeatTierFeedbacks);
+
         switch (beatType)
         {
             case OnHitBeatType.T1:
