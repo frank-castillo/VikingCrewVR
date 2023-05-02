@@ -26,7 +26,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: -0, w: -1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1338302092321518327}
   m_Father: {fileID: 9193890237067928616}
@@ -42,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6346738842269442239}
   m_Layer: 0
-  m_Name: Medieval_Sword
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +57,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7249464252206084199}
   m_Father: {fileID: 0}
@@ -92,7 +90,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: -0, w: -1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1338302092321518327}
   m_RootOrder: 0
@@ -116,12 +113,9 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -133,7 +127,6 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -146,7 +139,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4041755144375252680
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +165,6 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5779009264181225604}
   m_Father: {fileID: 7249464252206084199}
@@ -205,7 +196,6 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: -0.7071067}
   m_LocalPosition: {x: -35.105812, y: 17.544662, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4064805793951625573}
   m_Father: {fileID: 5779009264181225604}
@@ -221,7 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7249464252206084199}
   m_Layer: 0
-  m_Name: Sketchfab_model
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,7 +227,6 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9193890237067928616}
   m_Father: {fileID: 6346738842269442239}
