@@ -12,19 +12,20 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private int _tierThree = 0;
 
     private FeedbackManager _feedbackManager = null;
+    private OVRInput.Controller _activeController = OVRInput.Controller.None;
 
     private int _beatStreak = 0;
-
     private float _beatTimer = 0.0f;
     private float _hitWindowTimer = 0.0f;
     private bool _isOnBeat = false;
     private bool _isPlaying = false;
 
-    public int TierOne { get => _tierOne; }
-    public int TierTwo { get => _tierTwo; }
-    public int TierThree { get => _tierThree; }
+    public OVRInput.Controller ActiveController { get => _activeController; }
+
+    public void SetActiveController(OVRInput.Controller controller) { _activeController = controller; }
 
     public void SetFeedBackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
+
     public void StopBeat() { _isPlaying = false; }
 
     public void StartBeat()
@@ -97,7 +98,13 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Hit on beat");
 
         ++_beatStreak;
-        _feedbackManager.OnBeatFeedback(_beatStreak);
+
+        if (_beatStreak == 0)
+        {
+
+        }
+
+        _feedbackManager.OnBeatFeedback(EvaluateStreak());
     }
 
     private void HitOffBeat()
@@ -106,5 +113,26 @@ public class BeatManager : MonoBehaviour
 
         _beatStreak = 0;
         _feedbackManager.OffBeatFeedback();
+    }
+
+    private OnHitBeatType EvaluateStreak()
+    {
+        if (_beatStreak < 0)
+        {
+            Debug.LogError("Streak is less than 0.");
+            return OnHitBeatType.None;
+        }
+        else if (_beatStreak < _tierOne)
+        {
+            return OnHitBeatType.T1;
+        }
+        else if (_beatStreak < _tierTwo)
+        {
+            return OnHitBeatType.T2;
+        }
+        else
+        {
+            return OnHitBeatType.T3;
+        }
     }
 }

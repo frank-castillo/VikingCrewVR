@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-
 public class ScaleFeedback : Feedback
 {
     [SerializeField] private Transform _target = null;
