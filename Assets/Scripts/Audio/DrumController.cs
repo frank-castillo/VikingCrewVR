@@ -6,7 +6,7 @@ public class DrumController : MonoBehaviour
     [SerializeField] private int _hammerLayer = 6;
 
     private BeatManager _beatManager = null;
-    private DrumFeedbackHandler _feedbackHandler = null;
+    private FeedbackHandler _feedbackHandler = null;
 
     public DrumController Initialize()
     {
@@ -14,7 +14,7 @@ public class DrumController : MonoBehaviour
 
         _beatManager = ServiceLocator.Get<BeatManager>();
 
-        _feedbackHandler = GetComponent<DrumFeedbackHandler>();
+        _feedbackHandler = GetComponent<FeedbackHandler>();
         _feedbackHandler.Initialize();
 
         return this;
