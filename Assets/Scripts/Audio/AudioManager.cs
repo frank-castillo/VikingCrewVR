@@ -2,11 +2,11 @@
 
 public class AudioManager : MonoBehaviour
 {
-    // Audio Manifests
+    [Header("Audio Manifest References")]
     [SerializeField] private AudioManifest _sfxManifest = null;
     [SerializeField] private AudioManifest _musicManifest = null;
 
-    // Audio Sources
+    [Header("Audio Source")]
     [SerializeField] private AudioSource _drumAudioSource = null;
     [SerializeField] private AudioSource _vikingAudioSource = null;
     [SerializeField] private AudioSource _musicAudioSource = null;
@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     // Audio Levels
     float _currentVolume = 0.0f;
 
+    // Properties
     public float CurrentVolume { set => _currentVolume = value; }
 
     public AudioManager Initialize()
@@ -40,13 +41,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOffBeatDrumSound()
     {
-
         _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[0].Clip);
     }
 
     public void PlayOnBeatDrumSound()
     {
-        
         _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[1].Clip);
     }
 

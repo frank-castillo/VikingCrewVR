@@ -14,6 +14,7 @@ public abstract class Feedback : MonoBehaviour
     {
         isPlaying = true;
     }
+
     public virtual void Stop()
     {
         isPlaying = false;

@@ -8,61 +8,24 @@ using UnityEditor;
 
 public class DrumController : MonoBehaviour
 {
-    [Header("Drums's Component")]
-    private Animator drumAnimator;
-    private AudioSource drumSource;
+    [Header("References")]
+    [SerializeField] private BeatManager _beatManager = null;
 
-    [Header("Drums's Audio")]
-    [SerializeField] private AudioClip weakHit;
-    [SerializeField] private AudioClip strongHit;
+    [Header("Collider Layer Integer Reference")]
+    [SerializeField] private int _hammerLayer = 6;
 
-    private void Awake()
+    public DrumController Initialize()
     {
-        drumAnimator = GetComponent<Animator>();
-        drumSource = GetComponentInChildren<AudioSource>();
+        Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
+
+        return this;
     }
 
-    public void DrumWeakHit()
+    private void OnCollisionEnter(Collision collision)
     {
-        drumAnimator.SetTrigger("Drum Weak Hit");
-        drumSource.PlayOneShot(weakHit);
-    }
-
-    public void DrumStrongHit()
-    {
-        drumAnimator.SetTrigger("Drum Strong Hit");
-        drumSource.PlayOneShot(strongHit);
-    }
-
-    #region Editor
-
-#if UNITY_EDITOR
-    [CustomEditor(typeof(DrumController))]
-    public class DrumControllerEditor : Editor
-    {
-        public override void OnInspectorGUI()
+        if (collision.gameObject.layer == _hammerLayer)
         {
-            DrawDefaultInspector();
-            DrumController drumController = (DrumController)target;
-
-            GUILayout.Space(10F);
-            GUILayout.BeginHorizontal("Box");
-
-            if (GUILayout.Button("Weak Hit"))
-            {
-                drumController.DrumWeakHit();
-            }
-
-            if (GUILayout.Button("Strong Hit"))
-            {
-                drumController.DrumStrongHit();
-            }
-
-            GUILayout.EndHorizontal();
+            _beatManager.DrumHit();
         }
     }
-#endif
-
-    #endregion
-
 }

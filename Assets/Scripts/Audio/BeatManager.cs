@@ -6,6 +6,11 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private float _beatDelay = 0.75f;
     [SerializeField] private float _hitWindowDelay = 0.2f; // On either side
 
+    [Header("Combo Tiers")]
+    [SerializeField] private int _tierOne = 0;
+    [SerializeField] private int _tierTwo = 0;
+    [SerializeField] private int _tierThree = 0;
+
     private FeedbackManager _feedbackManager = null;
 
     private int _beatStreak = 0;
@@ -15,9 +20,13 @@ public class BeatManager : MonoBehaviour
     private bool _isOnBeat = false;
     private bool _isPlaying = false;
 
-    public void SetFeedBackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
+    public int TierOne { get => _tierOne; }
+    public int TierTwo { get => _tierTwo; }
+    public int TierThree { get => _tierThree; }
 
+    public void SetFeedBackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
     public void StopBeat() { _isPlaying = false; }
+
     public void StartBeat()
     {
         _isPlaying = true;
@@ -55,7 +64,7 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Beat");
         _isOnBeat = true;
 
-        _feedbackManager.StandardBeatFeedback();
+        _feedbackManager.ConstantBeatFeedback();
 
         _beatTimer = _beatDelay;
         _hitWindowTimer = _hitWindowDelay;
@@ -96,6 +105,6 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Hit off beat");
 
         _beatStreak = 0;
-       _feedbackManager.OffBeatFeedback();
+        _feedbackManager.OffBeatFeedback();
     }
 }
