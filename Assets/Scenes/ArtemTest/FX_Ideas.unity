@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06784612, g: 0.274145, b: 0.48477334, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -184,14 +184,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &65657880 stripped
+--- !u!4 &65657880
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
     type: 3}
   m_PrefabInstance: {fileID: 643881717}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221175801}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2022147655}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &132970292
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +406,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &373823161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1496418877}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 373823162}
+  m_Layer: 0
+  m_Name: Ragnarok Mjolnir (3) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &373823162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1496418877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373823161}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1496418878}
+  m_Father: {fileID: 1190697236}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377387824
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,8 +462,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377387824}
-  m_LocalRotation: {x: 0.35355332, y: -0.6123726, z: 0.6123724, w: 0.3535534}
-  m_LocalPosition: {x: 3.86, y: 20, z: -13.18}
+  m_LocalRotation: {x: 0.046226416, y: 0.5234463, z: -0.028455846, w: 0.8503278}
+  m_LocalPosition: {x: -7.765824, y: 1.2202398, z: -4.4376144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1420943202}
@@ -5442,6 +5482,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &635133692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 653106322}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 653106323}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &643881717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5449,6 +5505,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1190697236}
     m_Modifications:
+    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
+        type: 3}
+      propertyPath: m_Name
+      value: Ragnarok Mjolnir (15)
+      objectReference: {fileID: 0}
     - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5519,11 +5580,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.6599009
       objectReference: {fileID: 0}
-    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_Name
-      value: Ragnarok Mjolnir (15)
-      objectReference: {fileID: 0}
     - target: {fileID: 554479407059877582, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5566,6 +5622,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1190697236}
     m_Modifications:
+    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
+        type: 3}
+      propertyPath: m_Name
+      value: Ragnarok Mjolnir (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5636,11 +5697,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.6599009
       objectReference: {fileID: 0}
-    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_Name
-      value: Ragnarok Mjolnir (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 554479407059877582, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5676,12 +5732,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
---- !u!4 &653106323 stripped
+--- !u!4 &653106323
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
     type: 3}
   m_PrefabInstance: {fileID: 653106322}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635133692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1174603363}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &676518953
 GameObject:
   m_ObjectHideFlags: 0
@@ -5738,6 +5803,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 153558746}
     m_Modifications:
+    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: m_Name
+      value: Tribal Drum (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5808,11 +5878,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: m_Name
-      value: Tribal Drum (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 7317641654457750572, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5840,6 +5905,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6591edfa85f31c648bdddbf9d8361752, type: 3}
+--- !u!1 &715287715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1319560232}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 715287716}
+  m_Layer: 0
+  m_Name: Ragnarok Mjolnir (5) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &715287716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1319560232}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715287715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1319560233}
+  m_Father: {fileID: 1190697236}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &777865498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1496418877}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1496418878}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &801558997
 GameObject:
   m_ObjectHideFlags: 0
@@ -5859,7 +5971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &801558998
 Transform:
   m_ObjectHideFlags: 0
@@ -5952,6 +6064,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 153558746}
     m_Modifications:
+    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: m_Name
+      value: MAIN DRUM
+      objectReference: {fileID: 0}
     - target: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6021,11 +6138,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: m_Name
-      value: MAIN DRUM
       objectReference: {fileID: 0}
     - target: {fileID: 7317641654457750572, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
@@ -6152,6 +6264,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1190697236}
     m_Modifications:
+    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
+        type: 3}
+      propertyPath: m_Name
+      value: Ragnarok Mjolnir (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6222,11 +6339,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.6599009
       objectReference: {fileID: 0}
-    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_Name
-      value: Ragnarok Mjolnir (7)
-      objectReference: {fileID: 0}
     - target: {fileID: 554479407059877582, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -6252,14 +6364,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1311203796, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 979825094, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6462395737655413253, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6270,14 +6374,32 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 1311203796, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 979825094, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
---- !u!4 &858906414 stripped
+--- !u!4 &858906414
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
     type: 3}
   m_PrefabInstance: {fileID: 858906413}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291434713}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1195490228}
+  m_Father: {fileID: 1106573046}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &872692191
 GameObject:
   m_ObjectHideFlags: 0
@@ -6376,7 +6498,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2035094746}
+      - m_Target: {fileID: 1987674760}
         m_MethodName: HandleStreakUpdate
         m_Mode: 3
         m_Arguments:
@@ -6426,6 +6548,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024241071}
   m_CullTransparentMesh: 0
+--- !u!1 &1106573045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 858906413}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1106573046}
+  m_Layer: 0
+  m_Name: Ragnarok Mjolnir (7) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1106573046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 858906413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106573045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 858906414}
+  m_Father: {fileID: 1190697236}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1107231897 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
@@ -6450,8 +6603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5943175f5188d45ab31632510120af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weakHit: {fileID: 8300000, guid: f5a9fa7841d5fbc458e47f63ddeccaa0, type: 3}
-  strongHit: {fileID: 8300000, guid: 84b30c92c6cbc03409c1f727ed8cd941, type: 3}
+  _beatManager: {fileID: 0}
+  _hammerLayer: 6
 --- !u!95 &1107231900
 Animator:
   serializedVersion: 3
@@ -6471,97 +6624,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &1156874480
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.61779
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.8323545
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.9699993
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.70710653
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071071
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.6599019
-      objectReference: {fileID: 0}
-    - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.6599019
-      objectReference: {fileID: 0}
-    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_Name
-      value: Hammer
-      objectReference: {fileID: 0}
-    - target: {fileID: 979825093, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311203795, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606715253608297, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
 --- !u!1001 &1164956181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6615,6 +6677,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0c7a15b5680e5942940c754bfe84dbd, type: 3}
+--- !u!1 &1174603362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 653106322}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1174603363}
+  m_Layer: 0
+  m_Name: Ragnarok Mjolnir (2) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1174603363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 653106322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174603362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 653106323}
+  m_Father: {fileID: 1190697236}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190697235
 GameObject:
   m_ObjectHideFlags: 0
@@ -6642,11 +6735,11 @@ Transform:
   m_LocalPosition: {x: 15.42, y: 16.413355, z: -21.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 653106323}
-  - {fileID: 1496418878}
-  - {fileID: 1319560233}
-  - {fileID: 858906414}
-  - {fileID: 65657880}
+  - {fileID: 1174603363}
+  - {fileID: 373823162}
+  - {fileID: 715287716}
+  - {fileID: 1106573046}
+  - {fileID: 2022147655}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6679,7 +6772,7 @@ Transform:
   m_LocalScale: {x: 0.60244596, y: 0.60244614, z: 0.60244614}
   m_Children: []
   m_Father: {fileID: 858906414}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &1195490229
 MonoBehaviour:
@@ -6693,6 +6786,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bf9ff1f66de9d459d3a13350fbfc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1221175801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 643881717}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 65657880}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1259860441
 GameObject:
   m_ObjectHideFlags: 0
@@ -6787,13 +6896,29 @@ RectTransform:
   - {fileID: 1024241072}
   - {fileID: 1484566887}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1291434713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 858906413}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 858906414}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1297331271
 GameObject:
   m_ObjectHideFlags: 0
@@ -6928,6 +7053,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1190697236}
     m_Modifications:
+    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
+        type: 3}
+      propertyPath: m_Name
+      value: Ragnarok Mjolnir (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6998,11 +7128,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.6599009
       objectReference: {fileID: 0}
-    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_Name
-      value: Ragnarok Mjolnir (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 554479407059877582, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -7038,12 +7163,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
---- !u!4 &1319560233 stripped
+--- !u!4 &1319560233
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
     type: 3}
   m_PrefabInstance: {fileID: 1319560232}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683329652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 715287716}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1364859960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7199,7 +7333,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2035094746}
+      - m_Target: {fileID: 1987674760}
         m_MethodName: HandleStreakUpdate
         m_Mode: 3
         m_Arguments:
@@ -7329,6 +7463,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1190697236}
     m_Modifications:
+    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
+        type: 3}
+      propertyPath: m_Name
+      value: Ragnarok Mjolnir (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7399,11 +7538,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.6599009
       objectReference: {fileID: 0}
-    - target: {fileID: 7801508674662754721, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
-        type: 3}
-      propertyPath: m_Name
-      value: Ragnarok Mjolnir (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 554479407059877582, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -7439,12 +7573,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d614d6d8e923a44fbeccda48f39a3cf, type: 3}
---- !u!4 &1496418878 stripped
+--- !u!4 &1496418878
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 2642528016901005282, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
     type: 3}
   m_PrefabInstance: {fileID: 1496418877}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777865498}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 373823162}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1538299165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7555,6 +7698,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e053c479a3add9649af9d847a748547d, type: 3}
+--- !u!1 &1683329652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1319560232}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1319560233}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1694888696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7690,7 +7849,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2035094746}
+      - m_Target: {fileID: 1987674760}
         m_MethodName: HandleStreakUpdate
         m_Mode: 3
         m_Arguments:
@@ -12440,6 +12599,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2035993784}
     m_Modifications:
+    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
+        type: 3}
+      propertyPath: m_Name
+      value: Warrior
+      objectReference: {fileID: 0}
     - target: {fileID: 3830427168469322739, guid: cfa548ce749aab043a5804b70f71c706,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12509,11 +12673,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 3.5000007
-      objectReference: {fileID: 0}
-    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
-        type: 3}
-      propertyPath: m_Name
-      value: Warrior
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfa548ce749aab043a5804b70f71c706, type: 3}
@@ -17236,8 +17395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5943175f5188d45ab31632510120af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weakHit: {fileID: 8300000, guid: f5a9fa7841d5fbc458e47f63ddeccaa0, type: 3}
-  strongHit: {fileID: 8300000, guid: 84b30c92c6cbc03409c1f727ed8cd941, type: 3}
+  _beatManager: {fileID: 0}
+  _hammerLayer: 6
 --- !u!95 &1985741504
 Animator:
   serializedVersion: 3
@@ -17257,11 +17416,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2035094746 stripped
+--- !u!114 &1987674760 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7935666691960721584, guid: 0d614d6d8e923a44fbeccda48f39a3cf,
+  m_CorrespondingSourceObject: {fileID: 7935666691960721584, guid: 3c842d2a7043928498acc8144ab5dc39,
     type: 3}
-  m_PrefabInstance: {fileID: 1156874480}
+  m_PrefabInstance: {fileID: 2125039349}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -17269,6 +17428,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f7b2057e09ec348a31596077f4a4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2022147654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 643881717}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2022147655}
+  m_Layer: 0
+  m_Name: Ragnarok Mjolnir (15) (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2022147655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 643881717}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022147654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 65657880}
+  m_Father: {fileID: 1190697236}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035993783
 GameObject:
   m_ObjectHideFlags: 0
@@ -17383,3 +17573,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c10e028cc5c95fe48b55979e3c5bbc26, type: 3}
+--- !u!1001 &2125039349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7801508674662754721, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_Name
+      value: Hammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642528016901005282, guid: 3c842d2a7043928498acc8144ab5dc39,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3c842d2a7043928498acc8144ab5dc39, type: 3}
