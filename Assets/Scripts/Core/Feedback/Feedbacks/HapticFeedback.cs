@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class OnBeatT2HapticFeedback : Feedback
+public class HapticFeedback : Feedback
 {
+    [SerializeField] private float _intensity = 0.0f;
+
     private BeatManager _beatManager = null;
     private Coroutine _coroutine = null;
 
@@ -16,7 +18,7 @@ public class OnBeatT2HapticFeedback : Feedback
 
     private IEnumerator HapticFeedbackRoutine()
     {
-        OVRInput.SetControllerVibration(1, .75f, _beatManager.ActiveController);
+        OVRInput.SetControllerVibration(1, _intensity, _beatManager.ActiveController);
 
         yield return new WaitForSecondsRealtime(0.1f);
 

@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class VikingSleepState : MonoBehaviour
+﻿public class VikingSleepState : IVikingState
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Enter(VikingBehavior vikingBehavior)
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Exit()
     {
-        
+
+    }
+
+    public void Update()
+    {
+
     }
 }
