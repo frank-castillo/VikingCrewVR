@@ -14,7 +14,6 @@ public class AudioManager : MonoBehaviour
     // Audio Levels
     float _currentVolume = 0.0f;
 
-    // Properties
     public float CurrentVolume { set => _currentVolume = value; }
 
     public AudioManager Initialize()
@@ -39,17 +38,36 @@ public class AudioManager : MonoBehaviour
         _musicAudioSource.PlayOneShot(_musicManifest.AudioItems[0].Clip);
     }
 
-    public void PlayOffBeatDrumSound()
+    public void PlaySFX(SFXType sfxType)
+    {
+        switch (sfxType)
+        {
+            case SFXType.OffBeatDrum:
+                PlayOffBeatDrumSFX();
+                break;
+            case SFXType.OnBeatDrum:
+                PlayOnBeatDrumSFX();
+                break;
+            case SFXType.VikingChant:
+                PlayVikingChantSFX();
+                break;
+            default:
+                Enums.InvalidSwitch(GetType(), sfxType.GetType());
+                break;
+        }
+    }
+
+    private void PlayOffBeatDrumSFX()
     {
         _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[0].Clip);
     }
 
-    public void PlayOnBeatDrumSound()
+    private void PlayOnBeatDrumSFX()
     {
         _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[1].Clip);
     }
 
-    public void PlayVikingChant()
+    private void PlayVikingChantSFX()
     {
         _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[2].Clip);
     }

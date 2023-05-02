@@ -9,6 +9,14 @@ public enum OnHitBeatType
     T3
 }
 
+public enum SFXType
+{
+    None = -1,
+    OffBeatDrum,
+    OnBeatDrum,
+    VikingChant,
+}
+
 public class Enums
 {
     public static void InvalidSwitch(Type script, Type type)

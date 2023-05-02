@@ -2,17 +2,17 @@
 
 public class DrumController : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private BeatManager _beatManager = null;
-
     [Header("Collider Layer Integer Reference")]
     [SerializeField] private int _hammerLayer = 6;
 
+    private BeatManager _beatManager = null;
     private DrumFeedbackHandler _feedbackHandler = null;
 
     public DrumController Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
+
+        _beatManager = ServiceLocator.Get<BeatManager>();
 
         _feedbackHandler = GetComponent<DrumFeedbackHandler>();
         _feedbackHandler.Initialize();
