@@ -111,22 +111,21 @@ public class BeatManager : MonoBehaviour
 
     private OnHitBeatType EvaluateStreak()
     {
-        if (_beatStreak < 0)
+        if (_beatStreak >= _tierThree)
         {
-            Debug.LogError("Streak is less than 0.");
-            return OnHitBeatType.None;
+            return OnHitBeatType.T3;
         }
-        else if (_beatStreak < _tierOne)
-        {
-            return OnHitBeatType.T1;
-        }
-        else if (_beatStreak < _tierTwo)
+        else if (_beatStreak >= _tierTwo)
         {
             return OnHitBeatType.T2;
         }
+        else if (_beatStreak >= _tierOne)
+        {
+            return OnHitBeatType.T1;
+        }
         else
         {
-            return OnHitBeatType.T3;
+            return OnHitBeatType.None;
         }
     }
 }
