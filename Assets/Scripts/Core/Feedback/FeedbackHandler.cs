@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class DrumFeedbackHandler : MonoBehaviour
+public class FeedbackHandler : MonoBehaviour
 {
     [Header("Feedback References")]
     [SerializeField] private List<Feedback> _onConstantBeatFeedbacks = new List<Feedback>();
