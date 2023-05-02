@@ -98,12 +98,6 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Hit on beat");
 
         ++_beatStreak;
-
-        if (_beatStreak == 0)
-        {
-
-        }
-
         _feedbackManager.OnBeatFeedback(EvaluateStreak());
     }
 
