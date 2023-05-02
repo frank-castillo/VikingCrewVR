@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
 
-public enum SceneType
+public enum OnHitBeatType
 {
     None = -1,
-    MainMenu
+    T1,
+    T2,
+    T3
 }
 
 public class Enums
