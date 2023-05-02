@@ -9,14 +9,12 @@ public class ScaleFeedback : Feedback
     [SerializeField] private AnimationCurve _curve = null;
     [SerializeField] private float _time = 0.0f;
 
-    private Vector3 _initialScale = Vector3.zero;
     private Coroutine _coroutine = null;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        _initialScale = _target.transform.lossyScale;
         _coroutine = null;
     }
 
