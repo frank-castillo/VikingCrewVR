@@ -609,6 +609,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!95 &167908751 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 15118156945916998, guid: 16d137bf0ac0d084f9730c939c5bd498,
+    type: 3}
+  m_PrefabInstance: {fileID: 6238688355425311380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &195635471
 Mesh:
   m_ObjectHideFlags: 0
@@ -1469,6 +1475,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _beatDelay: 0.75
   _hitWindowDelay: 0.2
+--- !u!95 &357960906 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 15118157057617284, guid: 16d137bf0ac0d084f9730c939c5bd498,
+    type: 3}
+  m_PrefabInstance: {fileID: 6238688355425311380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &449908425
 Mesh:
   m_ObjectHideFlags: 0
@@ -4062,6 +4074,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!95 &1634370383 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 15118157430190029, guid: 16d137bf0ac0d084f9730c939c5bd498,
+    type: 3}
+  m_PrefabInstance: {fileID: 6238688355425311380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1676988087
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,6 +4157,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1713116231 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 15118156253318284, guid: 16d137bf0ac0d084f9730c939c5bd498,
+    type: 3}
+  m_PrefabInstance: {fileID: 6238688355425311380}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1747063738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7205178869540765640, guid: 16d137bf0ac0d084f9730c939c5bd498,
+    type: 3}
+  m_PrefabInstance: {fileID: 6238688355425311380}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1747063740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747063738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c5af43c7c55bc48b4d163bd3f28a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 1
+  crewAnimators:
+  - {fileID: 1634370383}
+  - {fileID: 167908751}
+  - {fileID: 1713116231}
+  - {fileID: 357960906}
+  randomDelay: {x: 15, y: 30}
 --- !u!43 &1763833346
 Mesh:
   m_ObjectHideFlags: 0
