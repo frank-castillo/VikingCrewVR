@@ -40,6 +40,8 @@ public class DrumFeedbackHandler : MonoBehaviour
 
         switch (beatType)
         {
+            case OnHitBeatType.None:
+                break;
             case OnHitBeatType.T1:
                 PlayFeedbacks(_onBeatT1Feedbacks);
                 break;
