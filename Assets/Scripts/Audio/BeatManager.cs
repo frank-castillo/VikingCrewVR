@@ -7,7 +7,6 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private float _hitWindowDelay = 0.2f; // On either side
 
     [Header("Combo Tiers")]
-    [SerializeField] private int _tierOne = 0;
     [SerializeField] private int _tierTwo = 0;
     [SerializeField] private int _tierThree = 0;
 
@@ -111,21 +110,17 @@ public class BeatManager : MonoBehaviour
 
     private OnHitBeatType EvaluateStreak()
     {
-        if (_beatStreak >= _tierThree)
-        {
-            return OnHitBeatType.T3;
-        }
-        else if (_beatStreak >= _tierTwo)
-        {
-            return OnHitBeatType.T2;
-        }
-        else if (_beatStreak >= _tierOne)
+        if (_beatStreak < _tierTwo)
         {
             return OnHitBeatType.T1;
         }
+        else if (_beatStreak < _tierThree)
+        {
+            return OnHitBeatType.T2;
+        }
         else
         {
-            return OnHitBeatType.None;
+            return OnHitBeatType.T3;
         }
     }
 }
