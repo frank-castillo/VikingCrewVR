@@ -6,8 +6,7 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private float _beatDelay = 0.75f;
     [SerializeField] private float _hitWindowDelay = 0.2f; // On either side
 
-    [Header("References")]
-    [SerializeField] private FeedbackManager _feedbackManager = null;
+    private FeedbackManager _feedbackManager = null;
 
     private int _beatStreak = 0;
 
@@ -15,6 +14,8 @@ public class BeatManager : MonoBehaviour
     private float _hitWindowTimer = 0.0f;
     private bool _isOnBeat = false;
     private bool _isPlaying = false;
+
+    public void SetFeedBackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
 
     public void StopBeat() { _isPlaying = false; }
     public void StartBeat()
@@ -26,8 +27,6 @@ public class BeatManager : MonoBehaviour
     public BeatManager Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
-
-        _feedbackManager.Initialize();
 
         return this;
     }
@@ -55,6 +54,8 @@ public class BeatManager : MonoBehaviour
     {
         Debug.Log($"Beat");
         _isOnBeat = true;
+
+        _feedbackManager.StandardBeatFeedback();
 
         _beatTimer = _beatDelay;
         _hitWindowTimer = _hitWindowDelay;
@@ -87,7 +88,7 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Hit on beat");
 
         ++_beatStreak;
-        // _feedbackManager.HitOnBeat(_beatStreak);
+        _feedbackManager.OnBeatFeedback(_beatStreak);
     }
 
     private void HitOffBeat()
@@ -95,6 +96,6 @@ public class BeatManager : MonoBehaviour
         Debug.Log($"Hit off beat");
 
         _beatStreak = 0;
-        // _feedbackManager.HitOffBeat();
+       _feedbackManager.OffBeatFeedback();
     }
 }
