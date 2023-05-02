@@ -3,8 +3,8 @@ using System;
 
 public class FeedbackManager : MonoBehaviour
 {
-    public Action onBeat = null;
-    public Action<int> onBeatHit = null;
+    public Action constantBeat = null;
+    public Action<OnHitBeatType> onBeatHit = null;
     public Action offBeatMiss = null;
 
     public FeedbackManager Initialize()
@@ -14,14 +14,14 @@ public class FeedbackManager : MonoBehaviour
         return this;
     }
 
-    public void StandardBeatFeedback()
+    public void ConstantBeatFeedback()
     {
-        onBeat?.Invoke();
+        constantBeat?.Invoke();
     }
 
-    public void OnBeatFeedback(int streak)
+    public void OnBeatFeedback(OnHitBeatType beatType)
     {
-        onBeatHit?.Invoke(streak);
+        onBeatHit?.Invoke(beatType);
     }
 
     public void OffBeatFeedback()
