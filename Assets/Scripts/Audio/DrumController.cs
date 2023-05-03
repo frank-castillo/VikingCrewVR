@@ -8,6 +8,8 @@ public class DrumController : MonoBehaviour
     private BeatManager _beatManager = null;
     private FeedbackHandler _feedbackHandler = null;
 
+    [SerializeField] private HitSparksFeedback _sparksFeedback = null;
+
     public DrumController Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
@@ -33,6 +35,7 @@ public class DrumController : MonoBehaviour
                 _beatManager.SetActiveController(OVRInput.Controller.RTouch);
             }
 
+            _sparksFeedback.PlayHitSparks(collision);
             _beatManager.DrumHit();
         }
     }
