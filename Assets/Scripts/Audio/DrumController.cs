@@ -3,7 +3,7 @@
 public class DrumController : MonoBehaviour
 {
     [Header("Collider Layer Integer Reference")]
-    [SerializeField] private int _hammerLayer = 6;
+    [SerializeField] private int _hammerLayer = 8;
 
     private BeatManager _beatManager = null;
     private FeedbackHandler _feedbackHandler = null;
