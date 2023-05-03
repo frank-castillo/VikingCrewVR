@@ -19,6 +19,7 @@ public class FeedbackHandler : MonoBehaviour
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
+        InitializeFeedbacks();
         Subscriptions();
     }
 
@@ -27,6 +28,39 @@ public class FeedbackHandler : MonoBehaviour
         _feedbackManager.constantBeat += ConstantBeatFeedback;
         _feedbackManager.onBeatHit += OnHitFeedback;
         _feedbackManager.offBeatMiss += OnMissFeedback;
+    }
+
+    private void InitializeFeedbacks()
+    {
+        foreach (var feedback in _onConstantBeatFeedbacks)
+        {
+            feedback.Initialize();
+        }
+
+        foreach (var feedback in _onMissFeedbacks)
+        {
+            feedback.Initialize();
+        }
+
+        foreach (var feedback in _onBeatT1Feedbacks)
+        {
+            feedback.Initialize();
+        }
+
+        foreach (var feedback in _onBeatT2Feedbacks)
+        {
+            feedback.Initialize();
+        }
+
+        foreach (var feedback in _onBeatT3Feedbacks)
+        {
+            feedback.Initialize();
+        }
+
+        foreach (var feedback in _onAnyBeatTierFeedbacks)
+        {
+            feedback.Initialize();
+        }
     }
 
     private void ConstantBeatFeedback()
