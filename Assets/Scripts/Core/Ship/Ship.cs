@@ -3,13 +3,13 @@
 public class Ship : MonoBehaviour
 {
     [SerializeField] private DrumController _drumController = null;
+    [SerializeField] private CrewController _crewController = null;
 
-    public Ship Initialize()
+    public void Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
         _drumController.Initialize();
-
-        return this;
+        _crewController.Initialize();
     }
 }

@@ -10,7 +10,7 @@ public class DrumController : MonoBehaviour
 
     [SerializeField] private HitSparksFeedback _sparksFeedback = null;
 
-    public DrumController Initialize()
+    public void Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
@@ -18,8 +18,6 @@ public class DrumController : MonoBehaviour
 
         _feedbackHandler = GetComponent<FeedbackHandler>();
         _feedbackHandler.Initialize();
-
-        return this;
     }
 
     private void OnCollisionEnter(Collision collision)

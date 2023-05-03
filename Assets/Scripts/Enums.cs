@@ -17,6 +17,13 @@ public enum SFXType
     VikingChant,
 }
 
+public enum RowType
+{
+    None = -1,
+    StartRowing,
+    StopRowing,
+}
+
 public class Enums
 {
     public static void InvalidSwitch(Type script, Type type)
