@@ -17,11 +17,10 @@ public enum SFXType
     VikingChant,
 }
 
-public enum RowType
+public enum LayerType
 {
     None = -1,
-    StartRowing,
-    StopRowing,
+    Hammer = 8
 }
 
 public class Enums

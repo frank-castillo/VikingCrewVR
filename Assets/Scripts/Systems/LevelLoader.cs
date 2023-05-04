@@ -123,12 +123,12 @@ public class LevelLoader : AsyncLoader
         {
             elapsedTime += Time.deltaTime;
             _audioManager.FadeAudioToStartExperience(elapsedTime / fadeInTime);
-            Debug.Log($"<color=Cyan> I am fading in the volume </color>");
+            //Debug.Log($"<color=Cyan> I am fading in the volume </color>");
             yield return new WaitForEndOfFrame(); // Prevent the loop from finishing in a single frame
         }
 
         _audioManager.CurrentVolume = 1.0f;
-        Debug.Log($"<color=Cyan> I am max volume </color>");
+        //Debug.Log($"<color=Cyan> I am max volume </color>");
     }
 
     private IEnumerator ExperienceFadeOut(float fadeOutTime)
