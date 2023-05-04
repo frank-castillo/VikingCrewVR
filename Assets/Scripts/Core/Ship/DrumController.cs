@@ -35,7 +35,7 @@ public class DrumController : MonoBehaviour
                 _beatManager.SetActiveController(OVRInput.Controller.RTouch);
             }
 
-            _sparksFeedback.PlayHitSparks(collision);
+            _sparksFeedback.SetCollisionData(collision);
             _beatManager.DrumHit();
         }
     }

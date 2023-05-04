@@ -4,20 +4,23 @@ using UnityEngine;
 public class HitSparksFeedback : Feedback
 {
     [SerializeField] private List<ParticleSystem> _sparks = new List<ParticleSystem>();
+    private Collision _collisionData = null;
+
+    public void SetCollisionData(Collision collisionData) { _collisionData = collisionData; }
 
     public override void Initialize()
     {
         base.Initialize();
-
     }
 
     public override void Play()
     {
-        if (isPlaying)
+        if (_collisionData == null)
         {
             return;
         }
         base.Play();
+        PlayHitSparks();
     }
 
     public override void Stop()
@@ -30,16 +33,18 @@ public class HitSparksFeedback : Feedback
         base.Stop();
     }
 
-    public void PlayHitSparks(Collision collisionData)
+    public void PlayHitSparks()
     {
         int randomIndex = GetRandomSparksParticleIndex();
         if (randomIndex != -1)
         {
-            Vector3 position = collisionData.GetContact(0).point;
+            Vector3 position = _collisionData.GetContact(0).point;
             ParticleSystem randomParticle = _sparks[randomIndex];
             randomParticle.transform.position = position;
             randomParticle.gameObject.SetActive(true);
             randomParticle.Play();
+
+            _collisionData = null;
         }
     }
 
