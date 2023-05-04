@@ -18,6 +18,8 @@ public class LevelLoader : AsyncLoader
 
     [Header("Level")]
     [SerializeField] private Ship _ship = null;
+    [SerializeField] private HammerController _leftHammer = null;
+    [SerializeField] private HammerController _rightHammer = null;
 
     [Header("Fading Times")]
     [SerializeField] private float _fadeInTime = 2.0f;
@@ -88,8 +90,16 @@ public class LevelLoader : AsyncLoader
             _ship.Initialize();
         }
 
+        if (_leftHammer != null && _rightHammer != null)
+        {
+            _leftHammer.Initialize();
+            _rightHammer.Initialize();
+        }
+
         // Set References
         _beatManager.SetFeedBackManager(_feedbackManager);
+        _beatManager.SetLeftHammerController(_leftHammer);
+        _beatManager.SetRightHammerController(_rightHammer);
     }
 
     public static void CallOnComplete(Action callback)

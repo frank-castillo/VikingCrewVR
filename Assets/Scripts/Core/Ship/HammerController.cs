@@ -1,42 +1,42 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class HammerEvolutionController : MonoBehaviour
+public class HammerController : MonoBehaviour
 {
-    [SerializeField] private int _currentLevel = -1;
     [SerializeField] private Transform _hammerMeshHolder = null;
     [SerializeField] private Transform _level2Visuals = null;
     [SerializeField] private Transform _level3Visuals = null;
-
     [SerializeField] private Material _level3Material = null;
+
+    private int _currentLevel = 0;
     private Material _defaultHammerMaterial = null;
     private MeshRenderer _hamerMeshRenderer = null;
 
-    private void Awake()
-    {
-        Initialize();
-    }
+    private BeatManager _beatManager = null;
+    private FeedbackHandler _feedbackHandler = null;
 
-    private void Initialize()
+    public void Initialize()
     {
-        _currentLevel = 1;
+        _beatManager = ServiceLocator.Get<BeatManager>();
+
         _hamerMeshRenderer = _hammerMeshHolder.GetComponent<MeshRenderer>();
+
+        _currentLevel = 1;
         _defaultHammerMaterial = _hamerMeshRenderer.material;
     }
 
-    public void HandleStreakUpdate(int streakValue)
+    public void LevelEvaluation(int streakValue)
     {
-        if (streakValue <= 10)
+        Debug.Log($"Streak [{streakValue}]");
+
+        if (streakValue < _beatManager.TierTwo)
         {
-            LevelUp(1);
+            return;
         }
-        else if (streakValue > 10 && streakValue < 20)
+        else if (streakValue < _beatManager.TierThree)
         {
             LevelUp(2);
         }
-        else if (streakValue > 20 && streakValue <= 30)
+        else
         {
             LevelUp(3);
         }
