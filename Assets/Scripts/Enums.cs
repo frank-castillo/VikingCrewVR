@@ -17,6 +17,12 @@ public enum SFXType
     VikingChant,
 }
 
+public enum LayerType
+{
+    None = -1,
+    Hammer = 8
+}
+
 public class Enums
 {
     public static void InvalidSwitch(Type script, Type type)

@@ -2,8 +2,8 @@
 
 public class DrumController : MonoBehaviour
 {
-    [Header("Collider Layer Integer Reference")]
-    [SerializeField] private int _hammerLayer = 8;
+    [Header("Layer References")]
+    [SerializeField] private LayerType _hammerLayer = LayerType.None;
 
     private BeatManager _beatManager = null;
     private FeedbackHandler _feedbackHandler = null;
@@ -24,13 +24,13 @@ public class DrumController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == _hammerLayer)
+        if (collision.gameObject.layer == (uint)_hammerLayer)
         {
-            if (collision.transform.CompareTag("LHand"))
+            if (collision.gameObject.CompareTags("LHand"))
             {
                 _beatManager.SetActiveController(OVRInput.Controller.LTouch);
             }
-            else if(collision.transform.CompareTag("RHand"))
+            else if(collision.gameObject.CompareTags("RHand"))
             {
                 _beatManager.SetActiveController(OVRInput.Controller.RTouch);
             }
