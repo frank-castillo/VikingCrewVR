@@ -11,6 +11,8 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private int _tierThree = 0;
 
     private FeedbackManager _feedbackManager = null;
+    private HammerController _leftHammerController = null;
+    private HammerController _rightHammerController = null;
     private OVRInput.Controller _activeController = OVRInput.Controller.None;
 
     private int _beatStreak = 0;
@@ -21,9 +23,13 @@ public class BeatManager : MonoBehaviour
 
     public OVRInput.Controller ActiveController { get => _activeController; }
 
-    public void SetActiveController(OVRInput.Controller controller) { _activeController = controller; }
+    public int TierTwo { get => _tierTwo; }
+    public int TierThree { get => _tierThree; }
 
+    public void SetActiveController(OVRInput.Controller controller) { _activeController = controller; }
     public void SetFeedBackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
+    public void SetLeftHammerController(HammerController leftHammerController) { _leftHammerController = leftHammerController; }
+    public void SetRightHammerController(HammerController rightHammerController) { _rightHammerController = rightHammerController; }
 
     public void StopBeat() { _isPlaying = false; }
 
@@ -52,8 +58,7 @@ public class BeatManager : MonoBehaviour
         {
             Beat();
         }
-
-        if (_isOnBeat)
+        else if (_isOnBeat)
         {
             EvaluateHitWindow();
         }
@@ -61,7 +66,6 @@ public class BeatManager : MonoBehaviour
 
     private void Beat()
     {
-        Debug.Log($"Beat");
         _isOnBeat = true;
 
         _feedbackManager.ConstantBeatFeedback();
@@ -82,7 +86,7 @@ public class BeatManager : MonoBehaviour
 
     public void DrumHit()
     {
-        if (_isOnBeat || _beatTimer - _hitWindowTimer < 0)
+        if (_isOnBeat || PreBeatCheck())
         {
             HitOnBeat();
         }
@@ -90,22 +94,26 @@ public class BeatManager : MonoBehaviour
         {
             HitOffBeat();
         }
+
+        _leftHammerController.LevelEvaluation(_beatStreak);
+        _rightHammerController.LevelEvaluation(_beatStreak);
     }
 
     private void HitOnBeat()
     {
-        Debug.Log($"Hit on beat");
-
         ++_beatStreak;
         _feedbackManager.OnBeatFeedback(EvaluateStreak());
     }
 
     private void HitOffBeat()
     {
-        Debug.Log($"Hit off beat");
-
-        _beatStreak = 0;
         _feedbackManager.OffBeatFeedback();
+    }
+
+    private bool PreBeatCheck()
+    {
+        float delta = _beatTimer - _hitWindowDelay;
+        return delta < 0;
     }
 
     private OnHitBeatType EvaluateStreak()

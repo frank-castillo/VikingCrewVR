@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDelay: 0
   _target: {fileID: 5488077920718281595}
-  _targetScale: {x: 1.05, y: 1.05, z: 1.05}
+  _targetScale: {x: 1.025, y: 1.025, z: 1.025}
   _curve:
     serializedVersion: 2
     m_Curve:
@@ -164,15 +164,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805262303}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1570557094}
   - {fileID: 1276632009}
   - {fileID: 2043759905}
-  m_Father: {fileID: 1740829937559454492}
-  m_RootOrder: 6
+  m_Father: {fileID: 271870533472755446}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1805262305
 MonoBehaviour:
@@ -302,7 +302,6 @@ Transform:
   - {fileID: 5345399065508181855}
   - {fileID: 2054818879238916103}
   - {fileID: 271870533472755446}
-  - {fileID: 1805262304}
   m_Father: {fileID: 5699864171972788310}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -406,7 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 271870533472755446}
   m_Layer: 0
-  m_Name: On Any Beat Tier Feedbacks
+  m_Name: On Any On Beat Hit Tier Feedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,6 +424,7 @@ Transform:
   m_Children:
   - {fileID: 3305592071826546275}
   - {fileID: 4684049299065452777}
+  - {fileID: 1805262304}
   m_Father: {fileID: 1740829937559454492}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -582,6 +582,7 @@ MonoBehaviour:
   _onAnyBeatTierFeedbacks:
   - {fileID: 3654237230938895107}
   - {fileID: 4608649395195868107}
+  - {fileID: 1805262305}
 --- !u!65 &7083963334812549365
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -593,8 +594,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.3983774, y: 0.71164894, z: 2.5667744}
-  m_Center: {x: -0.013452768, y: 1.3574326, z: 0.019574404}
+  m_Size: {x: 2.4, y: 0.2, z: 2.4}
+  m_Center: {x: 0, y: 1.45, z: 0}
 --- !u!54 &4638685558973176717
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1061,6 +1062,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19823286, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19823286, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.9060749
+      objectReference: {fileID: 0}
+    - target: {fileID: 19823286, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19849778, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0.98055005
+      objectReference: {fileID: 0}
+    - target: {fileID: 19849778, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19849778, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 65083
+      objectReference: {fileID: 0}
+    - target: {fileID: 19838900, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0.98055005
+      objectReference: {fileID: 0}
+    - target: {fileID: 19838900, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19842522, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19842522, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.903612
+      objectReference: {fileID: 0}
+    - target: {fileID: 19842522, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19836004, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0.9837978
+      objectReference: {fileID: 0}
+    - target: {fileID: 19836004, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
 --- !u!4 &1276632009 stripped
@@ -1155,14 +1208,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1805262304}
     m_Modifications:
-    - target: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
-      propertyPath: m_Name
-      value: HammerHitVFX_3
-      objectReference: {fileID: 0}
-    - target: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 492736, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1205,6 +1250,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492736, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
+      propertyPath: m_Name
+      value: HammerHitVFX_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
