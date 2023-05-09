@@ -58,6 +58,7 @@ public class LevelLoader : AsyncLoader
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
         Initialize();
+        SetupEvents();
 
         ProcessQueuedCallbacks();
         CallOnComplete(OnComplete);
@@ -98,8 +99,12 @@ public class LevelLoader : AsyncLoader
 
         // Set References
         _beatManager.SetFeedBackManager(_feedbackManager);
-        _beatManager.SetLeftHammerController(_leftHammer);
-        _beatManager.SetRightHammerController(_rightHammer);
+    }
+
+    private void SetupEvents()
+    {
+        _feedbackManager.OnBeatHitSubscribe(_leftHammer.LevelEvaluation);
+        _feedbackManager.OnBeatHitSubscribe(_rightHammer.LevelEvaluation);
     }
 
     public static void CallOnComplete(Action callback)

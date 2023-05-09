@@ -3,9 +3,13 @@ using System;
 
 public class FeedbackManager : MonoBehaviour
 {
-    public Action constantBeat = null;
-    public Action<OnHitBeatType> onBeatHit = null;
-    public Action offBeatMiss = null;
+    private Action _constantBeat = null;
+    private Action _onBeatHit = null;
+    private Action _offBeatMiss = null;
+
+    public void ConstantBeatSubcribe(Action action) { _constantBeat += action; }
+    public void OnBeatHitSubscribe(Action action) { _onBeatHit += action; }
+    public void OffBeatMissSubcribe(Action action) { _offBeatMiss += action; }
 
     public FeedbackManager Initialize()
     {
@@ -16,16 +20,16 @@ public class FeedbackManager : MonoBehaviour
 
     public void ConstantBeatFeedback()
     {
-        constantBeat?.Invoke();
+        _constantBeat?.Invoke();
     }
 
-    public void OnBeatFeedback(OnHitBeatType beatType)
+    public void OnBeatFeedback()
     {
-        onBeatHit?.Invoke(beatType);
+        _onBeatHit?.Invoke();
     }
 
     public void OffBeatFeedback()
     {
-        offBeatMiss?.Invoke();
+        _offBeatMiss?.Invoke();
     }
 }
