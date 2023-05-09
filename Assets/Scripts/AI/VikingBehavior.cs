@@ -22,6 +22,11 @@ public class VikingBehavior : MonoBehaviour
 
     private void ChangeState(IVikingState vikingState)
     {
+        if (vikingState == _currentState)
+        {
+            return;
+        }
+
         if (_currentState != null)
         {
             _currentState.Exit();

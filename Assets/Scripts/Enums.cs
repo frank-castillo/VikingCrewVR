@@ -23,6 +23,13 @@ public enum LayerType
     Hammer = 8
 }
 
+public enum RowType
+{
+    None = -1,
+    StartRowing,
+    StopRowing,
+}
+
 public class Enums
 {
     public static void InvalidSwitch(Type script, Type type)

@@ -4,9 +4,9 @@ using UnityEngine;
 public class CrewController : MonoBehaviour
 {
     [SerializeField] private Transform _vikingsFolder = null;
-    [SerializeField] private CrewFeedback _crewFeedback = null;
-    private FeedbackHandler _feedbackHandler = null;
     private List<VikingBehavior> _vikings = new List<VikingBehavior>();
+
+    private FeedbackManager _feedbackManager = null;
 
     public void Initialize()
     {
@@ -14,8 +14,14 @@ public class CrewController : MonoBehaviour
 
         SetupVikings();
 
-        _feedbackHandler = GetComponent<FeedbackHandler>();
-        _feedbackHandler.Initialize();
+        _feedbackManager.OnBeatHitSubscribe(StartRow);
+        _feedbackManager.OffBeatMissSubscribe(StopRowing);
+    }
+
+    private void OnDisable()
+    {
+        _feedbackManager.OnBeatHitUnsubscribe(StartRow);
+        _feedbackManager.OffBeatMissUnsubscribe(StopRowing);
     }
 
     private void SetupVikings()
@@ -26,7 +32,23 @@ public class CrewController : MonoBehaviour
             viking.Initialize();
             _vikings.Add(viking);
         }
+    }
 
-        _crewFeedback.SetVikings(_vikings);
+    private void StartRow()
+    {
+        Rowing(RowType.StartRowing);
+    }
+
+    private void StopRowing()
+    {
+        Rowing(RowType.StopRowing);
+    }
+
+    private void Rowing(RowType rowType)
+    {
+        foreach (VikingBehavior viking in _vikings)
+        {
+            viking.RowEvent(rowType);
+        }
     }
 }
