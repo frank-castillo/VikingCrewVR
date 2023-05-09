@@ -72,7 +72,7 @@ public class FeedbackHandler : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         UnsubscribeMethods();
     }
