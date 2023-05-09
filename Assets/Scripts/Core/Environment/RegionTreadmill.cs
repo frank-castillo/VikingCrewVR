@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RegionTreadmill : MonoBehaviour
@@ -12,8 +13,13 @@ public class RegionTreadmill : MonoBehaviour
     private List<Transform> _regions = new List<Transform>();
 
     private FeedbackManager _feedbackManager = null;
-    private bool _movementEnabled = false;
+    private Coroutine _increaseSpeedcoroutine = null;
+    private Coroutine _decreaseSpeedcoroutine = null;
+
     private float _speed = 5.0f;
+    private float _lerpDuration = 1.0f;
+    private bool _movementEnabled = false;
+    private bool _inTransition = false;
 
     public void EnableMovement(bool enable) { _movementEnabled = enable; }
 
@@ -36,37 +42,69 @@ public class RegionTreadmill : MonoBehaviour
 
     private void OnDisable()
     {
+        StopCoroutine(_increaseSpeedcoroutine);
+        StopCoroutine(_decreaseSpeedcoroutine);
         _feedbackManager.OnBeatHitUnsubscribe(IncreaseSpeed);
         _feedbackManager.OffBeatMissUnsubscribe(DecreaseSpeed);
     }
 
+    private IEnumerator IncreaseSpeedCoroutine()
+    {
+        float elapsedTime = 0.0f;
+        float startSpeed = _speed;
+        _inTransition = true;
+
+        while (elapsedTime < _lerpDuration)
+        {
+            _speed = Mathf.Lerp(startSpeed, _speed + _speedModifier, elapsedTime / _lerpDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _speed = _speed + _speedModifier;
+        _inTransition = false;
+    }
+
     private void IncreaseSpeed()
     {
-        if(_speed + _speedModifier > _maxSpeed)
+        if (_inTransition || _speed >= _maxSpeed)
         {
-            _speed = _maxSpeed;
+            return;
         }
-        else
+
+        _increaseSpeedcoroutine = StartCoroutine(IncreaseSpeedCoroutine());
+    }
+
+    private IEnumerator DecreaseSpeedCoroutine()
+    {
+        float elapsedTime = 0.0f;
+        float startSpeed = _speed;
+        _inTransition = true;
+
+        while (elapsedTime < _lerpDuration)
         {
-            _speed += _speedModifier;
+            _speed = Mathf.Lerp(startSpeed, _speed - _speedModifier, elapsedTime / _lerpDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
+
+        _speed = _speed - _speedModifier;
+        _inTransition = false;
     }
 
     private void DecreaseSpeed()
     {
-        if (_speed - _speedModifier < _minSpeed)
+        if (_inTransition || _speed <= _minSpeed)
         {
-            _speed = _minSpeed;
+            return;
         }
-        else
-        {
-            _speed -= _speedModifier;
-        }
+
+        _decreaseSpeedcoroutine = StartCoroutine(DecreaseSpeedCoroutine());
     }
 
     void Update()
     {
-        if(!_movementEnabled)
+        if (!_movementEnabled)
         {
             return;
         }
