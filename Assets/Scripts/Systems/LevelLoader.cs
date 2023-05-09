@@ -18,6 +18,7 @@ public class LevelLoader : AsyncLoader
 
     [Header("Level")]
     [SerializeField] private Ship _ship = null;
+    [SerializeField] private EnvironmentManager _environment = null;
     [SerializeField] private HammerController _leftHammer = null;
     [SerializeField] private HammerController _rightHammer = null;
 
@@ -58,11 +59,13 @@ public class LevelLoader : AsyncLoader
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
         Initialize();
+        SetupEvents();
 
         ProcessQueuedCallbacks();
         CallOnComplete(OnComplete);
 
         _beatManager.StartBeat();
+        _environment.StartEnvironment();
     }
 
     private void Initialize()
@@ -90,16 +93,27 @@ public class LevelLoader : AsyncLoader
             _ship.Initialize();
         }
 
+        if (_environment != null)
+        {
+            _environment.Initialize();
+        }
+
         if (_leftHammer != null && _rightHammer != null)
         {
             _leftHammer.Initialize();
             _rightHammer.Initialize();
         }
 
+        // Add env
+
         // Set References
         _beatManager.SetFeedBackManager(_feedbackManager);
-        _beatManager.SetLeftHammerController(_leftHammer);
-        _beatManager.SetRightHammerController(_rightHammer);
+    }
+
+    private void SetupEvents()
+    {
+        _feedbackManager.OnBeatHitSubscribe(_leftHammer.LevelEvaluation);
+        _feedbackManager.OnBeatHitSubscribe(_rightHammer.LevelEvaluation);
     }
 
     public static void CallOnComplete(Action callback)

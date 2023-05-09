@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum OnHitBeatType
+public enum BeatTierType
 {
     None = -1,
     T1,

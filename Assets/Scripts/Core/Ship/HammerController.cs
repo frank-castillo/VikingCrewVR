@@ -10,33 +10,27 @@ public class HammerController : MonoBehaviour
     private int _currentLevel = 0;
     private Material _defaultHammerMaterial = null;
     private MeshRenderer _hamerMeshRenderer = null;
-
     private BeatManager _beatManager = null;
-    private FeedbackHandler _feedbackHandler = null;
 
     public void Initialize()
     {
         _beatManager = ServiceLocator.Get<BeatManager>();
-
         _hamerMeshRenderer = _hammerMeshHolder.GetComponent<MeshRenderer>();
-
         _currentLevel = 1;
         _defaultHammerMaterial = _hamerMeshRenderer.material;
     }
 
-    public void LevelEvaluation(int streakValue)
+    public void LevelEvaluation()
     {
-        Debug.Log($"Streak [{streakValue}]");
-
-        if (streakValue < _beatManager.TierTwo)
+        if (_beatManager.CurrentTier == BeatTierType.T1)
         {
             return;
         }
-        else if (streakValue < _beatManager.TierThree)
+        else if (_beatManager.CurrentTier == BeatTierType.T2)
         {
             LevelUp(2);
         }
-        else
+        else if (_beatManager.CurrentTier == BeatTierType.T3)
         {
             LevelUp(3);
         }
