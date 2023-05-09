@@ -27,9 +27,9 @@ public class FeedbackHandler : MonoBehaviour
 
     private void Subscriptions()
     {
-        _feedbackManager.ConstantBeatSubcribe(ConstantBeatFeedback);
+        _feedbackManager.ConstantBeatSubscribe(ConstantBeatFeedback);
         _feedbackManager.OnBeatHitSubscribe(OnHitFeedback);
-        _feedbackManager.OffBeatMissSubcribe(OnMissFeedback);
+        _feedbackManager.OffBeatMissSubscribe(OnMissFeedback);
     }
 
     private void InitializeFeedbacks()
