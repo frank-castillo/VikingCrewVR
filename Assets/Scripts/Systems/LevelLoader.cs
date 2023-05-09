@@ -116,6 +116,12 @@ public class LevelLoader : AsyncLoader
         _feedbackManager.OnBeatHitSubscribe(_rightHammer.LevelEvaluation);
     }
 
+    private void UnsubscribeEvents()
+    {
+        _feedbackManager.OnBeatHitUnsubscribe(_leftHammer.LevelEvaluation);
+        _feedbackManager.OnBeatHitUnsubscribe(_rightHammer.LevelEvaluation);
+    }
+
     public static void CallOnComplete(Action callback)
     {
         if (_instance == null)
@@ -169,6 +175,8 @@ public class LevelLoader : AsyncLoader
         }
 
         _audioManager.CurrentVolume = 0.0f;
+
+        UnsubscribeEvents();
 
         ExperienceApp.End();
     }
