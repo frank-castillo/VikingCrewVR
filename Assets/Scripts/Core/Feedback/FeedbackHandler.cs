@@ -32,6 +32,13 @@ public class FeedbackHandler : MonoBehaviour
         _feedbackManager.OffBeatMissSubscribe(OnMissFeedback);
     }
 
+    private void UnsubscribeMethods()
+    {
+        _feedbackManager.ConstantBeatUnsubscribe(ConstantBeatFeedback);
+        _feedbackManager.OnBeatHitUnsubscribe(OnHitFeedback);
+        _feedbackManager.OffBeatMissUnsubscribe(OnMissFeedback);
+    }
+
     private void InitializeFeedbacks()
     {
         foreach (var feedback in _onConstantBeatFeedbacks)
@@ -63,6 +70,11 @@ public class FeedbackHandler : MonoBehaviour
         {
             feedback.Initialize();
         }
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeMethods();
     }
 
     private void ConstantBeatFeedback()

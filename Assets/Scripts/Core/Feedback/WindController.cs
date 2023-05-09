@@ -30,6 +30,11 @@ public class WindController : MonoBehaviour
         _feedbackManager.OnBeatHitSubscribe(TierEvaluation);
     }
 
+    private void OnDestroy()
+    {
+        _feedbackManager.OnBeatHitUnsubscribe(TierEvaluation);
+    }
+
     private void TierEvaluation()
     {
         switch (_beatManager.CurrentTier)
@@ -75,4 +80,3 @@ public class WindController : MonoBehaviour
         }
     }
 }
-
