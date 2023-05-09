@@ -3,6 +3,7 @@
 public class EnvironmentManager : MonoBehaviour
 {
     [SerializeField] private RegionTreadmill _environmentTreadmill = null;
+    [SerializeField] private WindController _windController = null;
 
     public void Initialize()
     {
@@ -11,6 +12,11 @@ public class EnvironmentManager : MonoBehaviour
         if (_environmentTreadmill != null)
         {
             _environmentTreadmill.Initialize();
+        }
+
+        if (_windController != null)
+        {
+            _windController.Initialize();
         }
     }
 
