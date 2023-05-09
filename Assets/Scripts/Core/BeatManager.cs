@@ -11,8 +11,6 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private int _tierThree = 0;
 
     private FeedbackManager _feedbackManager = null;
-    private HammerController _leftHammerController = null;
-    private HammerController _rightHammerController = null;
     private OVRInput.Controller _activeController = OVRInput.Controller.None;
 
     private BeatTierType _currentTier = BeatTierType.None;
