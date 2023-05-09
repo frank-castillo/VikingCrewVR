@@ -10,6 +10,9 @@ public class FeedbackManager : MonoBehaviour
     public void ConstantBeatSubcribe(Action action) { _constantBeat += action; }
     public void OnBeatHitSubscribe(Action action) { _onBeatHit += action; }
     public void OffBeatMissSubcribe(Action action) { _offBeatMiss += action; }
+    public void ConstantBeatUnSubcribe(Action action) { _constantBeat -= action; }
+    public void OnBeatHitUnSubscribe(Action action) { _onBeatHit -= action; }
+    public void OffBeatMissUnSubcribe(Action action) { _offBeatMiss -= action; }
 
     public FeedbackManager Initialize()
     {
