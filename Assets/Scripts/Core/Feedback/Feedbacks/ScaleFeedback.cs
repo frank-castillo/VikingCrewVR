@@ -4,6 +4,7 @@ using UnityEngine;
 public class ScaleFeedback : Feedback
 {
     [SerializeField] private Transform _target = null;
+    [SerializeField] private bool _isRestOnTheEnd = true;
     [SerializeField] private Vector3 _targetScale = Vector3.zero;
     [SerializeField] private AnimationCurve _curve = null;
     [SerializeField] private float _time = 0.0f;
@@ -34,6 +35,11 @@ public class ScaleFeedback : Feedback
             elapsedTime += Time.deltaTime;
             yield return cachedEndOfFrame;
         }
+        if (_isRestOnTheEnd)
+        {
+            targetTransform.localScale = initialLocalScale;
+        }
+
         isPlaying = false;
     }
 
