@@ -5,7 +5,6 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private RegionTreadmill _environmentTreadmill = null;
     [SerializeField] private WindController _windController = null;
 
-
     public void Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
