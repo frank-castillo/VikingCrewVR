@@ -18,6 +18,7 @@ public class LevelLoader : AsyncLoader
 
     [Header("Level")]
     [SerializeField] private Ship _ship = null;
+    [SerializeField] private EnvironmentManager _environment = null;
     [SerializeField] private HammerController _leftHammer = null;
     [SerializeField] private HammerController _rightHammer = null;
 
@@ -64,6 +65,7 @@ public class LevelLoader : AsyncLoader
         CallOnComplete(OnComplete);
 
         _beatManager.StartBeat();
+        _environment.StartEnvironment();
     }
 
     private void Initialize()
@@ -91,11 +93,18 @@ public class LevelLoader : AsyncLoader
             _ship.Initialize();
         }
 
+        if (_environment != null)
+        {
+            _environment.Initialize();
+        }
+
         if (_leftHammer != null && _rightHammer != null)
         {
             _leftHammer.Initialize();
             _rightHammer.Initialize();
         }
+
+        // Add env
 
         // Set References
         _beatManager.SetFeedBackManager(_feedbackManager);
