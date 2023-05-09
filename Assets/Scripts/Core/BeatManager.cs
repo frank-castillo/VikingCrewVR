@@ -15,6 +15,7 @@ public class BeatManager : MonoBehaviour
     private HammerController _rightHammerController = null;
     private OVRInput.Controller _activeController = OVRInput.Controller.None;
 
+    private BeatTierType _currentTier = BeatTierType.None;
     private int _beatStreak = 0;
     private float _beatTimer = 0.0f;
     private float _hitWindowTimer = 0.0f;
@@ -26,17 +27,18 @@ public class BeatManager : MonoBehaviour
     public int TierTwo { get => _tierTwo; }
     public int TierThree { get => _tierThree; }
 
+    public BeatTierType CurrentTier { get => _currentTier; }
+
     public void SetActiveController(OVRInput.Controller controller) { _activeController = controller; }
     public void SetFeedBackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
-    public void SetLeftHammerController(HammerController leftHammerController) { _leftHammerController = leftHammerController; }
-    public void SetRightHammerController(HammerController rightHammerController) { _rightHammerController = rightHammerController; }
-
+ 
     public void StopBeat() { _isPlaying = false; }
 
     public void StartBeat()
     {
         _isPlaying = true;
         _beatTimer = _beatDelay;
+        _currentTier = BeatTierType.T1;
     }
 
     public BeatManager Initialize()
@@ -94,15 +96,13 @@ public class BeatManager : MonoBehaviour
         {
             HitOffBeat();
         }
-
-        _leftHammerController.LevelEvaluation(_beatStreak);
-        _rightHammerController.LevelEvaluation(_beatStreak);
     }
 
     private void HitOnBeat()
     {
         ++_beatStreak;
-        _feedbackManager.OnBeatFeedback(EvaluateStreak());
+        EvaluateStreak();
+        _feedbackManager.OnBeatFeedback();
     }
 
     private void HitOffBeat()
@@ -116,19 +116,19 @@ public class BeatManager : MonoBehaviour
         return delta < 0;
     }
 
-    private OnHitBeatType EvaluateStreak()
+    private void EvaluateStreak()
     {
         if (_beatStreak < _tierTwo)
         {
-            return OnHitBeatType.T1;
+            _currentTier = BeatTierType.T1;
         }
         else if (_beatStreak < _tierThree)
         {
-            return OnHitBeatType.T2;
+            _currentTier = BeatTierType.T2;
         }
         else
         {
-            return OnHitBeatType.T3;
+            _currentTier = BeatTierType.T3;
         }
     }
 }

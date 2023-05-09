@@ -12,12 +12,14 @@ public class FeedbackHandler : MonoBehaviour
     [SerializeField] private List<Feedback> _onAnyBeatTierFeedbacks = new List<Feedback>();
 
     private FeedbackManager _feedbackManager = null;
+    private BeatManager _beatManager = null;
 
     public void Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
+        _beatManager = ServiceLocator.Get<BeatManager>();
 
         InitializeFeedbacks();
         Subscriptions();
@@ -25,9 +27,9 @@ public class FeedbackHandler : MonoBehaviour
 
     private void Subscriptions()
     {
-        _feedbackManager.constantBeat += ConstantBeatFeedback;
-        _feedbackManager.onBeatHit += OnHitFeedback;
-        _feedbackManager.offBeatMiss += OnMissFeedback;
+        _feedbackManager.ConstantBeatSubcribe(ConstantBeatFeedback);
+        _feedbackManager.OnBeatHitSubscribe(OnHitFeedback);
+        _feedbackManager.OffBeatMissSubcribe(OnMissFeedback);
     }
 
     private void InitializeFeedbacks()
@@ -68,25 +70,25 @@ public class FeedbackHandler : MonoBehaviour
         PlayFeedbacks(_onConstantBeatFeedbacks);
     }
 
-    private void OnHitFeedback(OnHitBeatType beatType)
+    private void OnHitFeedback()
     {
         PlayFeedbacks(_onAnyBeatTierFeedbacks);
 
-        switch (beatType)
+        switch (_beatManager.CurrentTier)
         {
-            case OnHitBeatType.None:
+            case BeatTierType.None:
                 break;
-            case OnHitBeatType.T1:
+            case BeatTierType.T1:
                 PlayFeedbacks(_onBeatT1Feedbacks);
                 break;
-            case OnHitBeatType.T2:
+            case BeatTierType.T2:
                 PlayFeedbacks(_onBeatT2Feedbacks);
                 break;
-            case OnHitBeatType.T3:
+            case BeatTierType.T3:
                 PlayFeedbacks(_onBeatT3Feedbacks);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), beatType.GetType());
+                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
                 break;
         }
     }
