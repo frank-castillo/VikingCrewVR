@@ -4,7 +4,8 @@ public class BeatManager : MonoBehaviour
 {
     [Header("Beat Timers")]
     [SerializeField] private float _beatDelay = 0.75f;
-    [SerializeField] private float _hitWindowDelay = 0.2f; // On either side
+    [SerializeField] private float _preHitWindowDelay = 0.2f; // On pre side
+    [SerializeField] private float _postHitWindowDelay = 0.2f; // On end side
 
     [Header("Combo Tiers")]
     [SerializeField] private int _tierTwo = 0;
@@ -71,7 +72,7 @@ public class BeatManager : MonoBehaviour
         _feedbackManager.ConstantBeatFeedback();
 
         _beatTimer = _beatDelay;
-        _hitWindowTimer = _hitWindowDelay;
+        _hitWindowTimer = _postHitWindowDelay;
     }
 
     private void EvaluateHitWindow()
@@ -110,7 +111,7 @@ public class BeatManager : MonoBehaviour
 
     private bool PreBeatCheck()
     {
-        float delta = _beatTimer - _hitWindowDelay;
+        float delta = _beatTimer - _preHitWindowDelay;
         return delta < 0;
     }
 
