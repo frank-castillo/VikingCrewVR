@@ -16,18 +16,21 @@ public class LevelLoader : AsyncLoader
     [SerializeField] private BeatManager _beatManager = null;
     [SerializeField] private FeedbackManager _feedbackManager = null;
 
-    [Header("Level")]
-    [SerializeField] private float _wrapUpTime = 0.0f;
-    private float _timeScinceStart = 0.0f;
-    private bool _isWrapUpStarted = false;
+    [Header("Fading Times")]
+    [SerializeField] private float _fadeInTime = 2.0f;
+    [SerializeField] private float _fadeOutTime = 2.0f;
+
+    [Header("Wrap Up Time")]
+    [SerializeField] private float _wrapUpDelay = 0.0f;
+    private float _gameTimer = 0.0f;
+    private bool _gameStarted = false;
+    private bool _wrapUpStarted = false;
+
+    [Header("References")]
     [SerializeField] private Ship _ship = null;
     [SerializeField] private EnvironmentManager _environment = null;
     [SerializeField] private HammerController _leftHammer = null;
     [SerializeField] private HammerController _rightHammer = null;
-
-    [Header("Fading Times")]
-    [SerializeField] private float _fadeInTime = 2.0f;
-    [SerializeField] private float _fadeOutTime = 2.0f;
 
     private static LevelLoader _instance = null;
     private readonly static List<Action> _queuedCallbacks = new List<Action>();
@@ -112,12 +115,15 @@ public class LevelLoader : AsyncLoader
 
     private void Update()
     {
-        _timeScinceStart += Time.deltaTime;
-
-        if (_timeScinceStart >= _wrapUpTime && !_isWrapUpStarted)
+        if (_gameStarted == false || _wrapUpStarted == false)
         {
-            _ship.HandleWrapUpSequence();
-            _isWrapUpStarted = true;
+            return;
+        }
+
+        _gameTimer += Time.deltaTime;
+        if (_gameTimer > _wrapUpDelay)
+        {
+            WrapUpSequence();
         }
     }
 
@@ -138,6 +144,15 @@ public class LevelLoader : AsyncLoader
         _beatManager.StartBeat();
         _ship.StartShip();
         _environment.StartEnvironment();
+
+        _gameStarted = true;
+    }
+
+    private void WrapUpSequence()
+    {
+        _wrapUpStarted = true;
+
+        _ship.ShipWrapUp();
     }
 
     public static void CallOnComplete(Action callback)
@@ -197,14 +212,6 @@ public class LevelLoader : AsyncLoader
         UnsubscribeEvents();
 
         ExperienceApp.End();
-    }
-
-    private IEnumerator WrapUpSequence(float timeToWait, Action callback)
-    {
-        yield return new WaitForSeconds(timeToWait);
-        callback?.Invoke();
-        Debug.Log($"<color=Cyan> Wrap Up Sequence started! </color>");
-
     }
 
     public void FinalizeExperience()

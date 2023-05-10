@@ -23,12 +23,14 @@ public class CrewController : MonoBehaviour
 
         _feedbackManager.OnBeatHitSubscribe(StartRow);
         _feedbackManager.OffBeatMissSubscribe(StopRowing);
+        _feedbackManager.RepeatedMissSubscribe(StopRowing);
     }
 
     private void OnDestroy()
     {
         _feedbackManager.OnBeatHitUnsubscribe(StartRow);
         _feedbackManager.OffBeatMissUnsubscribe(StopRowing);
+        _feedbackManager.RepeatedMissUnsubscribe(StopRowing);
     }
 
     public void StartDefaultCrewBehavior()
