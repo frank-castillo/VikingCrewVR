@@ -2,14 +2,14 @@
 {
     private VikingBehavior _behavior = null;
 
-    public void Initialize(VikingBehavior vikingBehavior)
+    public VikingRowState(VikingBehavior vikingBehavior)
     {
         _behavior = vikingBehavior;
     }
 
     public void Enter()
     {
-
+        _behavior.ChangeAnimation(VikingAnimationType.Push);
     }
 
     public void Update()

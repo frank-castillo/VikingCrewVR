@@ -23,7 +23,7 @@ public class VikingBehavior : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _vikingSleepState = new VikingSleepState(this, sleepDelay, sleepVariance);
-        _vikingRowState = new VikingRowState();
+        _vikingRowState = new VikingRowState(this);
     }
 
     private void Update()
