@@ -17,6 +17,9 @@ public class LevelLoader : AsyncLoader
     [SerializeField] private FeedbackManager _feedbackManager = null;
 
     [Header("Level")]
+    [SerializeField] private float _wrapUpTime = 0.0f;
+    private float _timeScinceStart = 0.0f;
+    private bool _isWrapUpStarted = false;
     [SerializeField] private Ship _ship = null;
     [SerializeField] private EnvironmentManager _environment = null;
     [SerializeField] private HammerController _leftHammer = null;
@@ -107,6 +110,17 @@ public class LevelLoader : AsyncLoader
         _beatManager.SetFeedBackManager(_feedbackManager);
     }
 
+    private void Update()
+    {
+        _timeScinceStart += Time.deltaTime;
+
+        if (_timeScinceStart >= _wrapUpTime && !_isWrapUpStarted)
+        {
+            _ship.HandleWrapUpSequence();
+            _isWrapUpStarted = true;
+        }
+    }
+
     private void SetupEvents()
     {
         _feedbackManager.OnBeatHitSubscribe(_leftHammer.LevelEvaluation);
@@ -183,6 +197,14 @@ public class LevelLoader : AsyncLoader
         UnsubscribeEvents();
 
         ExperienceApp.End();
+    }
+
+    private IEnumerator WrapUpSequence(float timeToWait, Action callback)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        callback?.Invoke();
+        Debug.Log($"<color=Cyan> Wrap Up Sequence started! </color>");
+
     }
 
     public void FinalizeExperience()
