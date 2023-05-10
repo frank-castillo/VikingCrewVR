@@ -41,7 +41,7 @@ public class BeatManager : MonoBehaviour
 
     public BeatManager Initialize()
     {
-        Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
+        Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
 
         return this;
     }
