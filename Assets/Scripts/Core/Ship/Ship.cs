@@ -12,4 +12,9 @@ public class Ship : MonoBehaviour
         _drumController.Initialize();
         _crewController.Initialize();
     }
+
+    public void StartShip()
+    {
+        _crewController.StartDefaultCrewBehavior();
+    }
 }

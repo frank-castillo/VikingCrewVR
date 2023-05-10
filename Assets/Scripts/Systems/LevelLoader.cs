@@ -64,8 +64,7 @@ public class LevelLoader : AsyncLoader
         ProcessQueuedCallbacks();
         CallOnComplete(OnComplete);
 
-        _beatManager.StartBeat();
-        _environment.StartEnvironment();
+        SetupSceneStart();
     }
 
     private void Initialize()
@@ -104,8 +103,6 @@ public class LevelLoader : AsyncLoader
             _rightHammer.Initialize();
         }
 
-        // Add env
-
         // Set References
         _beatManager.SetFeedBackManager(_feedbackManager);
     }
@@ -120,6 +117,13 @@ public class LevelLoader : AsyncLoader
     {
         _feedbackManager.OnBeatHitUnsubscribe(_leftHammer.LevelEvaluation);
         _feedbackManager.OnBeatHitUnsubscribe(_rightHammer.LevelEvaluation);
+    }
+
+    private void SetupSceneStart()
+    {
+        _beatManager.StartBeat();
+        _ship.StartShip();
+        _environment.StartEnvironment();
     }
 
     public static void CallOnComplete(Action callback)

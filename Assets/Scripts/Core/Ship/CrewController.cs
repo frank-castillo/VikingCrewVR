@@ -3,33 +3,48 @@ using UnityEngine;
 
 public class CrewController : MonoBehaviour
 {
+    [Header("Sleep Data")]
+    [SerializeField] private float _sleepDelay = 5.0f;
+    [SerializeField] private float _sleepVariance = 3.0f;
+
+    [Header("References")]
     [SerializeField] private Transform _vikingsFolder = null;
-    private List<VikingBehavior> _vikings = new List<VikingBehavior>();
 
     private FeedbackManager _feedbackManager = null;
+    private List<VikingBehavior> _vikings = new List<VikingBehavior>();
 
     public void Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
-        SetupVikings();
+        InitializeVikings();
+
+        _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
         _feedbackManager.OnBeatHitSubscribe(StartRow);
         _feedbackManager.OffBeatMissSubscribe(StopRowing);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _feedbackManager.OnBeatHitUnsubscribe(StartRow);
         _feedbackManager.OffBeatMissUnsubscribe(StopRowing);
     }
 
-    private void SetupVikings()
+    public void StartDefaultCrewBehavior()
+    {
+        foreach (VikingBehavior viking in _vikings)
+        {
+            viking.StartDefaultBehavior();
+        }
+    }
+
+    private void InitializeVikings()
     {
         foreach (Transform child in _vikingsFolder)
         {
-            VikingBehavior viking =  child.GetComponent<VikingBehavior>();
-            viking.Initialize();
+            VikingBehavior viking = child.GetComponent<VikingBehavior>();
+            viking.Initialize(_sleepDelay, _sleepVariance);
             _vikings.Add(viking);
         }
     }

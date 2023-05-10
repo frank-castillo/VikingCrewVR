@@ -162,36 +162,6 @@ Transform:
   m_Father: {fileID: 7414178750393533041}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6557226678419004483
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6588167274011864168}
-  m_Layer: 0
-  m_Name: Feedback
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6588167274011864168
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6557226678419004483}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7414178750393533041}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7414178750393533042
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +192,6 @@ Transform:
   m_Children:
   - {fileID: 8594412671868994115}
   - {fileID: 3910411141323363202}
-  - {fileID: 6588167274011864168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -239,7 +208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vikingsFolder: {fileID: 8594412671868994115}
-  _crewFeedback: {fileID: 0}
 --- !u!1001 &2142090977112921897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -594,11 +562,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8594412671868994115}
     m_Modifications:
-    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
-        type: 3}
-      propertyPath: m_Name
-      value: Viking (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3830427168469322739, guid: cfa548ce749aab043a5804b70f71c706,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -669,6 +632,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.4999998
       objectReference: {fileID: 0}
+    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
+        type: 3}
+      propertyPath: m_Name
+      value: Viking (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 1501424458392347120, guid: cfa548ce749aab043a5804b70f71c706,
         type: 3}
       propertyPath: m_IsActive
@@ -695,11 +663,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8594412671868994115}
     m_Modifications:
-    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
-        type: 3}
-      propertyPath: m_Name
-      value: Viking (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 3830427168469322739, guid: cfa548ce749aab043a5804b70f71c706,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -770,6 +733,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.4999998
       objectReference: {fileID: 0}
+    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
+        type: 3}
+      propertyPath: m_Name
+      value: Viking (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 7113036090291623052, guid: cfa548ce749aab043a5804b70f71c706,
         type: 3}
       propertyPath: m_IsActive
@@ -816,11 +784,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8594412671868994115}
     m_Modifications:
-    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
-        type: 3}
-      propertyPath: m_Name
-      value: Viking (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3830427168469322739, guid: cfa548ce749aab043a5804b70f71c706,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -891,6 +854,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.4999998
       objectReference: {fileID: 0}
+    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
+        type: 3}
+      propertyPath: m_Name
+      value: Viking (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 7618941538361615570, guid: cfa548ce749aab043a5804b70f71c706,
         type: 3}
       propertyPath: m_IsActive
@@ -927,11 +895,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8594412671868994115}
     m_Modifications:
-    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
-        type: 3}
-      propertyPath: m_Name
-      value: Viking (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 3830427168469322739, guid: cfa548ce749aab043a5804b70f71c706,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1001,6 +964,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 3.4999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495640930567508297, guid: cfa548ce749aab043a5804b70f71c706,
+        type: 3}
+      propertyPath: m_Name
+      value: Viking (4)
       objectReference: {fileID: 0}
     - target: {fileID: 2554967432406251265, guid: cfa548ce749aab043a5804b70f71c706,
         type: 3}
