@@ -11,9 +11,9 @@ public class VikingBehavior : MonoBehaviour
     private Animator _animator = null;
     private VikingAnimationType _currentAnimationType = VikingAnimationType.None;
     private string _idleTrigger = "Idle";
-    private string _pushTrigger = "Yawn";
-    private string _stretchTrigger = "ArmStretch";
-    private string _yawnTrigger = "Row";
+    private string _pushTrigger = "Row";
+    private string _stretchTrigger = "Arm Stretch";
+    private string _yawnTrigger = "Yawn";
 
     public Animator Animator { get => _animator; }
     public VikingAnimationType CurrentAnimationType { get => _currentAnimationType; }
@@ -24,6 +24,14 @@ public class VikingBehavior : MonoBehaviour
 
         _vikingSleepState = new VikingSleepState(this, sleepDelay, sleepVariance);
         _vikingRowState = new VikingRowState();
+    }
+
+    private void Update()
+    {
+        if (_currentState != null)
+        {
+            _currentState.Update();
+        }
     }
 
     public void StartDefaultBehavior()
