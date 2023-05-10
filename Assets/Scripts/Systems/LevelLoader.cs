@@ -17,6 +17,7 @@ public class LevelLoader : AsyncLoader
     [SerializeField] private FeedbackManager _feedbackManager = null;
 
     [Header("Level")]
+    [SerializeField] private float _wrapUpTime = 0.0f;
     [SerializeField] private Ship _ship = null;
     [SerializeField] private EnvironmentManager _environment = null;
     [SerializeField] private HammerController _leftHammer = null;
@@ -90,6 +91,7 @@ public class LevelLoader : AsyncLoader
         if (_ship != null)
         {
             _ship.Initialize();
+            StartCoroutine(WrapUpSequence(_wrapUpTime, _ship.HandleWrapUpSequence));
         }
 
         if (_environment != null)
@@ -183,6 +185,12 @@ public class LevelLoader : AsyncLoader
         UnsubscribeEvents();
 
         ExperienceApp.End();
+    }
+
+    private IEnumerator WrapUpSequence(float timeToWait, Action callback)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        callback?.Invoke();
     }
 
     public void FinalizeExperience()
