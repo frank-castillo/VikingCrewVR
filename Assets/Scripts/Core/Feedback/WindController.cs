@@ -30,7 +30,7 @@ public class WindController : MonoBehaviour
         _feedbackManager.OnBeatHitSubscribe(TierEvaluation);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _feedbackManager.OnBeatHitUnsubscribe(TierEvaluation);
     }
