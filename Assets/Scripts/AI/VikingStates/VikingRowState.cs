@@ -1,16 +1,23 @@
 ﻿public class VikingRowState : IVikingState
 {
-    public void Enter(VikingBehavior vikingBehavior)
-    {
+    private VikingBehavior _behavior = null;
 
+    public void Initialize(VikingBehavior vikingBehavior)
+    {
+        _behavior = vikingBehavior;
     }
 
-    public void Exit()
+    public void Enter()
     {
 
     }
 
     public void Update()
+    {
+
+    }
+
+    public void Exit()
     {
 
     }

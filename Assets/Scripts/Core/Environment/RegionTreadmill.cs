@@ -10,11 +10,9 @@ public class RegionTreadmill : MonoBehaviour
     [SerializeField] private Transform _limitOfMap = null;
     [SerializeField] private Transform _startOfMap = null;
     [SerializeField] private Transform _regionFolder = null;
-    private List<Transform> _regions = new List<Transform>();
 
     private FeedbackManager _feedbackManager = null;
-    private Coroutine _increaseSpeedcoroutine = null;
-    private Coroutine _decreaseSpeedcoroutine = null;
+    private List<Transform> _regions = new List<Transform>();
 
     private float _speed = 5.0f;
     private float _lerpDuration = 1.0f;
@@ -40,10 +38,8 @@ public class RegionTreadmill : MonoBehaviour
         _feedbackManager.OffBeatMissSubscribe(DecreaseSpeed);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        StopCoroutine(_increaseSpeedcoroutine);
-        StopCoroutine(_decreaseSpeedcoroutine);
         _feedbackManager.OnBeatHitUnsubscribe(IncreaseSpeed);
         _feedbackManager.OffBeatMissUnsubscribe(DecreaseSpeed);
     }
@@ -72,7 +68,7 @@ public class RegionTreadmill : MonoBehaviour
             return;
         }
 
-        _increaseSpeedcoroutine = StartCoroutine(IncreaseSpeedCoroutine());
+        StartCoroutine(IncreaseSpeedCoroutine());
     }
 
     private IEnumerator DecreaseSpeedCoroutine()
@@ -99,12 +95,12 @@ public class RegionTreadmill : MonoBehaviour
             return;
         }
 
-        _decreaseSpeedcoroutine = StartCoroutine(DecreaseSpeedCoroutine());
+        StartCoroutine(DecreaseSpeedCoroutine());
     }
 
-    void Update()
+    private void Update()
     {
-        if (!_movementEnabled)
+        if (_movementEnabled == false)
         {
             return;
         }

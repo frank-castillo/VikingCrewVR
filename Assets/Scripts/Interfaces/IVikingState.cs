@@ -1,6 +1,6 @@
 ﻿public interface IVikingState
 {
-    void Enter(VikingBehavior vikingBehavior);
+    void Enter();
     void Update();
     void Exit();
 }

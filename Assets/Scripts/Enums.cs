@@ -9,6 +9,19 @@ public enum BeatTierType
     T3
 }
 
+public enum LayerType
+{
+    None = -1,
+    Hammer = 8
+}
+
+public enum RowType
+{
+    None = -1,
+    StartRowing,
+    StopRowing,
+}
+
 public enum SFXType
 {
     None = -1,
@@ -17,10 +30,13 @@ public enum SFXType
     VikingChant,
 }
 
-public enum LayerType
+public enum VikingAnimationType
 {
-    None = -1,
-    Hammer = 8
+    None = 1,
+    Idle,
+    Push,
+    Stretch,
+    Yawn,
 }
 
 public class Enums
