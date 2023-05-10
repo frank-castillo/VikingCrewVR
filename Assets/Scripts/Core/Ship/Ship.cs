@@ -19,7 +19,7 @@ public class Ship : MonoBehaviour
         _crewController.StartDefaultCrewBehavior();
     }
 
-    public void HandleWrapUpSequence()
+    public void ShipWrapUp()
     {
         _sailController.PlaySailAnimation();
     }
