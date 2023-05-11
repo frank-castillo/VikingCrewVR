@@ -4,20 +4,17 @@ public class EnvironmentManager : MonoBehaviour
 {
     [SerializeField] private RegionTreadmill _environmentTreadmill = null;
     [SerializeField] private WindController _windController = null;
+    private FeedbackHandler _feedbackHandler = null;
 
     public void Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
-        if (_environmentTreadmill != null)
-        {
-            _environmentTreadmill.Initialize();
-        }
+        _feedbackHandler = GetComponent<FeedbackHandler>();
 
-        if (_windController != null)
-        {
-            _windController.Initialize();
-        }
+        _feedbackHandler.Initialize();
+        _environmentTreadmill.Initialize();
+        _windController.Initialize();
     }
 
     public void StartEnvironment()

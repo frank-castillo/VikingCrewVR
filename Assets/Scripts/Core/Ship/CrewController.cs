@@ -11,15 +11,19 @@ public class CrewController : MonoBehaviour
     [SerializeField] private Transform _vikingsFolder = null;
 
     private FeedbackManager _feedbackManager = null;
+    private FeedbackHandler _feedbackHandler = null;
     private List<VikingBehavior> _vikings = new List<VikingBehavior>();
 
     public void Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
-        InitializeVikings();
-
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
+
+        _feedbackHandler = GetComponent<FeedbackHandler>();
+
+        InitializeVikings();
+        _feedbackHandler.Initialize();
 
         _feedbackManager.OnBeatHitSubscribe(StartRow);
         _feedbackManager.OffBeatMissSubscribe(StopRowing);
