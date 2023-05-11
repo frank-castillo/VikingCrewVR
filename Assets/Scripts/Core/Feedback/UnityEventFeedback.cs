@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-
 public class UnityEventFeedback : Feedback
 {
     [SerializeField] private UnityEvent _onPlay = null;
