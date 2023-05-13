@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03d2e6337143cb4e8883232d05c396e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _emmisionRateT1: 2
-  _emmisionRateT2: 5
-  _emmisionRateT3: 8
+  _emmisionRateT1: 1
+  _emmisionRateT2: 4
+  _emmisionRateT3: 7
   _leftWind: {fileID: 5893970985195453198}
   _rightWind: {fileID: 5893970985839593845}
 --- !u!1001 &5983457906236705583
@@ -119,7 +119,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198743469195280986, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
         type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 198743469195280986, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
+        type: 3}
       propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198743469195280986, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198743469195280986, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 199294778364282434, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
@@ -150,7 +165,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1777514275018946, guid: c9c3e73fd1ddb9d4b8aa638ef830417b, type: 3}
       propertyPath: m_Name
-      value: Windlines2Left
+      value: WindlinesLeft
       objectReference: {fileID: 0}
     - target: {fileID: 4811915472702894, guid: c9c3e73fd1ddb9d4b8aa638ef830417b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -210,7 +225,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198743469195280986, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
         type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 198743469195280986, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
+        type: 3}
       propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198743469195280986, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198743469195280986, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 199294778364282434, guid: c9c3e73fd1ddb9d4b8aa638ef830417b,
