@@ -9927,7 +9927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 50
-  _minSpeed: 200
+  _minSpeed: 15
   _speedModifier: 0.3
   _limitOfMap: {fileID: 5697900365989892435}
   _startOfMap: {fileID: 3773961034454453799}
@@ -11242,10 +11242,6 @@ PrefabInstance:
     - target: {fileID: 19873706, guid: e2550dae06524a94bbc4bcdf375a88b9, type: 3}
       propertyPath: CollisionModule.radiusScale
       value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 19873706, guid: e2550dae06524a94bbc4bcdf375a88b9, type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19914986, guid: e2550dae06524a94bbc4bcdf375a88b9, type: 3}
       propertyPath: m_CastShadows
