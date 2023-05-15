@@ -9,6 +9,7 @@ public class CrewController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform _vikingsFolder = null;
+    [SerializeField] private PaddlesController _paddlesController = null;
 
     private FeedbackManager _feedbackManager = null;
     private FeedbackHandler _feedbackHandler = null;
@@ -23,11 +24,22 @@ public class CrewController : MonoBehaviour
         _feedbackHandler = GetComponent<FeedbackHandler>();
 
         InitializeVikings();
+        _paddlesController.Initialize();
         _feedbackHandler.Initialize();
 
         _feedbackManager.OnBeatHitSubscribe(StartRow);
         _feedbackManager.OffBeatMissSubscribe(StopRowing);
         _feedbackManager.RepeatedMissSubscribe(StopRowing);
+    }
+
+    private void InitializeVikings()
+    {
+        foreach (Transform child in _vikingsFolder)
+        {
+            VikingBehavior viking = child.GetComponent<VikingBehavior>();
+            viking.Initialize(this, _sleepDelay, _sleepVariance);
+            _vikings.Add(viking);
+        }
     }
 
     private void OnDestroy()
@@ -42,16 +54,6 @@ public class CrewController : MonoBehaviour
         foreach (VikingBehavior viking in _vikings)
         {
             viking.StartDefaultBehavior();
-        }
-    }
-
-    private void InitializeVikings()
-    {
-        foreach (Transform child in _vikingsFolder)
-        {
-            VikingBehavior viking = child.GetComponent<VikingBehavior>();
-            viking.Initialize(_sleepDelay, _sleepVariance);
-            _vikings.Add(viking);
         }
     }
 
@@ -71,5 +73,10 @@ public class CrewController : MonoBehaviour
         {
             viking.RowEvent(rowType);
         }
+    }
+
+    public void SetPaddleAnimation(RowType rowType)
+    {
+        _paddlesController.SetPaddleAnimation(rowType);
     }
 }
