@@ -3,6 +3,7 @@
 public class VikingBehavior : MonoBehaviour
 {
     // Core AI
+    public CrewController _crewController = null;
     private VikingSleepState _vikingSleepState = null;
     private VikingRowState _vikingRowState = null;
     private IVikingState _currentState = null;
@@ -15,11 +16,12 @@ public class VikingBehavior : MonoBehaviour
     private string _stretchTrigger = "Arm Stretch";
     private string _yawnTrigger = "Yawn";
 
-    public Animator Animator { get => _animator; }
     public VikingAnimationType CurrentAnimationType { get => _currentAnimationType; }
 
-    public void Initialize(float sleepDelay, float sleepVariance)
+    public void Initialize(CrewController crewController, float sleepDelay, float sleepVariance)
     {
+        _crewController = crewController;
+
         _animator = GetComponent<Animator>();
 
         _vikingSleepState = new VikingSleepState(this, sleepDelay, sleepVariance);
@@ -52,7 +54,6 @@ public class VikingBehavior : MonoBehaviour
         }
 
         _currentState = vikingState;
-
         _currentState.Enter();
     }
 
@@ -70,6 +71,8 @@ public class VikingBehavior : MonoBehaviour
                 Enums.InvalidSwitch(GetType(), rowType.GetType());
                 break;
         }
+
+        _crewController.SetPaddleAnimation(rowType);
     }
 
     public void ChangeAnimation(VikingAnimationType animationType)
