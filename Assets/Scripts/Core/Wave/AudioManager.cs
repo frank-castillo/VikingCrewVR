@@ -48,6 +48,8 @@ public class AudioManager : MonoBehaviour
             case SFXType.OnBeatDrum:
                 PlayOnBeatDrumSFX();
                 break;
+            case SFXType.PaddleRow:
+                break;
             case SFXType.VikingChant:
                 PlayVikingChantSFX();
                 break;
