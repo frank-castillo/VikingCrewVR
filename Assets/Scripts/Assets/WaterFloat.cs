@@ -15,7 +15,7 @@ public class WaterFloat : MonoBehaviour
     public Transform[] FloatPoints;
 
     //used components
-    protected Rigidbody Rigidbody;
+    protected Rigidbody rigidbody;
     protected Waves Waves;
 
     //water line
@@ -24,7 +24,7 @@ public class WaterFloat : MonoBehaviour
 
     //help Vectors
     protected Vector3 smoothVectorRotation;
-    protected Vector3 TargetUp;
+    protected Vector3 targetUp;
     protected Vector3 centerOffset;
 
     public Vector3 Center { get { return transform.position + centerOffset; } }
@@ -34,8 +34,8 @@ public class WaterFloat : MonoBehaviour
     {
         //get components
         Waves = FindObjectOfType<Waves>();
-        Rigidbody = GetComponent<Rigidbody>();
-        Rigidbody.useGravity = false;
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.useGravity = false;
 
         //compute center
         WaterLinePoints = new Vector3[FloatPoints.Length];
@@ -48,11 +48,11 @@ public class WaterFloat : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //default water surface
+        // Default water surface
         var newWaterLine = 0f;
         var pointUnderWater = false;
 
-        //set WaterLinePoints and WaterLine
+        // Set WaterLinePoints and WaterLine
         for (int i = 0; i < FloatPoints.Length; i++)
         {
             //height
@@ -60,44 +60,45 @@ public class WaterFloat : MonoBehaviour
             WaterLinePoints[i].y = Waves.GetHeight(FloatPoints[i].position);
             newWaterLine += WaterLinePoints[i].y / FloatPoints.Length;
             if (WaterLinePoints[i].y > FloatPoints[i].position.y)
+            {
                 pointUnderWater = true;
+            }
         }
 
         var waterLineDelta = newWaterLine - WaterLine;
         WaterLine = newWaterLine;
 
-        //compute up vector
-        TargetUp = PhysicsHelper.GetNormal(WaterLinePoints);
+        // Compute up vector
+        targetUp = PhysicsHelper.GetNormal(WaterLinePoints);
 
-        //gravity
+        // Gravity
         var gravity = Physics.gravity;
-        Rigidbody.drag = AirDrag;
+        rigidbody.drag = AirDrag;
         if (WaterLine > Center.y)
         {
-            Rigidbody.drag = WaterDrag;
-            //under water
+            rigidbody.drag = WaterDrag;
+            // Under water
             if (AttachToSurface)
             {
-                //attach to water surface
-                Rigidbody.position = new Vector3(Rigidbody.position.x, WaterLine - centerOffset.y, Rigidbody.position.z);
+                // Attach to water surface
+                rigidbody.position = new Vector3(rigidbody.position.x, WaterLine - centerOffset.y, rigidbody.position.z);
             }
             else
             {
-                //go up
-                gravity = AffectDirection ? TargetUp * -Physics.gravity.y : -Physics.gravity;
+                // Go up
+                gravity = AffectDirection ? targetUp * -Physics.gravity.y : -Physics.gravity;
                 transform.Translate(Vector3.up * waterLineDelta * 0.9f);
             }
         }
-        Rigidbody.AddForce(gravity * Mathf.Clamp(Mathf.Abs(WaterLine - Center.y),0,1));
+        rigidbody.AddForce(gravity * Mathf.Clamp(Mathf.Abs(WaterLine - Center.y),0,1));
 
-        //rotation
+        // Rotation
         if (pointUnderWater)
         {
-            //attach to water surface
-            TargetUp = Vector3.SmoothDamp(transform.up, TargetUp, ref smoothVectorRotation, 0.2f);
-            Rigidbody.rotation = Quaternion.FromToRotation(transform.up, TargetUp) * Rigidbody.rotation;
+            // Attach to water surface
+            targetUp = Vector3.SmoothDamp(transform.up, targetUp, ref smoothVectorRotation, 0.2f);
+            rigidbody.rotation = Quaternion.FromToRotation(transform.up, targetUp) * rigidbody.rotation;
         }
-
     }
 
     private void OnDrawGizmos()
@@ -130,7 +131,7 @@ public class WaterFloat : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawCube(new Vector3(Center.x, WaterLine, Center.z), Vector3.one * 1f);
-            Gizmos.DrawRay(new Vector3(Center.x, WaterLine, Center.z), TargetUp * 1f);
+            Gizmos.DrawRay(new Vector3(Center.x, WaterLine, Center.z), targetUp * 1f);
         }
     }
 }
