@@ -1287,8 +1287,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.00020193495, y: -0.85361433, z: 0.12489128}
-    m_Extent: {x: 2.557848, y: 2.229691, z: 1.292789}
+    m_Center: {x: 0.00020193495, y: -0.8536167, z: 0.124889374}
+    m_Extent: {x: 2.557848, y: 2.22969, z: 1.2927887}
   m_DirtyAABB: 0
 --- !u!1 &666836325493443459
 GameObject:
@@ -5099,12 +5099,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1952022674974988984}
   m_Layer: 0
-  m_Name: Sail Parnet
+  m_Name: Sail Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1952022674974988984
 Transform:
   m_ObjectHideFlags: 0
@@ -5653,8 +5653,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.09360981, y: 0.00009250641, z: 0.12938051}
-    m_Extent: {x: 0.3148475, y: 0.7481179, z: 0.11888579}
+    m_Center: {x: 0.09361076, y: 0.00009441376, z: 0.1293805}
+    m_Extent: {x: 0.31484747, y: 0.7481171, z: 0.11888577}
   m_DirtyAABB: 0
 --- !u!183 &5890210095660794393
 Cloth:
@@ -8563,11 +8563,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1952022674974988984}
     m_Modifications:
-    - target: {fileID: 7820655306517363463, guid: bd3c84d77c1e28c45ba35b17fbc4d5e8,
-        type: 3}
-      propertyPath: m_Name
-      value: Cosmic Particles
-      objectReference: {fileID: 0}
     - target: {fileID: 7826896778854831583, guid: bd3c84d77c1e28c45ba35b17fbc4d5e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8622,6 +8617,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820655306517363463, guid: bd3c84d77c1e28c45ba35b17fbc4d5e8,
+        type: 3}
+      propertyPath: m_Name
+      value: Cosmic Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820655306517363463, guid: bd3c84d77c1e28c45ba35b17fbc4d5e8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1357600813943876417, guid: bd3c84d77c1e28c45ba35b17fbc4d5e8,
         type: 3}
