@@ -29,7 +29,8 @@ public enum SFXType
     OnBeatDrum,
     VikingChant,
     PaddleRow,
-    Splash,
+    SplashLeft,
+    SplashRight,
     DrumHum,
     DrumVacuum
 }
