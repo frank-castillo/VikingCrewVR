@@ -119,7 +119,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayLeftSplashSFX()
     {
-        if (_splashIndex > _splashManifest.AudioItems.Count)
+        if (_splashIndex >= _splashManifest.AudioItems.Count)
         {
             _splashIndex = 0;
         }
@@ -130,7 +130,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayRightSplashSFX()
     {
-        if (_splashIndex > _splashManifest.AudioItems.Count)
+        if (_splashIndex >= _splashManifest.AudioItems.Count)
         {
             _splashIndex = 0;
         }
