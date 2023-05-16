@@ -18,7 +18,7 @@ public class VikingSleepState : IVikingState
 
     public void Enter()
     {
-        _behavior.ChangeAnimation(VikingAnimationType.Idle);
+        _behavior.AnimationState(VikingAnimationType.Idle);
 
         StartTimer();
     }
@@ -54,11 +54,11 @@ public class VikingSleepState : IVikingState
         VikingAnimationType currentAnim = _behavior.CurrentAnimationType;
         if (currentAnim != VikingAnimationType.Idle)
         {
-            _behavior.ChangeAnimation(VikingAnimationType.Idle);
+            _behavior.IdleAnimationTriggers(VikingAnimationType.Idle);
         }
         else
         {
-            _behavior.ChangeAnimation(GetRandomNewAnimation(currentAnim));
+            _behavior.IdleAnimationTriggers(GetRandomNewAnimation(currentAnim));
         }
 
         StartTimer();
