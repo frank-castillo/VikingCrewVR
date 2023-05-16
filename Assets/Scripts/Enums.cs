@@ -29,6 +29,10 @@ public enum SFXType
     OnBeatDrum,
     VikingChant,
     PaddleRow,
+    SplashLeft,
+    SplashRight,
+    DrumHum,
+    DrumVacuum
 }
 
 public enum VikingAnimationType

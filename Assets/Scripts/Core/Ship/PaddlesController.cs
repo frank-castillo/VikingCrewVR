@@ -5,6 +5,7 @@ using UnityEngine;
 public class PaddlesController : MonoBehaviour
 {
     [Header("SFX Delay")]
+    [SerializeField] private Transform _paddlesFolder = null;
     [SerializeField] private float _paddleDelay = 0.0f;
     private Coroutine _paddleSFXCoroutine = null;
 
@@ -37,7 +38,7 @@ public class PaddlesController : MonoBehaviour
 
         _audioManager = ServiceLocator.Get<AudioManager>();
 
-        foreach (Transform child in transform)
+        foreach (Transform child in _paddlesFolder)
         {
             Animator paddleAnimator = child.GetComponent<Animator>();
             _paddleAnimators.Add(paddleAnimator);
