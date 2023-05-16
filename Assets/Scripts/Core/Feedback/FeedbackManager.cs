@@ -3,18 +3,21 @@ using System;
 
 public class FeedbackManager : MonoBehaviour
 {
+    private Action _beatBuildUp = null;
     private Action _constantBeat = null;
     private Action _onBeatHit = null;
     private Action _offBeatMiss = null;
     private Action _repeatedMiss = null;
 
     // Subscribe
+    public void BeatBuildUpSubscribe(Action action) { _beatBuildUp += action; }
     public void ConstantBeatSubscribe(Action action) { _constantBeat += action; }
     public void OnBeatHitSubscribe(Action action) { _onBeatHit += action; }
     public void OffBeatMissSubscribe(Action action) { _offBeatMiss += action; }
     public void RepeatedMissSubscribe(Action action) { _repeatedMiss += action; }
 
     // Unsubscribe
+    public void BeatBuildUpUnsubscribe(Action action) { _beatBuildUp -= action; }
     public void ConstantBeatUnsubscribe(Action action) { _constantBeat -= action; }
     public void OnBeatHitUnsubscribe(Action action) { _onBeatHit -= action; }
     public void OffBeatMissUnsubscribe(Action action) { _offBeatMiss -= action; }
@@ -25,6 +28,11 @@ public class FeedbackManager : MonoBehaviour
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
 
         return this;
+    }
+
+    public void BeatBuildUpFeedback()
+    {
+        _beatBuildUp?.Invoke();
     }
 
     public void ConstantBeatFeedback()
