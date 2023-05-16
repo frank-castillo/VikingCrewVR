@@ -556,6 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hammerLayer: 8
   _sparksFeedback: {fileID: 1805262305}
+  _vacuumParticles: {fileID: 4143324014862033426}
 --- !u!114 &5017345735371598303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,6 +1354,12 @@ PrefabInstance:
 --- !u!198 &198644185968026689 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6476715910978347112, guid: 6591edfa85f31c648bdddbf9d8361752,
+    type: 3}
+  m_PrefabInstance: {fileID: 6566339636391445545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4143324014862033426 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7106777135487673915, guid: 6591edfa85f31c648bdddbf9d8361752,
     type: 3}
   m_PrefabInstance: {fileID: 6566339636391445545}
   m_PrefabAsset: {fileID: 0}

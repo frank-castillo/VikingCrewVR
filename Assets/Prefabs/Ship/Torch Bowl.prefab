@@ -63,23 +63,14 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
+      time: 0.50167847
+      value: 1.0017277
+      inSlope: 0.61545265
+      outSlope: -0.648948
+      tangentMode: 1
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.75
-      value: 1
-      inSlope: -0.0048714424
-      outSlope: -0.0048714424
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.43333328
-      outWeight: 0.33333334
+      inWeight: 0.12370152
+      outWeight: 0.13958116
     - serializedVersion: 3
       time: 1
       value: 0
@@ -92,7 +83,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _time: 1.5
+  _time: 1
 --- !u!1001 &3472084917928733148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -275,10 +266,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3472084917641230800}
     m_Modifications:
-    - target: {fileID: 1423784243368200, guid: 78892530d39aaea41a7f4adc11f8c866, type: 3}
-      propertyPath: m_Name
-      value: SoftFire_Particles
-      objectReference: {fileID: 0}
     - target: {fileID: 4392332486124086, guid: 78892530d39aaea41a7f4adc11f8c866, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.203
@@ -322,6 +309,10 @@ PrefabInstance:
     - target: {fileID: 4392332486124086, guid: 78892530d39aaea41a7f4adc11f8c866, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423784243368200, guid: 78892530d39aaea41a7f4adc11f8c866, type: 3}
+      propertyPath: m_Name
+      value: SoftFire_Particles
       objectReference: {fileID: 0}
     - target: {fileID: 198456319823364066, guid: 78892530d39aaea41a7f4adc11f8c866,
         type: 3}
