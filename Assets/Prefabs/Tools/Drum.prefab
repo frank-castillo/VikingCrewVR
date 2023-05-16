@@ -684,7 +684,7 @@ AudioSource:
   m_GameObject: {fileID: 7884176863923266836}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: f46e9706d32ad5a48a89cab00d12440a,
+  OutputAudioMixerGroup: {fileID: -6742990206073217099, guid: f46e9706d32ad5a48a89cab00d12440a,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -1210,14 +1210,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1805262304}
     m_Modifications:
-    - target: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
-      propertyPath: m_Name
-      value: HammerHitVFX_3
-      objectReference: {fileID: 0}
-    - target: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 492736, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1262,6 +1254,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
+      propertyPath: m_Name
+      value: HammerHitVFX_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 184316, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14bb13abe3804f242b49ffc7f2604227, type: 3}
 --- !u!198 &2029540495 stripped
@@ -1283,11 +1283,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5699864171972788310}
     m_Modifications:
-    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: m_Name
-      value: Drum Model
-      objectReference: {fileID: 0}
     - target: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1342,6 +1337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: m_Name
+      value: Drum Model
       objectReference: {fileID: 0}
     - target: {fileID: 199615310444088979, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
