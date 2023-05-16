@@ -49,7 +49,7 @@ MonoBehaviour:
   initialDelay: 0
   _target: {fileID: 6127826280873235020}
   _isRestOnTheEnd: 1
-  _targetScale: {x: 3, y: 3, z: 3}
+  _targetScale: {x: 2.5, y: 2.5, z: 2.5}
   _curve:
     serializedVersion: 2
     m_Curve:
@@ -63,13 +63,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.5
+      time: 0.25
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 1
+      inSlope: -0.0048714424
+      outSlope: -0.0048714424
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.43333328
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
@@ -83,7 +92,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _time: 1
+  _time: 1.5
 --- !u!1001 &3472084917928733148
 PrefabInstance:
   m_ObjectHideFlags: 0

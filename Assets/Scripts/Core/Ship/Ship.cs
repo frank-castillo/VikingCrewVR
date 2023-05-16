@@ -5,6 +5,7 @@ public class Ship : MonoBehaviour
     [SerializeField] private DrumController _drumController = null;
     [SerializeField] private CrewController _crewController = null;
     [SerializeField] private SailController _sailController = null;
+    [SerializeField] private FeedbackHandler _feedbackHandler = null;
 
     public void Initialize()
     {
@@ -12,6 +13,7 @@ public class Ship : MonoBehaviour
 
         _drumController.Initialize();
         _crewController.Initialize();
+        _feedbackHandler.Initialize();
     }
 
     public void StartShip()
