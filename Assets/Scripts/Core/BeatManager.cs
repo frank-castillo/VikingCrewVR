@@ -4,12 +4,14 @@ public class BeatManager : MonoBehaviour
 {
     [Header("Beat Timers")]
     [SerializeField] private float _beatDelay = 0.75f;
+    [SerializeField] private float _beatBuildUp = 0.75f;
     [SerializeField] private float _preHitWindowDelay = 0.2f; // On pre side
     [SerializeField] private float _postHitWindowDelay = 0.2f; // On end side
     private float _beatTimer = 0.0f;
     private float _hitWindowTimer = 0.0f;
     private bool _isOnBeat = false;
     private bool _isPlaying = false;
+    private bool _beatBuildUpPlayed = false;
 
     [Header("Streak Tiers")]
     [SerializeField] private int _tierTwo = 0;
@@ -58,6 +60,9 @@ public class BeatManager : MonoBehaviour
         }
 
         _beatTimer -= Time.deltaTime;
+
+        EvaluateBeatBuildUp();
+
         if (_beatTimer < 0)
         {
             Beat();
@@ -68,9 +73,25 @@ public class BeatManager : MonoBehaviour
         }
     }
 
+    private void EvaluateBeatBuildUp()
+    {
+        if (_beatBuildUpPlayed == true)
+        {
+            return;
+        }
+
+        if (_beatTimer <= _beatBuildUp)
+        {
+            _beatBuildUpPlayed = true;
+            _feedbackManager.BeatBuildUpFeedback();
+        }
+    }
+
     private void Beat()
     {
         _isOnBeat = true;
+        _beatBuildUpPlayed = false;
+
         ++_beatCounter;
 
         _feedbackManager.ConstantBeatFeedback();
@@ -93,7 +114,7 @@ public class BeatManager : MonoBehaviour
 
     public void DrumHit()
     {
-        if (_isOnBeat || PreBeatCheck())
+        if (_isOnBeat || PreHitWindowCheck())
         {
             HitOnBeat();
         }
@@ -115,7 +136,7 @@ public class BeatManager : MonoBehaviour
         _feedbackManager.OffBeatFeedback();
     }
 
-    private bool PreBeatCheck()
+    private bool PreHitWindowCheck()
     {
         float delta = _beatTimer - _preHitWindowDelay;
         return delta < 0;

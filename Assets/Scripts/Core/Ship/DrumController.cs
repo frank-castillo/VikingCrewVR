@@ -2,8 +2,9 @@
 
 public class DrumController : MonoBehaviour
 {
-    [Header("Layer References")]
+    [Header("Collision")]
     [SerializeField] private LayerType _hammerLayer = LayerType.None;
+    private float _contactThreshold = 30.0f;
 
     private BeatManager _beatManager = null;
     private FeedbackHandler _feedbackHandler = null;
@@ -22,13 +23,18 @@ public class DrumController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (IsValidCollision(collision) == false)
+        {
+            return;
+        }
+
         if (collision.gameObject.layer == (uint)_hammerLayer)
         {
             if (collision.gameObject.CompareTags("LHand"))
             {
                 _beatManager.SetActiveController(OVRInput.Controller.LTouch);
             }
-            else if(collision.gameObject.CompareTags("RHand"))
+            else if (collision.gameObject.CompareTags("RHand"))
             {
                 _beatManager.SetActiveController(OVRInput.Controller.RTouch);
             }
@@ -36,5 +42,20 @@ public class DrumController : MonoBehaviour
             _sparksFeedback.SetCollisionData(collision);
             _beatManager.DrumHit();
         }
+    }
+
+    private bool IsValidCollision(Collision collision)
+    {
+        Vector3 validDirection = Vector3.down;
+        float hitAngle = Vector3.Angle(collision.GetContact(0).normal, validDirection);
+
+        Debug.Log($"Hit angle: {hitAngle}");
+
+        if (hitAngle <= _contactThreshold)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
