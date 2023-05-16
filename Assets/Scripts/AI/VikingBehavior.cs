@@ -3,7 +3,7 @@
 public class VikingBehavior : MonoBehaviour
 {
     // Core AI
-    public CrewController _crewController = null;
+    private CrewController _crewController = null;
     private VikingSleepState _vikingSleepState = null;
     private VikingRowState _vikingRowState = null;
     private IVikingState _currentState = null;
@@ -12,11 +12,12 @@ public class VikingBehavior : MonoBehaviour
     private Animator _animator = null;
     private VikingAnimationType _currentAnimationType = VikingAnimationType.None;
     private string _idleTrigger = "Idle";
-    private string _pushTrigger = "Row";
     private string _stretchTrigger = "Arm Stretch";
     private string _yawnTrigger = "Yawn";
 
     public VikingAnimationType CurrentAnimationType { get => _currentAnimationType; }
+
+    private void SetRowingState(bool isRowing) { _animator.SetBool("Rowing", isRowing); }
 
     public void Initialize(CrewController crewController, float sleepDelay, float sleepVariance)
     {
@@ -75,7 +76,25 @@ public class VikingBehavior : MonoBehaviour
         _crewController.SetPaddleAnimation(rowType);
     }
 
-    public void ChangeAnimation(VikingAnimationType animationType)
+    public void AnimationState(VikingAnimationType animationType)
+    {
+        _currentAnimationType = animationType;
+
+        switch (animationType)
+        {
+            case VikingAnimationType.Idle:
+                SetRowingState(false);
+                break;
+            case VikingAnimationType.Row:
+                SetRowingState(true);
+                break;
+            default:
+                Enums.InvalidSwitch(GetType(), animationType.GetType());
+                break;
+        }
+    }
+
+    public void IdleAnimationTriggers(VikingAnimationType animationType)
     {
         _currentAnimationType = animationType;
 
@@ -83,9 +102,6 @@ public class VikingBehavior : MonoBehaviour
         {
             case VikingAnimationType.Idle:
                 _animator.SetTrigger(_idleTrigger);
-                break;
-            case VikingAnimationType.Push:
-                _animator.SetTrigger(_pushTrigger);
                 break;
             case VikingAnimationType.Stretch:
                 _animator.SetTrigger(_stretchTrigger);

@@ -10,8 +10,6 @@ public class PaddlesController : MonoBehaviour
 
     private AudioManager _audioManager = null;
     private List<Animator> _paddleAnimators = new List<Animator>();
-    private string _paddleRowTrigger = "Row";
-    private string _paddleIdleTrigger = "Idle";
     private RowType _paddleState = RowType.None;
 
     public void SetPaddleAnimation(RowType rowType)
@@ -24,7 +22,7 @@ public class PaddlesController : MonoBehaviour
 
         foreach (Animator animator in _paddleAnimators)
         {
-            animator.SetTrigger(EvaluatePaddleState(rowType));
+            animator.SetBool("Rowing", EvaluatePaddleState(rowType));
         }
 
         if (rowType == RowType.StartRowing)
@@ -46,17 +44,17 @@ public class PaddlesController : MonoBehaviour
         }
     }
 
-    private string EvaluatePaddleState(RowType rowType)
+    private bool EvaluatePaddleState(RowType rowType)
     {
         switch (rowType)
         {
             case RowType.StartRowing:
-                return _paddleRowTrigger;
+                return true;
             case RowType.StopRowing:
-                return _paddleIdleTrigger;
+                return false;
             default:
                 Enums.InvalidSwitch(GetType(), rowType.GetType());
-                return "";
+                return false;
         }
     }
 
