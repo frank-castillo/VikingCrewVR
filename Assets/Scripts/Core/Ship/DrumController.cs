@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DrumController : MonoBehaviour
 {
@@ -7,6 +6,7 @@ public class DrumController : MonoBehaviour
     [SerializeField] private LayerType _hammerLayer = LayerType.None;
     private float _contactThreshold = 30.0f;
 
+    private AudioManager _audioManager = null;
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
     private FeedbackHandler _feedbackHandler = null;
@@ -19,16 +19,25 @@ public class DrumController : MonoBehaviour
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
         _beatManager = ServiceLocator.Get<BeatManager>();
+        _audioManager = ServiceLocator.Get<AudioManager>();
 
         _feedbackHandler = GetComponent<FeedbackHandler>();
         _feedbackHandler.Initialize();
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
+
+        FeedbackSubscriptions();
+    }
+
+    private void FeedbackSubscriptions()
+    {
+        _feedbackManager.ConstantBeatSubscribe(PlayRuneSFX);
         _feedbackManager.BeatBuildUpSubscribe(PlayVacuum);
     }
 
     private void OnDestroy()
     {
+        _feedbackManager.ConstantBeatUnsubscribe(PlayRuneSFX);
         _feedbackManager.BeatBuildUpUnsubscribe(PlayVacuum);
     }
 
@@ -68,8 +77,14 @@ public class DrumController : MonoBehaviour
         return false;
     }
 
+    private void PlayRuneSFX()
+    {
+        _audioManager.PlaySFX(SFXType.DrumHum);
+    }
+
     private void PlayVacuum()
     {
         _vacuumParticles.Play();
+        _audioManager.PlaySFX(SFXType.DrumVacuum);
     }
 }
