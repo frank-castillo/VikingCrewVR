@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3472084917641230800}
   - component: {fileID: 3921920437189720090}
   m_Layer: 0
-  m_Name: Torch Bowl
+  m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   initialDelay: 0
   _target: {fileID: 6127826280873235020}
   _isRestOnTheEnd: 1
-  _targetScale: {x: 3, y: 3, z: 3}
+  _targetScale: {x: 2.5, y: 2.5, z: 2.5}
   _curve:
     serializedVersion: 2
     m_Curve:
@@ -83,7 +83,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _time: 1
+  _time: 0.45
 --- !u!1001 &3472084917928733148
 PrefabInstance:
   m_ObjectHideFlags: 0
