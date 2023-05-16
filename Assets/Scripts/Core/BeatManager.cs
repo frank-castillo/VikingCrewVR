@@ -21,7 +21,7 @@ public class BeatManager : MonoBehaviour
 
     [Header("Streak Reduction")]
     [SerializeField] private int _missAmountForReduction = 5;
-    private int _beatCounter = 0;
+    private int _beatMissCounter = 0;
 
     private FeedbackManager _feedbackManager = null;
     private OVRInput.Controller _activeController = OVRInput.Controller.None;
@@ -92,7 +92,7 @@ public class BeatManager : MonoBehaviour
         _isOnBeat = true;
         _beatBuildUpPlayed = false;
 
-        ++_beatCounter;
+        ++_beatMissCounter;
 
         _feedbackManager.ConstantBeatFeedback();
 
@@ -127,6 +127,10 @@ public class BeatManager : MonoBehaviour
     private void HitOnBeat()
     {
         ++_beatStreak;
+        _beatMissCounter = 0;
+
+        Debug.Log($"Beat Streak: {_beatStreak}");
+
         EvaluateStreak();
         _feedbackManager.OnBeatFeedback();
     }
@@ -160,16 +164,16 @@ public class BeatManager : MonoBehaviour
 
     private void EvaluateMissStreakReduction()
     {
-        if (_beatCounter >= _missAmountForReduction)
+        if (_beatMissCounter >= _missAmountForReduction)
         {
-            _beatCounter = 0;
+            _beatMissCounter = 0;
             StreakReduction();
         }
     }
 
     private void StreakReduction()
     {
-        if (_beatCounter - _missAmountForReduction < 0)
+        if (_beatMissCounter - _missAmountForReduction < 0)
         {
             _beatStreak = 0;
         }

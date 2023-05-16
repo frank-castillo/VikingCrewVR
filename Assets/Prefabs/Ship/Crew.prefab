@@ -44,7 +44,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.199
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _paddlesFolder: {fileID: 1277086856096777666}
-  _paddleDelay: 0
+  _paddleDelay: 0.5
 --- !u!1 &3340324716167035665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,7 +2768,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.199
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4321,8 +4321,7 @@ MonoBehaviour:
   _onBeatT1Feedbacks: []
   _onBeatT2Feedbacks: []
   _onBeatT3Feedbacks: []
-  _onAnyBeatTierFeedbacks:
-  - {fileID: 3651787148575954856}
+  _onAnyBeatTierFeedbacks: []
 --- !u!1 &8146965357888755094
 GameObject:
   m_ObjectHideFlags: 0
