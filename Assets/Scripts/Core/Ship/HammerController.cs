@@ -17,15 +17,16 @@ public class HammerController : MonoBehaviour
         _beatManager = ServiceLocator.Get<BeatManager>();
         _hamerMeshRenderer = _hammerMeshHolder.GetComponent<MeshRenderer>();
 
-        _currentLevel = 1;
         _defaultHammerMaterial = _hamerMeshRenderer.material;
+
+        LevelUp(1);
     }
 
     public void LevelEvaluation()
     {
         if (_beatManager.CurrentTier == BeatTierType.T1)
         {
-            return;
+            LevelUp(1);
         }
         else if (_beatManager.CurrentTier == BeatTierType.T2)
         {
