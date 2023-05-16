@@ -16,6 +16,7 @@ public class HammerController : MonoBehaviour
     {
         _beatManager = ServiceLocator.Get<BeatManager>();
         _hamerMeshRenderer = _hammerMeshHolder.GetComponent<MeshRenderer>();
+
         _currentLevel = 1;
         _defaultHammerMaterial = _hamerMeshRenderer.material;
     }
