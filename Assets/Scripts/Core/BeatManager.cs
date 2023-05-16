@@ -171,7 +171,7 @@ public class BeatManager : MonoBehaviour
     {
         if (_beatCounter - _missAmountForReduction < 0)
         {
-            _beatCounter = 0;
+            _beatStreak = 0;
         }
         else
         {
