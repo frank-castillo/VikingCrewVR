@@ -697,7 +697,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 7
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1348,6 +1348,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AABB.m_Center.z
       value: -27.67067
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106777135487673915, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106860647110755473, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124177989691719111, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7107086721170985811, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6591edfa85f31c648bdddbf9d8361752, type: 3}
