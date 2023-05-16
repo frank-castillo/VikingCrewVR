@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DrumController : MonoBehaviour
 {
@@ -7,9 +8,11 @@ public class DrumController : MonoBehaviour
     private float _contactThreshold = 30.0f;
 
     private BeatManager _beatManager = null;
+    private FeedbackManager _feedbackManager = null;
     private FeedbackHandler _feedbackHandler = null;
 
     [SerializeField] private HitSparksFeedback _sparksFeedback = null;
+    [SerializeField] private ParticleSystem _vacuumParticles = null;
 
     public void Initialize()
     {
@@ -19,6 +22,14 @@ public class DrumController : MonoBehaviour
 
         _feedbackHandler = GetComponent<FeedbackHandler>();
         _feedbackHandler.Initialize();
+
+        _feedbackManager = ServiceLocator.Get<FeedbackManager>();
+        _feedbackManager.BeatBuildUpSubscribe(PlayVacuum);
+    }
+
+    private void OnDestroy()
+    {
+        _feedbackManager.BeatBuildUpUnsubscribe(PlayVacuum);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -57,5 +68,10 @@ public class DrumController : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void PlayVacuum()
+    {
+        _vacuumParticles.Play();
     }
 }
