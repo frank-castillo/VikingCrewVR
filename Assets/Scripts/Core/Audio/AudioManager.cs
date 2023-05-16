@@ -4,8 +4,9 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Manifest References")]
     [SerializeField] private AudioManifest _sfxManifest = null;
-    [SerializeField] private AudioManifest _ambienceManifest = null;
-    [SerializeField] private AudioManifest _boatManifest = null;
+    [SerializeField] private AudioManifest _splashManifest = null;
+    [SerializeField] private AudioManifest _rowingManifest = null;
+    [SerializeField] private AudioManifest _chantManifest = null;
     [SerializeField] private AudioManifest _musicManifest = null;
 
     [Header("Audio Source")]
@@ -18,7 +19,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _musicAudioSource = null;
 
     // Audio Levels
-    float _currentVolume = 0.0f;
+    private float _currentVolume = 0.0f;
+
+    // Index references
+    private int _rowIndex = 0;
+    private int _splashIndex = 0;
 
     public float CurrentVolume { set => _currentVolume = value; }
 
@@ -55,15 +60,22 @@ public class AudioManager : MonoBehaviour
                 PlayOnBeatDrumSFX();
                 break;
             case SFXType.PaddleRow:
+                PlayPaddleRowSFX();
                 break;
             case SFXType.VikingChant:
                 PlayVikingChantSFX();
                 break;
-            case SFXType.Splash:
+            case SFXType.SplashLeft:
+                PlayLeftSplashSFX();
+                break;
+            case SFXType.SplashRight:
+                PlayRightSplashSFX();
                 break;
             case SFXType.DrumHum:
+                PlayDrumHumSFX();
                 break;
             case SFXType.DrumVacuum:
+                PlayDrumVacuumSFX();
                 break;
             default:
                 Enums.InvalidSwitch(GetType(), sfxType.GetType());
@@ -93,18 +105,27 @@ public class AudioManager : MonoBehaviour
 
     private void PlayVikingChantSFX()
     {
-        _drumAudioSource.PlayOneShot(_boatManifest.AudioItems[6].Clip);
+        // Add counter later
+        _vikingAudioSource.PlayOneShot(_chantManifest.AudioItems[0].Clip);
     }
 
     private void PlayPaddleRowSFX()
     {
-        // add the index 0 to 5
-        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[2].Clip);
+        _rowIndex = (_rowIndex > _rowingManifest.AudioItems.Count) ? _rowIndex = 0 : ++_rowIndex;
+
+        _leftPaddlesAudioSource.PlayOneShot(_rowingManifest.AudioItems[_rowIndex].Clip);
+        _rightPaddlesAudioSource.PlayOneShot(_rowingManifest.AudioItems[_rowIndex].Clip);
     }
 
-    private void PlaySplashSFX()
+    private void PlayLeftSplashSFX()
     {
-        // add the index 0 to 6
-        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[2].Clip);
+         _splashIndex = (_splashIndex > _splashManifest.AudioItems.Count) ? _splashIndex = 0 : ++_splashIndex;
+        _leftSplashAudioSource.PlayOneShot(_splashManifest.AudioItems[_splashIndex].Clip);
+    }
+
+    private void PlayRightSplashSFX()
+    {
+        _splashIndex = (_splashIndex > _splashManifest.AudioItems.Count) ? _splashIndex = 0 : ++_splashIndex;
+        _rightSplashAudioSource.PlayOneShot(_splashManifest.AudioItems[_splashIndex].Clip);
     }
 }

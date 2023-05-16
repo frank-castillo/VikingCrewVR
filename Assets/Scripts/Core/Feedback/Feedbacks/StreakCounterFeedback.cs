@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SuccessfulTickFeedback : Feedback
+public class StreakCounterFeedback : Feedback
 {
     [SerializeField] private UnityEvent _onPlay = null;
     [SerializeField] private int _successCounter = 1;
