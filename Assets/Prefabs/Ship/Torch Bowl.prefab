@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3472084917641230800}
   - component: {fileID: 3921920437189720090}
   m_Layer: 0
-  m_Name: Torch
+  m_Name: Torch Bowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,13 +63,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.5
+      time: 0.25
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 1
+      inSlope: -0.0048714424
+      outSlope: -0.0048714424
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.43333328
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
@@ -83,7 +92,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _time: 0.45
+  _time: 1.5
 --- !u!1001 &3472084917928733148
 PrefabInstance:
   m_ObjectHideFlags: 0
