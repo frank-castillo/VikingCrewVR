@@ -119,13 +119,23 @@ public class AudioManager : MonoBehaviour
 
     private void PlayLeftSplashSFX()
     {
-         _splashIndex = (_splashIndex > _splashManifest.AudioItems.Count) ? _splashIndex = 0 : ++_splashIndex;
-        _leftSplashAudioSource.PlayOneShot(_splashManifest.AudioItems[_splashIndex].Clip);
+        if (_splashIndex > _splashManifest.AudioItems.Count)
+        {
+            _splashIndex = 0;
+        }
+
+        _leftPaddlesAudioSource.PlayOneShot(_splashManifest.AudioItems[_splashIndex].Clip);
+        ++_splashIndex;
     }
 
     private void PlayRightSplashSFX()
     {
-        _splashIndex = (_splashIndex > _splashManifest.AudioItems.Count) ? _splashIndex = 0 : ++_splashIndex;
+        if (_splashIndex > _splashManifest.AudioItems.Count)
+        {
+            _splashIndex = 0;
+        }
+
         _rightSplashAudioSource.PlayOneShot(_splashManifest.AudioItems[_splashIndex].Clip);
+        ++_splashIndex;
     }
 }
