@@ -60,8 +60,6 @@ public class DrumController : MonoBehaviour
         Vector3 validDirection = Vector3.down;
         float hitAngle = Vector3.Angle(collision.GetContact(0).normal, validDirection);
 
-        Debug.Log($"Hit angle: {hitAngle}");
-
         if (hitAngle <= _contactThreshold)
         {
             return true;

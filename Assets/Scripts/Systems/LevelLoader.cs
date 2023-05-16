@@ -131,12 +131,16 @@ public class LevelLoader : AsyncLoader
     {
         _feedbackManager.OnBeatHitSubscribe(_leftHammer.LevelEvaluation);
         _feedbackManager.OnBeatHitSubscribe(_rightHammer.LevelEvaluation);
+        _feedbackManager.RepeatedMissSubscribe(_leftHammer.LevelEvaluation);
+        _feedbackManager.RepeatedMissSubscribe(_rightHammer.LevelEvaluation);
     }
 
     private void UnsubscribeEvents()
     {
         _feedbackManager.OnBeatHitUnsubscribe(_leftHammer.LevelEvaluation);
         _feedbackManager.OnBeatHitUnsubscribe(_rightHammer.LevelEvaluation);
+        _feedbackManager.RepeatedMissUnsubscribe(_leftHammer.LevelEvaluation);
+        _feedbackManager.RepeatedMissUnsubscribe(_rightHammer.LevelEvaluation);
     }
 
     private void SetupSceneStart()
