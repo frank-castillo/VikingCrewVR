@@ -4,11 +4,17 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Manifest References")]
     [SerializeField] private AudioManifest _sfxManifest = null;
+    [SerializeField] private AudioManifest _ambienceManifest = null;
+    [SerializeField] private AudioManifest _boatManifest = null;
     [SerializeField] private AudioManifest _musicManifest = null;
 
     [Header("Audio Source")]
     [SerializeField] private AudioSource _drumAudioSource = null;
     [SerializeField] private AudioSource _vikingAudioSource = null;
+    [SerializeField] private AudioSource _leftPaddlesAudioSource = null;
+    [SerializeField] private AudioSource _rightPaddlesAudioSource = null;
+    [SerializeField] private AudioSource _leftSplashAudioSource = null;
+    [SerializeField] private AudioSource _rightSplashAudioSource = null;
     [SerializeField] private AudioSource _musicAudioSource = null;
 
     // Audio Levels
@@ -53,6 +59,12 @@ public class AudioManager : MonoBehaviour
             case SFXType.VikingChant:
                 PlayVikingChantSFX();
                 break;
+            case SFXType.Splash:
+                break;
+            case SFXType.DrumHum:
+                break;
+            case SFXType.DrumVacuum:
+                break;
             default:
                 Enums.InvalidSwitch(GetType(), sfxType.GetType());
                 break;
@@ -69,8 +81,30 @@ public class AudioManager : MonoBehaviour
         _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[1].Clip);
     }
 
+    private void PlayDrumHumSFX()
+    {
+        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[2].Clip);
+    }
+
+    private void PlayDrumVacuumSFX()
+    {
+        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[3].Clip);
+    }
+
     private void PlayVikingChantSFX()
     {
+        _drumAudioSource.PlayOneShot(_boatManifest.AudioItems[6].Clip);
+    }
+
+    private void PlayPaddleRowSFX()
+    {
+        // add the index 0 to 5
+        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[2].Clip);
+    }
+
+    private void PlaySplashSFX()
+    {
+        // add the index 0 to 6
         _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[2].Clip);
     }
 }
