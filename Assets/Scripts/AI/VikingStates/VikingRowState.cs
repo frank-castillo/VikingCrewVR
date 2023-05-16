@@ -9,7 +9,7 @@
 
     public void Enter()
     {
-        _behavior.ChangeAnimation(VikingAnimationType.Push);
+        _behavior.AnimationState(VikingAnimationType.Row);
     }
 
     public void Update()

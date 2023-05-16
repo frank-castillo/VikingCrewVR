@@ -35,7 +35,7 @@ public enum VikingAnimationType
 {
     None = 1,
     Idle,
-    Push,
+    Row,
     Stretch,
     Yawn,
 }
