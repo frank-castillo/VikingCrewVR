@@ -5,23 +5,28 @@ using Liminal.SDK.VR.Avatars;
 
 public class ShowHideControllers : MonoBehaviour
 {
-    [SerializedField] public VRAvatarController PrimaryController;
-    public VRAvatarController SecondaryController;
+    [SerializeField] private VRAvatarController _primaryController;
+    [SerializeField] private VRAvatarController _secondaryController;
 
-    public bool ShowPrimary;
-    public bool ShowSecondary;
+    [SerializeField] private bool _showPrimary = true;
+    [SerializeField] private bool _showSecondary = true;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        if (PrimaryController != null && PrimaryController.gameObject.activeSelf != ShowPrimary)
+        if (_primaryController != null && _primaryController.gameObject.activeSelf != _showPrimary)
         {
-            PrimaryController.gameObject.SetActive(ShowPrimary);
+            _primaryController.gameObject.SetActive(_showPrimary);
         }
 
-        if (SecondaryController != null && SecondaryController.gameObject.activeSelf != ShowSecondary)
+        if (_secondaryController != null && _secondaryController.gameObject.activeSelf != _showSecondary)
         {
-            SecondaryController.gameObject.SetActive(ShowSecondary);
+            _secondaryController.gameObject.SetActive(_showSecondary);
         }
+    }
+
+    public void HideHammers()
+    {
+        _primaryController.transform.parent.gameObject.SetActive(false);
+        _secondaryController.transform.parent.gameObject.SetActive(false);
     }
 }

@@ -171,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2422473795510388628
 Transform:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2422473795819702081
 Transform:
   m_ObjectHideFlags: 0
@@ -473,6 +473,7 @@ GameObject:
   - component: {fileID: 2422473795884257207}
   - component: {fileID: 2422473795884257201}
   - component: {fileID: 2422473795884257202}
+  - component: {fileID: 8258501606807640251}
   m_Layer: 0
   m_Name: VRAvatar
   m_TagString: Untagged
@@ -547,6 +548,22 @@ MonoBehaviour:
   m_ActivationPolicy: 1
   m_HoverDelay: 0.5
   m_HoverDuration: 2
+--- !u!114 &8258501606807640251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422473795884257203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3788d8fe2e052b4e8c3c477c3c7a11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _primaryController: {fileID: 1765797913684518072}
+  _secondaryController: {fileID: 6343893702673629527}
+  _showPrimary: 0
+  _showSecondary: 0
 --- !u!1 &2422473795919647136
 GameObject:
   m_ObjectHideFlags: 0
