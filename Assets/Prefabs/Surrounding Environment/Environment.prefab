@@ -987,6 +987,81 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 490
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 490
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.minScalar
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.scalar
+      value: 490
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.minScalar
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: InitialModule.startRotation.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: ShapeModule.alignToDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: ShapeModule.randomDirectionAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: ShapeModule.sphericalDirectionAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: ShapeModule.arc.mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: VelocityModule.z.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633384301356604290, guid: fd791d367bdc1b941b7fd2f65cf37e69,
+        type: 3}
+      propertyPath: VelocityModule.inWorldSpace
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd791d367bdc1b941b7fd2f65cf37e69, type: 3}
 --- !u!4 &6539238558763432286 stripped
@@ -1331,16 +1406,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4459301779778234320}
     m_Modifications:
-    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
-        type: 3}
-      propertyPath: m_Name
-      value: Ocean
-      objectReference: {fileID: 0}
-    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 8538987874842033095, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1395,6 +1460,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
+        type: 3}
+      propertyPath: m_Name
+      value: Ocean
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d, type: 3}
