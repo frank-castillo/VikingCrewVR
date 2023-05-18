@@ -36,12 +36,14 @@ public class RegionTreadmill : MonoBehaviour
 
         _feedbackManager.OnBeatHitSubscribe(IncreaseSpeed);
         _feedbackManager.OffBeatMissSubscribe(DecreaseSpeed);
+        _feedbackManager.RepeatedMissSubscribe(DecreaseSpeed);
     }
 
     private void OnDestroy()
     {
         _feedbackManager.OnBeatHitUnsubscribe(IncreaseSpeed);
         _feedbackManager.OffBeatMissUnsubscribe(DecreaseSpeed);
+        _feedbackManager.RepeatedMissUnsubscribe(DecreaseSpeed);
     }
 
     private IEnumerator IncreaseSpeedCoroutine()
