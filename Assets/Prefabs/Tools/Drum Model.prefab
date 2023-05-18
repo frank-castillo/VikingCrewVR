@@ -14065,7 +14065,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7110805412107821205
 Transform:
@@ -14236,7 +14236,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: -27.670704}
+    m_Center: {x: 0, y: 0, z: -27.67067}
     m_Extent: {x: 27.978899, y: 29.770216, z: 17.572063}
   m_DirtyAABB: 0
 --- !u!183 &479464269407707261
@@ -14871,7 +14871,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1180402742910934279
 Transform:
@@ -15076,6 +15076,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6733852740402503942, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733883509269218220, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 6733883509269218220, guid: 7f76d2b3eef44d043bfe19c79834130b,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -15096,10 +15106,15 @@ PrefabInstance:
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].value
       value: 0.10412438
       objectReference: {fileID: 0}
-    - target: {fileID: 6733883509269218220, guid: 7f76d2b3eef44d043bfe19c79834130b,
+    - target: {fileID: 6733544391936169070, guid: 7f76d2b3eef44d043bfe19c79834130b,
         type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].time
-      value: 1
+      propertyPath: simulationSpeed
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705016965538003706, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f76d2b3eef44d043bfe19c79834130b, type: 3}
