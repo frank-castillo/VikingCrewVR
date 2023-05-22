@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class RunesProgressionController : MonoBehaviour
 {
-    [SerializeField] private GameObject _runeMeshTier1 = null;
-    [SerializeField] private GameObject _runeMeshTier2 = null;
-    [SerializeField] private GameObject _runeMeshTier3 = null;
-
     [SerializeField] private ParticleSystem _runeParticlesTier1 = null;
     [SerializeField] private ParticleSystem _runeParticlesTier2 = null;
     [SerializeField] private ParticleSystem _runeParticlesTier3 = null;
@@ -25,11 +21,6 @@ public class RunesProgressionController : MonoBehaviour
     private void Initialize()
     {
         LevelUp(1);
-
-        _runeMeshTier1.SetActive(true);
-        _runeMeshTier2.SetActive(true);
-        _runeMeshTier3.SetActive(true);
-
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
         FeedbackSubscriptions();
     }
