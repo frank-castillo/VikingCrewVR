@@ -336,11 +336,10 @@ MonoBehaviour:
   _onConstantBeatFeedbacks: []
   _onMissFeedbacks: []
   _onBeatT1Feedbacks: []
-  _onBeatT2Feedbacks: []
-  _onBeatT3Feedbacks: []
-  _onAnyBeatTierFeedbacks:
+  _onBeatT2Feedbacks:
   - {fileID: 4661412871114722194}
   - {fileID: 1427899975055316769}
+  _onBeatT3Feedbacks: []
 --- !u!1 &4459301781204319531
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +824,11 @@ PrefabInstance:
       propertyPath: _sfxType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1530071737969934014, guid: 92ca9c948c5e1694385df43a8248fb24,
+        type: 3}
+      propertyPath: _successCounter
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92ca9c948c5e1694385df43a8248fb24, type: 3}
 --- !u!4 &9019740662111117885 stripped
@@ -1131,6 +1135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530071737969934014, guid: 92ca9c948c5e1694385df43a8248fb24,
+        type: 3}
+      propertyPath: _successCounter
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92ca9c948c5e1694385df43a8248fb24, type: 3}
