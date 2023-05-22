@@ -284,8 +284,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 200
-      minScalar: 250
+      scalar: 150
+      minScalar: 200
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -337,8 +337,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 200
-      minScalar: 250
+      scalar: 150
+      minScalar: 200
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -390,8 +390,8 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 200
-      minScalar: 250
+      scalar: 150
+      minScalar: 200
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -664,8 +664,8 @@ ParticleSystem:
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
-    donutRadius: 5
-    m_Position: {x: 0, y: 0, z: 15}
+    donutRadius: 8
+    m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 12, y: 10, z: 5}
     placementMode: 0
@@ -746,7 +746,7 @@ ParticleSystem:
     sphericalDirectionAmount: 1
     randomPositionAmount: 0
     radius:
-      value: 15
+      value: 17
       mode: 0
       spread: 0
       speed:
@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 40
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1304,7 +1304,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.0034601549}
-        key1: {r: 1, g: 1, b: 1, a: 0.5882353}
+        key1: {r: 1, g: 1, b: 1, a: 0.8235294}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1541,7 +1541,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1965,7 +1965,7 @@ ParticleSystem:
     radial:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
