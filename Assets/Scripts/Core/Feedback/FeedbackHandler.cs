@@ -9,7 +9,6 @@ public class FeedbackHandler : MonoBehaviour
     [SerializeField] private List<Feedback> _onBeatT1Feedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onBeatT2Feedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onBeatT3Feedbacks = new List<Feedback>();
-    [SerializeField] private List<Feedback> _onAnyBeatTierFeedbacks = new List<Feedback>();
 
     private FeedbackManager _feedbackManager = null;
     private BeatManager _beatManager = null;
@@ -65,11 +64,6 @@ public class FeedbackHandler : MonoBehaviour
         {
             feedback.Initialize();
         }
-
-        foreach (var feedback in _onAnyBeatTierFeedbacks)
-        {
-            feedback.Initialize();
-        }
     }
 
     private void OnDestroy()
@@ -84,8 +78,6 @@ public class FeedbackHandler : MonoBehaviour
 
     private void OnHitFeedback()
     {
-        PlayFeedbacks(_onAnyBeatTierFeedbacks);
-
         switch (_beatManager.CurrentTier)
         {
             case BeatTierType.None:
@@ -94,9 +86,12 @@ public class FeedbackHandler : MonoBehaviour
                 PlayFeedbacks(_onBeatT1Feedbacks);
                 break;
             case BeatTierType.T2:
+                PlayFeedbacks(_onBeatT1Feedbacks);
                 PlayFeedbacks(_onBeatT2Feedbacks);
                 break;
             case BeatTierType.T3:
+                PlayFeedbacks(_onBeatT1Feedbacks);
+                PlayFeedbacks(_onBeatT2Feedbacks);
                 PlayFeedbacks(_onBeatT3Feedbacks);
                 break;
             default:

@@ -11,7 +11,6 @@ public class DrumController : MonoBehaviour
     private FeedbackManager _feedbackManager = null;
     private FeedbackHandler _feedbackHandler = null;
 
-    [SerializeField] private HitSparksFeedback _sparksFeedback = null;
     [SerializeField] private ParticleSystem _vacuumParticles = null;
 
     public void Initialize()
@@ -59,7 +58,6 @@ public class DrumController : MonoBehaviour
                 _beatManager.SetActiveController(OVRInput.Controller.RTouch);
             }
 
-            _sparksFeedback.SetCollisionData(collision);
             _beatManager.DrumHit();
         }
     }
