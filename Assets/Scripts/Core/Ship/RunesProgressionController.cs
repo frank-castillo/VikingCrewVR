@@ -12,13 +12,7 @@ public class RunesProgressionController : MonoBehaviour
 
     private int _currentLevel = 0;
     private FeedbackManager _feedbackManager = null;
-
-    private void Awake()
-    {
-        Initialize();
-    }
-
-    private void Initialize()
+    public void Initialize()
     {
         LevelUp(1);
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
