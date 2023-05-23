@@ -14,6 +14,7 @@ public class Ship : MonoBehaviour
         _drumController.Initialize();
         _crewController.Initialize();
         _feedbackHandler.Initialize();
+        _sailController.Initialize();
     }
 
     public void StartShip()
