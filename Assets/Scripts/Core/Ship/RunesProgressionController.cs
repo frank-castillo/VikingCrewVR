@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,23 +13,46 @@ public class RunesProgressionController : MonoBehaviour
 
     private int _currentLevel = 0;
     private FeedbackManager _feedbackManager = null;
+    private BeatManager _beatManager = null;
+
     public void Initialize()
     {
         LevelUp(1);
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
+        _beatManager = ServiceLocator.Get<BeatManager>();
         FeedbackSubscriptions();
     }
 
     private void FeedbackSubscriptions()
     {
         _feedbackManager.ConstantBeatSubscribe(OnBeatPulse);
+        _feedbackManager.OnBeatHitSubscribe(CheckLevelUp);
     }
 
     private void OnDestroy()
     {
         _feedbackManager.ConstantBeatUnsubscribe(OnBeatPulse);
+        _feedbackManager.OnBeatHitUnsubscribe(CheckLevelUp);
     }
 
+    private void CheckLevelUp()
+    {
+        switch (_beatManager.CurrentTier)
+        {
+            case BeatTierType.T1:
+                LevelUp(1);
+                break;
+            case BeatTierType.T2:
+                LevelUp(2);
+                break;
+            case BeatTierType.T3:
+                LevelUp(3);
+                break;
+            default:
+                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                break;
+        }
+    }
 
     public void LevelUp(int newLevel)
     {
@@ -38,21 +62,6 @@ public class RunesProgressionController : MonoBehaviour
         }
 
         _currentLevel = newLevel;
-
-        //if (newLevel == 1)
-        //{
-       
-        //    _runeParticlesTier2.gameObject.SetActive(false);
-        //    _runeParticlesTier3.gameObject.SetActive(false);
-        //}
-        //else if (newLevel == 2)
-        //{
-        //    _runeParticlesTier2.gameObject.SetActive(true);
-        //}
-        //else if (newLevel == 3)
-        //{
-        //    _runeParticlesTier3.gameObject.SetActive(true);
-        //}
     }
 
     private void OnBeatPulse()
@@ -75,5 +84,4 @@ public class RunesProgressionController : MonoBehaviour
             _runeParticlesTier3.Play();
         }
     }
-
 }
