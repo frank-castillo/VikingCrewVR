@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3472084917641230800}
   - component: {fileID: 3921920437189720090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Torch Bowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3472084917641230800
 Transform:
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3472084917641230801}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1597, y: 2.4383, z: 13.544}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.89172, y: 0.89172, z: 0.89172}
   m_Children:
   - {fileID: 6775082945896941996}
   - {fileID: 3476224547100257602}
@@ -139,19 +139,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4878638491452574, guid: c1db2a4d993d8be4aacaed051a83ca69, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.62250245
+    - target: {fileID: 33533009261829728, guid: c1db2a4d993d8be4aacaed051a83ca69,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4878638491452574, guid: c1db2a4d993d8be4aacaed051a83ca69, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.62250245
-      objectReference: {fileID: 0}
-    - target: {fileID: 4878638491452574, guid: c1db2a4d993d8be4aacaed051a83ca69, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.62250245
-      objectReference: {fileID: 0}
-    - target: {fileID: 64687943540476858, guid: c1db2a4d993d8be4aacaed051a83ca69,
+    - target: {fileID: 6238688355425311386, guid: c1db2a4d993d8be4aacaed051a83ca69,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -231,26 +224,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7938364952287807588, guid: 32f7080032f11a64bab3f63354ea6408,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6162705
-      objectReference: {fileID: 0}
-    - target: {fileID: 7938364952287807588, guid: 32f7080032f11a64bab3f63354ea6408,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6162705
-      objectReference: {fileID: 0}
-    - target: {fileID: 7938364952287807588, guid: 32f7080032f11a64bab3f63354ea6408,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.6162705
-      objectReference: {fileID: 0}
-    - target: {fileID: 3673092086003607119, guid: 32f7080032f11a64bab3f63354ea6408,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32f7080032f11a64bab3f63354ea6408, type: 3}
 --- !u!4 &6775082945896941996 stripped
@@ -266,6 +239,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3472084917641230800}
     m_Modifications:
+    - target: {fileID: 1423784243368200, guid: 78892530d39aaea41a7f4adc11f8c866, type: 3}
+      propertyPath: m_Name
+      value: SoftFire_Particles
+      objectReference: {fileID: 0}
     - target: {fileID: 4392332486124086, guid: 78892530d39aaea41a7f4adc11f8c866, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.203
@@ -309,25 +286,6 @@ PrefabInstance:
     - target: {fileID: 4392332486124086, guid: 78892530d39aaea41a7f4adc11f8c866, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1423784243368200, guid: 78892530d39aaea41a7f4adc11f8c866, type: 3}
-      propertyPath: m_Name
-      value: SoftFire_Particles
-      objectReference: {fileID: 0}
-    - target: {fileID: 198456319823364066, guid: 78892530d39aaea41a7f4adc11f8c866,
-        type: 3}
-      propertyPath: simulationSpeed
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 198456319823364066, guid: 78892530d39aaea41a7f4adc11f8c866,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198456319823364066, guid: 78892530d39aaea41a7f4adc11f8c866,
-        type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78892530d39aaea41a7f4adc11f8c866, type: 3}

@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 4392332486124086}
   - component: {fileID: 198456319823364066}
   - component: {fileID: 199062966902256612}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SoftFireABRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4392332486124086
 Transform:
@@ -43,7 +43,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1423784243368200}
   serializedVersion: 6
   lengthInSec: 1
-  simulationSpeed: 1
+  simulationSpeed: 0.75
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -250,8 +250,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.9
+      scalar: 1.2
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4751,12 +4751,12 @@ GameObject:
   - component: {fileID: 4609012100667834}
   - component: {fileID: 198209878368935614}
   - component: {fileID: 199349721966753932}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4609012100667834
 Transform:
@@ -9458,12 +9458,12 @@ GameObject:
   - component: {fileID: 4936167061226646}
   - component: {fileID: 198796732189917664}
   - component: {fileID: 199624094532051166}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sparkles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4936167061226646
 Transform:
