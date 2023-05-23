@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Source")]
     [SerializeField] private AudioSource _drumAudioSource = null;
+    [SerializeField] private AudioSource _electricDrumAudioSource = null;
     [SerializeField] private AudioSource _vikingAudioSource = null;
     [SerializeField] private AudioSource _leftPaddlesAudioSource = null;
     [SerializeField] private AudioSource _rightPaddlesAudioSource = null;
@@ -22,6 +23,8 @@ public class AudioManager : MonoBehaviour
     private float _currentVolume = 0.0f;
 
     // Index references
+    private int _drumIndex = 1;
+    private int _electricIndex = 17;
     private int _rowIndex = 0;
     private int _splashIndex = 0;
 
@@ -58,6 +61,7 @@ public class AudioManager : MonoBehaviour
                 break;
             case SFXType.OnBeatDrum:
                 PlayOnBeatDrumSFX();
+                PlayDrumElectricHitSFX();
                 break;
             case SFXType.PaddleRow:
                 PlayPaddleRowSFX();
@@ -90,17 +94,34 @@ public class AudioManager : MonoBehaviour
 
     private void PlayOnBeatDrumSFX()
     {
-        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[1].Clip);
+        if (_drumIndex >= 14)
+        {
+            _drumIndex = 1;
+        }
+
+        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[_drumIndex].Clip);
+        ++_drumIndex;
     }
 
     private void PlayDrumHumSFX()
     {
-        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[2].Clip);
+        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[14].Clip);
     }
 
     private void PlayDrumVacuumSFX()
     {
-        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[3].Clip);
+        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[15].Clip);
+    }
+
+    private void PlayDrumElectricHitSFX()
+    {
+        if (_electricIndex >= 20)
+        {
+            _electricIndex = 17;
+        }
+
+        _electricDrumAudioSource.PlayOneShot(_sfxManifest.AudioItems[_electricIndex].Clip);
+        ++_electricIndex;
     }
 
     private void PlayVikingChantSFX()
