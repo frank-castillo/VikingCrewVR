@@ -17,7 +17,12 @@ public class FinalRegionGetter : MonoBehaviour
 
     private void Update()
     {
-        if (_triggeringNode.position.z >= _experienceEndingTrigger.position.z && !_experienceEnded)
+        if(_experienceEnded)
+        {
+            return;
+        }
+
+        if (_triggeringNode.position.z >= _experienceEndingTrigger.position.z)
         {
             _experienceEnded = true;
             _levelLoader.FinalizeExperience();
