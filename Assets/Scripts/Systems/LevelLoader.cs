@@ -157,6 +157,7 @@ public class LevelLoader : AsyncLoader
         _wrapUpStarted = true;
 
         _ship.ShipWrapUp();
+        _environment.EnvironmentWrapUp();
     }
 
     public static void CallOnComplete(Action callback)
@@ -240,7 +241,7 @@ public class LevelLoader : AsyncLoader
 
             if (GUILayout.Button("Simulate End of Experience"))
             {
-                customLevelLoader.FinalizeExperience();
+                customLevelLoader.WrapUpSequence();
             }
 
             if (GUILayout.Button("Simulate Start of Experience"))
