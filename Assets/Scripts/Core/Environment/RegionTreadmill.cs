@@ -10,6 +10,7 @@ public class RegionTreadmill : MonoBehaviour
     [SerializeField] private Transform _limitOfMap = null;
     [SerializeField] private Transform _startOfMap = null;
     [SerializeField] private Transform _regionFolder = null;
+    [SerializeField] private Transform _finalRegion = null;
 
     private FeedbackManager _feedbackManager = null;
     private List<Transform> _regions = new List<Transform>();
@@ -18,6 +19,8 @@ public class RegionTreadmill : MonoBehaviour
     private float _lerpDuration = 1.0f;
     private bool _movementEnabled = false;
     private bool _inTransition = false;
+    private bool _isEnding = false;
+    private bool _finalIslandReadyToMove = false;
 
     public void EnableMovement(bool enable) { _movementEnabled = enable; }
 
@@ -100,6 +103,31 @@ public class RegionTreadmill : MonoBehaviour
         StartCoroutine(DecreaseSpeedCoroutine());
     }
 
+    private void MoveRegions()
+    {
+        foreach (Transform region in _regions)
+        {
+            region.position += Vector3.forward * _speed * Time.deltaTime;
+
+            if (region.position.z > _limitOfMap.position.z)
+            {
+                if (_isEnding && !_finalIslandReadyToMove)
+                {
+                    _finalIslandReadyToMove = true;
+                }
+                else if(!_isEnding)
+                {
+                    region.position = _startOfMap.position;
+                }
+            }
+        }
+
+        if (_finalIslandReadyToMove)
+        {
+            _finalRegion.position += Vector3.forward * _speed * Time.deltaTime;
+        }
+    }
+
     private void Update()
     {
         if (_movementEnabled == false)
@@ -107,14 +135,12 @@ public class RegionTreadmill : MonoBehaviour
             return;
         }
 
-        foreach (Transform region in _regions)
-        {
-            region.position += Vector3.forward * _speed * Time.deltaTime;
+        MoveRegions();
+    }
 
-            if (region.position.z > _limitOfMap.position.z)
-            {
-                region.position = _startOfMap.position;
-            }
-        }
+    public void TreadmillWrapUp()
+    {
+        _isEnding = true;
+        _finalRegion.gameObject.SetActive(true);
     }
 }
