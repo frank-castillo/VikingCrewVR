@@ -1038,11 +1038,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8862360328707029376}
     m_Modifications:
-    - target: {fileID: 2881722167421276108, guid: a9847c4f40bf88d48b8d1076920bfc91,
-        type: 3}
-      propertyPath: m_Name
-      value: Front Fog Wall
-      objectReference: {fileID: 0}
     - target: {fileID: 5137102125054791263, guid: a9847c4f40bf88d48b8d1076920bfc91,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1097,6 +1092,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881722167421276108, guid: a9847c4f40bf88d48b8d1076920bfc91,
+        type: 3}
+      propertyPath: m_Name
+      value: Front Fog Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9847c4f40bf88d48b8d1076920bfc91, type: 3}
@@ -1214,11 +1214,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8862360328707029376}
     m_Modifications:
-    - target: {fileID: 2881722167421276108, guid: a9847c4f40bf88d48b8d1076920bfc91,
-        type: 3}
-      propertyPath: m_Name
-      value: Back Fog Wall
-      objectReference: {fileID: 0}
     - target: {fileID: 5137102125054791263, guid: a9847c4f40bf88d48b8d1076920bfc91,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1273,6 +1268,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881722167421276108, guid: a9847c4f40bf88d48b8d1076920bfc91,
+        type: 3}
+      propertyPath: m_Name
+      value: Back Fog Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9847c4f40bf88d48b8d1076920bfc91, type: 3}
@@ -1771,21 +1771,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4459301779778234320}
     m_Modifications:
-    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
-        type: 3}
-      propertyPath: m_Name
-      value: Ocean
-      objectReference: {fileID: 0}
-    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 8538987874842033095, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1840,6 +1825,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
+        type: 3}
+      propertyPath: m_Name
+      value: Ocean
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d, type: 3}

@@ -7842,6 +7842,37 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1953310425004108686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3784468182117534081}
+  m_Layer: 11
+  m_Name: Dragon Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3784468182117534081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953310425004108686}
+  m_LocalRotation: {x: 0.08286423, y: -0, z: -0, w: -0.9965609}
+  m_LocalPosition: {x: 0, y: -1367.5, z: -319.8}
+  m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
+  m_Children:
+  - {fileID: 5334096683198798678}
+  m_Father: {fileID: 5234606209155886414}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -9.5060005, y: 0, z: 0}
 --- !u!1 &2063298592432226098
 GameObject:
   m_ObjectHideFlags: 0
@@ -16988,7 +17019,7 @@ Transform:
   m_LocalScale: {x: 0.04, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 5204271478735758844}
-  - {fileID: 5334096683198798678}
+  - {fileID: 3784468182117534081}
   - {fileID: 3286789402996469217}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -20931,8 +20962,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5334096683198798678}
+  - component: {fileID: 778199364}
+  - component: {fileID: 778199365}
   m_Layer: 11
-  m_Name: Dragon Head
+  m_Name: Dragon Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20945,18 +20978,52 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6973164635965632413}
-  m_LocalRotation: {x: 0.08286423, y: -0, z: -0, w: -0.9965609}
-  m_LocalPosition: {x: 0, y: -1306.2, z: -325.2}
-  m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.151478, y: -0.22799456, z: -0.03816188}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9139763325338057697}
   - {fileID: 2323960999172392312}
   - {fileID: 5654551397689200346}
   - {fileID: 7049588827572788319}
   - {fileID: 8771612350035776680}
-  m_Father: {fileID: 5234606209155886414}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -9.5060005, y: 0, z: 0}
+  m_Father: {fileID: 3784468182117534081}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &778199364
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6973164635965632413}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: de05bd70a39be684183b968cf7482b59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &778199365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6973164635965632413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialDelay: 0
+  _animator: {fileID: 778199364}
+  _triggerName: WaveHead
 --- !u!1 &7378023613367797370
 GameObject:
   m_ObjectHideFlags: 0
