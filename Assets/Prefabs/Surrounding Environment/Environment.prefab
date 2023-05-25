@@ -262,8 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee18cd9cd4f42c46b8f8741a3894439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 35
-  _minSpeed: 200
+  _maxSpeed: 25
+  _minSpeed: 10
   _speedModifier: 0.3
   _limitOfMap: {fileID: 5697900365989892435}
   _startOfMap: {fileID: 3773961034454453799}
@@ -354,6 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _environmentTreadmill: {fileID: 3462191982187420359}
   _windController: {fileID: 973511271320310991}
+  _fogController: {fileID: 1357585212681067909}
   _finalRegion: {fileID: 13088697}
 --- !u!114 &6847833819616994327
 MonoBehaviour:
@@ -789,7 +790,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8161454856372409959}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfd0e85a48327b240a15e650683c9a24, type: 3}
   m_Name: 
@@ -890,6 +891,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4459301780399943845}
     m_Modifications:
+    - target: {fileID: 3931977378654209008, guid: 9b7666cbb9c08bd4aa397a87248d36af,
+        type: 3}
+      propertyPath: _maxFogEmmision
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931977378654209008, guid: 9b7666cbb9c08bd4aa397a87248d36af,
+        type: 3}
+      propertyPath: _rateChange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6115028091072850903, guid: 9b7666cbb9c08bd4aa397a87248d36af,
         type: 3}
       propertyPath: m_Name
@@ -950,6 +961,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 605857470353128119, guid: 9b7666cbb9c08bd4aa397a87248d36af,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0.78431374
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b7666cbb9c08bd4aa397a87248d36af, type: 3}
 --- !u!4 &2674121719938049285 stripped
@@ -958,6 +974,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2613825119715581557}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1357585212681067909 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3931977378654209008, guid: 9b7666cbb9c08bd4aa397a87248d36af,
+    type: 3}
+  m_PrefabInstance: {fileID: 2613825119715581557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8810da0296d9f4943be7cd2238321aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4459301779506863650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1295,21 +1323,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4459301779778234320}
     m_Modifications:
-    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
-        type: 3}
-      propertyPath: m_Name
-      value: Ocean
-      objectReference: {fileID: 0}
-    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 8538987874842033095, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1364,6 +1377,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
+        type: 3}
+      propertyPath: m_Name
+      value: Ocean
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763170387541100343, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ce5b5b6f356c54e86b15f8f52b2e4d, type: 3}
