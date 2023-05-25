@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 511225070}
   - component: {fileID: 511225072}
   - component: {fileID: 511225071}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GlowCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4682,7 +4682,7 @@ GameObject:
   - component: {fileID: 1824433824}
   - component: {fileID: 1824433826}
   - component: {fileID: 1824433825}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PortalDust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9371,7 +9371,7 @@ GameObject:
   - component: {fileID: 1955283375}
   - component: {fileID: 1955283377}
   - component: {fileID: 1955283376}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BlueCircleZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14060,7 +14060,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7110805412107821205}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BasePartParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14091,7 +14091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1199825848620957040}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Drum Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14123,7 +14123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1660072141803872082}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TopPartParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14161,7 +14161,7 @@ GameObject:
   - component: {fileID: 9124211766734343239}
   - component: {fileID: 199615310444088979}
   - component: {fileID: 479464269407707261}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TopPartMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14866,7 +14866,7 @@ GameObject:
   - component: {fileID: 1180402742910934279}
   - component: {fileID: 9039934895544258246}
   - component: {fileID: 5511921112847075809}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BaseMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14943,7 +14943,7 @@ GameObject:
   - component: {fileID: 6995493849802592185}
   - component: {fileID: 1614318468106182347}
   - component: {fileID: 4315844422492709216}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15020,6 +15020,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VacuumVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896819687164424752, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6891246918824228606, guid: 7f76d2b3eef44d043bfe19c79834130b,
         type: 3}
@@ -15116,6 +15121,21 @@ PrefabInstance:
       propertyPath: simulationSpeed
       value: 0.55
       objectReference: {fileID: 0}
+    - target: {fileID: 6896947510549207656, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896204686409289836, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896301085381802500, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f76d2b3eef44d043bfe19c79834130b, type: 3}
 --- !u!4 &6949489402458599875 stripped
@@ -15191,6 +15211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagicCircleSimpleBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 1308696705675058, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 198644185449036804, guid: 92f1a4b7c0101cb4f84455289ac65548,
         type: 3}
       propertyPath: simulationSpeed
@@ -15210,6 +15234,14 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.9163361
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794380785198854, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960608427068782, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 198101009632176120, guid: 92f1a4b7c0101cb4f84455289ac65548,
         type: 3}
@@ -15275,6 +15307,10 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.48693085
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173790936876906, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
