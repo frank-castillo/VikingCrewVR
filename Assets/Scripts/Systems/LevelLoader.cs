@@ -146,7 +146,6 @@ public class LevelLoader : AsyncLoader
     private void SetupSceneStart()
     {
         _beatManager.StartBeat();
-        _ship.StartShip();
         _environment.StartEnvironment();
 
         _gameStarted = true;
