@@ -27,12 +27,16 @@ public class RunesProgressionController : MonoBehaviour
     {
         _feedbackManager.ConstantBeatSubscribe(OnBeatPulse);
         _feedbackManager.OnBeatHitSubscribe(CheckLevelUp);
+        _feedbackManager.OffBeatMissSubscribe(CheckLevelUp);
+        _feedbackManager.RepeatedMissSubscribe(CheckLevelUp);
     }
 
     private void OnDestroy()
     {
         _feedbackManager.ConstantBeatUnsubscribe(OnBeatPulse);
         _feedbackManager.OnBeatHitUnsubscribe(CheckLevelUp);
+        _feedbackManager.OffBeatMissUnsubscribe(CheckLevelUp);
+        _feedbackManager.RepeatedMissUnsubscribe(CheckLevelUp);
     }
 
     private void CheckLevelUp()
