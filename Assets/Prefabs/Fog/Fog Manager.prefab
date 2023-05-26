@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503570260834738786}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 5, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -664,7 +664,7 @@ ParticleSystem:
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
-    donutRadius: 5
+    donutRadius: 3
     m_Position: {x: 0, y: 0, z: 15}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 12, y: 10, z: 5}
@@ -746,7 +746,7 @@ ParticleSystem:
     sphericalDirectionAmount: 1
     randomPositionAmount: 0
     radius:
-      value: 25
+      value: 10
       mode: 0
       spread: 0
       speed:
@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 35
+      scalar: 25
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1304,8 +1304,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.0034601549}
-        key1: {r: 1, g: 1, b: 1, a: 0.47058824}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 1, b: 1, a: 0.78431374}
+        key2: {r: 0, g: 0, b: 0, a: 0.78431374}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1320,8 +1320,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 32768
-        atime2: 65535
+        atime1: 22937
+        atime2: 42598
         atime3: 65535
         atime4: 65535
         atime5: 0
@@ -1329,7 +1329,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 3
+        m_NumAlphaKeys: 4
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4798,13 +4798,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeFog: {fileID: 605857470353128119}
-  _animationCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _changeAmount: 1
+  _minFogEmmision: 0
+  _maxFogEmmision: 30
+  _rateChange: 2
 --- !u!1 &9085227920050408598
 GameObject:
   m_ObjectHideFlags: 0
@@ -4816,7 +4812,7 @@ GameObject:
   - component: {fileID: 6453399137367561562}
   - component: {fileID: 8106563971839661123}
   - component: {fileID: 7704830641852510442}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Wide Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
