@@ -3,12 +3,19 @@ using UnityEngine;
 
 public class FeedbackHandler : MonoBehaviour
 {
-    [Header("Feedback References")]
+    [Header("Misc Feedbacks")]
     [SerializeField] private List<Feedback> _onConstantBeatFeedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onMissFeedbacks = new List<Feedback>();
-    [SerializeField] private List<Feedback> _onBeatT1Feedbacks = new List<Feedback>();
-    [SerializeField] private List<Feedback> _onBeatT2Feedbacks = new List<Feedback>();
-    [SerializeField] private List<Feedback> _onBeatT3Feedbacks = new List<Feedback>();
+
+    [Header("First Hit")]
+    [SerializeField] private List<Feedback> _onFirstBeatT1Feedbacks = new List<Feedback>();
+    [SerializeField] private List<Feedback> _onFirstBeatT2Feedbacks = new List<Feedback>();
+    [SerializeField] private List<Feedback> _onFirstBeatT3Feedbacks = new List<Feedback>();
+
+    [Header("Minor Hit")]
+    [SerializeField] private List<Feedback> _onMinorBeatT1Feedbacks = new List<Feedback>();
+    [SerializeField] private List<Feedback> _onMinorBeatT2Feedbacks = new List<Feedback>();
+    [SerializeField] private List<Feedback> _onMinorBeatT3Feedbacks = new List<Feedback>();
 
     private FeedbackManager _feedbackManager = null;
     private BeatManager _beatManager = null;
@@ -27,18 +34,27 @@ public class FeedbackHandler : MonoBehaviour
     private void Subscriptions()
     {
         _feedbackManager.ConstantBeatSubscribe(ConstantBeatFeedback);
-        _feedbackManager.OnBeatHitSubscribe(OnHitFeedback);
+        _feedbackManager.OnBeatFirstHitSubscribe(OnFirstHitFeedback);
+        _feedbackManager.OnBeatMinorHitSubscribe(OnMinorHitFeedback);
         _feedbackManager.OffBeatMissSubscribe(OnMissFeedback);
     }
 
     private void UnsubscribeMethods()
     {
         _feedbackManager.ConstantBeatUnsubscribe(ConstantBeatFeedback);
-        _feedbackManager.OnBeatHitUnsubscribe(OnHitFeedback);
+        _feedbackManager.OnBeatFirstHitUnsubscribe(OnFirstHitFeedback);
+        _feedbackManager.OnBeatMinorHitUnsubscribe(OnMinorHitFeedback);
         _feedbackManager.OffBeatMissUnsubscribe(OnMissFeedback);
     }
 
     private void InitializeFeedbacks()
+    {
+        InitializeMiscFeedbacks();
+        InitializeFirstHitFeedbacks();
+        InitializeMinorHitFeedbacks();
+    }
+
+    private void InitializeMiscFeedbacks()
     {
         foreach (var feedback in _onConstantBeatFeedbacks)
         {
@@ -49,18 +65,39 @@ public class FeedbackHandler : MonoBehaviour
         {
             feedback.Initialize();
         }
+    }
 
-        foreach (var feedback in _onBeatT1Feedbacks)
+    private void InitializeFirstHitFeedbacks()
+    {
+        foreach (var feedback in _onFirstBeatT1Feedbacks)
         {
             feedback.Initialize();
         }
 
-        foreach (var feedback in _onBeatT2Feedbacks)
+        foreach (var feedback in _onFirstBeatT2Feedbacks)
         {
             feedback.Initialize();
         }
 
-        foreach (var feedback in _onBeatT3Feedbacks)
+        foreach (var feedback in _onFirstBeatT3Feedbacks)
+        {
+            feedback.Initialize();
+        }
+    }
+
+    private void InitializeMinorHitFeedbacks()
+    {
+        foreach (var feedback in _onMinorBeatT1Feedbacks)
+        {
+            feedback.Initialize();
+        }
+
+        foreach (var feedback in _onMinorBeatT2Feedbacks)
+        {
+            feedback.Initialize();
+        }
+
+        foreach (var feedback in _onMinorBeatT3Feedbacks)
         {
             feedback.Initialize();
         }
@@ -76,23 +113,47 @@ public class FeedbackHandler : MonoBehaviour
         PlayFeedbacks(_onConstantBeatFeedbacks);
     }
 
-    private void OnHitFeedback()
+    private void OnFirstHitFeedback()
     {
         switch (_beatManager.CurrentTier)
         {
             case BeatTierType.None:
                 break;
             case BeatTierType.T1:
-                PlayFeedbacks(_onBeatT1Feedbacks);
+                PlayFeedbacks(_onFirstBeatT1Feedbacks);
                 break;
             case BeatTierType.T2:
-                PlayFeedbacks(_onBeatT1Feedbacks);
-                PlayFeedbacks(_onBeatT2Feedbacks);
+                PlayFeedbacks(_onFirstBeatT1Feedbacks);
+                PlayFeedbacks(_onFirstBeatT2Feedbacks);
                 break;
             case BeatTierType.T3:
-                PlayFeedbacks(_onBeatT1Feedbacks);
-                PlayFeedbacks(_onBeatT2Feedbacks);
-                PlayFeedbacks(_onBeatT3Feedbacks);
+                PlayFeedbacks(_onFirstBeatT1Feedbacks);
+                PlayFeedbacks(_onFirstBeatT2Feedbacks);
+                PlayFeedbacks(_onFirstBeatT3Feedbacks);
+                break;
+            default:
+                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                break;
+        }
+    }
+
+    private void OnMinorHitFeedback()
+    {
+        switch (_beatManager.CurrentTier)
+        {
+            case BeatTierType.None:
+                break;
+            case BeatTierType.T1:
+                PlayFeedbacks(_onMinorBeatT1Feedbacks);
+                break;
+            case BeatTierType.T2:
+                PlayFeedbacks(_onMinorBeatT1Feedbacks);
+                PlayFeedbacks(_onMinorBeatT2Feedbacks);
+                break;
+            case BeatTierType.T3:
+                PlayFeedbacks(_onMinorBeatT1Feedbacks);
+                PlayFeedbacks(_onMinorBeatT2Feedbacks);
+                PlayFeedbacks(_onMinorBeatT3Feedbacks);
                 break;
             default:
                 Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());

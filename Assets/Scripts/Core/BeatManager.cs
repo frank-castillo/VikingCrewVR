@@ -12,6 +12,7 @@ public class BeatManager : MonoBehaviour
     private bool _isOnBeat = false;
     private bool _isPlaying = false;
     private bool _beatBuildUpPlayed = false;
+    private bool _recentBeatSuccess = false;
 
     [Header("Streak Tiers")]
     [SerializeField] private int _tierTwo = 0;
@@ -27,10 +28,6 @@ public class BeatManager : MonoBehaviour
     private OVRInput.Controller _activeController = OVRInput.Controller.None;
 
     public OVRInput.Controller ActiveController { get => _activeController; }
-
-    public int TierTwo { get => _tierTwo; }
-    public int TierThree { get => _tierThree; }
-
     public BeatTierType CurrentTier { get => _currentTier; }
 
     public void SetActiveController(OVRInput.Controller controller) { _activeController = controller; }
@@ -109,6 +106,7 @@ public class BeatManager : MonoBehaviour
         if (_hitWindowTimer < 0)
         {
             _isOnBeat = false;
+            _recentBeatSuccess = false;
         }
     }
 
@@ -126,13 +124,22 @@ public class BeatManager : MonoBehaviour
 
     private void HitOnBeat()
     {
-        ++_beatStreak;
+        if (_recentBeatSuccess == false)
+        {
+            ++_beatStreak;
+            _feedbackManager.OnFirstBeatFeedback();
+        }
+        else
+        {
+            _feedbackManager.OnMinorBeatFeedback();
+        }
+
         _beatMissCounter = 0;
+        _recentBeatSuccess = true;
 
         Debug.Log($"Beat Streak: {_beatStreak}");
 
         EvaluateStreak();
-        _feedbackManager.OnBeatFeedback();
     }
 
     private void HitOffBeat()
