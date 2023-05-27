@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8204988429166723614}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Region2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,9 +35,115 @@ Transform:
   - {fileID: 6783428064861562024}
   - {fileID: 6783428065362886956}
   - {fileID: 4064318447048646944}
+  - {fileID: 4865568960230462441}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3209204884300900398
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8204988429166723614}
+    m_Modifications:
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3420
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 558
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.83186936
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.55497146
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -247.418
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7493497
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.74934995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7493497
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Komodo_Island (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798368756768790836, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220477141785097271, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 98b23dacc5195c14d810f606fa4246a5, type: 3}
+--- !u!4 &4865568960230462441 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3209204884300900398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3544060247316116359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45,11 +151,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8204988429166723614}
     m_Modifications:
-    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
-        type: 3}
-      propertyPath: m_Name
-      value: Island (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 7187051076158877228, guid: e00c568b2a9d0444b808660de9d1bf6d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -120,6 +221,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 599.38
       objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Name
+      value: Island (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
 --- !u!4 &5949959776847125931 stripped
@@ -135,11 +246,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8204988429166723614}
     m_Modifications:
-    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
-        type: 3}
-      propertyPath: m_Name
-      value: Komodo_Island (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -210,6 +316,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.7493499
       objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Komodo_Island (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798368756768790836, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220477141785097271, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98b23dacc5195c14d810f606fa4246a5, type: 3}
 --- !u!4 &6783428064861562024 stripped
@@ -225,11 +351,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8204988429166723614}
     m_Modifications:
-    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
-        type: 3}
-      propertyPath: m_Name
-      value: Island (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 7187051076158877228, guid: e00c568b2a9d0444b808660de9d1bf6d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -300,6 +421,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 797.29517
       objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Name
+      value: Island (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
 --- !u!4 &5949959777568356535 stripped
@@ -315,11 +446,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8204988429166723614}
     m_Modifications:
-    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
-        type: 3}
-      propertyPath: m_Name
-      value: Komodo_Island (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -390,6 +516,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.7493499
       objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Komodo_Island (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798368756768790836, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220477141785097271, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98b23dacc5195c14d810f606fa4246a5, type: 3}
 --- !u!4 &6783428065362886956 stripped
@@ -405,11 +551,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8204988429166723614}
     m_Modifications:
-    - target: {fileID: 3654999701843680013, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
-        type: 3}
-      propertyPath: m_Name
-      value: Mt Edgecumbe
-      objectReference: {fileID: 0}
     - target: {fileID: 668877026940584554, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -480,6 +621,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.80375403
       objectReference: {fileID: 0}
+    - target: {fileID: 3654999701843680013, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
+        type: 3}
+      propertyPath: m_Name
+      value: Mt Edgecumbe
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654999701843680013, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408689705546141255, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ceea2e9793f7c141b2e12047d7dcea4, type: 3}
 --- !u!4 &4064318447048646944 stripped
@@ -495,11 +651,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8204988429166723614}
     m_Modifications:
-    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
-        type: 3}
-      propertyPath: m_Name
-      value: Island (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 7187051076158877228, guid: e00c568b2a9d0444b808660de9d1bf6d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -570,6 +721,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 599.3803
       objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Name
+      value: Island (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
 --- !u!4 &5949959778628484077 stripped
@@ -585,11 +746,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8204988429166723614}
     m_Modifications:
-    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
-        type: 3}
-      propertyPath: m_Name
-      value: Island (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 7187051076158877228, guid: e00c568b2a9d0444b808660de9d1bf6d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -660,6 +816,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 599.38
       objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Name
+      value: Island (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
 --- !u!4 &5949959778618976835 stripped
@@ -675,11 +841,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8204988429166723614}
     m_Modifications:
-    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
-        type: 3}
-      propertyPath: m_Name
-      value: Island
-      objectReference: {fileID: 0}
     - target: {fileID: 7187051076158877228, guid: e00c568b2a9d0444b808660de9d1bf6d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -749,6 +910,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Name
+      value: Island
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
