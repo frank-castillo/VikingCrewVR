@@ -16,9 +16,6 @@ public class LevelLoader : AsyncLoader
     [SerializeField] private BeatManager _beatManager = null;
     [SerializeField] private FeedbackManager _feedbackManager = null;
 
-    [Header("Time Scale")]
-    [SerializeField] private float timeScale = 1f;
-
     [Header("Fading Times")]
     [SerializeField] private float _fadeInTime = 2.0f;
     [SerializeField] private float _fadeOutTime = 2.0f;
@@ -128,8 +125,6 @@ public class LevelLoader : AsyncLoader
         {
             WrapUpSequence();
         }
-
-        //Time.timeScale = timeScale;
     }
 
     private void SetupEvents()
