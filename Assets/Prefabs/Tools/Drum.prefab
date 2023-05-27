@@ -1099,7 +1099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 131366, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 109544, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
       propertyPath: m_Layer
@@ -1239,11 +1239,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19865454, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
       propertyPath: ClampVelocityModule.dampen
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 19865454, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
       propertyPath: ShapeModule.angle
-      value: 26.56
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 19865454, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 499580, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
       propertyPath: m_LocalScale.x
@@ -1256,6 +1260,14 @@ PrefabInstance:
     - target: {fileID: 499580, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 493258, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 493258, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
