@@ -51,7 +51,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 1
+  useRigidbodyForVelocity: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -4722,7 +4722,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 1
+  useRigidbodyForVelocity: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -14452,10 +14452,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6896947510549207656, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896204686409289836, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896301085381802500, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6733852740402503942, guid: 7f76d2b3eef44d043bfe19c79834130b,
         type: 3}
       propertyPath: simulationSpeed
       value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733852740402503942, guid: 7f76d2b3eef44d043bfe19c79834130b,
+        type: 3}
+      propertyPath: useRigidbodyForVelocity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6733883509269218220, guid: 7f76d2b3eef44d043bfe19c79834130b,
         type: 3}
@@ -14492,21 +14512,6 @@ PrefabInstance:
       propertyPath: simulationSpeed
       value: 0.55
       objectReference: {fileID: 0}
-    - target: {fileID: 6896947510549207656, guid: 7f76d2b3eef44d043bfe19c79834130b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6896204686409289836, guid: 7f76d2b3eef44d043bfe19c79834130b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6896301085381802500, guid: 7f76d2b3eef44d043bfe19c79834130b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f76d2b3eef44d043bfe19c79834130b, type: 3}
 --- !u!4 &6949489402458599875 stripped
@@ -14522,6 +14527,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1660072141803872082}
     m_Modifications:
+    - target: {fileID: 1308696705675058, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
+      propertyPath: m_Name
+      value: MagicCircleSimpleBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1308696705675058, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4620396684667900, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.13400078
@@ -14578,14 +14591,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 27.855453
       objectReference: {fileID: 0}
-    - target: {fileID: 1308696705675058, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
-      propertyPath: m_Name
-      value: MagicCircleSimpleBlue
-      objectReference: {fileID: 0}
-    - target: {fileID: 1308696705675058, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 198644185449036804, guid: 92f1a4b7c0101cb4f84455289ac65548,
         type: 3}
       propertyPath: simulationSpeed
@@ -14605,6 +14610,10 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.9163361
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173790936876906, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1794380785198854, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
       propertyPath: m_Layer
@@ -14678,10 +14687,6 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.48693085
-      objectReference: {fileID: 0}
-    - target: {fileID: 1173790936876906, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92f1a4b7c0101cb4f84455289ac65548, type: 3}
