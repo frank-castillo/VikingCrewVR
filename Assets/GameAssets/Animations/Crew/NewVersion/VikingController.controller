@@ -58,7 +58,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Test
+    m_ConditionEvent: DoRow
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1804170151991637836}
@@ -83,7 +83,7 @@ AnimatorController:
   m_Name: VikingController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Test
+  - m_Name: DoRow
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -110,7 +110,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Row
-  m_Speed: 2
+  m_Speed: 2.1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -925830613077513159}
