@@ -295,17 +295,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198456319823364066, guid: 78892530d39aaea41a7f4adc11f8c866,
         type: 3}
-      propertyPath: simulationSpeed
-      value: 0.75
+      propertyPath: UVModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198456319823364066, guid: 78892530d39aaea41a7f4adc11f8c866,
         type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1.2
+      propertyPath: useRigidbodyForVelocity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198456319823364066, guid: 78892530d39aaea41a7f4adc11f8c866,
         type: 3}
-      propertyPath: InitialModule.startSize.minScalar
+      propertyPath: cullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198456319823364066, guid: 78892530d39aaea41a7f4adc11f8c866,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199062966902256612, guid: 78892530d39aaea41a7f4adc11f8c866,
+        type: 3}
+      propertyPath: m_ApplyActiveColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199062966902256612, guid: 78892530d39aaea41a7f4adc11f8c866,
+        type: 3}
+      propertyPath: m_AllowRoll
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
