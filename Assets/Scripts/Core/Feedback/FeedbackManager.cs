@@ -46,6 +46,7 @@ public class FeedbackManager : MonoBehaviour
     public void OnFirstBeatFeedback()
     {
         _onBeatFirstHit?.Invoke();
+        _onBeatMinorHit?.Invoke();
     }
 
     public void OnMinorBeatFeedback()
