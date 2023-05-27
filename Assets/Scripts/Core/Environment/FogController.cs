@@ -29,14 +29,14 @@ public class FogController : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        _feedbackManager.OnBeatHitSubscribe(LowerFog);
+        _feedbackManager.OnBeatFirstHitSubscribe(LowerFog);
         _feedbackManager.OffBeatMissSubscribe(LowerFog);
         _feedbackManager.RepeatedMissSubscribe(IncreaseFog);
     }
 
     private void UnsubscribeEvents()
     {
-        _feedbackManager.OnBeatHitUnsubscribe(LowerFog);
+        _feedbackManager.OnBeatFirstHitUnsubscribe(LowerFog);
         _feedbackManager.OffBeatMissUnsubscribe(LowerFog);
         _feedbackManager.RepeatedMissUnsubscribe(IncreaseFog);
     }

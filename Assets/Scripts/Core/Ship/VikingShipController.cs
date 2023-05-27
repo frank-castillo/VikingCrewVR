@@ -30,8 +30,8 @@ public class VikingShipController : MonoBehaviour
 
     private void Update()
     {
-        BuoyancyEffect();
-        SailEffect();
+        //BuoyancyEffect();
+        //SailEffect();
     }
 
     private void BuoyancyEffect()

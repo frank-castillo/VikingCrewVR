@@ -27,12 +27,12 @@ public class WindController : MonoBehaviour
         _rightWindEmission = _rightWind.emission;
         _currentTier = 1;
 
-        _feedbackManager.OnBeatHitSubscribe(TierEvaluation);
+        _feedbackManager.OnBeatFirstHitSubscribe(TierEvaluation);
     }
 
     private void OnDestroy()
     {
-        _feedbackManager.OnBeatHitUnsubscribe(TierEvaluation);
+        _feedbackManager.OnBeatFirstHitUnsubscribe(TierEvaluation);
     }
 
     private void TierEvaluation()
