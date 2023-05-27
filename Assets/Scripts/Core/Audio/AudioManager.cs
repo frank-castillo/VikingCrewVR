@@ -64,7 +64,7 @@ public class AudioManager : MonoBehaviour
                 PlayDrumElectricHitSFX();
                 break;
             case SFXType.PaddleRow:
-                PlayPaddleRowSFX();
+                //PlayPaddleRowSFX();
                 break;
             case SFXType.VikingChant:
                 PlayVikingChantSFX();
@@ -155,7 +155,7 @@ public class AudioManager : MonoBehaviour
             _splashIndex = 0;
         }
 
-        _leftPaddlesAudioSource.PlayOneShot(_splashManifest.AudioItems[_splashIndex].Clip);
+        _leftSplashAudioSource.PlayOneShot(_splashManifest.AudioItems[_splashIndex].Clip);
         ++_splashIndex;
     }
 
