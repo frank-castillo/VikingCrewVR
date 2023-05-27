@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 272235141}
   - component: {fileID: 272235143}
   - component: {fileID: 272235142}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Island (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 522453807}
   - component: {fileID: 522453809}
   - component: {fileID: 522453808}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Island (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1930778248691052703}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Region1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 3359913886210363336}
   - component: {fileID: 3770884124160920023}
   - component: {fileID: 8395445949875418217}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Island (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 4225696947540074200}
   - component: {fileID: 2328537192615975111}
   - component: {fileID: 6955495717473117561}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Island (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 4335725389601355770}
   - component: {fileID: 2801106495602274789}
   - component: {fileID: 7352624718769081435}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Island (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 7755571439355645543}
   - component: {fileID: 8166508143057586296}
   - component: {fileID: 3567696836718048710}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,11 +508,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1930778248691052703}
     m_Modifications:
-    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
-        type: 3}
-      propertyPath: m_Name
-      value: Komodo_Island (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -583,6 +578,31 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.74935
       objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Komodo_Island (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798368756768790836, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220477141785097271, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220477141785097271, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98b23dacc5195c14d810f606fa4246a5, type: 3}
 --- !u!4 &2574507001960079503 stripped
@@ -598,11 +618,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1930778248691052703}
     m_Modifications:
-    - target: {fileID: 3654999701843680013, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
-        type: 3}
-      propertyPath: m_Name
-      value: Mt Edgecumbe
-      objectReference: {fileID: 0}
     - target: {fileID: 668877026940584554, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -658,6 +673,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3654999701843680013, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
+        type: 3}
+      propertyPath: m_Name
+      value: Mt Edgecumbe
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654999701843680013, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408689705546141255, guid: 9ceea2e9793f7c141b2e12047d7dcea4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ceea2e9793f7c141b2e12047d7dcea4, type: 3}
 --- !u!4 &5043665998763298375 stripped
@@ -673,11 +703,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1930778248691052703}
     m_Modifications:
-    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
-        type: 3}
-      propertyPath: m_Name
-      value: Komodo_Island
-      objectReference: {fileID: 0}
     - target: {fileID: 8001942050419260359, guid: 98b23dacc5195c14d810f606fa4246a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -732,6 +757,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Komodo_Island
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561204630302384059, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798368756768790836, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220477141785097271, guid: 98b23dacc5195c14d810f606fa4246a5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98b23dacc5195c14d810f606fa4246a5, type: 3}
