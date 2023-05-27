@@ -91,8 +91,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2361000312578846678}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.488, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.005, y: 0.198, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4909010097367985480}
@@ -317,8 +317,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.25
-      minScalar: 0.1
+      scalar: 0.15
+      minScalar: 0.025
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -743,7 +743,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.5
+      value: 0.17
       mode: 0
       spread: 0
       speed:
@@ -28881,15 +28881,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1567677520636220, guid: c10e028cc5c95fe48b55979e3c5bbc26, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4396505195848268, guid: c10e028cc5c95fe48b55979e3c5bbc26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 4396505195848268, guid: c10e028cc5c95fe48b55979e3c5bbc26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 0.198
       objectReference: {fileID: 0}
     - target: {fileID: 4396505195848268, guid: c10e028cc5c95fe48b55979e3c5bbc26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -28929,15 +28929,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4396505195848268, guid: c10e028cc5c95fe48b55979e3c5bbc26, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 0.92828
       objectReference: {fileID: 0}
     - target: {fileID: 4396505195848268, guid: c10e028cc5c95fe48b55979e3c5bbc26, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 0.92828
       objectReference: {fileID: 0}
     - target: {fileID: 4396505195848268, guid: c10e028cc5c95fe48b55979e3c5bbc26, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 0.92828
       objectReference: {fileID: 0}
     - target: {fileID: 4872118261985946, guid: c10e028cc5c95fe48b55979e3c5bbc26, type: 3}
       propertyPath: m_LocalRotation.x
