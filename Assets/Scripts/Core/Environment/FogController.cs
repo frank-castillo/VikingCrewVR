@@ -6,15 +6,14 @@ public class FogController : MonoBehaviour
     [SerializeField] private float _minFogEmmision = 0.0f;
     [SerializeField] private float _maxFogEmmision = 35.0f;
     [SerializeField] private float _rateChange = 1.0f;
+    [SerializeField] private int _decayMultiplier = 3;
     private ParticleSystem.EmissionModule _emission = default;
 
     private FeedbackManager _feedbackManager = null;
-    private BeatManager _beatManager = null;
 
     public void Initialize()
     {
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
-        _beatManager = ServiceLocator.Get<BeatManager>();
 
         _emission = _closeFog.emission;
         _emission.rateOverTime = _maxFogEmmision;
@@ -29,14 +28,14 @@ public class FogController : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        _feedbackManager.OnBeatHitSubscribe(LowerFog);
+        _feedbackManager.OnBeatFirstHitSubscribe(LowerFog);
         _feedbackManager.OffBeatMissSubscribe(LowerFog);
         _feedbackManager.RepeatedMissSubscribe(IncreaseFog);
     }
 
     private void UnsubscribeEvents()
     {
-        _feedbackManager.OnBeatHitUnsubscribe(LowerFog);
+        _feedbackManager.OnBeatFirstHitUnsubscribe(LowerFog);
         _feedbackManager.OffBeatMissUnsubscribe(LowerFog);
         _feedbackManager.RepeatedMissUnsubscribe(IncreaseFog);
     }
@@ -54,7 +53,7 @@ public class FogController : MonoBehaviour
     {
         if (_emission.rateOverTime.constant < _maxFogEmmision)
         {
-            float newRate = _emission.rateOverTime.constant + _rateChange * 3;
+            float newRate = _emission.rateOverTime.constant + _rateChange * _decayMultiplier;
             _emission.rateOverTime = newRate;
         }
     }

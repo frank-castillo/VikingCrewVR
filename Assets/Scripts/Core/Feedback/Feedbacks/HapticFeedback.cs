@@ -29,10 +29,10 @@ public class HapticFeedback : Feedback
 
     public override void Play()
     {
-        if (isPlaying)
-        {
-            return;
-        }
+        //if (isPlaying)
+        //{
+        //    return;
+        //}
 
         base.Play();
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class VikingShipController : MonoBehaviour
 {
@@ -30,8 +28,8 @@ public class VikingShipController : MonoBehaviour
 
     private void Update()
     {
-        BuoyancyEffect();
-        SailEffect();
+        //BuoyancyEffect();
+        //SailEffect();
     }
 
     private void BuoyancyEffect()

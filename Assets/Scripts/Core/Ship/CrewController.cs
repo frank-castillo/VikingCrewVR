@@ -27,7 +27,7 @@ public class CrewController : MonoBehaviour
         _paddlesController.Initialize();
         _feedbackHandler.Initialize();
 
-        _feedbackManager.OnBeatHitSubscribe(StartRow);
+        _feedbackManager.OnBeatFirstHitSubscribe(StartRow);
         _feedbackManager.OffBeatMissSubscribe(StopRowing);
         _feedbackManager.RepeatedMissSubscribe(StopRowing);
     }
@@ -44,7 +44,7 @@ public class CrewController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _feedbackManager.OnBeatHitUnsubscribe(StartRow);
+        _feedbackManager.OnBeatFirstHitUnsubscribe(StartRow);
         _feedbackManager.OffBeatMissUnsubscribe(StopRowing);
         _feedbackManager.RepeatedMissUnsubscribe(StopRowing);
     }
