@@ -310,13 +310,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4459301781204319531}
-  m_LocalRotation: {x: -0.16413103, y: 0.7982317, z: -0.5173443, w: -0.26123157}
-  m_LocalPosition: {x: -0.021, y: 16.62, z: -31.1}
+  m_LocalRotation: {x: 0.76276964, y: -0, z: -0, w: 0.64667034}
+  m_LocalPosition: {x: 0, y: 16.09, z: -13.001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4459301780194662295}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 114.26199, y: -323.013, z: -178.848}
+  m_LocalEulerAnglesHint: {x: 99.418, y: -0.000015258789, z: -0.000015258789}
 --- !u!108 &4459301781204319524
 Light:
   m_ObjectHideFlags: 0
@@ -1062,11 +1062,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4459301780399943845}
     m_Modifications:
-    - target: {fileID: 5983457906505132317, guid: f58fae27fd3a4fc48a642512d193ae5c,
-        type: 3}
-      propertyPath: m_Name
-      value: WindController
-      objectReference: {fileID: 0}
     - target: {fileID: 5983457906505132318, guid: f58fae27fd3a4fc48a642512d193ae5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1122,6 +1117,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5983457906505132317, guid: f58fae27fd3a4fc48a642512d193ae5c,
+        type: 3}
+      propertyPath: m_Name
+      value: WindController
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f58fae27fd3a4fc48a642512d193ae5c, type: 3}
 --- !u!4 &973511271320310990 stripped
@@ -1149,11 +1149,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4459301779778234320}
     m_Modifications:
-    - target: {fileID: 1553683760754135555, guid: 3a72b2cac72e3ed42b92a331157c7025,
-        type: 3}
-      propertyPath: m_Name
-      value: Regions
-      objectReference: {fileID: 0}
     - target: {fileID: 1139334826547036020, guid: 3a72b2cac72e3ed42b92a331157c7025,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1208,6 +1203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553683760754135555, guid: 3a72b2cac72e3ed42b92a331157c7025,
+        type: 3}
+      propertyPath: m_Name
+      value: Regions
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a72b2cac72e3ed42b92a331157c7025, type: 3}
