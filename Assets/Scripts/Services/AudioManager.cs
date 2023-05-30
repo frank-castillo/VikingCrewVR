@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioManifest _splashManifest = null;
     [SerializeField] private AudioManifest _rowingManifest = null;
     [SerializeField] private AudioManifest _chantManifest = null;
+    [SerializeField] private AudioManifest _torchManifest = null;
     [SerializeField] private AudioManifest _musicManifest = null;
 
     [Header("Audio Source")]
@@ -17,6 +18,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _rightPaddlesAudioSource = null;
     [SerializeField] private AudioSource _leftSplashAudioSource = null;
     [SerializeField] private AudioSource _rightSplashAudioSource = null;
+    [SerializeField] private AudioSource _torchesAudioSource = null;
     [SerializeField] private AudioSource _musicAudioSource = null;
 
     // Audio Levels
@@ -27,6 +29,7 @@ public class AudioManager : MonoBehaviour
     private int _electricIndex = 17;
     private int _rowIndex = 0;
     private int _splashIndex = 0;
+    private int _torchIndex = 0;
 
     public float CurrentVolume { set => _currentVolume = value; }
 
@@ -80,6 +83,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case SFXType.DrumVacuum:
                 PlayDrumVacuumSFX();
+                break;
+            case SFXType.Torch:
+                PlayTorchSFX();
                 break;
             default:
                 Enums.InvalidSwitch(GetType(), sfxType.GetType());
@@ -168,5 +174,16 @@ public class AudioManager : MonoBehaviour
 
         _rightSplashAudioSource.PlayOneShot(_splashManifest.AudioItems[_splashIndex].Clip);
         ++_splashIndex;
+    }
+
+    private void PlayTorchSFX()
+    {
+        if (_torchIndex >= _torchManifest.AudioItems.Count)
+        {
+            _torchIndex = 0;
+        }
+
+        _torchesAudioSource.PlayOneShot(_torchManifest.AudioItems[_torchIndex].Clip);
+        ++_torchIndex;
     }
 }
