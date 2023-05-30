@@ -2,7 +2,7 @@
 
 public class DrumController : MonoBehaviour
 {
-    [Header("Collision")]
+    [Header("Info")]
     [SerializeField] private LayerType _hammerLayer = LayerType.None;
     private float _contactThreshold = 30.0f;
 

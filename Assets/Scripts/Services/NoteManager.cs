@@ -31,6 +31,11 @@ public class NoteManager : MonoBehaviour
         return this;
     }
 
+    public void PlayCurrentBeat()
+    {
+
+    }
+
     public void DrumHit(HammerType hammerType)
     {
         if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
