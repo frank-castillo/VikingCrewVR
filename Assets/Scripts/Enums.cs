@@ -9,6 +9,21 @@ public enum BeatTierType
     T3
 }
 
+public enum BeatDirection
+{
+    None = -1,
+    Left,
+    Right,
+    Both,
+}
+
+public enum HammerType
+{
+    None = -1,
+    Left,
+    Right,
+}
+
 public enum LayerType
 {
     None = -1,
@@ -37,7 +52,7 @@ public enum SFXType
 
 public enum VikingAnimationType
 {
-    None = 1,
+    None = -1,
     Idle,
     Row,
     Stretch,
