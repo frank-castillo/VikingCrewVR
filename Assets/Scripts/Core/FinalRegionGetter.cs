@@ -22,7 +22,7 @@ public class FinalRegionGetter : MonoBehaviour
             return;
         }
 
-        if (_triggeringNode.position.z >= _experienceEndingTrigger.position.z)
+        if (_experienceEndingTrigger.position.z >= _triggeringNode.position.z)
         {
             _experienceEnded = true;
             _levelLoader.FinalizeExperience();
