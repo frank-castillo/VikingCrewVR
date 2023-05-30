@@ -1514,6 +1514,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &621704488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8411644088597065106, guid: 20bd13732983cff42afc1e9b29da5ab4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8165067233027101392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a4ba21372a22c4abd321e292de8574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &637462889
 Mesh:
   m_ObjectHideFlags: 0
@@ -3337,6 +3349,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4459301779394906172}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1282046094 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5046442026547155059, guid: 16d137bf0ac0d084f9730c939c5bd498,
+    type: 3}
+  m_PrefabInstance: {fileID: 6238688355425311380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1307505725
 Mesh:
   m_ObjectHideFlags: 0
@@ -3500,6 +3518,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!82 &1373554774 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8348390425123465283, guid: 16d137bf0ac0d084f9730c939c5bd498,
+    type: 3}
+  m_PrefabInstance: {fileID: 6238688355425311380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1400858901
 Mesh:
   m_ObjectHideFlags: 0
@@ -6948,6 +6972,7 @@ MonoBehaviour:
   _audioManager: {fileID: 1470911178}
   _beatManager: {fileID: 1861360379}
   _feedbackManager: {fileID: 1694250910}
+  _noteManager: {fileID: 621704488}
   _fadeInTime: 2
   _fadeOutTime: 2
   _wrapUpDelay: 0
@@ -12738,6 +12763,16 @@ PrefabInstance:
       propertyPath: _vikingAudioSource
       value: 
       objectReference: {fileID: 6238688355425311383}
+    - target: {fileID: 4057871367628348073, guid: 20bd13732983cff42afc1e9b29da5ab4,
+        type: 3}
+      propertyPath: _leftPaddlesAudioSource
+      value: 
+      objectReference: {fileID: 1373554774}
+    - target: {fileID: 4057871367628348073, guid: 20bd13732983cff42afc1e9b29da5ab4,
+        type: 3}
+      propertyPath: _rightPaddlesAudioSource
+      value: 
+      objectReference: {fileID: 1282046094}
     - target: {fileID: 4057871367628348073, guid: 20bd13732983cff42afc1e9b29da5ab4,
         type: 3}
       propertyPath: _leftSplashAudioSource
