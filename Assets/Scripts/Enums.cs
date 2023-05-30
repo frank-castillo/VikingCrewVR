@@ -17,6 +17,13 @@ public enum BeatDirection
     Both,
 }
 
+public enum HammerType
+{
+    None = -1,
+    Left,
+    Right,
+}
+
 public enum LayerType
 {
     None = -1,

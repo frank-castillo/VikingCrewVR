@@ -15,6 +15,7 @@ public class LevelLoader : AsyncLoader
     [SerializeField] private AudioManager _audioManager = null;
     [SerializeField] private BeatManager _beatManager = null;
     [SerializeField] private FeedbackManager _feedbackManager = null;
+    [SerializeField] private NoteManager _noteManager = null;
 
     [Header("Fading Times")]
     [SerializeField] private float _fadeInTime = 2.0f;
@@ -91,6 +92,10 @@ public class LevelLoader : AsyncLoader
         {
             ServiceLocator.Register<FeedbackManager>(_feedbackManager.Initialize(), true);
         }
+        if (_noteManager != null)
+        {
+            ServiceLocator.Register<NoteManager>(_noteManager.Initialize(), true);
+        }
 
         // Initialize level specific things here
         if (_ship != null)
@@ -110,7 +115,11 @@ public class LevelLoader : AsyncLoader
         }
 
         // Set References
-        _beatManager.SetFeedBackManager(_feedbackManager);
+        _beatManager.SetFeedbackManager(_feedbackManager);
+        _beatManager.SetNoteManager(_noteManager);
+
+        _noteManager.SetFeedbackManager(_feedbackManager);
+        _noteManager.SetBeatManager(_beatManager);
     }
 
     private void Update()

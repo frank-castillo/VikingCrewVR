@@ -6,19 +6,20 @@ public class DrumController : MonoBehaviour
     [SerializeField] private LayerType _hammerLayer = LayerType.None;
     private float _contactThreshold = 30.0f;
 
+    [Header("VacuumVFX")]
+    [SerializeField] private ParticleSystem _vacuumParticles = null;
+
     private AudioManager _audioManager = null;
-    private BeatManager _beatManager = null;
+    private NoteManager _noteManager = null;
     private FeedbackManager _feedbackManager = null;
     private FeedbackHandler _feedbackHandler = null;
-
-    [SerializeField] private ParticleSystem _vacuumParticles = null;
 
     public void Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
-        _beatManager = ServiceLocator.Get<BeatManager>();
         _audioManager = ServiceLocator.Get<AudioManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
 
         _feedbackHandler = GetComponent<FeedbackHandler>();
         _feedbackHandler.Initialize();
@@ -49,16 +50,18 @@ public class DrumController : MonoBehaviour
 
         if (collision.gameObject.layer == (uint)_hammerLayer)
         {
+            HammerType hammerType = HammerType.None; 
+
             if (collision.gameObject.CompareTags("LHand"))
             {
-                _beatManager.SetActiveController(OVRInput.Controller.LTouch);
+                hammerType = HammerType.Left;
             }
             else if (collision.gameObject.CompareTags("RHand"))
             {
-                _beatManager.SetActiveController(OVRInput.Controller.RTouch);
+                hammerType = HammerType.Right;
             }
 
-            _beatManager.DrumHit();
+            _noteManager.DrumHit(hammerType);
         }
     }
 
@@ -85,4 +88,5 @@ public class DrumController : MonoBehaviour
         _vacuumParticles.Play();
         _audioManager.PlaySFX(SFXType.DrumVacuum);
     }
+
 }
