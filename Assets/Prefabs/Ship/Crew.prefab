@@ -225,7 +225,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.179
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -398,7 +398,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.179
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -712,6 +712,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8594412671868994115}
     m_Modifications:
+    - target: {fileID: 1071140490058217980, guid: f88da877c5265cc4da584b220351f239,
+        type: 3}
+      propertyPath: m_Name
+      value: NewViking1_L
+      objectReference: {fileID: 0}
     - target: {fileID: 4072992671573199855, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -767,11 +772,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.11000001
       objectReference: {fileID: 0}
-    - target: {fileID: 1071140490058217980, guid: f88da877c5265cc4da584b220351f239,
-        type: 3}
-      propertyPath: m_Name
-      value: NewViking1_L
-      objectReference: {fileID: 0}
     - target: {fileID: 4574812451552389481, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -812,11 +812,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9078299792483815454, guid: f88da877c5265cc4da584b220351f239,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88da877c5265cc4da584b220351f239, type: 3}
 --- !u!4 &3657690870922413108 stripped
@@ -838,6 +833,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8594412671868994115}
     m_Modifications:
+    - target: {fileID: 1071140490058217980, guid: f88da877c5265cc4da584b220351f239,
+        type: 3}
+      propertyPath: m_Name
+      value: NewViking2_L
+      objectReference: {fileID: 0}
     - target: {fileID: 4072992671573199855, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -893,11 +893,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.11000001
       objectReference: {fileID: 0}
-    - target: {fileID: 1071140490058217980, guid: f88da877c5265cc4da584b220351f239,
-        type: 3}
-      propertyPath: m_Name
-      value: NewViking2_L
-      objectReference: {fileID: 0}
     - target: {fileID: 6068789813651441187, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
       propertyPath: m_IsActive
@@ -908,11 +903,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bf0c7ea10748f1b47becae9782dfab09, type: 2}
-    - target: {fileID: 9078299792483815454, guid: f88da877c5265cc4da584b220351f239,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88da877c5265cc4da584b220351f239, type: 3}
 --- !u!4 &7863128903230736485 stripped
@@ -928,6 +918,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8594412671868994115}
     m_Modifications:
+    - target: {fileID: 1071140490058217980, guid: f88da877c5265cc4da584b220351f239,
+        type: 3}
+      propertyPath: m_Name
+      value: NewViking2_3
+      objectReference: {fileID: 0}
     - target: {fileID: 4072992671573199855, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -988,11 +983,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 2.75
       objectReference: {fileID: 0}
-    - target: {fileID: 1071140490058217980, guid: f88da877c5265cc4da584b220351f239,
-        type: 3}
-      propertyPath: m_Name
-      value: NewViking2_3
-      objectReference: {fileID: 0}
     - target: {fileID: 4574812451552389481, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -1028,11 +1018,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.05392727
       objectReference: {fileID: 0}
-    - target: {fileID: 9078299792483815454, guid: f88da877c5265cc4da584b220351f239,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88da877c5265cc4da584b220351f239, type: 3}
 --- !u!4 &7077627988323088094 stripped
@@ -1048,6 +1033,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3657690870922413108}
     m_Modifications:
+    - target: {fileID: 1110921641205123643, guid: 27fc3a31bcb981e43b51b3224d1ef6a3,
+        type: 3}
+      propertyPath: m_Name
+      value: Shield (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110921641205123643, guid: 27fc3a31bcb981e43b51b3224d1ef6a3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1442659116085137152, guid: 27fc3a31bcb981e43b51b3224d1ef6a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1118,16 +1113,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.36363634
       objectReference: {fileID: 0}
-    - target: {fileID: 1110921641205123643, guid: 27fc3a31bcb981e43b51b3224d1ef6a3,
-        type: 3}
-      propertyPath: m_Name
-      value: Shield (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1110921641205123643, guid: 27fc3a31bcb981e43b51b3224d1ef6a3,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 9154450793942931318, guid: 27fc3a31bcb981e43b51b3224d1ef6a3,
         type: 3}
       propertyPath: m_Layer
@@ -1142,6 +1127,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8594412671868994115}
     m_Modifications:
+    - target: {fileID: 1071140490058217980, guid: f88da877c5265cc4da584b220351f239,
+        type: 3}
+      propertyPath: m_Name
+      value: NewViking1_R
+      objectReference: {fileID: 0}
     - target: {fileID: 4072992671573199855, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1202,31 +1192,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 2.75
       objectReference: {fileID: 0}
-    - target: {fileID: 1071140490058217980, guid: f88da877c5265cc4da584b220351f239,
+    - target: {fileID: 6068789813651441187, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
-      propertyPath: m_Name
-      value: NewViking1_R
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3792993197679730919, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6068789813651441187, guid: f88da877c5265cc4da584b220351f239,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7716172451603839555, guid: f88da877c5265cc4da584b220351f239,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 284d5cc499edd8742910e8582c3d8ee1, type: 2}
-    - target: {fileID: 9078299792483815454, guid: f88da877c5265cc4da584b220351f239,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88da877c5265cc4da584b220351f239, type: 3}
 --- !u!4 &4641402155117177720 stripped
