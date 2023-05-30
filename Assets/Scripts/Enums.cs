@@ -47,7 +47,8 @@ public enum SFXType
     SplashLeft,
     SplashRight,
     DrumHum,
-    DrumVacuum
+    DrumVacuum,
+    Torch
 }
 
 public enum VikingAnimationType
