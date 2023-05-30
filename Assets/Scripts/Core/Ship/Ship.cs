@@ -2,7 +2,8 @@
 
 public class Ship : MonoBehaviour
 {
-    [SerializeField] private DrumController _drumController = null;
+    [SerializeField] private DrumController _rightDrumController = null;
+    [SerializeField] private DrumController _leftDrumController = null;
     [SerializeField] private SailController _sailController = null;
     [SerializeField] private FeedbackHandler _feedbackHandler = null;
 
@@ -10,7 +11,9 @@ public class Ship : MonoBehaviour
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
-        _drumController.Initialize();
+        _rightDrumController.Initialize();
+        _leftDrumController.Initialize();
+
         _feedbackHandler.Initialize();
         _sailController.Initialize();
     }
