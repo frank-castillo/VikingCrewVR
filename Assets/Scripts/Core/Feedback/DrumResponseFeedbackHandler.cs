@@ -7,6 +7,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
     private DrumSide _drumSide = DrumSide.None;
 
     [Header("Misc Feedbacks")]
+    [SerializeField] private List<Feedback> _onConstantBeatFeedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onMissFeedbacks = new List<Feedback>();
 
     [Header("First Hit")]
@@ -38,6 +39,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void Subscriptions()
     {
+        _feedbackManager.ConstantBeatSubscribe(ConstantBeatFeedback);
         _feedbackManager.OnBeatFirstHitSubscribe(OnFirstHitFeedback);
         _feedbackManager.OnBeatMinorHitSubscribe(OnMinorHitFeedback);
         _feedbackManager.OffBeatMissSubscribe(OnMissFeedback);
@@ -45,6 +47,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void UnsubscribeMethods()
     {
+        _feedbackManager.ConstantBeatUnsubscribe(ConstantBeatFeedback);
         _feedbackManager.OnBeatFirstHitUnsubscribe(OnFirstHitFeedback);
         _feedbackManager.OnBeatMinorHitUnsubscribe(OnMinorHitFeedback);
         _feedbackManager.OffBeatMissUnsubscribe(OnMissFeedback);
@@ -59,6 +62,11 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void InitializeMiscFeedbacks()
     {
+        foreach (var feedback in _onConstantBeatFeedbacks)
+        {
+            feedback.Initialize();
+        }
+
         foreach (var feedback in _onMissFeedbacks)
         {
             feedback.Initialize();
@@ -139,6 +147,16 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
                 Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
                 break;
         }
+    }
+
+    private void ConstantBeatFeedback(BeatDirection beatDirection)
+    {
+        if (IsCorrectDrum(beatDirection) == false)
+        {
+            return;
+        }
+
+        PlayFeedbacks(_onConstantBeatFeedbacks);
     }
 
     private void OnMinorHitFeedback(BeatDirection beatDirection)
