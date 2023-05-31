@@ -31,7 +31,7 @@ public class NoteManager : MonoBehaviour
         return this;
     }
 
-    public void DrumHit(HammerType hammerType)
+    public void DrumHit(HammerSide hammerType)
     {
         if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
         {
@@ -43,15 +43,15 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    private void HitOnBeat(HammerType hammerType)
+    private void HitOnBeat(HammerSide hammerType)
     {
         if (_recentBeatSuccess == false)
         {
-            _feedbackManager.OnFirstBeatFeedback();
+            //_feedbackManager.OnFirstBeatFeedback();
         }
         else
         {
-            _feedbackManager.OnMinorBeatFeedback();
+            //_feedbackManager.OnMinorBeatFeedback();
         }
 
         PlayHaptic(hammerType, _highHapticIntensity);
@@ -59,20 +59,20 @@ public class NoteManager : MonoBehaviour
         _recentBeatSuccess = true;
     }
 
-    private void HitOffBeat(HammerType hammerType)
+    private void HitOffBeat(HammerSide hammerType)
     {
-        _feedbackManager.OffBeatFeedback();
+        _feedbackManager.OffBeatFeedback(HammerSideToDirection(hammerType));
         PlayHaptic(hammerType, _lowHapticIntensity);
     }
 
-    private void PlayHaptic(HammerType hammerType, float intensity)
+    private void PlayHaptic(HammerSide hammerType, float intensity)
     {
         switch (hammerType)
         {
-            case HammerType.Left:
+            case HammerSide.Left:
                 PlayLeftHaptic(intensity);
                 break;
-            case HammerType.Right:
+            case HammerSide.Right:
                 PlayRightHaptic(intensity);
                 break;
             default:
@@ -106,5 +106,19 @@ public class NoteManager : MonoBehaviour
         OVRInput.SetControllerVibration(1, intesity, controller);
         yield return new WaitForSecondsRealtime(0.1f);
         OVRInput.SetControllerVibration(0, 0, controller);
+    }
+
+    private BeatDirection HammerSideToDirection(HammerSide hammerType)
+    {
+        switch (hammerType)
+        {
+            case HammerSide.Left:
+                return BeatDirection.Left;
+            case HammerSide.Right:
+                return BeatDirection.Right;
+            default:
+                Enums.InvalidSwitch(GetType(), hammerType.GetType());
+                return BeatDirection.None;
+        }
     }
 }

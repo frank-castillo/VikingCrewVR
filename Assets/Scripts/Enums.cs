@@ -17,7 +17,7 @@ public enum BeatDirection
     Both,
 }
 
-public enum HammerType
+public enum HammerSide
 {
     None = -1,
     Left,

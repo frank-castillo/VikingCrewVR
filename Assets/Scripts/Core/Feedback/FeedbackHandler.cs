@@ -108,12 +108,12 @@ public class FeedbackHandler : MonoBehaviour
         UnsubscribeMethods();
     }
 
-    private void ConstantBeatFeedback()
+    private void ConstantBeatFeedback(BeatDirection beatDirection)
     {
         PlayFeedbacks(_onConstantBeatFeedbacks);
     }
 
-    private void OnFirstHitFeedback()
+    private void OnFirstHitFeedback(BeatDirection beatDirection)
     {
         switch (_beatManager.CurrentTier)
         {
@@ -137,7 +137,7 @@ public class FeedbackHandler : MonoBehaviour
         }
     }
 
-    private void OnMinorHitFeedback()
+    private void OnMinorHitFeedback(BeatDirection beatDirection)
     {
         switch (_beatManager.CurrentTier)
         {
@@ -161,7 +161,7 @@ public class FeedbackHandler : MonoBehaviour
         }
     }
 
-    private void OnMissFeedback()
+    private void OnMissFeedback(BeatDirection beatDirection)
     {
         PlayFeedbacks(_onMissFeedbacks);
     }

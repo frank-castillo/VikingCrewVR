@@ -50,15 +50,15 @@ public class DrumController : MonoBehaviour
 
         if (collision.gameObject.layer == (uint)_hammerLayer)
         {
-            HammerType hammerType = HammerType.None; 
+            HammerSide hammerType = HammerSide.None; 
 
             if (collision.gameObject.CompareTags("LHand"))
             {
-                hammerType = HammerType.Left;
+                hammerType = HammerSide.Left;
             }
             else if (collision.gameObject.CompareTags("RHand"))
             {
-                hammerType = HammerType.Right;
+                hammerType = HammerSide.Right;
             }
 
             _noteManager.DrumHit(hammerType);
@@ -78,12 +78,12 @@ public class DrumController : MonoBehaviour
         return false;
     }
 
-    private void PlayRuneSFX()
+    private void PlayRuneSFX(BeatDirection beatDirection)
     {
         _audioManager.PlaySFX(SFXType.DrumHum);
     }
 
-    private void PlayVacuum()
+    private void PlayVacuum(BeatDirection beatDirection)
     {
         _vacuumParticles.Play();
         _audioManager.PlaySFX(SFXType.DrumVacuum);

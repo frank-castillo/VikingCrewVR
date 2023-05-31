@@ -22,7 +22,7 @@ public class HammerController : MonoBehaviour
         LevelUp(1);
     }
 
-    public void LevelEvaluation()
+    public void LevelEvaluation(BeatDirection beatDirection)
     {
         if (_beatManager.CurrentTier == BeatTierType.T1)
         {

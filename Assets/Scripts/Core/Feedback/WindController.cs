@@ -35,7 +35,7 @@ public class WindController : MonoBehaviour
         _feedbackManager.OnBeatFirstHitUnsubscribe(TierEvaluation);
     }
 
-    private void TierEvaluation()
+    private void TierEvaluation(BeatDirection beatDirection)
     {
         switch (_beatManager.CurrentTier)
         {
