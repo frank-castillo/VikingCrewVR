@@ -80,8 +80,6 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    
-
     private BeatDirection DrumSideToDirection(DrumSide hammerType)
     {
         switch (hammerType)

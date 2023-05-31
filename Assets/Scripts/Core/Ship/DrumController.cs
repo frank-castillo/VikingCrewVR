@@ -16,6 +16,7 @@ public class DrumController : MonoBehaviour
     private NoteManager _noteManager = null;
     private FeedbackManager _feedbackManager = null;
     private FeedbackHandler _feedbackHandler = null;
+    private DrumResponseFeedbackHandler _drumResponseFeedbackHandler = null;
 
     public void Initialize()
     {
@@ -25,6 +26,8 @@ public class DrumController : MonoBehaviour
         _noteManager = ServiceLocator.Get<NoteManager>();
 
         _feedbackHandler = GetComponent<FeedbackHandler>();
+        _drumResponseFeedbackHandler = GetComponent<DrumResponseFeedbackHandler>();
+
         _feedbackHandler.Initialize();
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
