@@ -2,6 +2,9 @@
 
 public class DrumController : MonoBehaviour
 {
+    [Header("General")]
+    [SerializeField] private DrumSide _drumSide = DrumSide.None;
+
     [Header("Collision")]
     [SerializeField] private LayerType _hammerLayer = LayerType.None;
     private float _contactThreshold = 30.0f;
@@ -13,6 +16,7 @@ public class DrumController : MonoBehaviour
     private NoteManager _noteManager = null;
     private FeedbackManager _feedbackManager = null;
     private FeedbackHandler _feedbackHandler = null;
+    private DrumResponseFeedbackHandler _drumResponseFeedbackHandler = null;
 
     public void Initialize()
     {
@@ -22,7 +26,10 @@ public class DrumController : MonoBehaviour
         _noteManager = ServiceLocator.Get<NoteManager>();
 
         _feedbackHandler = GetComponent<FeedbackHandler>();
+        _drumResponseFeedbackHandler = GetComponent<DrumResponseFeedbackHandler>();
+
         _feedbackHandler.Initialize();
+        _drumResponseFeedbackHandler.Initialize(_drumSide);
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
@@ -50,18 +57,18 @@ public class DrumController : MonoBehaviour
 
         if (collision.gameObject.layer == (uint)_hammerLayer)
         {
-            HammerType hammerType = HammerType.None; 
+            HammerSide hammerSde = HammerSide.None; 
 
             if (collision.gameObject.CompareTags("LHand"))
             {
-                hammerType = HammerType.Left;
+                hammerSde = HammerSide.Left;
             }
             else if (collision.gameObject.CompareTags("RHand"))
             {
-                hammerType = HammerType.Right;
+                hammerSde = HammerSide.Right;
             }
 
-            _noteManager.DrumHit(hammerType);
+            _noteManager.DrumHit(_drumSide, hammerSde);
         }
     }
 
@@ -78,12 +85,12 @@ public class DrumController : MonoBehaviour
         return false;
     }
 
-    private void PlayRuneSFX()
+    private void PlayRuneSFX(BeatDirection beatDirection)
     {
         _audioManager.PlaySFX(SFXType.DrumHum);
     }
 
-    private void PlayVacuum()
+    private void PlayVacuum(BeatDirection beatDirection)
     {
         _vacuumParticles.Play();
         _audioManager.PlaySFX(SFXType.DrumVacuum);

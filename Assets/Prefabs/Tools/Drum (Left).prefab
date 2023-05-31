@@ -170,8 +170,8 @@ Transform:
   m_Children:
   - {fileID: 1603711675}
   - {fileID: 4683378938368367471}
-  m_Father: {fileID: 1740829937559454492}
-  m_RootOrder: 1
+  m_Father: {fileID: 8578344795096044498}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1555090029581842384
 GameObject:
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1740829937559454492}
   m_Layer: 11
-  m_Name: Feedbacks
+  m_Name: Standard Feedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,9 +201,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5881054616733457409}
-  - {fileID: 9112345474587939657}
-  - {fileID: 3212465676264521635}
-  - {fileID: 6700614686055349395}
   m_Father: {fileID: 5699864171972788310}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -236,7 +233,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5699864171972788310}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1474390997983324479
 AudioSource:
@@ -436,6 +433,7 @@ GameObject:
   - component: {fileID: 5699864171972788310}
   - component: {fileID: 6134451073659401127}
   - component: {fileID: 5017345735371598303}
+  - component: {fileID: 46561888019530678}
   - component: {fileID: 7083963334812549365}
   - component: {fileID: 4638685558973176717}
   m_Layer: 11
@@ -458,6 +456,7 @@ Transform:
   m_Children:
   - {fileID: 5442301475081173337}
   - {fileID: 1740829937559454492}
+  - {fileID: 8578344795096044498}
   - {fileID: 582580457706842247}
   - {fileID: 8345493435115388661}
   m_Father: {fileID: 0}
@@ -475,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5943175f5188d45ab31632510120af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _drumSide: -1
   _hammerLayer: 8
   _vacuumParticles: {fileID: 4143324014862033426}
 --- !u!114 &5017345735371598303
@@ -491,6 +491,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onConstantBeatFeedbacks:
   - {fileID: 1328168659}
+  _onMissFeedbacks: []
+  _onFirstBeatT1Feedbacks: []
+  _onFirstBeatT2Feedbacks: []
+  _onFirstBeatT3Feedbacks: []
+  _onMinorBeatT1Feedbacks: []
+  _onMinorBeatT2Feedbacks: []
+  _onMinorBeatT3Feedbacks: []
+--- !u!114 &46561888019530678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699864171972788309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29388664caf2ba4d82ec607a8b9c0ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _onMissFeedbacks:
   - {fileID: 1603711676}
   - {fileID: 4378383899037609692}
@@ -499,8 +518,8 @@ MonoBehaviour:
   _onFirstBeatT2Feedbacks: []
   _onFirstBeatT3Feedbacks: []
   _onMinorBeatT1Feedbacks:
-  - {fileID: 4608649395195868107}
   - {fileID: 3654237230938895107}
+  - {fileID: 4608649395195868107}
   _onMinorBeatT2Feedbacks: []
   _onMinorBeatT3Feedbacks: []
 --- !u!65 &7083963334812549365
@@ -605,6 +624,39 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &6177259854974779116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8578344795096044498}
+  m_Layer: 11
+  m_Name: Response Feedbacks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8578344795096044498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177259854974779116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 9112345474587939657}
+  - {fileID: 3212465676264521635}
+  - {fileID: 6700614686055349395}
+  m_Father: {fileID: 5699864171972788310}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6628929298152209749
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,13 +680,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6628929298152209749}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5197729287272621100}
-  m_Father: {fileID: 1740829937559454492}
-  m_RootOrder: 2
+  m_Father: {fileID: 8578344795096044498}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7884176863923266836
 GameObject:
@@ -665,7 +717,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5699864171972788310}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &3595029022162612843
 AudioSource:
@@ -905,8 +957,8 @@ Transform:
   m_Children:
   - {fileID: 3305592071826546275}
   - {fileID: 4684049299065452777}
-  m_Father: {fileID: 1740829937559454492}
-  m_RootOrder: 3
+  m_Father: {fileID: 8578344795096044498}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4473523350035673933
 PrefabInstance:
@@ -1374,15 +1426,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c3274d2f9ec214ab584a80b5ce2d6d, type: 3}
---- !u!4 &4880345472757047242 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 428660, guid: 56c3274d2f9ec214ab584a80b5ce2d6d,
-    type: 3}
-  m_PrefabInstance: {fileID: 4880345472756618686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4880345472775382050 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 19820956, guid: 56c3274d2f9ec214ab584a80b5ce2d6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4880345472756618686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4880345472757047242 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 428660, guid: 56c3274d2f9ec214ab584a80b5ce2d6d,
     type: 3}
   m_PrefabInstance: {fileID: 4880345472756618686}
   m_PrefabAsset: {fileID: 0}
@@ -1481,6 +1533,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6591edfa85f31c648bdddbf9d8361752, type: 3}
+--- !u!198 &198644185968026689 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6476715910978347112, guid: 6591edfa85f31c648bdddbf9d8361752,
+    type: 3}
+  m_PrefabInstance: {fileID: 6566339636391445545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5488077920718281595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1660072141803872082, guid: 6591edfa85f31c648bdddbf9d8361752,
@@ -1496,12 +1554,6 @@ Transform:
 --- !u!198 &4143324014862033426 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 7106777135487673915, guid: 6591edfa85f31c648bdddbf9d8361752,
-    type: 3}
-  m_PrefabInstance: {fileID: 6566339636391445545}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &198644185968026689 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6476715910978347112, guid: 6591edfa85f31c648bdddbf9d8361752,
     type: 3}
   m_PrefabInstance: {fileID: 6566339636391445545}
   m_PrefabAsset: {fileID: 0}

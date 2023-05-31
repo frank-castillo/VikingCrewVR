@@ -17,11 +17,25 @@ public enum BeatDirection
     Both,
 }
 
-public enum HammerType
+public enum DrumSide
 {
     None = -1,
     Left,
     Right,
+}
+
+public enum HammerSide
+{
+    None = -1,
+    Left,
+    Right,
+}
+
+public enum HapticIntensity
+{
+    None = -1,
+    Low,
+    High,
 }
 
 public enum LayerType

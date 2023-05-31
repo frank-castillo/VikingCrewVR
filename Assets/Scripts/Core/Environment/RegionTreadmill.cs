@@ -66,7 +66,7 @@ public class RegionTreadmill : MonoBehaviour
         _inTransition = false;
     }
 
-    private void IncreaseSpeed()
+    private void IncreaseSpeed(BeatDirection beatDirection)
     {
         if (_inTransition || _speed >= _maxSpeed)
         {
@@ -93,7 +93,7 @@ public class RegionTreadmill : MonoBehaviour
         _inTransition = false;
     }
 
-    private void DecreaseSpeed()
+    private void DecreaseSpeed(BeatDirection beatDirection)
     {
         if (_inTransition || _speed <= _minSpeed)
         {

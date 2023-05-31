@@ -1,7 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class HammerController : MonoBehaviour
 {
+    [Header("General")]
+    [SerializeField] private HammerSide _hammerSide = HammerSide.None;
+
+    [Header("Haptics")]
+    [SerializeField] private float _highHapticIntensity = 0.6f;
+    [SerializeField] private float _lowHapticIntensity = 0.5f;
+    private Coroutine _hapticCoroutine = null;
+
+    [Header("VFX")]
     [SerializeField] private Transform _hammerMeshHolder = null;
     [SerializeField] private Transform _level2Visuals = null;
     [SerializeField] private Transform _level3Visuals = null;
@@ -22,7 +32,7 @@ public class HammerController : MonoBehaviour
         LevelUp(1);
     }
 
-    public void LevelEvaluation()
+    public void LevelEvaluation(BeatDirection beatDirection)
     {
         if (_beatManager.CurrentTier == BeatTierType.T1)
         {
@@ -70,5 +80,53 @@ public class HammerController : MonoBehaviour
     private void SwapHammerMaterial(Material newMaterial)
     {
         _hamerMeshRenderer.material = newMaterial;
+    }
+
+    public void PlayHaptic(HapticIntensity hapticIntensity)
+    {
+        float intensity = EvaluateHapticIntensity(hapticIntensity);
+        OVRInput.Controller controller = EvaluateController();
+
+        if (_hapticCoroutine != null)
+        {
+            StopCoroutine(_hapticCoroutine);
+        }
+
+        _hapticCoroutine = StartCoroutine(HapticFeedbackRoutine(controller, intensity));
+    }
+
+    private float EvaluateHapticIntensity(HapticIntensity hapticIntensity)
+    {
+        switch (hapticIntensity)
+        {
+            case HapticIntensity.Low:
+                return _lowHapticIntensity;
+            case HapticIntensity.High:
+                return _highHapticIntensity;
+            default:
+                Enums.InvalidSwitch(GetType(), hapticIntensity.GetType());
+                return 0.0f;
+        }
+    }
+
+    private OVRInput.Controller EvaluateController()
+    {
+        switch (_hammerSide)
+        {
+            case HammerSide.Left:
+                return OVRInput.Controller.LTouch;
+            case HammerSide.Right:
+                return OVRInput.Controller.RTouch;
+            default:
+                Enums.InvalidSwitch(GetType(), _hammerSide.GetType());
+                return OVRInput.Controller.All;
+        }
+    }
+
+    private IEnumerator HapticFeedbackRoutine(OVRInput.Controller controller, float intesity)
+    {
+        OVRInput.SetControllerVibration(1, intesity, controller);
+        yield return new WaitForSecondsRealtime(0.1f);
+        OVRInput.SetControllerVibration(0, 0, controller);
     }
 }

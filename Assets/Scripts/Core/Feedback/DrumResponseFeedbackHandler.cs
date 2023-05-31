@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class FeedbackHandler : MonoBehaviour
+public class DrumResponseFeedbackHandler : MonoBehaviour
 {
+    [Header("Drum Info")]
+    private DrumSide _drumSide = DrumSide.None;
+
     [Header("Misc Feedbacks")]
-    [SerializeField] private List<Feedback> _onConstantBeatFeedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onMissFeedbacks = new List<Feedback>();
 
     [Header("First Hit")]
@@ -21,8 +23,10 @@ public class FeedbackHandler : MonoBehaviour
     private BeatManager _beatManager = null;
     bool _isInitalized = false;
 
-    public void Initialize()
+    public void Initialize(DrumSide drumSide)
     {
+        _drumSide = drumSide;
+
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
         _beatManager = ServiceLocator.Get<BeatManager>();
 
@@ -34,7 +38,6 @@ public class FeedbackHandler : MonoBehaviour
 
     private void Subscriptions()
     {
-        _feedbackManager.ConstantBeatSubscribe(ConstantBeatFeedback);
         _feedbackManager.OnBeatFirstHitSubscribe(OnFirstHitFeedback);
         _feedbackManager.OnBeatMinorHitSubscribe(OnMinorHitFeedback);
         _feedbackManager.OffBeatMissSubscribe(OnMissFeedback);
@@ -42,7 +45,6 @@ public class FeedbackHandler : MonoBehaviour
 
     private void UnsubscribeMethods()
     {
-        _feedbackManager.ConstantBeatUnsubscribe(ConstantBeatFeedback);
         _feedbackManager.OnBeatFirstHitUnsubscribe(OnFirstHitFeedback);
         _feedbackManager.OnBeatMinorHitUnsubscribe(OnMinorHitFeedback);
         _feedbackManager.OffBeatMissUnsubscribe(OnMissFeedback);
@@ -57,11 +59,6 @@ public class FeedbackHandler : MonoBehaviour
 
     private void InitializeMiscFeedbacks()
     {
-        foreach (var feedback in _onConstantBeatFeedbacks)
-        {
-            feedback.Initialize();
-        }
-
         foreach (var feedback in _onMissFeedbacks)
         {
             feedback.Initialize();
@@ -115,13 +112,13 @@ public class FeedbackHandler : MonoBehaviour
         UnsubscribeMethods();
     }
 
-    private void ConstantBeatFeedback(BeatDirection beatDirection)
-    {
-        PlayFeedbacks(_onConstantBeatFeedbacks);
-    }
-
     private void OnFirstHitFeedback(BeatDirection beatDirection)
     {
+        if (IsCorrectDrum(beatDirection) == false)
+        {
+            return;
+        }
+
         switch (_beatManager.CurrentTier)
         {
             case BeatTierType.None:
@@ -146,6 +143,11 @@ public class FeedbackHandler : MonoBehaviour
 
     private void OnMinorHitFeedback(BeatDirection beatDirection)
     {
+        if (IsCorrectDrum(beatDirection) == false)
+        {
+            return;
+        }
+
         switch (_beatManager.CurrentTier)
         {
             case BeatTierType.None:
@@ -170,6 +172,11 @@ public class FeedbackHandler : MonoBehaviour
 
     private void OnMissFeedback(BeatDirection beatDirection)
     {
+        if (IsCorrectDrum(beatDirection) == false)
+        {
+            return;
+        }
+
         PlayFeedbacks(_onMissFeedbacks);
     }
 
@@ -178,6 +185,30 @@ public class FeedbackHandler : MonoBehaviour
         foreach (var feedback in feedbacks)
         {
             feedback.Play();
+        }
+    }
+
+    private bool IsCorrectDrum(BeatDirection beatDirection)
+    {
+        switch (beatDirection)
+        {
+            case BeatDirection.Left:
+                if (_drumSide == DrumSide.Left)
+                {
+                    return true;
+                }
+                return false;
+            case BeatDirection.Right:
+                if (_drumSide == DrumSide.Right)
+                {
+                    return true;
+                }
+                return false;
+            case BeatDirection.Both:
+                return false;
+            default:
+                Enums.InvalidSwitch(GetType(), beatDirection.GetType());
+                return false;
         }
     }
 }
