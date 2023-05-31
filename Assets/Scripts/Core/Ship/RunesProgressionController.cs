@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RunesProgressionController : MonoBehaviour
 {
@@ -39,7 +36,7 @@ public class RunesProgressionController : MonoBehaviour
         _feedbackManager.RepeatedMissUnsubscribe(CheckLevelUp);
     }
 
-    private void CheckLevelUp()
+    private void CheckLevelUp(BeatDirection beatDirection)
     {
         switch (_beatManager.CurrentTier)
         {
@@ -68,7 +65,7 @@ public class RunesProgressionController : MonoBehaviour
         _currentLevel = newLevel;
     }
 
-    private void OnBeatPulse()
+    private void OnBeatPulse(BeatDirection beatDirection)
     {
         _borderParticles.Play();
 
