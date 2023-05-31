@@ -29,6 +29,7 @@ public class DrumController : MonoBehaviour
         _drumResponseFeedbackHandler = GetComponent<DrumResponseFeedbackHandler>();
 
         _feedbackHandler.Initialize();
+        _drumResponseFeedbackHandler.Initialize(_drumSide);
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
