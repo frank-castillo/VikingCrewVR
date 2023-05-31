@@ -1,28 +1,27 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
-    [Header("Haptic Intensity")]
-    [SerializeField] private float _highHapticIntensity = 0.6f;
-    [SerializeField] private float _lowHapticIntensity = 0.5f;
-
     [Header("Tiers")]
     [SerializeField] private NoteSetTier _tier1NoteSets = null;
     [SerializeField] private NoteSetTier _tier2NoteSets = null;
     [SerializeField] private NoteSetTier _tier3NoteSets = null;
+
+    
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
+    private HammerController _leftHammer = null;
+    private HammerController _rightHammer = null;
     private bool _recentBeatSuccess = false;
 
-    // Haptics
-    private Coroutine _leftHapticCoroutine = null;
-    private Coroutine _rightHapticCoroutine = null;
-
     public void ResetBeatSuccess() { _recentBeatSuccess = false; }
-
     public void SetBeatManager(BeatManager beatManager) { _beatManager = beatManager; }
     public void SetFeedbackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
+    public void SetHammers(HammerController leftHammer, HammerController righthammer)
+    {
+        _leftHammer = leftHammer;
+        _rightHammer = righthammer;
+    }
 
     public NoteManager Initialize()
     {
@@ -31,90 +30,65 @@ public class NoteManager : MonoBehaviour
         return this;
     }
 
-    public void DrumHit(HammerSide hammerType)
+    public void DrumHit(DrumSide drumSide, HammerSide hammerSide)
     {
         if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
         {
-            HitOnBeat(hammerType);
+            HitOnBeat(drumSide, hammerSide);
         }
         else
         {
-            HitOffBeat(hammerType);
+            HitOffBeat(drumSide, hammerSide);
         }
     }
 
-    private void HitOnBeat(HammerSide hammerType)
+    private void HitOnBeat(DrumSide drumSide, HammerSide hammerSide)
     {
         if (_recentBeatSuccess == false)
         {
-            //_feedbackManager.OnFirstBeatFeedback();
+            _feedbackManager.OnFirstBeatFeedback(DrumSideToDirection(drumSide));
         }
         else
         {
-            //_feedbackManager.OnMinorBeatFeedback();
+            _feedbackManager.OnMinorBeatFeedback(DrumSideToDirection(drumSide));
         }
 
-        PlayHaptic(hammerType, _highHapticIntensity);
+        PlayHammerHaptic(hammerSide, HapticIntensity.High);
 
         _recentBeatSuccess = true;
     }
 
-    private void HitOffBeat(HammerSide hammerType)
+    private void HitOffBeat(DrumSide drumSide, HammerSide hammerSide)
     {
-        _feedbackManager.OffBeatFeedback(HammerSideToDirection(hammerType));
-        PlayHaptic(hammerType, _lowHapticIntensity);
+        _feedbackManager.OffBeatFeedback(DrumSideToDirection(drumSide));
+        PlayHammerHaptic(hammerSide, HapticIntensity.Low);
     }
 
-    private void PlayHaptic(HammerSide hammerType, float intensity)
+    private void PlayHammerHaptic(HammerSide hammerSide, HapticIntensity hapticIntensity)
     {
-        switch (hammerType)
+        switch (hammerSide)
         {
             case HammerSide.Left:
-                PlayLeftHaptic(intensity);
+                _leftHammer.PlayHaptic(hapticIntensity);
                 break;
             case HammerSide.Right:
-                PlayRightHaptic(intensity);
+                _rightHammer.PlayHaptic(hapticIntensity);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), hammerType.GetType());
+                Enums.InvalidSwitch(GetType(), hammerSide.GetType());
                 break;
         }
     }
 
-    private void PlayLeftHaptic(float intensity)
-    {
-        if (_leftHapticCoroutine != null)
-        {
-            StopCoroutine(_leftHapticCoroutine);
-        }
+    
 
-        _leftHapticCoroutine = StartCoroutine(HapticFeedbackRoutine(OVRInput.Controller.LTouch, intensity));
-    }
-
-    private void PlayRightHaptic(float intensity)
-    {
-        if (_rightHapticCoroutine != null)
-        {
-            StopCoroutine(_leftHapticCoroutine);
-        }
-
-        _rightHapticCoroutine = StartCoroutine(HapticFeedbackRoutine(OVRInput.Controller.RTouch, intensity));
-    }
-
-    private IEnumerator HapticFeedbackRoutine(OVRInput.Controller controller, float intesity)
-    {
-        OVRInput.SetControllerVibration(1, intesity, controller);
-        yield return new WaitForSecondsRealtime(0.1f);
-        OVRInput.SetControllerVibration(0, 0, controller);
-    }
-
-    private BeatDirection HammerSideToDirection(HammerSide hammerType)
+    private BeatDirection DrumSideToDirection(DrumSide hammerType)
     {
         switch (hammerType)
         {
-            case HammerSide.Left:
+            case DrumSide.Left:
                 return BeatDirection.Left;
-            case HammerSide.Right:
+            case DrumSide.Right:
                 return BeatDirection.Right;
             default:
                 Enums.InvalidSwitch(GetType(), hammerType.GetType());

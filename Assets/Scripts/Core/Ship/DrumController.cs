@@ -2,6 +2,9 @@
 
 public class DrumController : MonoBehaviour
 {
+    [Header("General")]
+    [SerializeField] private DrumSide _drumSide = DrumSide.None;
+
     [Header("Collision")]
     [SerializeField] private LayerType _hammerLayer = LayerType.None;
     private float _contactThreshold = 30.0f;
@@ -50,18 +53,18 @@ public class DrumController : MonoBehaviour
 
         if (collision.gameObject.layer == (uint)_hammerLayer)
         {
-            HammerSide hammerType = HammerSide.None; 
+            HammerSide hammerSde = HammerSide.None; 
 
             if (collision.gameObject.CompareTags("LHand"))
             {
-                hammerType = HammerSide.Left;
+                hammerSde = HammerSide.Left;
             }
             else if (collision.gameObject.CompareTags("RHand"))
             {
-                hammerType = HammerSide.Right;
+                hammerSde = HammerSide.Right;
             }
 
-            _noteManager.DrumHit(hammerType);
+            _noteManager.DrumHit(_drumSide, hammerSde);
         }
     }
 
