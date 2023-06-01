@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DrumResponseFeedbackHandler : MonoBehaviour
 {
-    [Header("Drum Info")]
+    // Drum Info
     private DrumSide _drumSide = DrumSide.None;
 
     [Header("Misc Feedbacks")]
@@ -151,7 +151,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void ConstantBeatFeedback(BeatDirection beatDirection)
     {
-        if (IsCorrectDrum(beatDirection) == false)
+        if (IsCorrectOrBothDrum(beatDirection) == false)
         {
             return;
         }
@@ -224,6 +224,30 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
                 return false;
             case BeatDirection.Both:
                 return false;
+            default:
+                Enums.InvalidSwitch(GetType(), beatDirection.GetType());
+                return false;
+        }
+    }
+
+    private bool IsCorrectOrBothDrum(BeatDirection beatDirection)
+    {
+        switch (beatDirection)
+        {
+            case BeatDirection.Left:
+                if (_drumSide == DrumSide.Left)
+                {
+                    return true;
+                }
+                return false;
+            case BeatDirection.Right:
+                if (_drumSide == DrumSide.Right)
+                {
+                    return true;
+                }
+                return false;
+            case BeatDirection.Both:
+                return true;
             default:
                 Enums.InvalidSwitch(GetType(), beatDirection.GetType());
                 return false;

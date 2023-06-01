@@ -76,7 +76,7 @@ public class BeatManager : MonoBehaviour
         _isOnBeat = true;
         _beatBuildUpPlayed = false;
 
-        _feedbackManager.ConstantBeatFeedback(BeatDirection.Both);
+        _noteManager.NoteBeat();
 
         _beatTimer = _beatDelay;
         _hitWindowTimer = _postHitWindowDelay;
