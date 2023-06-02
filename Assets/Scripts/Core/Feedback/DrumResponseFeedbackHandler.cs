@@ -21,7 +21,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
     [SerializeField] private List<Feedback> _onMinorBeatT3Feedbacks = new List<Feedback>();
 
     private FeedbackManager _feedbackManager = null;
-    private BeatManager _beatManager = null;
+    private NoteManager _noteManager = null;
     bool _isInitalized = false;
 
     public void Initialize(DrumSide drumSide)
@@ -29,7 +29,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
         _drumSide = drumSide;
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
-        _beatManager = ServiceLocator.Get<BeatManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
 
         InitializeFeedbacks();
         Subscriptions();
@@ -127,7 +127,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
             return;
         }
 
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.None:
                 break;
@@ -144,7 +144,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
                 PlayFeedbacks(_onFirstBeatT3Feedbacks);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
     }
@@ -166,7 +166,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
             return;
         }
 
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.None:
                 break;
@@ -183,7 +183,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
                 PlayFeedbacks(_onMinorBeatT3Feedbacks);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
     }

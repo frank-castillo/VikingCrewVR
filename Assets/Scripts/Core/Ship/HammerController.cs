@@ -20,11 +20,11 @@ public class HammerController : MonoBehaviour
     private int _currentLevel = 0;
     private Material _defaultHammerMaterial = null;
     private MeshRenderer _hamerMeshRenderer = null;
-    private BeatManager _beatManager = null;
+    private NoteManager _noteManager = null;
 
     public void Initialize()
     {
-        _beatManager = ServiceLocator.Get<BeatManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
         _hamerMeshRenderer = _hammerMeshHolder.GetComponent<MeshRenderer>();
 
         _defaultHammerMaterial = _hamerMeshRenderer.material;
@@ -34,17 +34,22 @@ public class HammerController : MonoBehaviour
 
     public void LevelEvaluation(BeatDirection beatDirection)
     {
-        if (_beatManager.CurrentTier == BeatTierType.T1)
+        switch (_noteManager.CurrentTierType)
         {
-            LevelUp(1);
-        }
-        else if (_beatManager.CurrentTier == BeatTierType.T2)
-        {
-            LevelUp(2);
-        }
-        else if (_beatManager.CurrentTier == BeatTierType.T3)
-        {
-            LevelUp(3);
+            case BeatTierType.None:
+                break;
+            case BeatTierType.T1:
+                LevelUp(1);
+                break;
+            case BeatTierType.T2:
+                LevelUp(2);
+                break;
+            case BeatTierType.T3:
+                LevelUp(3);
+                break;
+            default:
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
+                break;
         }
     }
 

@@ -18,13 +18,13 @@ public class FeedbackHandler : MonoBehaviour
     [SerializeField] private List<Feedback> _onMinorBeatT3Feedbacks = new List<Feedback>();
 
     private FeedbackManager _feedbackManager = null;
-    private BeatManager _beatManager = null;
+    private NoteManager _noteManager = null;
     bool _isInitalized = false;
 
     public void Initialize()
     {
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
-        _beatManager = ServiceLocator.Get<BeatManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
 
         InitializeFeedbacks();
         Subscriptions();
@@ -122,7 +122,7 @@ public class FeedbackHandler : MonoBehaviour
 
     private void OnFirstHitFeedback(BeatDirection beatDirection)
     {
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.None:
                 break;
@@ -139,14 +139,14 @@ public class FeedbackHandler : MonoBehaviour
                 PlayFeedbacks(_onFirstBeatT3Feedbacks);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
     }
 
     private void OnMinorHitFeedback(BeatDirection beatDirection)
     {
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.None:
                 break;
@@ -163,7 +163,7 @@ public class FeedbackHandler : MonoBehaviour
                 PlayFeedbacks(_onMinorBeatT3Feedbacks);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
     }
