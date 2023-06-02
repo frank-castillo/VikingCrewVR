@@ -40,7 +40,7 @@ public class FogController : MonoBehaviour
         _feedbackManager.RepeatedMissUnsubscribe(IncreaseFog);
     }
 
-    private void LowerFog()
+    private void LowerFog(BeatDirection beatDirection)
     {
         if (_emission.rateOverTime.constant > _minFogEmmision)
         {
@@ -49,7 +49,7 @@ public class FogController : MonoBehaviour
         }
     }
 
-    private void IncreaseFog()
+    private void IncreaseFog(BeatDirection beatDirection)
     {
         if (_emission.rateOverTime.constant < _maxFogEmmision)
         {

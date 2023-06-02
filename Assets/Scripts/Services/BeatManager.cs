@@ -67,7 +67,7 @@ public class BeatManager : MonoBehaviour
         if (_beatTimer <= _beatBuildUp)
         {
             _beatBuildUpPlayed = true;
-            _feedbackManager.BeatBuildUpFeedback();
+            _feedbackManager.BeatBuildUpFeedback(BeatDirection.Both);
         }
     }
 
@@ -76,7 +76,7 @@ public class BeatManager : MonoBehaviour
         _isOnBeat = true;
         _beatBuildUpPlayed = false;
 
-        _feedbackManager.ConstantBeatFeedback();
+        _feedbackManager.ConstantBeatFeedback(BeatDirection.Both);
 
         _beatTimer = _beatDelay;
         _hitWindowTimer = _postHitWindowDelay;

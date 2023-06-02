@@ -120,6 +120,7 @@ public class LevelLoader : AsyncLoader
 
         _noteManager.SetFeedbackManager(_feedbackManager);
         _noteManager.SetBeatManager(_beatManager);
+        _noteManager.SetHammers(_leftHammer, _rightHammer);
     }
 
     private void Update()

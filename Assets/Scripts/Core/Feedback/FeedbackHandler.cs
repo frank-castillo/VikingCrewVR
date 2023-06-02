@@ -19,16 +19,17 @@ public class FeedbackHandler : MonoBehaviour
 
     private FeedbackManager _feedbackManager = null;
     private BeatManager _beatManager = null;
+    bool _isInitalized = false;
 
     public void Initialize()
     {
-        Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
-
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
         _beatManager = ServiceLocator.Get<BeatManager>();
 
         InitializeFeedbacks();
         Subscriptions();
+
+        _isInitalized = true;
     }
 
     private void Subscriptions()
@@ -105,15 +106,21 @@ public class FeedbackHandler : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_isInitalized == false)
+        {
+            Debug.LogError($"{GetType()} on {gameObject.name} is calling OnDestroy but is never Initialized");
+            return;
+        }
+
         UnsubscribeMethods();
     }
 
-    private void ConstantBeatFeedback()
+    private void ConstantBeatFeedback(BeatDirection beatDirection)
     {
         PlayFeedbacks(_onConstantBeatFeedbacks);
     }
 
-    private void OnFirstHitFeedback()
+    private void OnFirstHitFeedback(BeatDirection beatDirection)
     {
         switch (_beatManager.CurrentTier)
         {
@@ -137,7 +144,7 @@ public class FeedbackHandler : MonoBehaviour
         }
     }
 
-    private void OnMinorHitFeedback()
+    private void OnMinorHitFeedback(BeatDirection beatDirection)
     {
         switch (_beatManager.CurrentTier)
         {
@@ -161,7 +168,7 @@ public class FeedbackHandler : MonoBehaviour
         }
     }
 
-    private void OnMissFeedback()
+    private void OnMissFeedback(BeatDirection beatDirection)
     {
         PlayFeedbacks(_onMissFeedbacks);
     }
