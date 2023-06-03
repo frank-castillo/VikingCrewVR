@@ -13,14 +13,14 @@ public class WindController : MonoBehaviour
     [SerializeField] private ParticleSystem _rightWind = null;
     EmissionModule _rightWindEmission;
 
-    private BeatManager _beatManager = null;
+    private NoteManager _noteManager = null;
     private FeedbackManager _feedbackManager = null;
 
     private int _currentTier = 0;
 
     public void Initialize()
     {
-        _beatManager = ServiceLocator.Get<BeatManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
         _leftWindEmission = _leftWind.emission;
@@ -37,7 +37,7 @@ public class WindController : MonoBehaviour
 
     private void TierEvaluation(BeatDirection beatDirection)
     {
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.T1:
                 LevelUp(1);
@@ -49,7 +49,7 @@ public class WindController : MonoBehaviour
                 LevelUp(3);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
     }
