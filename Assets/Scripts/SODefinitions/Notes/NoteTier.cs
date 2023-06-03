@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/NoteTiers")]
-public class NoteSetTier : ScriptableObject
+public class NoteTier : ScriptableObject
 {
-    public List<NoteSet> NoteSetList = new List<NoteSet>();
+    public List<NoteCombo> NoteCombos = new List<NoteCombo>();
 }
