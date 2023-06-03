@@ -10,13 +10,13 @@ public class RunesProgressionController : MonoBehaviour
 
     private int _currentLevel = 0;
     private FeedbackManager _feedbackManager = null;
-    private BeatManager _beatManager = null;
+    private NoteManager _noteManager = null;
 
     public void Initialize()
     {
         LevelUp(1);
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
-        _beatManager = ServiceLocator.Get<BeatManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
         FeedbackSubscriptions();
     }
 
@@ -38,7 +38,7 @@ public class RunesProgressionController : MonoBehaviour
 
     private void CheckLevelUp(BeatDirection beatDirection)
     {
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.T1:
                 LevelUp(1);
@@ -50,7 +50,7 @@ public class RunesProgressionController : MonoBehaviour
                 LevelUp(3);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
     }

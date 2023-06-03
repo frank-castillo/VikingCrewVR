@@ -15,8 +15,8 @@ public class DrumController : MonoBehaviour
     private AudioManager _audioManager = null;
     private NoteManager _noteManager = null;
     private FeedbackManager _feedbackManager = null;
-    private FeedbackHandler _feedbackHandler = null;
     private DrumResponseFeedbackHandler _drumResponseFeedbackHandler = null;
+    private bool _initialized = false;
 
     public void Initialize()
     {
@@ -24,16 +24,14 @@ public class DrumController : MonoBehaviour
 
         _audioManager = ServiceLocator.Get<AudioManager>();
         _noteManager = ServiceLocator.Get<NoteManager>();
-
-        _feedbackHandler = GetComponent<FeedbackHandler>();
-        _drumResponseFeedbackHandler = GetComponent<DrumResponseFeedbackHandler>();
-
-        _feedbackHandler.Initialize();
-        _drumResponseFeedbackHandler.Initialize(_drumSide);
-
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
+        _drumResponseFeedbackHandler = GetComponent<DrumResponseFeedbackHandler>();
+        _drumResponseFeedbackHandler.Initialize(_drumSide);
+
         FeedbackSubscriptions();
+
+        _initialized = true;
     }
 
     private void FeedbackSubscriptions()
@@ -44,6 +42,11 @@ public class DrumController : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_initialized == false)
+        {
+            return;
+        }
+
         _feedbackManager.ConstantBeatUnsubscribe(PlayRuneSFX);
         _feedbackManager.BeatBuildUpUnsubscribe(PlayVacuum);
     }
@@ -57,7 +60,7 @@ public class DrumController : MonoBehaviour
 
         if (collision.gameObject.layer == (uint)_hammerLayer)
         {
-            HammerSide hammerSde = HammerSide.None; 
+            HammerSide hammerSde = HammerSide.None;
 
             if (collision.gameObject.CompareTags("LHand"))
             {
@@ -87,13 +90,42 @@ public class DrumController : MonoBehaviour
 
     private void PlayRuneSFX(BeatDirection beatDirection)
     {
+        if (IsMatchingSideOrBoth(beatDirection) == false)
+        {
+            return;
+        }
+
         _audioManager.PlaySFX(SFXType.DrumHum);
     }
 
     private void PlayVacuum(BeatDirection beatDirection)
     {
+        if (IsMatchingSideOrBoth(beatDirection) == false)
+        {
+            return;
+        }
+
         _vacuumParticles.Play();
         _audioManager.PlaySFX(SFXType.DrumVacuum);
     }
 
+    private bool IsMatchingSideOrBoth(BeatDirection beatDirection)
+    {
+        if (beatDirection == BeatDirection.Both)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Left && _drumSide == DrumSide.Left)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Right && _drumSide == DrumSide.Right)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

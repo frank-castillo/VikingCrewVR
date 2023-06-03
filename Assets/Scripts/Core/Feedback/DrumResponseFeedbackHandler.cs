@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class DrumResponseFeedbackHandler : MonoBehaviour
 {
-    [Header("Drum Info")]
+    // Drum Info
     private DrumSide _drumSide = DrumSide.None;
 
     [Header("Misc Feedbacks")]
+    [SerializeField] private List<Feedback> _onConstantBeatFeedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onMissFeedbacks = new List<Feedback>();
 
     [Header("First Hit")]
@@ -20,7 +21,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
     [SerializeField] private List<Feedback> _onMinorBeatT3Feedbacks = new List<Feedback>();
 
     private FeedbackManager _feedbackManager = null;
-    private BeatManager _beatManager = null;
+    private NoteManager _noteManager = null;
     bool _isInitalized = false;
 
     public void Initialize(DrumSide drumSide)
@@ -28,7 +29,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
         _drumSide = drumSide;
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
-        _beatManager = ServiceLocator.Get<BeatManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
 
         InitializeFeedbacks();
         Subscriptions();
@@ -38,6 +39,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void Subscriptions()
     {
+        _feedbackManager.ConstantBeatSubscribe(ConstantBeatFeedback);
         _feedbackManager.OnBeatFirstHitSubscribe(OnFirstHitFeedback);
         _feedbackManager.OnBeatMinorHitSubscribe(OnMinorHitFeedback);
         _feedbackManager.OffBeatMissSubscribe(OnMissFeedback);
@@ -45,6 +47,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void UnsubscribeMethods()
     {
+        _feedbackManager.ConstantBeatUnsubscribe(ConstantBeatFeedback);
         _feedbackManager.OnBeatFirstHitUnsubscribe(OnFirstHitFeedback);
         _feedbackManager.OnBeatMinorHitUnsubscribe(OnMinorHitFeedback);
         _feedbackManager.OffBeatMissUnsubscribe(OnMissFeedback);
@@ -59,6 +62,12 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void InitializeMiscFeedbacks()
     {
+
+        foreach (var feedback in _onConstantBeatFeedbacks)
+        {
+            feedback.Initialize();
+        }
+
         foreach (var feedback in _onMissFeedbacks)
         {
             feedback.Initialize();
@@ -119,7 +128,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
             return;
         }
 
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.None:
                 break;
@@ -136,9 +145,19 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
                 PlayFeedbacks(_onFirstBeatT3Feedbacks);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
+    }
+
+    private void ConstantBeatFeedback(BeatDirection beatDirection)
+    {
+        if (IsMatchingSideOrBoth(beatDirection) == false)
+        {
+            return;
+        }
+
+        PlayFeedbacks(_onConstantBeatFeedbacks);
     }
 
     private void OnMinorHitFeedback(BeatDirection beatDirection)
@@ -148,7 +167,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
             return;
         }
 
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.None:
                 break;
@@ -165,7 +184,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
                 PlayFeedbacks(_onMinorBeatT3Feedbacks);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
     }
@@ -210,5 +229,25 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
                 Enums.InvalidSwitch(GetType(), beatDirection.GetType());
                 return false;
         }
+    }
+
+    private bool IsMatchingSideOrBoth(BeatDirection beatDirection)
+    {
+        if (beatDirection == BeatDirection.Both)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Left && _drumSide == DrumSide.Left)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Right && _drumSide == DrumSide.Right)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
