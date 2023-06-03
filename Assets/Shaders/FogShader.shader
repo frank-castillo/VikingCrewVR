@@ -1,11 +1,11 @@
-﻿Shader "Custom/FogShader" {
-    Properties{
+﻿Shader "Custom/FogShader"
+{
+    Properties
+    {
         _Color("Color", Color) = (1, 1, 1, 1)
         _MainTex("Albedo (RGB)", 2D) = "white" {}
-        _Glossiness("Smoothness", Range(0, 1)) = 0.5
-        _Metallic("Metallic", Range(0, 1)) = 0.0
         _FogColor("Fog Color", Color) = (0.5, 0.5, 0.5, 1)
-        _MaxRenderDistance("Max Render Distance", Range(0, 4000)) = 3000
+        _MaxRenderDistance("Max Render Distance", Float) = 4000
     }
 
         SubShader
@@ -14,11 +14,7 @@
             LOD 200
 
             CGPROGRAM
-            // Physically based Standard lighting model, and enable shadows on all light types
-            #pragma surface surf Standard fullforwardshadows alpha
-
-            // Use shader model 3.0 target, to get nicer looking lighting
-            #pragma target 3.0
+            #pragma surface surf Lambert alpha
 
             sampler2D _MainTex;
 
@@ -34,43 +30,26 @@
             uniform float4 _FogColor;
             uniform float _MaxRenderDistance;
 
-            // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-            // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-            // #pragma instancing_options assumeuniformscaling
-            UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
-            UNITY_INSTANCING_BUFFER_END(Props)
-
-            void surf(Input IN, inout SurfaceOutputStandard o)
+            void surf(Input IN, inout SurfaceOutput o)
             {
-                // Albedo comes from a texture tinted by color
                 fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
                 o.Albedo = c.rgb;
-                // Metallic and smoothness come from slider variables
-                //o.Metallic = _Metallic;
-                //o.Smoothness = _Glossiness;
 
-                // Calculate distance from camera to the object
-                float dist = distance(IN.worldPos, _WorldSpaceCameraPos);
+                float dist = distance(IN.worldPos, _WorldSpaceCameraPos) * 0.4;
+                float fogAmount = saturate(dist / _MaxRenderDistance);
 
-                //if (dist > (_MaxRenderDistance * 0.4f))
-                //{
-                //    // Calculate fog amount based on the render distance
-                //    float fogAmount = saturate(dist / _MaxRenderDistance);
+                // Adjust fog reduction rate
+                float fogReduction = fogAmount * fogAmount;
 
-                //    // Apply fog to the final color output
-                //    o.Albedo.rgb = lerp(o.Albedo.rgb, _FogColor.rgb, fogAmount);
+                // Adjust transparency rate and apply transparency condition
+                if (fogAmount > 0.01)
+                    o.Alpha = 1 - ((fogReduction * 0.5) * fogAmount);
+                else
+                    o.Alpha = 1;
 
-                //    // Set transparency based on fog amount
-                //    o.Alpha = 1 - fogAmount;
-                //}
-                //else
-                //{
-                //    o.Alpha = 1;
-                //}
-                o.Alpha = 1.0;
+                o.Albedo.rgb = lerp(o.Albedo.rgb, _FogColor.rgb, fogReduction);
             }
             ENDCG
         }
-        FallBack "Diffuse"
+            FallBack "Diffuse"
 }

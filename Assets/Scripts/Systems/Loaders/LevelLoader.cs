@@ -16,6 +16,7 @@ public class LevelLoader : AsyncLoader
     [SerializeField] private BeatManager _beatManager = null;
     [SerializeField] private FeedbackManager _feedbackManager = null;
     [SerializeField] private NoteManager _noteManager = null;
+    [SerializeField] private CameraUtil _cameraUtil = null;
 
     [Header("Fading Times")]
     [SerializeField] private float _fadeInTime = 2.0f;
@@ -95,6 +96,10 @@ public class LevelLoader : AsyncLoader
         if (_noteManager != null)
         {
             ServiceLocator.Register<NoteManager>(_noteManager.Initialize(), true);
+        }
+        if (_cameraUtil != null)
+        {
+            ServiceLocator.Register<CameraUtil>(_cameraUtil.Initialize(), true);
         }
 
         // Initialize level specific things here
