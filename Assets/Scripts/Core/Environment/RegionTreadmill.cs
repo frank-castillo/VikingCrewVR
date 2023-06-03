@@ -33,7 +33,7 @@ public class RegionTreadmill : MonoBehaviour
         foreach (Transform child in _regionFolder)
         {
             var region = child.GetComponent<Region>();
-            if(region.gameObject.activeInHierarchy)
+            if (region.gameObject.activeInHierarchy)
             {
                 region.Initialize();
                 _regions.Add(region);
@@ -120,7 +120,7 @@ public class RegionTreadmill : MonoBehaviour
                 {
                     _finalIslandReadyToMove = true;
                 }
-                else if(!_isEnding)
+                else if (!_isEnding)
                 {
                     region.transform.position = _startOfMap.position;
                     region.MakeIslandsTransparent();

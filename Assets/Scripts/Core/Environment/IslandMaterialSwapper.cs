@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IslandMaterialSwapper : MonoBehaviour
 {
@@ -49,7 +47,7 @@ public class IslandMaterialSwapper : MonoBehaviour
 
     private void EvaluateDistance(float distance)
     {
-        if(distance < _swapDistance)
+        if (distance < _swapDistance)
         {
             MakeOpaque();
         }

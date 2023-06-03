@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Region : MonoBehaviour
@@ -11,7 +10,7 @@ public class Region : MonoBehaviour
         foreach (Transform child in transform)
         {
             var swapper = child.GetComponent<IslandMaterialSwapper>();
-            if(swapper.gameObject.activeInHierarchy)
+            if (swapper.gameObject.activeInHierarchy)
             {
                 swapper.Initialize();
                 _islands.Add(swapper);
