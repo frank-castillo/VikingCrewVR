@@ -13,7 +13,7 @@ public class RegionTreadmill : MonoBehaviour
     [SerializeField] private Transform _finalRegion = null;
 
     private FeedbackManager _feedbackManager = null;
-    private List<Transform> _regions = new List<Transform>();
+    private List<Region> _regions = new List<Region>();
 
     private float _speed = 5.0f;
     private float _lerpDuration = 1.0f;
@@ -30,9 +30,14 @@ public class RegionTreadmill : MonoBehaviour
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
-        foreach (Transform region in _regionFolder)
+        foreach (Transform child in _regionFolder)
         {
-            _regions.Add(region);
+            var region = child.GetComponent<Region>();
+            if (region.gameObject.activeInHierarchy)
+            {
+                region.Initialize();
+                _regions.Add(region);
+            }
         }
 
         _speed = _minSpeed;
@@ -105,19 +110,20 @@ public class RegionTreadmill : MonoBehaviour
 
     private void MoveRegions()
     {
-        foreach (Transform region in _regions)
+        foreach (Region region in _regions)
         {
-            region.position += Vector3.forward * _speed * Time.deltaTime;
+            region.transform.position += Vector3.forward * _speed * Time.deltaTime;
 
-            if (region.position.z > _limitOfMap.position.z)
+            if (region.transform.position.z > _limitOfMap.position.z)
             {
                 if (_isEnding && !_finalIslandReadyToMove)
                 {
                     _finalIslandReadyToMove = true;
                 }
-                else if(!_isEnding)
+                else if (!_isEnding)
                 {
-                    region.position = _startOfMap.position;
+                    region.transform.position = _startOfMap.position;
+                    region.MakeIslandsTransparent();
                 }
             }
         }
