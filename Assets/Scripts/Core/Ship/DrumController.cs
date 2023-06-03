@@ -90,6 +90,11 @@ public class DrumController : MonoBehaviour
 
     private void PlayRuneSFX(BeatDirection beatDirection)
     {
+        if (IsMatchingSideOrBoth(beatDirection) == false)
+        {
+            return;
+        }
+
         _audioManager.PlaySFX(SFXType.DrumHum);
     }
 

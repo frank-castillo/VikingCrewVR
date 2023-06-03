@@ -47,14 +47,6 @@ public class NoteManager : MonoBehaviour
         _beatManager.StartBeat();
     }
 
-    public void LoadNoteTier(BeatTierType currentTierType)
-    {
-        _currentTier = TranslateNoteTier(currentTierType);
-        _currentComboSet = 0;
-        _currentComboCount = 0;
-        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
-    }
-
     private NoteTier TranslateNoteTier(BeatTierType currentTierType)
     {
         switch (currentTierType)
@@ -68,26 +60,6 @@ public class NoteManager : MonoBehaviour
             default:
                 Debug.LogError($"Invalid Tier Set: {currentTierType}");
                 return null;
-        }
-    }
-
-    private void LoadNextSet()
-    {
-        _currentComboCount = 0;
-        ++_currentComboSet;
-        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
-
-        if (_currentComboSet >= _currentTier.NoteCombos.Count)
-        {
-            if (_currentTierType == BeatTierType.T3)
-            {
-                _beatEnabled = false;
-            }
-            else
-            {
-                BeatTierType newTier = EvaluateNextTier();
-                LoadNoteTier(newTier);
-            }
         }
     }
 
@@ -125,7 +97,10 @@ public class NoteManager : MonoBehaviour
 
         BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
         _feedbackManager.ConstantBeatFeedback(nextBeat);
+    }
 
+    public void LoadNextBeat()
+    {
         ++_currentComboCount;
         if (_currentComboCount >= _currentCombo.ComboList.Count)
         {
@@ -133,11 +108,54 @@ public class NoteManager : MonoBehaviour
         }
     }
 
+    private void LoadNextSet()
+    {
+        _currentComboCount = 0;
+        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
+        ++_currentComboSet;
+
+        if (_currentComboSet >= _currentTier.NoteCombos.Count)
+        {
+
+            if (_currentTierType == BeatTierType.T3)
+            {
+                Debug.Log($"Beat Tiers Cleared");
+                _beatEnabled = false;
+            }
+            else
+            {
+                Debug.Log($"Loading New Tier [{_currentTier}]");
+
+                BeatTierType newTier = EvaluateNextTier();
+                LoadNoteTier(newTier);
+            }
+        }
+    }
+
+    private void LoadNoteTier(BeatTierType currentTierType)
+    {
+        _currentTierType = currentTierType;
+        _currentTier = TranslateNoteTier(currentTierType);
+
+        _currentComboSet = 0;
+        _currentComboCount = 0;
+
+        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
+    }
+
     public void DrumHit(DrumSide drumSide, HammerSide hammerSide)
     {
-        if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
+        BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
+        if (IsMatchingSideOrBoth(nextBeat, drumSide))
         {
-            HitOnBeat(drumSide, hammerSide);
+            if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
+            {
+                HitOnBeat(drumSide, hammerSide);
+            }
+            else
+            {
+                HitOffBeat(drumSide, hammerSide);
+            }
         }
         else
         {
@@ -195,5 +213,25 @@ public class NoteManager : MonoBehaviour
                 Enums.InvalidSwitch(GetType(), hammerType.GetType());
                 return BeatDirection.None;
         }
+    }
+
+    private bool IsMatchingSideOrBoth(BeatDirection beatDirection, DrumSide drumSide)
+    {
+        if (beatDirection == BeatDirection.Both)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Left && drumSide == DrumSide.Left)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Right && drumSide == DrumSide.Right)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
