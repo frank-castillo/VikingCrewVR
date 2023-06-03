@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7187051076158877228}
   - component: {fileID: 8739683821331736627}
   - component: {fileID: 4152277749087704461}
+  - component: {fileID: 2647483435002994456}
   m_Layer: 0
   m_Name: Island
   m_TagString: Untagged
@@ -77,3 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2647483435002994456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7709012541605622401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d2da0461443c44d82feb40c227b995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transparentMaterial: {fileID: 2100000, guid: ed232a8eb8874bd42b2c2e8fe14490ca,
+    type: 2}
+  _opaqueMaterial: {fileID: 2100000, guid: 3018c8ee42269e341b2f05e2f790eec0, type: 2}
+  _swapDistance: 0
