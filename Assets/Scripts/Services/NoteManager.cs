@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
@@ -13,11 +14,15 @@ public class NoteManager : MonoBehaviour
     private int _currentComboCount = 0;
     private bool _beatEnabled = false;
 
+    private LevelLoader _levelLoader = null;
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
     private HammerController _leftHammer = null;
     private HammerController _rightHammer = null;
     private bool _recentBeatSuccess = false;
+
+    private Action _tier2Upgrade = null;
+    private Action _tier3Upgrade = null;
 
     public BeatTierType CurrentTierType { get => _currentTierType; }
     public bool IsBeatEnabled { get => _beatEnabled; }
@@ -31,9 +36,19 @@ public class NoteManager : MonoBehaviour
         _rightHammer = righthammer;
     }
 
+    // Subscribe
+    public void SubscribeTier2Upgrade(Action action) { _tier2Upgrade += action; }
+    public void SubscribeTier3Upgrade(Action action) { _tier3Upgrade += action; }
+
+    // Unsubscribe
+    public void UnsubscribeTier2Upgrade(Action action) { _tier2Upgrade -= action; }
+    public void UnsubscribeTier3Upgrade(Action action) { _tier3Upgrade -= action; }
+
     public NoteManager Initialize()
     {
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
+
+        _levelLoader = ServiceLocator.Get<LevelLoader>();
 
         return this;
     }
@@ -41,7 +56,7 @@ public class NoteManager : MonoBehaviour
     public void SetupInitialNoteTier()
     {
         _currentTierType = BeatTierType.T1;
-        LoadNoteTier(_currentTierType);
+        LoadTier(_currentTierType);
 
         _beatEnabled = true;
         _beatManager.StartBeat();
@@ -116,23 +131,24 @@ public class NoteManager : MonoBehaviour
 
         if (_currentComboSet >= _currentTier.NoteCombos.Count)
         {
+            _beatEnabled = false;
 
             if (_currentTierType == BeatTierType.T3)
             {
                 Debug.Log($"Beat Tiers Cleared");
-                _beatEnabled = false;
+                _levelLoader.WrapUpSequence();
             }
             else
             {
                 Debug.Log($"Loading New Tier [{_currentTier}]");
 
                 BeatTierType newTier = EvaluateNextTier();
-                LoadNoteTier(newTier);
+                LoadTier(newTier);
             }
         }
     }
 
-    private void LoadNoteTier(BeatTierType currentTierType)
+    private void LoadTier(BeatTierType currentTierType)
     {
         _currentTierType = currentTierType;
         _currentTier = TranslateNoteTier(currentTierType);
@@ -141,6 +157,18 @@ public class NoteManager : MonoBehaviour
         _currentComboCount = 0;
 
         _currentCombo = _currentTier.NoteCombos[_currentComboSet];
+
+
+        if (_currentTierType == BeatTierType.T2)
+        {
+            _tier2Upgrade?.Invoke();
+        }
+        else if (_currentTierType == BeatTierType.T3)
+        {
+            _tier3Upgrade?.Invoke();
+        }
+
+        _beatEnabled = true;
     }
 
     public void DrumHit(DrumSide drumSide, HammerSide hammerSide)

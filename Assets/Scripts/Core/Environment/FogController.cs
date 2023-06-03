@@ -3,20 +3,18 @@
 public class FogController : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _closeFog = null;
-    [SerializeField] private float _minFogEmmision = 0.0f;
-    [SerializeField] private float _maxFogEmmision = 35.0f;
-    [SerializeField] private float _rateChange = 1.0f;
-    [SerializeField] private int _decayMultiplier = 3;
+    [SerializeField] private float _tier1FogEmmision = 35.0f;
+    [SerializeField] private float _tier2FogEmmision = 20.0f;
+    [SerializeField] private float _tier3FogEmmision = 10.0f;
     private ParticleSystem.EmissionModule _emission = default;
 
-    private FeedbackManager _feedbackManager = null;
+    private NoteManager _noteManager = null;
 
     public void Initialize()
     {
-        _feedbackManager = ServiceLocator.Get<FeedbackManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
 
         _emission = _closeFog.emission;
-        _emission.rateOverTime = _maxFogEmmision;
 
         SubscribeEvents();
     }
@@ -28,33 +26,32 @@ public class FogController : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        _feedbackManager.OnBeatFirstHitSubscribe(LowerFog);
-        _feedbackManager.OffBeatMissSubscribe(LowerFog);
-        _feedbackManager.RepeatedMissSubscribe(IncreaseFog);
+        _noteManager.SubscribeTier2Upgrade(ChangeFog);
+        _noteManager.SubscribeTier3Upgrade(ChangeFog);
     }
 
     private void UnsubscribeEvents()
     {
-        _feedbackManager.OnBeatFirstHitUnsubscribe(LowerFog);
-        _feedbackManager.OffBeatMissUnsubscribe(LowerFog);
-        _feedbackManager.RepeatedMissUnsubscribe(IncreaseFog);
+        _noteManager.UnsubscribeTier2Upgrade(ChangeFog);
+        _noteManager.UnsubscribeTier3Upgrade(ChangeFog);
     }
 
-    private void LowerFog(BeatDirection beatDirection)
+    public void ChangeFog()
     {
-        if (_emission.rateOverTime.constant > _minFogEmmision)
+        switch (_noteManager.CurrentTierType)
         {
-            float newRate = _emission.rateOverTime.constant - _rateChange;
-            _emission.rateOverTime = newRate;
-        }
-    }
-
-    private void IncreaseFog(BeatDirection beatDirection)
-    {
-        if (_emission.rateOverTime.constant < _maxFogEmmision)
-        {
-            float newRate = _emission.rateOverTime.constant + _rateChange * _decayMultiplier;
-            _emission.rateOverTime = newRate;
+            case BeatTierType.T1:
+                _emission.rateOverTime = _tier1FogEmmision;
+                break;
+            case BeatTierType.T2:
+                _emission.rateOverTime = _tier1FogEmmision;
+                break;
+            case BeatTierType.T3:
+                _emission.rateOverTime = _tier1FogEmmision;
+                break;
+            default:
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
+                break;
         }
     }
 }

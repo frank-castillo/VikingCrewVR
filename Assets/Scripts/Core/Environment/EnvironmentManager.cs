@@ -24,6 +24,7 @@ public class EnvironmentManager : MonoBehaviour
     public void StartEnvironment()
     {
         _environmentTreadmill.EnableMovement(true);
+        _fogController.ChangeFog();
     }
 
     public void EnvironmentWrapUp()

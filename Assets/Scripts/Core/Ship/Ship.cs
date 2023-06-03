@@ -20,6 +20,6 @@ public class Ship : MonoBehaviour
 
     public void ShipWrapUp()
     {
-        _sailController.PlaySailAnimation();
+        
     }
 }
