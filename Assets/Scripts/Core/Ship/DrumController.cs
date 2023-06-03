@@ -95,8 +95,32 @@ public class DrumController : MonoBehaviour
 
     private void PlayVacuum(BeatDirection beatDirection)
     {
+        if (IsMatchingSideOrBoth(beatDirection) == false)
+        {
+            return;
+        }
+
         _vacuumParticles.Play();
         _audioManager.PlaySFX(SFXType.DrumVacuum);
     }
 
+    private bool IsMatchingSideOrBoth(BeatDirection beatDirection)
+    {
+        if (beatDirection == BeatDirection.Both)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Left && _drumSide == DrumSide.Left)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Right && _drumSide == DrumSide.Right)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

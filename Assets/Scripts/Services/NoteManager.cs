@@ -3,13 +3,13 @@
 public class NoteManager : MonoBehaviour
 {
     [Header("Tiers")]
-    [SerializeField] private NoteTier _tier1NoteSets = null;
-    [SerializeField] private NoteTier _tier2NoteSets = null;
-    [SerializeField] private NoteTier _tier3NoteSets = null;
+    [SerializeField] private NoteTier _tier1NoteCombos = null;
+    [SerializeField] private NoteTier _tier2NoteCombos = null;
+    [SerializeField] private NoteTier _tier3NoteComobs = null;
     private BeatTierType _currentTierType = BeatTierType.None;
     private NoteTier _currentTier = null;
-    private NoteSet _currentSet = null;
-    private int _currentSetCount = 0;
+    private NoteCombo _currentCombo = null;
+    private int _currentComboSet = 0;
     private int _currentComboCount = 0;
     private bool _beatEnabled = false;
 
@@ -50,9 +50,9 @@ public class NoteManager : MonoBehaviour
     public void LoadNoteTier(BeatTierType currentTierType)
     {
         _currentTier = TranslateNoteTier(currentTierType);
-        _currentSetCount = 0;
+        _currentComboSet = 0;
         _currentComboCount = 0;
-        _currentSet = _currentTier.NoteSetList[_currentSetCount];
+        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
     }
 
     private NoteTier TranslateNoteTier(BeatTierType currentTierType)
@@ -60,23 +60,24 @@ public class NoteManager : MonoBehaviour
         switch (currentTierType)
         {
             case BeatTierType.T1:
-                return _tier1NoteSets;
+                return _tier1NoteCombos;
             case BeatTierType.T2:
-                return _tier2NoteSets;
+                return _tier2NoteCombos;
             case BeatTierType.T3:
-                return _tier3NoteSets;
+                return _tier3NoteComobs;
             default:
                 Debug.LogError($"Invalid Tier Set: {currentTierType}");
                 return null;
         }
     }
 
-    public void LoadNextSet()
+    private void LoadNextSet()
     {
         _currentComboCount = 0;
-        ++_currentSetCount;
+        ++_currentComboSet;
+        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
 
-        if (_currentSetCount >= _currentTier.NoteSetList.Count)
+        if (_currentComboSet >= _currentTier.NoteCombos.Count)
         {
             if (_currentTierType == BeatTierType.T3)
             {
@@ -106,30 +107,29 @@ public class NoteManager : MonoBehaviour
 
     public void PreBeat()
     {
-        if (_currentSet == null || _beatEnabled == false)
+        if (_currentCombo == null || _beatEnabled == false)
         {
             return;
         }
 
-        BeatDirection nextBeat = _currentSet.NoteOrder[_currentComboCount];
+        BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
         _feedbackManager.BeatBuildUpFeedback(nextBeat);
     }
 
     public void NoteBeat()
     {
-        if (_currentSet == null || _beatEnabled == false)
+        if (_currentCombo == null || _beatEnabled == false)
         {
             return;
         }
 
-        ++_currentComboCount;
-
-        BeatDirection nextBeat = _currentSet.NoteOrder[_currentComboCount];
+        BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
         _feedbackManager.ConstantBeatFeedback(nextBeat);
 
-        if (_currentComboCount >= _currentSet.NoteOrder.Count)
+        ++_currentComboCount;
+        if (_currentComboCount >= _currentCombo.ComboList.Count)
         {
-            //LoadNextSet();
+            LoadNextSet();
         }
     }
 

@@ -62,6 +62,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void InitializeMiscFeedbacks()
     {
+
         foreach (var feedback in _onConstantBeatFeedbacks)
         {
             feedback.Initialize();
@@ -151,7 +152,7 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void ConstantBeatFeedback(BeatDirection beatDirection)
     {
-        if (IsCorrectOrBothDrum(beatDirection) == false)
+        if (IsMatchingSideOrBoth(beatDirection) == false)
         {
             return;
         }
@@ -230,27 +231,23 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
         }
     }
 
-    private bool IsCorrectOrBothDrum(BeatDirection beatDirection)
+    private bool IsMatchingSideOrBoth(BeatDirection beatDirection)
     {
-        switch (beatDirection)
+        if (beatDirection == BeatDirection.Both)
         {
-            case BeatDirection.Left:
-                if (_drumSide == DrumSide.Left)
-                {
-                    return true;
-                }
-                return false;
-            case BeatDirection.Right:
-                if (_drumSide == DrumSide.Right)
-                {
-                    return true;
-                }
-                return false;
-            case BeatDirection.Both:
-                return true;
-            default:
-                Enums.InvalidSwitch(GetType(), beatDirection.GetType());
-                return false;
+            return true;
         }
+
+        if (beatDirection == BeatDirection.Left && _drumSide == DrumSide.Left)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Right && _drumSide == DrumSide.Right)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
