@@ -115,7 +115,6 @@ public class LevelLoader : AsyncLoader
         }
 
         // Set References
-        _beatManager.SetFeedbackManager(_feedbackManager);
         _beatManager.SetNoteManager(_noteManager);
 
         _noteManager.SetFeedbackManager(_feedbackManager);
@@ -155,8 +154,8 @@ public class LevelLoader : AsyncLoader
 
     private void SetupSceneStart()
     {
-        _beatManager.StartBeat();
         _environment.StartEnvironment();
+        _noteManager.SetupInitialNoteTier();
 
         _gameStarted = true;
     }

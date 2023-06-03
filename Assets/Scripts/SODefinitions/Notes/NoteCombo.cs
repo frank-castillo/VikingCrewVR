@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/NoteSet")]
-public class NoteSet : ScriptableObject
+public class NoteCombo : ScriptableObject
 {
-    public List<BeatDirection> NoteOrder = new List<BeatDirection>();
+    public List<BeatDirection> ComboList = new List<BeatDirection>();
 }

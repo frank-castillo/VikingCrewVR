@@ -116,11 +116,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8165067231929843176}
     m_Modifications:
-    - target: {fileID: 4397434372759535205, guid: 5d34bed810c91b64bbeee644957686ec,
-        type: 3}
-      propertyPath: m_Name
-      value: FeedbackManager
-      objectReference: {fileID: 0}
     - target: {fileID: 4397434372759535204, guid: 5d34bed810c91b64bbeee644957686ec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -175,6 +170,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397434372759535205, guid: 5d34bed810c91b64bbeee644957686ec,
+        type: 3}
+      propertyPath: m_Name
+      value: FeedbackManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d34bed810c91b64bbeee644957686ec, type: 3}
@@ -331,24 +331,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NoteManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3285556003926445386, guid: ee0b97f7af658844985893496af6dc5b,
-        type: 3}
-      propertyPath: _tier1NoteSets
-      value: 
-      objectReference: {fileID: 11400000, guid: b5d9c22548a6a904eb59fba3b73adb0b,
-        type: 2}
-    - target: {fileID: 3285556003926445386, guid: ee0b97f7af658844985893496af6dc5b,
-        type: 3}
-      propertyPath: _tier2NoteSets
-      value: 
-      objectReference: {fileID: 11400000, guid: b5d9c22548a6a904eb59fba3b73adb0b,
-        type: 2}
-    - target: {fileID: 3285556003926445386, guid: ee0b97f7af658844985893496af6dc5b,
-        type: 3}
-      propertyPath: _tier3NoteSets
-      value: 
-      objectReference: {fileID: 11400000, guid: b5d9c22548a6a904eb59fba3b73adb0b,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee0b97f7af658844985893496af6dc5b, type: 3}
 --- !u!4 &3696165005137765609 stripped
