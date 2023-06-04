@@ -8,7 +8,6 @@ public class FeedbackManager : MonoBehaviour
     private Action<BeatDirection> _onBeatFirstHit = null;
     private Action<BeatDirection> _onBeatMinorHit = null;
     private Action<BeatDirection> _offBeatMiss = null;
-    private Action<BeatDirection> _repeatedMiss = null;
 
     // Subscribe
     public void BeatBuildUpSubscribe(Action<BeatDirection> action) { _beatBuildUp += action; }
@@ -16,7 +15,6 @@ public class FeedbackManager : MonoBehaviour
     public void OnBeatFirstHitSubscribe(Action<BeatDirection> action) { _onBeatFirstHit += action; }
     public void OnBeatMinorHitSubscribe(Action<BeatDirection> action) { _onBeatMinorHit += action; }
     public void OffBeatMissSubscribe(Action<BeatDirection> action) { _offBeatMiss += action; }
-    public void RepeatedMissSubscribe(Action<BeatDirection> action) { _repeatedMiss += action; }
 
     // Unsubscribe
     public void BeatBuildUpUnsubscribe(Action<BeatDirection> action) { _beatBuildUp -= action; }
@@ -24,7 +22,6 @@ public class FeedbackManager : MonoBehaviour
     public void OnBeatFirstHitUnsubscribe(Action<BeatDirection> action) { _onBeatFirstHit -= action; }
     public void OnBeatMinorHitUnsubscribe(Action<BeatDirection> action) { _onBeatMinorHit -= action; }
     public void OffBeatMissUnsubscribe(Action<BeatDirection> action) { _offBeatMiss -= action; }
-    public void RepeatedMissUnsubscribe(Action<BeatDirection> action) { _repeatedMiss -= action; }
 
     public FeedbackManager Initialize()
     {
@@ -57,10 +54,5 @@ public class FeedbackManager : MonoBehaviour
     public void OffBeatFeedback(BeatDirection direction)
     {
         _offBeatMiss?.Invoke(direction);
-    }
-
-    public void RepeatedBeatMiss(BeatDirection direction)
-    {
-        _repeatedMiss?.Invoke(direction);
     }
 }

@@ -120,26 +120,24 @@ public class LevelLoader : AsyncLoader
 
         // Set References
         _beatManager.SetNoteManager(_noteManager);
+        _beatManager.SetDrums(_ship.RightDrum, _ship.LeftDrum);
 
         _noteManager.SetFeedbackManager(_feedbackManager);
         _noteManager.SetBeatManager(_beatManager);
         _noteManager.SetHammers(_leftHammer, _rightHammer);
+        _noteManager.SetDrums(_ship.RightDrum, _ship.LeftDrum);
     }
 
     private void SetupEvents()
     {
         _feedbackManager.OnBeatFirstHitSubscribe(_leftHammer.LevelEvaluation);
         _feedbackManager.OnBeatFirstHitSubscribe(_rightHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissSubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissSubscribe(_rightHammer.LevelEvaluation);
     }
 
     private void UnsubscribeEvents()
     {
         _feedbackManager.OnBeatFirstHitUnsubscribe(_leftHammer.LevelEvaluation);
         _feedbackManager.OnBeatFirstHitUnsubscribe(_rightHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissUnsubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissUnsubscribe(_rightHammer.LevelEvaluation);
     }
 
     private void SetupSceneStart()

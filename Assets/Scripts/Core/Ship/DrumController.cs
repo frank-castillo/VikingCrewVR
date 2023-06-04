@@ -9,14 +9,20 @@ public class DrumController : MonoBehaviour
     [SerializeField] private LayerType _hammerLayer = LayerType.None;
     private float _contactThreshold = 30.0f;
 
-    [Header("VacuumVFX")]
+    [Header("VFX")]
     [SerializeField] private ParticleSystem _vacuumParticles = null;
+    [SerializeField] private UnityEventFeedback _successVFX = null;
 
     private AudioManager _audioManager = null;
     private NoteManager _noteManager = null;
     private FeedbackManager _feedbackManager = null;
     private DrumResponseFeedbackHandler _drumResponseFeedbackHandler = null;
     private bool _initialized = false;
+    private bool _recentlyHit = false;
+
+    public bool RecentlyHit { get => _recentlyHit; }
+
+    public void SetRecentlyHit(bool recentlyHit) { _recentlyHit = recentlyHit; }
 
     public void Initialize()
     {
@@ -31,6 +37,7 @@ public class DrumController : MonoBehaviour
 
         FeedbackSubscriptions();
 
+        _recentlyHit = false;
         _initialized = true;
     }
 
@@ -38,6 +45,7 @@ public class DrumController : MonoBehaviour
     {
         _feedbackManager.ConstantBeatSubscribe(PlayRuneSFX);
         _feedbackManager.BeatBuildUpSubscribe(PlayVacuum);
+        _feedbackManager.OnBeatFirstHitSubscribe(PlaySuccessVFX);
     }
 
     private void OnDestroy()
@@ -49,6 +57,7 @@ public class DrumController : MonoBehaviour
 
         _feedbackManager.ConstantBeatUnsubscribe(PlayRuneSFX);
         _feedbackManager.BeatBuildUpUnsubscribe(PlayVacuum);
+        _feedbackManager.OnBeatFirstHitUnsubscribe(PlaySuccessVFX);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -107,6 +116,31 @@ public class DrumController : MonoBehaviour
 
         _vacuumParticles.Play();
         _audioManager.PlaySFX(SFXType.DrumVacuum);
+    }
+
+    private void PlaySuccessVFX(BeatDirection beatDirection)
+    {
+        if (IsMatchingSide(beatDirection) == false)
+        {
+            return;
+        }
+
+        _successVFX.Play();
+    }
+
+    private bool IsMatchingSide(BeatDirection beatDirection)
+    {
+        if (beatDirection == BeatDirection.Left && _drumSide == DrumSide.Left)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Right && _drumSide == DrumSide.Right)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private bool IsMatchingSideOrBoth(BeatDirection beatDirection)

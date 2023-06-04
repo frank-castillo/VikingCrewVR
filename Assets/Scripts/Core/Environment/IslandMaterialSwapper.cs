@@ -2,13 +2,14 @@
 
 public class IslandMaterialSwapper : MonoBehaviour
 {
-    [SerializeField] private Material _transparentMaterial;
-    [SerializeField] private Material _opaqueMaterial;
+    [SerializeField] private Material _transparentMaterial = null;
+    [SerializeField] private Material _opaqueMaterial = null;
     private float _swapDistance = 2500f;
 
-    private Renderer _renderer;
+    private Renderer _renderer = null;
+    private Camera _camera = null;
     private bool _isTransparent = true;
-    private Camera _camera;
+    private bool _initialized = false;
 
     public void MakeTransparent()
     {
@@ -26,11 +27,19 @@ public class IslandMaterialSwapper : MonoBehaviour
     {
         _camera = ServiceLocator.Get<CameraUtil>().Camera;
         _renderer = GetComponent<Renderer>();
+
         MakeTransparent();
+
+        _initialized = true;
     }
 
     private void Update()
     {
+        if (_initialized == false)
+        {
+            return;
+        }
+
         TransparentUpdate();
     }
 
