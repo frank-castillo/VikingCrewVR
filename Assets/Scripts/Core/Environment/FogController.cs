@@ -26,31 +26,29 @@ public class FogController : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        _noteManager.SubscribeTier2Upgrade(ChangeFog);
-        _noteManager.SubscribeTier3Upgrade(ChangeFog);
+        _noteManager.SubscribeTierUpgrade(ChangeFog);
     }
 
     private void UnsubscribeEvents()
     {
-        _noteManager.UnsubscribeTier2Upgrade(ChangeFog);
-        _noteManager.UnsubscribeTier3Upgrade(ChangeFog);
+        _noteManager.UnsubscribeTierUpgrade(ChangeFog);
     }
 
-    public void ChangeFog()
+    public void ChangeFog(BeatTierType beatTierType)
     {
-        switch (_noteManager.CurrentTierType)
+        switch (beatTierType)
         {
             case BeatTierType.T1:
                 _emission.rateOverTime = _tier1FogEmmision;
                 break;
             case BeatTierType.T2:
-                _emission.rateOverTime = _tier1FogEmmision;
+                _emission.rateOverTime = _tier2FogEmmision;
                 break;
             case BeatTierType.T3:
-                _emission.rateOverTime = _tier1FogEmmision;
+                _emission.rateOverTime = _tier3FogEmmision;
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
+                Enums.InvalidSwitch(GetType(), beatTierType.GetType());
                 break;
         }
     }

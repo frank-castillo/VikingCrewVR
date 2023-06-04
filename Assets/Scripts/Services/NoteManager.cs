@@ -21,8 +21,7 @@ public class NoteManager : MonoBehaviour
     private HammerController _rightHammer = null;
     private bool _recentBeatSuccess = false;
 
-    private Action _tier2Upgrade = null;
-    private Action _tier3Upgrade = null;
+    private Action<BeatTierType> _tierUpgrade = null;
 
     public BeatTierType CurrentTierType { get => _currentTierType; }
     public bool IsBeatEnabled { get => _beatEnabled; }
@@ -37,12 +36,10 @@ public class NoteManager : MonoBehaviour
     }
 
     // Subscribe
-    public void SubscribeTier2Upgrade(Action action) { _tier2Upgrade += action; }
-    public void SubscribeTier3Upgrade(Action action) { _tier3Upgrade += action; }
+    public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
 
     // Unsubscribe
-    public void UnsubscribeTier2Upgrade(Action action) { _tier2Upgrade -= action; }
-    public void UnsubscribeTier3Upgrade(Action action) { _tier3Upgrade -= action; }
+    public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
 
     public NoteManager Initialize()
     {
@@ -158,15 +155,7 @@ public class NoteManager : MonoBehaviour
 
         _currentCombo = _currentTier.NoteCombos[_currentComboSet];
 
-
-        if (_currentTierType == BeatTierType.T2)
-        {
-            _tier2Upgrade?.Invoke();
-        }
-        else if (_currentTierType == BeatTierType.T3)
-        {
-            _tier3Upgrade?.Invoke();
-        }
+        _tierUpgrade?.Invoke(_currentTierType);
 
         _beatEnabled = true;
     }
