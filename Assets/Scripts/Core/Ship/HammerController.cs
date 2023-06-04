@@ -30,6 +30,8 @@ public class HammerController : MonoBehaviour
         _defaultHammerMaterial = _hamerMeshRenderer.material;
 
         LevelUp(1);
+
+
     }
 
     public void LevelEvaluation(BeatDirection beatDirection)

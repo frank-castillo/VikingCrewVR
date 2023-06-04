@@ -24,7 +24,6 @@ public class LevelLoader : AsyncLoader
 
     [Header("Wrap Up Time")]
     [SerializeField] private float _wrapUpDelay = 0.0f;
-    private float _gameTimer = 0.0f;
     private bool _gameStarted = false;
     private bool _wrapUpStarted = false;
 
@@ -127,20 +126,6 @@ public class LevelLoader : AsyncLoader
         _noteManager.SetHammers(_leftHammer, _rightHammer);
     }
 
-    private void Update()
-    {
-        if (_gameStarted == false || _wrapUpStarted == false)
-        {
-            return;
-        }
-
-        _gameTimer += Time.deltaTime;
-        if (_gameTimer > _wrapUpDelay)
-        {
-            WrapUpSequence();
-        }
-    }
-
     private void SetupEvents()
     {
         _feedbackManager.OnBeatFirstHitSubscribe(_leftHammer.LevelEvaluation);
@@ -165,7 +150,7 @@ public class LevelLoader : AsyncLoader
         _gameStarted = true;
     }
 
-    private void WrapUpSequence()
+    public void WrapUpSequence()
     {
         _wrapUpStarted = true;
 

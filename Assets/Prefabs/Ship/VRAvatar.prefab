@@ -1517,7 +1517,8 @@ PrefabInstance:
       propertyPath: _hammerSide
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8216895925614766338, guid: 28e68829ca89f0b4f900bdad7e7139c1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 28e68829ca89f0b4f900bdad7e7139c1, type: 3}
 --- !u!4 &1975831490187180302 stripped
 Transform:
@@ -1612,11 +1613,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2422473795800797553}
     m_Modifications:
-    - target: {fileID: 2566424707004773120, guid: adf9a0c8075c15e48af67c32b1c0aeaf,
-        type: 3}
-      propertyPath: m_Name
-      value: Hand (L)
-      objectReference: {fileID: 0}
     - target: {fileID: 1569113544435745043, guid: adf9a0c8075c15e48af67c32b1c0aeaf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1672,6 +1668,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 2566424707004773120, guid: adf9a0c8075c15e48af67c32b1c0aeaf,
+        type: 3}
+      propertyPath: m_Name
+      value: Hand (L)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adf9a0c8075c15e48af67c32b1c0aeaf, type: 3}
 --- !u!4 &4660656287728987505 stripped
@@ -1687,11 +1688,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2422473796205838691}
     m_Modifications:
-    - target: {fileID: 8511667831710794800, guid: 127229aeeb49330459ecab0fe8bb63ec,
-        type: 3}
-      propertyPath: m_Name
-      value: Hand (R)
-      objectReference: {fileID: 0}
     - target: {fileID: 4631069391535683107, guid: 127229aeeb49330459ecab0fe8bb63ec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1746,6 +1742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8511667831710794800, guid: 127229aeeb49330459ecab0fe8bb63ec,
+        type: 3}
+      propertyPath: m_Name
+      value: Hand (R)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 127229aeeb49330459ecab0fe8bb63ec, type: 3}
