@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class VikingShipController : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class VikingShipController : MonoBehaviour
 
     [Header("Ship's Sail Controllers")]
     [SerializeField] private bool enableSail = false;
-    [SerializeField] private Cloth[] sailCloths;
+    [SerializeField] private List<Cloth> sailCloths = new List<Cloth>();
     [SerializeField] private Vector3 sailDirection = new Vector3(0F, 0F, -20F);
 
     private void Start()

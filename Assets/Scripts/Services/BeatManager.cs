@@ -9,6 +9,8 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private float _postHitWindowDelay = 0.2f; // On end side
 
     private NoteManager _noteManager = null;
+    private DrumController _rightDrum = null;
+    private DrumController _leftDrum = null;
     private float _beatTimer = 0.0f;
     private float _hitWindowTimer = 0.0f;
     private bool _isOnBeat = false;
@@ -17,6 +19,12 @@ public class BeatManager : MonoBehaviour
     public bool IsOnBeat { get => _isOnBeat; }
 
     public void SetNoteManager(NoteManager noteManager) { _noteManager = noteManager; }
+
+    public void SetDrums(DrumController rightDrum, DrumController leftDrum)
+    {
+        _rightDrum = rightDrum;
+        _leftDrum = leftDrum;
+    }
 
     public void StartBeat()
     {
@@ -88,9 +96,15 @@ public class BeatManager : MonoBehaviour
         if (_hitWindowTimer < 0)
         {
             _isOnBeat = false;
-            _noteManager.ResetBeatSuccess();
+            ResetDrums();
             _noteManager.LoadNextBeat();
         }
+    }
+
+    private void ResetDrums()
+    {
+        _leftDrum.SetRecentlyHit(false);
+        _rightDrum.SetRecentlyHit(false);
     }
 
     public bool PreHitWindowCheck()

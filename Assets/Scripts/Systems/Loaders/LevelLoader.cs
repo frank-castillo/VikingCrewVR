@@ -22,11 +22,6 @@ public class LevelLoader : AsyncLoader
     [SerializeField] private float _fadeInTime = 2.0f;
     [SerializeField] private float _fadeOutTime = 2.0f;
 
-    [Header("Wrap Up Time")]
-    [SerializeField] private float _wrapUpDelay = 0.0f;
-    private bool _gameStarted = false;
-    private bool _wrapUpStarted = false;
-
     [Header("References")]
     [SerializeField] private Ship _ship = null;
     [SerializeField] private EnvironmentManager _environment = null;
@@ -41,7 +36,6 @@ public class LevelLoader : AsyncLoader
         LevelSetup();
     }
 
-    // When switching levels we reset the values so they can be overwritten by the new scene and just basic household static cleaning 
     private void OnDestroy()
     {
         ResetVariables();
@@ -66,7 +60,6 @@ public class LevelLoader : AsyncLoader
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
         Initialize();
-        SetupEvents();
 
         ProcessQueuedCallbacks();
         CallOnComplete(OnComplete);
@@ -120,40 +113,22 @@ public class LevelLoader : AsyncLoader
 
         // Set References
         _beatManager.SetNoteManager(_noteManager);
+        _beatManager.SetDrums(_ship.RightDrum, _ship.LeftDrum);
 
         _noteManager.SetFeedbackManager(_feedbackManager);
         _noteManager.SetBeatManager(_beatManager);
         _noteManager.SetHammers(_leftHammer, _rightHammer);
-    }
-
-    private void SetupEvents()
-    {
-        _feedbackManager.OnBeatFirstHitSubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.OnBeatFirstHitSubscribe(_rightHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissSubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissSubscribe(_rightHammer.LevelEvaluation);
-    }
-
-    private void UnsubscribeEvents()
-    {
-        _feedbackManager.OnBeatFirstHitUnsubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.OnBeatFirstHitUnsubscribe(_rightHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissUnsubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissUnsubscribe(_rightHammer.LevelEvaluation);
+        _noteManager.SetDrums(_ship.RightDrum, _ship.LeftDrum);
     }
 
     private void SetupSceneStart()
     {
         _environment.StartEnvironment();
         _noteManager.SetupInitialNoteTier();
-
-        _gameStarted = true;
     }
 
     public void WrapUpSequence()
     {
-        _wrapUpStarted = true;
-
         _ship.ShipWrapUp();
         _environment.EnvironmentWrapUp();
     }
@@ -211,8 +186,6 @@ public class LevelLoader : AsyncLoader
         }
 
         _audioManager.CurrentVolume = 0.0f;
-
-        UnsubscribeEvents();
 
         ExperienceApp.End();
     }

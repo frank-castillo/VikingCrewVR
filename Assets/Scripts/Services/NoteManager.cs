@@ -19,27 +19,30 @@ public class NoteManager : MonoBehaviour
     private FeedbackManager _feedbackManager = null;
     private HammerController _leftHammer = null;
     private HammerController _rightHammer = null;
-    private bool _recentBeatSuccess = false;
+    private DrumController _rightDrum = null;
+    private DrumController _leftDrum = null;
 
     private Action<BeatTierType> _tierUpgrade = null;
 
     public BeatTierType CurrentTierType { get => _currentTierType; }
     public bool IsBeatEnabled { get => _beatEnabled; }
 
-    public void ResetBeatSuccess() { _recentBeatSuccess = false; }
+    public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
+    public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
     public void SetBeatManager(BeatManager beatManager) { _beatManager = beatManager; }
     public void SetFeedbackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
+
     public void SetHammers(HammerController leftHammer, HammerController righthammer)
     {
         _leftHammer = leftHammer;
         _rightHammer = righthammer;
     }
 
-    // Subscribe
-    public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
-
-    // Unsubscribe
-    public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
+    public void SetDrums(DrumController rightDrum, DrumController leftDrum)
+    {
+        _rightDrum = rightDrum;
+        _leftDrum = leftDrum;
+    }
 
     public NoteManager Initialize()
     {
@@ -137,7 +140,6 @@ public class NoteManager : MonoBehaviour
             }
             else
             {
-                Debug.Log($"Loading New Tier [{_currentTier}]");
 
                 BeatTierType newTier = EvaluateNextTier();
                 LoadTier(newTier);
@@ -147,6 +149,8 @@ public class NoteManager : MonoBehaviour
 
     private void LoadTier(BeatTierType currentTierType)
     {
+        Debug.Log($"Loading New Tier [{currentTierType}]");
+
         _currentTierType = currentTierType;
         _currentTier = TranslateNoteTier(currentTierType);
 
@@ -182,18 +186,31 @@ public class NoteManager : MonoBehaviour
 
     private void HitOnBeat(DrumSide drumSide, HammerSide hammerSide)
     {
-        if (_recentBeatSuccess == false)
+        BeatDirection beatDirection = DrumSideToDirection(drumSide);
+        if (beatDirection == BeatDirection.Left)
         {
-            _feedbackManager.OnFirstBeatFeedback(DrumSideToDirection(drumSide));
+            HitDrumOnBeat(beatDirection, _leftDrum, hammerSide);
         }
         else
         {
-            _feedbackManager.OnMinorBeatFeedback(DrumSideToDirection(drumSide));
+            HitDrumOnBeat(beatDirection, _rightDrum, hammerSide);
+        }
+    }
+
+    private void HitDrumOnBeat(BeatDirection beatDirection, DrumController drum, HammerSide hammerSide)
+    {
+        if (drum.RecentlyHit == false)
+        {
+            _feedbackManager.OnFirstBeatFeedback(beatDirection);
+        }
+        else
+        {
+            _feedbackManager.OnMinorBeatFeedback(beatDirection);
         }
 
         PlayHammerHaptic(hammerSide, HapticIntensity.High);
 
-        _recentBeatSuccess = true;
+        drum.SetRecentlyHit(true);
     }
 
     private void HitOffBeat(DrumSide drumSide, HammerSide hammerSide)

@@ -39,18 +39,18 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void Subscriptions()
     {
-        _feedbackManager.ConstantBeatSubscribe(ConstantBeatFeedback);
-        _feedbackManager.OnBeatFirstHitSubscribe(OnFirstHitFeedback);
-        _feedbackManager.OnBeatMinorHitSubscribe(OnMinorHitFeedback);
-        _feedbackManager.OffBeatMissSubscribe(OnMissFeedback);
+        _feedbackManager.SubscribeConstantBeat(ConstantBeatFeedback);
+        _feedbackManager.SubscribeOnBeatFirstHit(OnFirstHitFeedback);
+        _feedbackManager.SubscribeOnBeatMinorHit(OnMinorHitFeedback);
+        _feedbackManager.SubscribeOffBeatMiss(OnMissFeedback);
     }
 
     private void UnsubscribeMethods()
     {
-        _feedbackManager.ConstantBeatUnsubscribe(ConstantBeatFeedback);
-        _feedbackManager.OnBeatFirstHitUnsubscribe(OnFirstHitFeedback);
-        _feedbackManager.OnBeatMinorHitUnsubscribe(OnMinorHitFeedback);
-        _feedbackManager.OffBeatMissUnsubscribe(OnMissFeedback);
+        _feedbackManager.UnsubscribeConstantBeat(ConstantBeatFeedback);
+        _feedbackManager.UnsubscribeOnBeatFirstHit(OnFirstHitFeedback);
+        _feedbackManager.UnsubscribeOnBeatMinorHit(OnMinorHitFeedback);
+        _feedbackManager.UnsubscribeOffBeatMiss(OnMissFeedback);
     }
 
     private void InitializeFeedbacks()

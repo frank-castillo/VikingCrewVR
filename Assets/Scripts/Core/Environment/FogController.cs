@@ -7,8 +7,8 @@ public class FogController : MonoBehaviour
     [SerializeField] private float _tier2FogEmmision = 20.0f;
     [SerializeField] private float _tier3FogEmmision = 10.0f;
     private ParticleSystem.EmissionModule _emission = default;
-
     private NoteManager _noteManager = null;
+    private bool _initialized = false;
 
     public void Initialize()
     {
@@ -16,15 +16,24 @@ public class FogController : MonoBehaviour
 
         _emission = _closeFog.emission;
 
-        SubscribeEvents();
+        SetupEvents();
+
+        ChangeFog(BeatTierType.T1);
+
+        _initialized = true;
     }
 
     private void OnDestroy()
     {
+        if (_initialized == false)
+        {
+            return;
+        }
+
         UnsubscribeEvents();
     }
 
-    private void SubscribeEvents()
+    private void SetupEvents()
     {
         _noteManager.SubscribeTierUpgrade(ChangeFog);
     }
