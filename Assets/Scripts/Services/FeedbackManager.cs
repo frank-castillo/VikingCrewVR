@@ -3,49 +3,25 @@ using System;
 
 public class FeedbackManager : MonoBehaviour
 {
-    // Both Sides
-    private Action _beatBuildUp = null;
-    private Action _constantBeat = null;
-    private Action _onBeatFirstHit = null;
-    private Action _onBeatMinorHit = null;
-    private Action _offBeatMiss = null;
-    private Action _repeatedMiss = null;
-
-    // Left
-    private Action _leftBeatBuildUp = null;
-    private Action _leftConstantBeat = null;
-    private Action _leftOnBeatFirstHit = null;
-    private Action _leftOnBeatMinorHit = null;
-    private Action _leftOffBeatMiss = null;
-    private Action _leftRepeatedMiss = null;
-
-    // Right
-    private Action _rightBeatBuildUp = null;
-    private Action _rightConstantBeat = null;
-    private Action _rightOnBeatFirstHit = null;
-    private Action _rightOnBeatMinorHit = null;
-    private Action _rightOffBeatMiss = null;
-    private Action _rightRepeatedMiss = null;
+    private Action<BeatDirection> _beatBuildUp = null;
+    private Action<BeatDirection> _constantBeat = null;
+    private Action<BeatDirection> _onBeatFirstHit = null;
+    private Action<BeatDirection> _onBeatMinorHit = null;
+    private Action<BeatDirection> _offBeatMiss = null;
 
     // Subscribe
-    public void BeatBuildUpSubscribe(Action action, BeatDirection direction = BeatDirection.Both)
-    {
-        _beatBuildUp += action;
-    }
-
-    public void ConstantBeatSubscribe(Action action) { _constantBeat += action; }
-    public void OnBeatFirstHitSubscribe(Action action) { _onBeatFirstHit += action; }
-    public void OnBeatMinorHitSubscribe(Action action) { _onBeatMinorHit += action; }
-    public void OffBeatMissSubscribe(Action action) { _offBeatMiss += action; }
-    public void RepeatedMissSubscribe(Action action) { _repeatedMiss += action; }
+    public void SubscribeBeatBuildUp(Action<BeatDirection> action) { _beatBuildUp += action; }
+    public void SubscribeConstantBeat(Action<BeatDirection> action) { _constantBeat += action; }
+    public void SubscribeOnBeatFirstHit(Action<BeatDirection> action) { _onBeatFirstHit += action; }
+    public void SubscribeOnBeatMinorHit(Action<BeatDirection> action) { _onBeatMinorHit += action; }
+    public void SubscribeOffBeatMiss(Action<BeatDirection> action) { _offBeatMiss += action; }
 
     // Unsubscribe
-    public void BeatBuildUpUnsubscribe(Action action) { _beatBuildUp -= action; }
-    public void ConstantBeatUnsubscribe(Action action) { _constantBeat -= action; }
-    public void OnBeatFirstHitUnsubscribe(Action action) { _onBeatFirstHit -= action; }
-    public void OnBeatMinorHitUnsubscribe(Action action) { _onBeatMinorHit -= action; }
-    public void OffBeatMissUnsubscribe(Action action) { _offBeatMiss -= action; }
-    public void RepeatedMissUnsubscribe(Action action) { _repeatedMiss -= action; }
+    public void UnsubscribeBeatBuildUp(Action<BeatDirection> action) { _beatBuildUp -= action; }
+    public void UnsubscribeConstantBeat(Action<BeatDirection> action) { _constantBeat -= action; }
+    public void UnsubscribeOnBeatFirstHit(Action<BeatDirection> action) { _onBeatFirstHit -= action; }
+    public void UnsubscribeOnBeatMinorHit(Action<BeatDirection> action) { _onBeatMinorHit -= action; }
+    public void UnsubscribeOffBeatMiss(Action<BeatDirection> action) { _offBeatMiss -= action; }
 
     public FeedbackManager Initialize()
     {
@@ -54,34 +30,29 @@ public class FeedbackManager : MonoBehaviour
         return this;
     }
 
-    public void BeatBuildUpFeedback()
+    public void BeatBuildUpFeedback(BeatDirection direction)
     {
-        _beatBuildUp?.Invoke();
+        _beatBuildUp?.Invoke(direction);
     }
 
-    public void ConstantBeatFeedback()
+    public void ConstantBeatFeedback(BeatDirection direction)
     {
-        _constantBeat?.Invoke();
+        _constantBeat?.Invoke(direction);
     }
 
-    public void OnFirstBeatFeedback()
+    public void OnFirstBeatFeedback(BeatDirection direction)
     {
-        _onBeatFirstHit?.Invoke();
-        _onBeatMinorHit?.Invoke();
+        _onBeatFirstHit?.Invoke(direction);
+        _onBeatMinorHit?.Invoke(direction);
     }
 
-    public void OnMinorBeatFeedback()
+    public void OnMinorBeatFeedback(BeatDirection direction)
     {
-        _onBeatMinorHit?.Invoke();
+        _onBeatMinorHit?.Invoke(direction);
     }
 
-    public void OffBeatFeedback()
+    public void OffBeatFeedback(BeatDirection direction)
     {
-        _offBeatMiss?.Invoke();
-    }
-
-    public void RepeatedBeatMiss()
-    {
-        _repeatedMiss?.Invoke();
+        _offBeatMiss?.Invoke(direction);
     }
 }

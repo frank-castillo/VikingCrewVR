@@ -1,115 +1,271 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
-    [Header("Haptic Intensity")]
-    [SerializeField] private float _highHapticIntensity = 0.6f;
-    [SerializeField] private float _lowHapticIntensity = 0.5f;
-
     [Header("Tiers")]
-    [SerializeField] private NoteSetTier _tier1NoteSets = null;
-    [SerializeField] private NoteSetTier _tier2NoteSets = null;
-    [SerializeField] private NoteSetTier _tier3NoteSets = null;
+    [SerializeField] private NoteTier _tier1NoteCombos = null;
+    [SerializeField] private NoteTier _tier2NoteCombos = null;
+    [SerializeField] private NoteTier _tier3NoteComobs = null;
+    private BeatTierType _currentTierType = BeatTierType.None;
+    private NoteTier _currentTier = null;
+    private NoteCombo _currentCombo = null;
+    private int _currentComboSet = 0;
+    private int _currentComboCount = 0;
+    private bool _beatEnabled = false;
+
+    private LevelLoader _levelLoader = null;
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
-    private bool _recentBeatSuccess = false;
+    private HammerController _leftHammer = null;
+    private HammerController _rightHammer = null;
+    private DrumController _rightDrum = null;
+    private DrumController _leftDrum = null;
 
-    // Haptics
-    private Coroutine _leftHapticCoroutine = null;
-    private Coroutine _rightHapticCoroutine = null;
+    private Action<BeatTierType> _tierUpgrade = null;
 
-    public void ResetBeatSuccess() { _recentBeatSuccess = false; }
+    public BeatTierType CurrentTierType { get => _currentTierType; }
+    public bool IsBeatEnabled { get => _beatEnabled; }
 
+    public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
+    public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
     public void SetBeatManager(BeatManager beatManager) { _beatManager = beatManager; }
     public void SetFeedbackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
+
+    public void SetHammers(HammerController leftHammer, HammerController righthammer)
+    {
+        _leftHammer = leftHammer;
+        _rightHammer = righthammer;
+    }
+
+    public void SetDrums(DrumController rightDrum, DrumController leftDrum)
+    {
+        _rightDrum = rightDrum;
+        _leftDrum = leftDrum;
+    }
 
     public NoteManager Initialize()
     {
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
 
+        _levelLoader = ServiceLocator.Get<LevelLoader>();
+
         return this;
     }
 
-    public void PlayCurrentBeat()
+    public void SetupInitialNoteTier()
     {
+        _currentTierType = BeatTierType.T1;
+        LoadTier(_currentTierType);
 
+        _beatEnabled = true;
+        _beatManager.StartBeat();
     }
 
-    public void DrumHit(HammerType hammerType)
+    private NoteTier TranslateNoteTier(BeatTierType currentTierType)
     {
-        if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
+        switch (currentTierType)
         {
-            HitOnBeat(hammerType);
+            case BeatTierType.T1:
+                return _tier1NoteCombos;
+            case BeatTierType.T2:
+                return _tier2NoteCombos;
+            case BeatTierType.T3:
+                return _tier3NoteComobs;
+            default:
+                Debug.LogError($"Invalid Tier Set: {currentTierType}");
+                return null;
+        }
+    }
+
+    private BeatTierType EvaluateNextTier()
+    {
+        switch (_currentTierType)
+        {
+            case BeatTierType.T1:
+                return BeatTierType.T2;
+            case BeatTierType.T2:
+                return BeatTierType.T3;
+            default:
+                Enums.InvalidSwitch(GetType(), _currentTierType.GetType());
+                return BeatTierType.None;
+        }
+    }
+
+    public void PreBeat()
+    {
+        if (_currentCombo == null || _beatEnabled == false)
+        {
+            return;
+        }
+
+        BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
+        _feedbackManager.BeatBuildUpFeedback(nextBeat);
+    }
+
+    public void NoteBeat()
+    {
+        if (_currentCombo == null || _beatEnabled == false)
+        {
+            return;
+        }
+
+        BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
+        _feedbackManager.ConstantBeatFeedback(nextBeat);
+    }
+
+    public void LoadNextBeat()
+    {
+        ++_currentComboCount;
+        if (_currentComboCount >= _currentCombo.ComboList.Count)
+        {
+            LoadNextSet();
+        }
+    }
+
+    private void LoadNextSet()
+    {
+        _currentComboCount = 0;
+        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
+        ++_currentComboSet;
+
+        if (_currentComboSet >= _currentTier.NoteCombos.Count)
+        {
+            _beatEnabled = false;
+
+            if (_currentTierType == BeatTierType.T3)
+            {
+                Debug.Log($"Beat Tiers Cleared");
+                _levelLoader.WrapUpSequence();
+            }
+            else
+            {
+
+                BeatTierType newTier = EvaluateNextTier();
+                LoadTier(newTier);
+            }
+        }
+    }
+
+    private void LoadTier(BeatTierType currentTierType)
+    {
+        Debug.Log($"Loading New Tier [{currentTierType}]");
+
+        _currentTierType = currentTierType;
+        _currentTier = TranslateNoteTier(currentTierType);
+
+        _currentComboSet = 0;
+        _currentComboCount = 0;
+
+        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
+
+        _tierUpgrade?.Invoke(_currentTierType);
+
+        _beatEnabled = true;
+    }
+
+    public void DrumHit(DrumSide drumSide, HammerSide hammerSide)
+    {
+        BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
+        if (IsMatchingSideOrBoth(nextBeat, drumSide))
+        {
+            if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
+            {
+                HitOnBeat(drumSide, hammerSide);
+            }
+            else
+            {
+                HitOffBeat(drumSide, hammerSide);
+            }
         }
         else
         {
-            HitOffBeat(hammerType);
+            HitOffBeat(drumSide, hammerSide);
         }
     }
 
-    private void HitOnBeat(HammerType hammerType)
+    private void HitOnBeat(DrumSide drumSide, HammerSide hammerSide)
     {
-        if (_recentBeatSuccess == false)
+        BeatDirection beatDirection = DrumSideToDirection(drumSide);
+        if (beatDirection == BeatDirection.Left)
         {
-            _feedbackManager.OnFirstBeatFeedback();
+            HitDrumOnBeat(beatDirection, _leftDrum, hammerSide);
         }
         else
         {
-            _feedbackManager.OnMinorBeatFeedback();
+            HitDrumOnBeat(beatDirection, _rightDrum, hammerSide);
+        }
+    }
+
+    private void HitDrumOnBeat(BeatDirection beatDirection, DrumController drum, HammerSide hammerSide)
+    {
+        if (drum.RecentlyHit == false)
+        {
+            _feedbackManager.OnFirstBeatFeedback(beatDirection);
+        }
+        else
+        {
+            _feedbackManager.OnMinorBeatFeedback(beatDirection);
         }
 
-        PlayHaptic(hammerType, _highHapticIntensity);
+        PlayHammerHaptic(hammerSide, HapticIntensity.High);
 
-        _recentBeatSuccess = true;
+        drum.SetRecentlyHit(true);
     }
 
-    private void HitOffBeat(HammerType hammerType)
+    private void HitOffBeat(DrumSide drumSide, HammerSide hammerSide)
     {
-        _feedbackManager.OffBeatFeedback();
-        PlayHaptic(hammerType, _lowHapticIntensity);
+        _feedbackManager.OffBeatFeedback(DrumSideToDirection(drumSide));
+        PlayHammerHaptic(hammerSide, HapticIntensity.Low);
     }
 
-    private void PlayHaptic(HammerType hammerType, float intensity)
+    private void PlayHammerHaptic(HammerSide hammerSide, HapticIntensity hapticIntensity)
+    {
+        switch (hammerSide)
+        {
+            case HammerSide.Left:
+                _leftHammer.PlayHaptic(hapticIntensity);
+                break;
+            case HammerSide.Right:
+                _rightHammer.PlayHaptic(hapticIntensity);
+                break;
+            default:
+                Enums.InvalidSwitch(GetType(), hammerSide.GetType());
+                break;
+        }
+    }
+
+    private BeatDirection DrumSideToDirection(DrumSide hammerType)
     {
         switch (hammerType)
         {
-            case HammerType.Left:
-                PlayLeftHaptic(intensity);
-                break;
-            case HammerType.Right:
-                PlayRightHaptic(intensity);
-                break;
+            case DrumSide.Left:
+                return BeatDirection.Left;
+            case DrumSide.Right:
+                return BeatDirection.Right;
             default:
                 Enums.InvalidSwitch(GetType(), hammerType.GetType());
-                break;
+                return BeatDirection.None;
         }
     }
 
-    private void PlayLeftHaptic(float intensity)
+    private bool IsMatchingSideOrBoth(BeatDirection beatDirection, DrumSide drumSide)
     {
-        if (_leftHapticCoroutine != null)
+        if (beatDirection == BeatDirection.Both)
         {
-            StopCoroutine(_leftHapticCoroutine);
+            return true;
         }
 
-        _leftHapticCoroutine = StartCoroutine(HapticFeedbackRoutine(OVRInput.Controller.LTouch, intensity));
-    }
-
-    private void PlayRightHaptic(float intensity)
-    {
-        if (_rightHapticCoroutine != null)
+        if (beatDirection == BeatDirection.Left && drumSide == DrumSide.Left)
         {
-            StopCoroutine(_leftHapticCoroutine);
+            return true;
         }
 
-        _rightHapticCoroutine = StartCoroutine(HapticFeedbackRoutine(OVRInput.Controller.RTouch, intensity));
-    }
+        if (beatDirection == BeatDirection.Right && drumSide == DrumSide.Right)
+        {
+            return true;
+        }
 
-    private IEnumerator HapticFeedbackRoutine(OVRInput.Controller controller, float intesity)
-    {
-        OVRInput.SetControllerVibration(1, intesity, controller);
-        yield return new WaitForSecondsRealtime(0.1f);
-        OVRInput.SetControllerVibration(0, 0, controller);
+        return false;
     }
 }

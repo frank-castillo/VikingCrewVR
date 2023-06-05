@@ -21,33 +21,34 @@ public class FeedbackHandler : MonoBehaviour
     [SerializeField] private List<Feedback> _onMinorBeatT3Feedbacks = new List<Feedback>();
 
     private FeedbackManager _feedbackManager = null;
-    private BeatManager _beatManager = null;
+    private NoteManager _noteManager = null;
+    bool _isInitalized = false;
 
     public void Initialize()
     {
-        Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
-
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
-        _beatManager = ServiceLocator.Get<BeatManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
 
         InitializeFeedbacks();
         Subscriptions();
+
+        _isInitalized = true;
     }
 
     private void Subscriptions()
     {
-        _feedbackManager.ConstantBeatSubscribe(ConstantBeatFeedback);
-        _feedbackManager.OnBeatFirstHitSubscribe(OnFirstHitFeedback);
-        _feedbackManager.OnBeatMinorHitSubscribe(OnMinorHitFeedback);
-        _feedbackManager.OffBeatMissSubscribe(OnMissFeedback);
+        _feedbackManager.SubscribeConstantBeat(ConstantBeatFeedback);
+        _feedbackManager.SubscribeOnBeatFirstHit(OnFirstHitFeedback);
+        _feedbackManager.SubscribeOnBeatMinorHit(OnMinorHitFeedback);
+        _feedbackManager.SubscribeOffBeatMiss(OnMissFeedback);
     }
 
     private void UnsubscribeMethods()
     {
-        _feedbackManager.ConstantBeatUnsubscribe(ConstantBeatFeedback);
-        _feedbackManager.OnBeatFirstHitUnsubscribe(OnFirstHitFeedback);
-        _feedbackManager.OnBeatMinorHitUnsubscribe(OnMinorHitFeedback);
-        _feedbackManager.OffBeatMissUnsubscribe(OnMissFeedback);
+        _feedbackManager.UnsubscribeConstantBeat(ConstantBeatFeedback);
+        _feedbackManager.UnsubscribeOnBeatFirstHit(OnFirstHitFeedback);
+        _feedbackManager.UnsubscribeOnBeatMinorHit(OnMinorHitFeedback);
+        _feedbackManager.UnsubscribeOffBeatMiss(OnMissFeedback);
     }
 
     private void InitializeFeedbacks()
@@ -108,17 +109,23 @@ public class FeedbackHandler : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_isInitalized == false)
+        {
+            Debug.LogError($"{GetType()} on {gameObject.name} is calling OnDestroy but is never Initialized");
+            return;
+        }
+
         UnsubscribeMethods();
     }
 
-    private void ConstantBeatFeedback()
+    private void ConstantBeatFeedback(BeatDirection beatDirection)
     {
         PlayFeedbacks(_onConstantBeatFeedbacks);
     }
 
-    private void OnFirstHitFeedback()
+    private void OnFirstHitFeedback(BeatDirection beatDirection)
     {
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.None:
                 break;
@@ -135,14 +142,14 @@ public class FeedbackHandler : MonoBehaviour
                 PlayFeedbacks(_onFirstBeatT3Feedbacks);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
     }
 
-    private void OnMinorHitFeedback()
+    private void OnMinorHitFeedback(BeatDirection beatDirection)
     {
-        switch (_beatManager.CurrentTier)
+        switch (_noteManager.CurrentTierType)
         {
             case BeatTierType.None:
                 break;
@@ -159,12 +166,12 @@ public class FeedbackHandler : MonoBehaviour
                 PlayFeedbacks(_onMinorBeatT3Feedbacks);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
                 break;
         }
     }
 
-    private void OnMissFeedback()
+    private void OnMissFeedback(BeatDirection beatDirection)
     {
         PlayFeedbacks(_onMissFeedbacks);
     }

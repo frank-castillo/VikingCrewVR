@@ -2,17 +2,27 @@
 
 public class DrumController : MonoBehaviour
 {
-    [Header("Info")]
+    [Header("General")]
+    [SerializeField] private DrumSide _drumSide = DrumSide.None;
+
+    [Header("Collision")]
     [SerializeField] private LayerType _hammerLayer = LayerType.None;
     private float _contactThreshold = 30.0f;
 
-    [Header("VacuumVFX")]
+    [Header("VFX")]
     [SerializeField] private ParticleSystem _vacuumParticles = null;
+    [SerializeField] private UnityEventFeedback _successVFX = null;
 
     private AudioManager _audioManager = null;
     private NoteManager _noteManager = null;
     private FeedbackManager _feedbackManager = null;
-    private FeedbackHandler _feedbackHandler = null;
+    private DrumResponseFeedbackHandler _drumResponseFeedbackHandler = null;
+    private bool _initialized = false;
+    private bool _recentlyHit = false;
+
+    public bool RecentlyHit { get => _recentlyHit; }
+
+    public void SetRecentlyHit(bool recentlyHit) { _recentlyHit = recentlyHit; }
 
     public void Initialize()
     {
@@ -20,25 +30,34 @@ public class DrumController : MonoBehaviour
 
         _audioManager = ServiceLocator.Get<AudioManager>();
         _noteManager = ServiceLocator.Get<NoteManager>();
-
-        _feedbackHandler = GetComponent<FeedbackHandler>();
-        _feedbackHandler.Initialize();
-
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
+        _drumResponseFeedbackHandler = GetComponent<DrumResponseFeedbackHandler>();
+        _drumResponseFeedbackHandler.Initialize(_drumSide);
+
         FeedbackSubscriptions();
+
+        _recentlyHit = false;
+        _initialized = true;
     }
 
     private void FeedbackSubscriptions()
     {
-        _feedbackManager.ConstantBeatSubscribe(PlayRuneSFX);
-        _feedbackManager.BeatBuildUpSubscribe(PlayVacuum);
+        _feedbackManager.SubscribeConstantBeat(PlayRuneSFX);
+        _feedbackManager.SubscribeBeatBuildUp(PlayVacuum);
+        _feedbackManager.SubscribeOnBeatFirstHit(PlaySuccessVFX);
     }
 
     private void OnDestroy()
     {
-        _feedbackManager.ConstantBeatUnsubscribe(PlayRuneSFX);
-        _feedbackManager.BeatBuildUpUnsubscribe(PlayVacuum);
+        if (_initialized == false)
+        {
+            return;
+        }
+
+        _feedbackManager.UnsubscribeConstantBeat(PlayRuneSFX);
+        _feedbackManager.UnsubscribeBeatBuildUp(PlayVacuum);
+        _feedbackManager.UnsubscribeOnBeatFirstHit(PlaySuccessVFX);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -50,18 +69,18 @@ public class DrumController : MonoBehaviour
 
         if (collision.gameObject.layer == (uint)_hammerLayer)
         {
-            HammerType hammerType = HammerType.None; 
+            HammerSide hammerSde = HammerSide.None;
 
             if (collision.gameObject.CompareTags("LHand"))
             {
-                hammerType = HammerType.Left;
+                hammerSde = HammerSide.Left;
             }
             else if (collision.gameObject.CompareTags("RHand"))
             {
-                hammerType = HammerType.Right;
+                hammerSde = HammerSide.Right;
             }
 
-            _noteManager.DrumHit(hammerType);
+            _noteManager.DrumHit(_drumSide, hammerSde);
         }
     }
 
@@ -78,15 +97,69 @@ public class DrumController : MonoBehaviour
         return false;
     }
 
-    private void PlayRuneSFX()
+    private void PlayRuneSFX(BeatDirection beatDirection)
     {
+        if (IsMatchingSideOrBoth(beatDirection) == false)
+        {
+            return;
+        }
+
         _audioManager.PlaySFX(SFXType.DrumHum);
     }
 
-    private void PlayVacuum()
+    private void PlayVacuum(BeatDirection beatDirection)
     {
+        if (IsMatchingSideOrBoth(beatDirection) == false)
+        {
+            return;
+        }
+
         _vacuumParticles.Play();
         _audioManager.PlaySFX(SFXType.DrumVacuum);
     }
 
+    private void PlaySuccessVFX(BeatDirection beatDirection)
+    {
+        if (IsMatchingSide(beatDirection) == false)
+        {
+            return;
+        }
+
+        _successVFX.Play();
+    }
+
+    private bool IsMatchingSide(BeatDirection beatDirection)
+    {
+        if (beatDirection == BeatDirection.Left && _drumSide == DrumSide.Left)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Right && _drumSide == DrumSide.Right)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool IsMatchingSideOrBoth(BeatDirection beatDirection)
+    {
+        if (beatDirection == BeatDirection.Both)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Left && _drumSide == DrumSide.Left)
+        {
+            return true;
+        }
+
+        if (beatDirection == BeatDirection.Right && _drumSide == DrumSide.Right)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

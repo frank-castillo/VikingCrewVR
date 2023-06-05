@@ -3,41 +3,55 @@ using static UnityEngine.ParticleSystem;
 
 public class WindController : MonoBehaviour
 {
+    [Header("Emission")]
     [SerializeField] private int _emmisionRateT1 = 2;
     [SerializeField] private int _emmisionRateT2 = 5;
     [SerializeField] private int _emmisionRateT3 = 8;
 
+    [Header("References")]
     [SerializeField] private ParticleSystem _leftWind = null;
-    EmissionModule _leftWindEmission;
-
     [SerializeField] private ParticleSystem _rightWind = null;
+    EmissionModule _leftWindEmission;
     EmissionModule _rightWindEmission;
 
-    private BeatManager _beatManager = null;
-    private FeedbackManager _feedbackManager = null;
-
-    private int _currentTier = 0;
+    private NoteManager _noteManager = null;
+    private bool _initialized = false;
 
     public void Initialize()
     {
-        _beatManager = ServiceLocator.Get<BeatManager>();
-        _feedbackManager = ServiceLocator.Get<FeedbackManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
 
         _leftWindEmission = _leftWind.emission;
         _rightWindEmission = _rightWind.emission;
-        _currentTier = 1;
 
-        _feedbackManager.OnBeatFirstHitSubscribe(TierEvaluation);
+        SetupEvents();
+
+        _initialized = true;
     }
 
     private void OnDestroy()
     {
-        _feedbackManager.OnBeatFirstHitUnsubscribe(TierEvaluation);
+        if (_initialized == false)
+        {
+            return;
+        }
+
+        UnsubscribeEvents();
     }
 
-    private void TierEvaluation()
+    private void SetupEvents()
     {
-        switch (_beatManager.CurrentTier)
+        _noteManager.SubscribeTierUpgrade(TierEvaluation);
+    }
+
+    private void UnsubscribeEvents()
+    {
+        _noteManager.UnsubscribeTierUpgrade(TierEvaluation);
+    }
+
+    private void TierEvaluation(BeatTierType beatTierType)
+    {
+        switch (beatTierType)
         {
             case BeatTierType.T1:
                 LevelUp(1);
@@ -49,20 +63,13 @@ public class WindController : MonoBehaviour
                 LevelUp(3);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _beatManager.CurrentTier.GetType());
+                Enums.InvalidSwitch(GetType(), beatTierType.GetType());
                 break;
         }
     }
 
     private void LevelUp(int newLevel)
     {
-        if (_currentTier == newLevel)
-        {
-            return;
-        }
-
-        _currentTier = newLevel;
-
         if (newLevel == 1)
         {
             _leftWindEmission.rateOverTime = _emmisionRateT1;

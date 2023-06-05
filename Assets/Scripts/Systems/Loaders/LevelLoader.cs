@@ -16,16 +16,11 @@ public class LevelLoader : AsyncLoader
     [SerializeField] private BeatManager _beatManager = null;
     [SerializeField] private FeedbackManager _feedbackManager = null;
     [SerializeField] private NoteManager _noteManager = null;
+    [SerializeField] private CameraUtil _cameraUtil = null;
 
     [Header("Fading Times")]
     [SerializeField] private float _fadeInTime = 2.0f;
     [SerializeField] private float _fadeOutTime = 2.0f;
-
-    [Header("Wrap Up Time")]
-    [SerializeField] private float _wrapUpDelay = 0.0f;
-    private float _gameTimer = 0.0f;
-    private bool _gameStarted = false;
-    private bool _wrapUpStarted = false;
 
     [Header("References")]
     [SerializeField] private Ship _ship = null;
@@ -41,7 +36,6 @@ public class LevelLoader : AsyncLoader
         LevelSetup();
     }
 
-    // When switching levels we reset the values so they can be overwritten by the new scene and just basic household static cleaning 
     private void OnDestroy()
     {
         ResetVariables();
@@ -66,7 +60,6 @@ public class LevelLoader : AsyncLoader
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
         Initialize();
-        SetupEvents();
 
         ProcessQueuedCallbacks();
         CallOnComplete(OnComplete);
@@ -96,6 +89,10 @@ public class LevelLoader : AsyncLoader
         {
             ServiceLocator.Register<NoteManager>(_noteManager.Initialize(), true);
         }
+        if (_cameraUtil != null)
+        {
+            ServiceLocator.Register<CameraUtil>(_cameraUtil.Initialize(), true);
+        }
 
         // Initialize level specific things here
         if (_ship != null)
@@ -115,55 +112,23 @@ public class LevelLoader : AsyncLoader
         }
 
         // Set References
-        _beatManager.SetFeedbackManager(_feedbackManager);
         _beatManager.SetNoteManager(_noteManager);
+        _beatManager.SetDrums(_ship.RightDrum, _ship.LeftDrum);
 
         _noteManager.SetFeedbackManager(_feedbackManager);
         _noteManager.SetBeatManager(_beatManager);
-    }
-
-    private void Update()
-    {
-        if (_gameStarted == false || _wrapUpStarted == false)
-        {
-            return;
-        }
-
-        _gameTimer += Time.deltaTime;
-        if (_gameTimer > _wrapUpDelay)
-        {
-            WrapUpSequence();
-        }
-    }
-
-    private void SetupEvents()
-    {
-        _feedbackManager.OnBeatFirstHitSubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.OnBeatFirstHitSubscribe(_rightHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissSubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissSubscribe(_rightHammer.LevelEvaluation);
-    }
-
-    private void UnsubscribeEvents()
-    {
-        _feedbackManager.OnBeatFirstHitUnsubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.OnBeatFirstHitUnsubscribe(_rightHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissUnsubscribe(_leftHammer.LevelEvaluation);
-        _feedbackManager.RepeatedMissUnsubscribe(_rightHammer.LevelEvaluation);
+        _noteManager.SetHammers(_leftHammer, _rightHammer);
+        _noteManager.SetDrums(_ship.RightDrum, _ship.LeftDrum);
     }
 
     private void SetupSceneStart()
     {
-        _beatManager.StartBeat();
         _environment.StartEnvironment();
-
-        _gameStarted = true;
+        _noteManager.SetupInitialNoteTier();
     }
 
-    private void WrapUpSequence()
+    public void WrapUpSequence()
     {
-        _wrapUpStarted = true;
-
         _ship.ShipWrapUp();
         _environment.EnvironmentWrapUp();
     }
@@ -221,8 +186,6 @@ public class LevelLoader : AsyncLoader
         }
 
         _audioManager.CurrentVolume = 0.0f;
-
-        UnsubscribeEvents();
 
         ExperienceApp.End();
     }
