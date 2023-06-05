@@ -10,18 +10,18 @@ public class FeedbackManager : MonoBehaviour
     private Action<BeatDirection> _offBeatMiss = null;
 
     // Subscribe
-    public void BeatBuildUpSubscribe(Action<BeatDirection> action) { _beatBuildUp += action; }
-    public void ConstantBeatSubscribe(Action<BeatDirection> action) { _constantBeat += action; }
-    public void OnBeatFirstHitSubscribe(Action<BeatDirection> action) { _onBeatFirstHit += action; }
-    public void OnBeatMinorHitSubscribe(Action<BeatDirection> action) { _onBeatMinorHit += action; }
-    public void OffBeatMissSubscribe(Action<BeatDirection> action) { _offBeatMiss += action; }
+    public void SubscribeBeatBuildUp(Action<BeatDirection> action) { _beatBuildUp += action; }
+    public void SubscribeConstantBeat(Action<BeatDirection> action) { _constantBeat += action; }
+    public void SubscribeOnBeatFirstHit(Action<BeatDirection> action) { _onBeatFirstHit += action; }
+    public void SubscribeOnBeatMinorHit(Action<BeatDirection> action) { _onBeatMinorHit += action; }
+    public void SubscribeOffBeatMiss(Action<BeatDirection> action) { _offBeatMiss += action; }
 
     // Unsubscribe
-    public void BeatBuildUpUnsubscribe(Action<BeatDirection> action) { _beatBuildUp -= action; }
-    public void ConstantBeatUnsubscribe(Action<BeatDirection> action) { _constantBeat -= action; }
-    public void OnBeatFirstHitUnsubscribe(Action<BeatDirection> action) { _onBeatFirstHit -= action; }
-    public void OnBeatMinorHitUnsubscribe(Action<BeatDirection> action) { _onBeatMinorHit -= action; }
-    public void OffBeatMissUnsubscribe(Action<BeatDirection> action) { _offBeatMiss -= action; }
+    public void UnsubscribeBeatBuildUp(Action<BeatDirection> action) { _beatBuildUp -= action; }
+    public void UnsubscribeConstantBeat(Action<BeatDirection> action) { _constantBeat -= action; }
+    public void UnsubscribeOnBeatFirstHit(Action<BeatDirection> action) { _onBeatFirstHit -= action; }
+    public void UnsubscribeOnBeatMinorHit(Action<BeatDirection> action) { _onBeatMinorHit -= action; }
+    public void UnsubscribeOffBeatMiss(Action<BeatDirection> action) { _offBeatMiss -= action; }
 
     public FeedbackManager Initialize()
     {

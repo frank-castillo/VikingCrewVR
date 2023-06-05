@@ -43,9 +43,9 @@ public class DrumController : MonoBehaviour
 
     private void FeedbackSubscriptions()
     {
-        _feedbackManager.ConstantBeatSubscribe(PlayRuneSFX);
-        _feedbackManager.BeatBuildUpSubscribe(PlayVacuum);
-        _feedbackManager.OnBeatFirstHitSubscribe(PlaySuccessVFX);
+        _feedbackManager.SubscribeConstantBeat(PlayRuneSFX);
+        _feedbackManager.SubscribeBeatBuildUp(PlayVacuum);
+        _feedbackManager.SubscribeOnBeatFirstHit(PlaySuccessVFX);
     }
 
     private void OnDestroy()
@@ -55,9 +55,9 @@ public class DrumController : MonoBehaviour
             return;
         }
 
-        _feedbackManager.ConstantBeatUnsubscribe(PlayRuneSFX);
-        _feedbackManager.BeatBuildUpUnsubscribe(PlayVacuum);
-        _feedbackManager.OnBeatFirstHitUnsubscribe(PlaySuccessVFX);
+        _feedbackManager.UnsubscribeConstantBeat(PlayRuneSFX);
+        _feedbackManager.UnsubscribeBeatBuildUp(PlayVacuum);
+        _feedbackManager.UnsubscribeOnBeatFirstHit(PlaySuccessVFX);
     }
 
     private void OnCollisionEnter(Collision collision)

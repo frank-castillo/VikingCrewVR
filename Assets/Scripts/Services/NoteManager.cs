@@ -27,6 +27,8 @@ public class NoteManager : MonoBehaviour
     public BeatTierType CurrentTierType { get => _currentTierType; }
     public bool IsBeatEnabled { get => _beatEnabled; }
 
+    public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
+    public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
     public void SetBeatManager(BeatManager beatManager) { _beatManager = beatManager; }
     public void SetFeedbackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
 
@@ -41,12 +43,6 @@ public class NoteManager : MonoBehaviour
         _rightDrum = rightDrum;
         _leftDrum = leftDrum;
     }
-
-    // Subscribe
-    public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
-
-    // Unsubscribe
-    public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
 
     public NoteManager Initialize()
     {
@@ -144,7 +140,6 @@ public class NoteManager : MonoBehaviour
             }
             else
             {
-                Debug.Log($"Loading New Tier [{_currentTier}]");
 
                 BeatTierType newTier = EvaluateNextTier();
                 LoadTier(newTier);
@@ -154,6 +149,8 @@ public class NoteManager : MonoBehaviour
 
     private void LoadTier(BeatTierType currentTierType)
     {
+        Debug.Log($"Loading New Tier [{currentTierType}]");
+
         _currentTierType = currentTierType;
         _currentTier = TranslateNoteTier(currentTierType);
 

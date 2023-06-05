@@ -17,16 +17,10 @@ public class RunesProgressionController : MonoBehaviour
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
         _noteManager = ServiceLocator.Get<NoteManager>();
 
-        FeedbackSubscriptions();
+        SetupEvents();
         LevelUp(1);
 
         _initialized = true;
-    }
-
-    private void FeedbackSubscriptions()
-    {
-        _feedbackManager.ConstantBeatSubscribe(OnBeatPulse);
-        _noteManager.SubscribeTierUpgrade(CheckLevelUp);
     }
 
     private void OnDestroy()
@@ -36,7 +30,18 @@ public class RunesProgressionController : MonoBehaviour
             return;
         }
 
-        _feedbackManager.ConstantBeatUnsubscribe(OnBeatPulse);
+        UnsubscribeEvents();
+    }
+
+    private void SetupEvents()
+    {
+        _feedbackManager.SubscribeConstantBeat(OnBeatPulse);
+        _noteManager.SubscribeTierUpgrade(CheckLevelUp);
+    }
+
+    private void UnsubscribeEvents()
+    {
+        _feedbackManager.UnsubscribeConstantBeat(OnBeatPulse);
         _noteManager.UnsubscribeTierUpgrade(CheckLevelUp);
     }
 

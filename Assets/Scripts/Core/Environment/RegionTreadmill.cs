@@ -1,26 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class RegionTreadmill : MonoBehaviour
 {
-    [SerializeField] private float _maxSpeed = 100f;
-    [SerializeField] private float _minSpeed = 50f;
-    [SerializeField] private float _speedModifier = 0.3f;
+    [Header("Tier Speeds")]
+    [SerializeField] private float _t1Speed = 10.0f;
+    [SerializeField] private float _t2Speed = 20.0f;
+    [SerializeField] private float _t3Speed = 35.0f;
+
+    [Header("References")]
     [SerializeField] private Transform _limitOfMap = null;
     [SerializeField] private Transform _startOfMap = null;
     [SerializeField] private Transform _regionFolder = null;
     [SerializeField] private Transform _finalRegion = null;
 
-    private FeedbackManager _feedbackManager = null;
+    private NoteManager _noteManager = null;
     private List<Region> _regions = new List<Region>();
 
-    private float _speed = 5.0f;
-    private float _lerpDuration = 1.0f;
+    private float _speed = 0.0f;
     private bool _movementEnabled = false;
-    private bool _inTransition = false;
     private bool _isEnding = false;
     private bool _finalIslandReadyToMove = false;
+    private bool _initialized = false;
 
     public void EnableMovement(bool enable) { _movementEnabled = enable; }
 
@@ -28,7 +29,7 @@ public class RegionTreadmill : MonoBehaviour
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");
 
-        _feedbackManager = ServiceLocator.Get<FeedbackManager>();
+        _noteManager = ServiceLocator.Get<NoteManager>();
 
         foreach (Transform child in _regionFolder)
         {
@@ -40,70 +41,59 @@ public class RegionTreadmill : MonoBehaviour
             }
         }
 
-        _speed = _minSpeed;
+        SetupEvents();
 
-        _feedbackManager.OnBeatFirstHitSubscribe(IncreaseSpeed);
-        _feedbackManager.OffBeatMissSubscribe(DecreaseSpeed);
+        ChangeSpeed(BeatTierType.T1);
+        _initialized = true;
     }
 
     private void OnDestroy()
     {
-        _feedbackManager.OnBeatFirstHitUnsubscribe(IncreaseSpeed);
-        _feedbackManager.OffBeatMissUnsubscribe(DecreaseSpeed);
-    }
-
-    private IEnumerator IncreaseSpeedCoroutine()
-    {
-        float elapsedTime = 0.0f;
-        float startSpeed = _speed;
-        _inTransition = true;
-
-        while (elapsedTime < _lerpDuration)
-        {
-            _speed = Mathf.Lerp(startSpeed, _speed + _speedModifier, elapsedTime / _lerpDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        _speed = _speed + _speedModifier;
-        _inTransition = false;
-    }
-
-    private void IncreaseSpeed(BeatDirection beatDirection)
-    {
-        if (_inTransition || _speed >= _maxSpeed)
+        if (_initialized == false)
         {
             return;
         }
 
-        StartCoroutine(IncreaseSpeedCoroutine());
+        UnsubscribeEvents();
     }
 
-    private IEnumerator DecreaseSpeedCoroutine()
+    private void SetupEvents()
     {
-        float elapsedTime = 0.0f;
-        float startSpeed = _speed;
-        _inTransition = true;
-
-        while (elapsedTime < _lerpDuration)
-        {
-            _speed = Mathf.Lerp(startSpeed, _speed - _speedModifier, elapsedTime / _lerpDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        _speed = _speed - _speedModifier;
-        _inTransition = false;
+        _noteManager.SubscribeTierUpgrade(ChangeSpeed);
     }
 
-    private void DecreaseSpeed(BeatDirection beatDirection)
+    private void UnsubscribeEvents()
     {
-        if (_inTransition || _speed <= _minSpeed)
+        _noteManager.UnsubscribeTierUpgrade(ChangeSpeed);
+    }
+
+    private void Update()
+    {
+        if( _initialized == false || _movementEnabled == false)
         {
             return;
         }
 
-        StartCoroutine(DecreaseSpeedCoroutine());
+        MoveRegions();
+    }
+
+    private void ChangeSpeed(BeatTierType beatTierType)
+    {
+        switch (beatTierType)
+        {
+            case BeatTierType.T1:
+                _speed = _t1Speed;
+                break;
+            case BeatTierType.T2:
+                _speed = _t2Speed;
+                break;
+            case BeatTierType.T3:
+                _speed = _t3Speed;
+                break;
+            default:
+                Enums.InvalidSwitch(GetType(), beatTierType.GetType());
+                break;
+        }
     }
 
     private void MoveRegions()
@@ -130,16 +120,6 @@ public class RegionTreadmill : MonoBehaviour
         {
             _finalRegion.position += Vector3.forward * _speed * Time.deltaTime;
         }
-    }
-
-    private void Update()
-    {
-        if (_movementEnabled == false)
-        {
-            return;
-        }
-
-        MoveRegions();
     }
 
     public void TreadmillWrapUp()
