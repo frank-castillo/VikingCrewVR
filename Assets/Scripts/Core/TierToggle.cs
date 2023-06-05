@@ -17,6 +17,9 @@ public class TierToggle : MonoBehaviour
         SubscribeEvents();
 
         _initialized = true;
+
+        EnableObjectList(false, _t2Objects);
+        EnableObjectList(false, _t3Objects);
     }
 
     private void OnDestroy()
