@@ -8,6 +8,9 @@ public class Ship : MonoBehaviour
     private FeedbackHandler _feedbackHandler = null;
     private TierToggle _tierToggle = null;
 
+    public DrumController RightDrum { get => _rightDrumController; }
+    public DrumController LeftDrum { get => _leftDrumController; }
+
     public void Initialize()
     {
         Debug.Log($"<color=Lime> {this.GetType()} starting setup. </color>");

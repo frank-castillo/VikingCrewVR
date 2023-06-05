@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Liminal.SDK.VR.Avatars;
 using UnityEngine;
-using Liminal.SDK.VR.Avatars;
 
 public class ShowHideControllers : MonoBehaviour
 {
-    [SerializeField] private VRAvatarController _primaryController;
-    [SerializeField] private VRAvatarController _secondaryController;
+    [SerializeField] private VRAvatarController _primaryController = null;
+    [SerializeField] private VRAvatarController _secondaryController = null;
 
     [SerializeField] private bool _showPrimary = true;
     [SerializeField] private bool _showSecondary = true;

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class HammerController : MonoBehaviour
@@ -17,10 +18,11 @@ public class HammerController : MonoBehaviour
     [SerializeField] private Transform _level3Visuals = null;
     [SerializeField] private Material _level3Material = null;
 
-    private int _currentLevel = 0;
+    private NoteManager _noteManager = null;
     private Material _defaultHammerMaterial = null;
     private MeshRenderer _hamerMeshRenderer = null;
-    private NoteManager _noteManager = null;
+    private int _currentLevel = 0;
+    private bool _initialized = false;
 
     public void Initialize()
     {
@@ -29,17 +31,37 @@ public class HammerController : MonoBehaviour
 
         _defaultHammerMaterial = _hamerMeshRenderer.material;
 
+        SetupEvents();
+
         LevelUp(1);
 
-
+        _initialized = true;
     }
 
-    public void LevelEvaluation(BeatDirection beatDirection)
+    private void OnDestroy()
     {
-        switch (_noteManager.CurrentTierType)
+        if (_initialized == false)
         {
-            case BeatTierType.None:
-                break;
+            return;
+        }
+
+        UnsubscribeEvents();
+    }
+
+    private void SetupEvents()
+    {
+        _noteManager.SubscribeTierUpgrade(LevelEvaluation);
+    }
+
+    private void UnsubscribeEvents()
+    {
+        _noteManager.UnsubscribeTierUpgrade(LevelEvaluation);
+    }
+
+    public void LevelEvaluation(BeatTierType beatTierType)
+    {
+        switch (beatTierType)
+        {
             case BeatTierType.T1:
                 LevelUp(1);
                 break;
@@ -50,7 +72,7 @@ public class HammerController : MonoBehaviour
                 LevelUp(3);
                 break;
             default:
-                Enums.InvalidSwitch(GetType(), _noteManager.CurrentTierType.GetType());
+                Enums.InvalidSwitch(GetType(), beatTierType.GetType());
                 break;
         }
     }
