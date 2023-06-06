@@ -6,22 +6,21 @@ using UnityEditor;
 #endif
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private float _fadeInTime = 2.0f;
-    [SerializeField] private float _fadeOutTime = 2.0f;
+    [SerializeField] private const float _defaultFadeTime = 2.0f;
     public UIManager Initialize()
     {
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
 
         return this;
     }
-    public void FadeInScreen()
+    public void FadeInScreen(float fadeInTime = _defaultFadeTime)
     {
-        ScreenFader.Instance.FadeToClearFromBlack(_fadeInTime);
+        ScreenFader.Instance.FadeToClearFromBlack(fadeInTime);
     }
 
-    public void FadeOutScreen()
+    public void FadeOutScreen(float fadeOutTime = _defaultFadeTime)
     {
-        ScreenFader.Instance.FadeToBlack(_fadeOutTime);
+        ScreenFader.Instance.FadeToBlack(fadeOutTime);
     }
 
     //TODO: Delete this after tests are done!
