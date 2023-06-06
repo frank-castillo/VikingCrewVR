@@ -149,7 +149,7 @@ public class NoteManager : MonoBehaviour
         ++_currentComboCount;
         if (_currentComboCount >= _currentCombo.ComboList.Count)
         {
-            if (SuccessfulCombo())
+            if (IsSuccessfulCombo())
             {
                 LoadNextSet();
             }
@@ -162,17 +162,15 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    private bool SuccessfulCombo()
+    private bool IsSuccessfulCombo()
     {
-        string playerInput = $"Player Input:";
-        playerInput += WriteList(_currentPlayerCombo);
-        Debug.Log(playerInput);
+        string playerInput = WriteList(_currentPlayerCombo);
+        Debug.Log($"Player Input: {playerInput}");
 
-        string requiredInput = $"Required Input:";
-        requiredInput += WriteList(_currentCombo.ComboList);
-        Debug.Log(requiredInput);
+        string requiredInput = WriteList(_currentCombo.ComboList);
+        Debug.Log($"Required Input: {requiredInput}");
 
-        if (_currentPlayerCombo == _currentCombo.ComboList)
+        if (string.Compare(playerInput, requiredInput) == 0)
         {
             Debug.Log("Combo Success - Loading New Combo");
             return true;
@@ -210,7 +208,6 @@ public class NoteManager : MonoBehaviour
             }
             else
             {
-
                 BeatTierType newTier = EvaluateNextTier();
                 LoadTier(newTier);
             }
