@@ -207,7 +207,6 @@ public class NoteManager : MonoBehaviour
 
         _currentComboCount = 0;
         ++_currentComboSet;
-        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
 
         if (_currentComboSet >= _currentTier.NoteCombos.Count)
         {
@@ -221,6 +220,10 @@ public class NoteManager : MonoBehaviour
                 BeatTierType newTier = EvaluateNextTier();
                 LoadTier(newTier);
             }
+        }
+        else
+        {
+            _currentCombo = _currentTier.NoteCombos[_currentComboSet];
         }
 
         _pauseBeat = false;
