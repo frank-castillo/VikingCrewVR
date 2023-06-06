@@ -8,7 +8,6 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
 public class LevelLoader : AsyncLoader
 {
     [Header("Services")]
@@ -17,6 +16,7 @@ public class LevelLoader : AsyncLoader
     [SerializeField] private FeedbackManager _feedbackManager = null;
     [SerializeField] private NoteManager _noteManager = null;
     [SerializeField] private CameraUtil _cameraUtil = null;
+    [SerializeField] private UIManager _uiManager = null;
 
     [Header("Fading Times")]
     [SerializeField] private float _fadeInTime = 2.0f;
@@ -92,6 +92,10 @@ public class LevelLoader : AsyncLoader
         if (_cameraUtil != null)
         {
             ServiceLocator.Register<CameraUtil>(_cameraUtil.Initialize(), true);
+        }
+        if (_uiManager != null)
+        {
+            ServiceLocator.Register<UIManager>(_uiManager.Initialize(), true);
         }
 
         // Initialize level specific things here
