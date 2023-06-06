@@ -8,8 +8,8 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private float _preHitWindowDelay = 0.2f; // On pre side
     [SerializeField] private float _postHitWindowDelay = 0.2f; // On end side
 
-    [Header("Delay")]
-    [SerializeField] private float _initialDelay = 5.0f;
+    //[Header("Delay")]
+    //[SerializeField] private float _initialDelay = 5.0f;
 
     private NoteManager _noteManager = null;
     private Ship _ship = null;

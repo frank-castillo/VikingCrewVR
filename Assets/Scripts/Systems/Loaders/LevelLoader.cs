@@ -181,7 +181,7 @@ public class LevelLoader : AsyncLoader
     {
         float elapsedTime = 0f;
 
-        _uiManager.FadeOutScreen(fadeOutTime);
+        _uiManager.FadeToBlack(fadeOutTime);
 
         while (elapsedTime < fadeOutTime)
         {
