@@ -62,6 +62,11 @@ public class DrumController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (_noteManager.IsBeatEnabled == false)
+        {
+            return;
+        }
+
         if (IsValidCollision(collision) == false)
         {
             return;
@@ -99,6 +104,11 @@ public class DrumController : MonoBehaviour
 
     private void PlayRuneSFX(BeatDirection beatDirection)
     {
+        if (_noteManager.IsBeatEnabled == false)
+        {
+            return;
+        }
+
         if (IsMatchingSideOrBoth(beatDirection) == false)
         {
             return;
@@ -109,6 +119,11 @@ public class DrumController : MonoBehaviour
 
     private void PlayVacuum(BeatDirection beatDirection)
     {
+        if (_noteManager.IsBeatEnabled == false)
+        {
+            return;
+        }
+
         if (IsMatchingSideOrBoth(beatDirection) == false)
         {
             return;
