@@ -148,6 +148,11 @@ public class NoteManager : MonoBehaviour
 
     private void LoadNextBeat()
     {
+        if (_pauseBeat)
+        {
+            return;
+        }
+
         ++_currentComboCount;
         if (_currentComboCount >= _currentCombo.ComboList.Count)
         {
@@ -157,7 +162,7 @@ public class NoteManager : MonoBehaviour
             }
             else
             {
-                ResetSet();
+                StartCoroutine(ResetSet());
             }
 
             _currentPlayerCombo.Clear();
@@ -200,8 +205,8 @@ public class NoteManager : MonoBehaviour
         yield return new WaitForSeconds(_comboChangeDelay);
 
         _currentComboCount = 0;
-        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
         ++_currentComboSet;
+        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
 
         if (_currentComboSet >= _currentTier.NoteCombos.Count)
         {
@@ -220,9 +225,15 @@ public class NoteManager : MonoBehaviour
         _pauseBeat = false;
     }
 
-    private void ResetSet()
+    private IEnumerator ResetSet()
     {
+        _pauseBeat = true;
+
+        yield return new WaitForSeconds(_comboChangeDelay);
+
         _currentComboCount = 0;
+
+        _pauseBeat = false;
     }
 
     private void LoadTier(BeatTierType currentTierType)

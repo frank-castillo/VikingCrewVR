@@ -91,6 +91,7 @@ public class BeatManager : MonoBehaviour
         _beatBuildUpPlayed = false;
 
         _noteManager.NoteBeat();
+        _ship.Row();
 
         _beatTimer = _beatDelay;
         _hitWindowTimer = _postHitWindowDelay;
