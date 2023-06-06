@@ -24,10 +24,11 @@ public class NoteManager : MonoBehaviour
     private bool _changingCombo = false;
     private bool _changingTier = false;
 
-    private LevelLoader _levelLoader = null;
+    private UIManager _uiManager = null;
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
-    private UIManager _uiManager = null;
+    private LevelLoader _levelLoader = null;
+    private Ship _ship = null;
     private HammerController _leftHammer = null;
     private HammerController _rightHammer = null;
     private DrumController _rightDrum = null;
@@ -52,8 +53,10 @@ public class NoteManager : MonoBehaviour
 
     public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
     public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
+
     public void SetBeatManager(BeatManager beatManager) { _beatManager = beatManager; }
     public void SetFeedbackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
+    public void SetShip(Ship ship) { _ship = ship; }
 
     public void SetHammers(HammerController leftHammer, HammerController righthammer)
     {
@@ -133,6 +136,11 @@ public class NoteManager : MonoBehaviour
         {
             BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
             _feedbackManager.ConstantBeatFeedback(nextBeat);
+        }
+
+        if (_changingTier == false)
+        {
+            _ship.Row();
         }
     }
 
