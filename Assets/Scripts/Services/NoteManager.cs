@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +14,16 @@ public class NoteManager : MonoBehaviour
     private NoteCombo _currentCombo = null;
     private int _currentComboSet = 0;
     private int _currentComboCount = 0;
-    private bool _beatEnabled = false;
+    private bool _pauseDrums = false;
+
+    [Header("Delays")]
+    [SerializeField] private float _comboChangeDelay = 2.0f;
+    [SerializeField] private float _tierChangeDelay = 5.0f;
 
     private LevelLoader _levelLoader = null;
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
+    private UIManager _uiManager = null;
     private HammerController _leftHammer = null;
     private HammerController _rightHammer = null;
     private DrumController _rightDrum = null;
@@ -29,8 +35,8 @@ public class NoteManager : MonoBehaviour
     private Action<BeatTierType> _tierUpgrade = null;
 
     public BeatTierType CurrentTierType { get => _currentTierType; }
-    public bool IsBeatEnabled { get => _beatEnabled; }
-    private bool IsBeatComboLoaded { get => _currentCombo == null; }
+    
+    public bool PauseDrums { get => _pauseDrums; }
 
     public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
     public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
@@ -54,6 +60,7 @@ public class NoteManager : MonoBehaviour
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
 
         _levelLoader = ServiceLocator.Get<LevelLoader>();
+        _uiManager = ServiceLocator.Get<UIManager>();
 
         return this;
     }
@@ -63,7 +70,6 @@ public class NoteManager : MonoBehaviour
         _currentTierType = BeatTierType.T1;
         LoadTier(_currentTierType);
 
-        _beatEnabled = true;
         _beatManager.StartBeat();
     }
 
@@ -99,22 +105,12 @@ public class NoteManager : MonoBehaviour
 
     public void PreBeat()
     {
-        if (_beatEnabled == false)
-        {
-            return;
-        }
-
         BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
         _feedbackManager.BeatBuildUpFeedback(nextBeat);
     }
 
     public void NoteBeat()
     {
-        if (_beatEnabled == false)
-        {
-            return;
-        }
-
         BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
         _feedbackManager.ConstantBeatFeedback(nextBeat);
     }
@@ -152,7 +148,7 @@ public class NoteManager : MonoBehaviour
         {
             if (IsSuccessfulCombo())
             {
-                LoadNextSet();
+                StartCoroutine(LoadNextSet());
             }
             else
             {
@@ -192,16 +188,18 @@ public class NoteManager : MonoBehaviour
         return text;
     }
 
-    private void LoadNextSet()
+    private IEnumerator LoadNextSet()
     {
+        _pauseDrums = false;
+
+        yield return new WaitForSeconds(_comboChangeDelay);
+
         _currentComboCount = 0;
         _currentCombo = _currentTier.NoteCombos[_currentComboSet];
         ++_currentComboSet;
 
         if (_currentComboSet >= _currentTier.NoteCombos.Count)
         {
-            _beatEnabled = false;
-
             if (_currentTierType == BeatTierType.T3)
             {
                 Debug.Log($"Beat Tiers Cleared");
@@ -213,6 +211,8 @@ public class NoteManager : MonoBehaviour
                 LoadTier(newTier);
             }
         }
+
+        _pauseDrums = true;
     }
 
     private void ResetSet()
@@ -233,8 +233,6 @@ public class NoteManager : MonoBehaviour
         _currentCombo = _currentTier.NoteCombos[_currentComboSet];
 
         _tierUpgrade?.Invoke(_currentTierType);
-
-        _beatEnabled = true;
     }
 
     public void DrumHit(DrumSide drumSide, HammerSide hammerSide)

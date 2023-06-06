@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class BeatManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private float _preHitWindowDelay = 0.2f; // On pre side
     [SerializeField] private float _postHitWindowDelay = 0.2f; // On end side
 
+    [Header("Delay")]
+    [SerializeField] private float _initialDelay = 5.0f;
+
     private NoteManager _noteManager = null;
     private DrumController _rightDrum = null;
     private DrumController _leftDrum = null;
@@ -15,20 +19,17 @@ public class BeatManager : MonoBehaviour
     private float _hitWindowTimer = 0.0f;
     private bool _isOnBeat = false;
     private bool _beatBuildUpPlayed = false;
+    private bool _beatEnabled = false;
 
     public bool IsOnBeat { get => _isOnBeat; }
 
     public void SetNoteManager(NoteManager noteManager) { _noteManager = noteManager; }
+    public void SetBeatEnabled(bool enabled) { _beatEnabled = enabled; }
 
     public void SetDrums(DrumController rightDrum, DrumController leftDrum)
     {
         _rightDrum = rightDrum;
         _leftDrum = leftDrum;
-    }
-
-    public void StartBeat()
-    {
-        _beatTimer = _beatDelay;
     }
 
     public BeatManager Initialize()
@@ -40,12 +41,7 @@ public class BeatManager : MonoBehaviour
 
     private void Update()
     {
-        if (_noteManager == null)
-        {
-            return;
-        }
-
-        if (_noteManager.IsBeatEnabled == false)
+        if (_beatEnabled == false)
         {
             return;
         }
@@ -64,6 +60,19 @@ public class BeatManager : MonoBehaviour
         }
     }
 
+    public void StartBeat()
+    {
+        StartCoroutine(StartBeatCoroutine());
+    }
+
+    private IEnumerator StartBeatCoroutine()
+    {
+        yield return new WaitForSeconds(_initialDelay);
+
+        _beatTimer = _beatDelay;
+        _beatEnabled = true;
+    }
+
     private void EvaluateBeatBuildUp()
     {
         if (_beatBuildUpPlayed == true)
@@ -74,7 +83,11 @@ public class BeatManager : MonoBehaviour
         if (_beatTimer <= _beatBuildUp)
         {
             _beatBuildUpPlayed = true;
-            _noteManager.PreBeat();
+
+            if (_beatEnabled)
+            {
+                _noteManager.PreBeat();
+            }
         }
     }
 
@@ -83,7 +96,10 @@ public class BeatManager : MonoBehaviour
         _isOnBeat = true;
         _beatBuildUpPlayed = false;
 
-        _noteManager.NoteBeat();
+        if (_beatEnabled)
+        {
+            _noteManager.NoteBeat();
+        }
 
         _beatTimer = _beatDelay;
         _hitWindowTimer = _postHitWindowDelay;
