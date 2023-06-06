@@ -18,7 +18,8 @@ public class NoteManager : MonoBehaviour
 
     [Header("Delays")]
     [SerializeField] private float _comboChangeDelay = 2.0f;
-    [SerializeField] private float _tierChangeDelay = 5.0f;
+    [SerializeField] private float _tierChangeTransitionDelay = 2.0f;
+    [SerializeField] private float _tierChangeReturnDelay = 2.0f;
 
     private LevelLoader _levelLoader = null;
     private BeatManager _beatManager = null;
@@ -253,8 +254,14 @@ public class NoteManager : MonoBehaviour
 
     public void DrumHit(DrumSide drumSide, HammerSide hammerSide)
     {
+        if (_pauseBeat)
+        {
+            HitOffBeat(drumSide, hammerSide);
+            return;
+        }
+
         BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
-        if (IsMatchingSideOrBoth(nextBeat, drumSide) && _pauseBeat == false)
+        if (IsMatchingSideOrBoth(nextBeat, drumSide))
         {
             if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
             {
