@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class FeedbackHandler : MonoBehaviour
 {
-    [Header("Misc Feedbacks")]
+    [Header("Direction")]
+    [SerializeField] private BeatDirection _drumDirection = BeatDirection.None;
+
+    [Header("Standard Feedbacks")]
     [SerializeField] private List<Feedback> _onConstantBeatFeedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onMissFeedbacks = new List<Feedback>();
 

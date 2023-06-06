@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteManager : MonoBehaviour
@@ -21,6 +22,9 @@ public class NoteManager : MonoBehaviour
     private HammerController _rightHammer = null;
     private DrumController _rightDrum = null;
     private DrumController _leftDrum = null;
+
+    private List<BeatDirection> _recentPlayerInput = new List<BeatDirection>();
+    private List<BeatDirection> _currentPlayerCombo = new List<BeatDirection>();
 
     private Action<BeatTierType> _tierUpgrade = null;
 
@@ -114,13 +118,77 @@ public class NoteManager : MonoBehaviour
         _feedbackManager.ConstantBeatFeedback(nextBeat);
     }
 
-    public void LoadNextBeat()
+    public void EndOfBeat()
+    {
+        EvaluateBeat();
+        LoadNextBeat();
+    }
+
+    private void EvaluateBeat()
+    {
+        switch (_recentPlayerInput.Count)
+        {
+            case 0: // Empty
+                break;
+            case 1: // Left or Right
+                _currentPlayerCombo.Add(_recentPlayerInput[0]);
+                break;
+            case 2: // Both Left and Right stored
+                _currentPlayerCombo.Add(BeatDirection.Both);
+                break;
+            default:
+                Debug.LogError($"More than 2 recent inputs. Please fix.");
+                break;
+        }
+
+        _recentPlayerInput.Clear();
+    }
+
+    private void LoadNextBeat()
     {
         ++_currentComboCount;
         if (_currentComboCount >= _currentCombo.ComboList.Count)
         {
-            LoadNextSet();
+            if (IsSuccessfulCombo())
+            {
+                LoadNextSet();
+            }
+            else
+            {
+                ResetSet();
+            }
+
+            _currentPlayerCombo.Clear();
         }
+    }
+
+    private bool IsSuccessfulCombo()
+    {
+        string playerInput = WriteList(_currentPlayerCombo);
+        Debug.Log($"Player Input: {playerInput}");
+
+        string requiredInput = WriteList(_currentCombo.ComboList);
+        Debug.Log($"Required Input: {requiredInput}");
+
+        if (string.Compare(playerInput, requiredInput) == 0)
+        {
+            Debug.Log("Combo Success - Loading New Combo");
+            return true;
+        }
+
+        Debug.Log("Combo Failed - Resetting");
+        return false;
+    }
+
+    private string WriteList(List<BeatDirection> comboList)
+    {
+        string text = "";
+        foreach (BeatDirection combo in comboList)
+        {
+            text += $" [{combo}]";
+        }
+
+        return text;
     }
 
     private void LoadNextSet()
@@ -140,11 +208,15 @@ public class NoteManager : MonoBehaviour
             }
             else
             {
-
                 BeatTierType newTier = EvaluateNextTier();
                 LoadTier(newTier);
             }
         }
+    }
+
+    private void ResetSet()
+    {
+        _currentComboCount = 0;
     }
 
     private void LoadTier(BeatTierType currentTierType)
@@ -202,6 +274,7 @@ public class NoteManager : MonoBehaviour
         if (drum.RecentlyHit == false)
         {
             _feedbackManager.OnFirstBeatFeedback(beatDirection);
+            _recentPlayerInput.Add(beatDirection);
         }
         else
         {
