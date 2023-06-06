@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteManager : MonoBehaviour
@@ -21,6 +22,7 @@ public class NoteManager : MonoBehaviour
     private HammerController _rightHammer = null;
     private DrumController _rightDrum = null;
     private DrumController _leftDrum = null;
+    private List<BeatDirection> _recentPlayerInput = new List<BeatDirection>();
 
     private Action<BeatTierType> _tierUpgrade = null;
 
@@ -101,6 +103,8 @@ public class NoteManager : MonoBehaviour
 
         BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
         _feedbackManager.BeatBuildUpFeedback(nextBeat);
+
+        _recentPlayerInput.Clear();
     }
 
     public void NoteBeat()
@@ -195,6 +199,8 @@ public class NoteManager : MonoBehaviour
         {
             HitDrumOnBeat(beatDirection, _rightDrum, hammerSide);
         }
+
+        _recentPlayerInput.Add(beatDirection);
     }
 
     private void HitDrumOnBeat(BeatDirection beatDirection, DrumController drum, HammerSide hammerSide)
