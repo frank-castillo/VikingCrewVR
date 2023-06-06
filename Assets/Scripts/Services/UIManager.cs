@@ -13,12 +13,13 @@ public class UIManager : MonoBehaviour
 
         return this;
     }
-    public void FadeInScreen(float fadeInTime = _defaultFadeTime)
+
+    public void FadeToClear(float fadeInTime = _defaultFadeTime)
     {
         ScreenFader.Instance.FadeToClearFromBlack(fadeInTime);
     }
 
-    public void FadeOutScreen(float fadeOutTime = _defaultFadeTime)
+    public void FadeToBlack(float fadeOutTime = _defaultFadeTime)
     {
         ScreenFader.Instance.FadeToBlack(fadeOutTime);
     }
@@ -40,12 +41,12 @@ public class UIManager : MonoBehaviour
 
             if (GUILayout.Button("Fade Out Screen"))
             {
-                customUIManager.FadeOutScreen();
+                customUIManager.FadeToBlack();
             }
 
             if (GUILayout.Button("Fade In Screen"))
             {
-                customUIManager.FadeInScreen();
+                customUIManager.FadeToClear();
             }
 
             GUILayout.EndHorizontal();

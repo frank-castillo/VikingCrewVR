@@ -77,6 +77,10 @@ public class LevelLoader : AsyncLoader
         {
             ServiceLocator.Register<AudioManager>(_audioManager.Initialize(), true);
         }
+        if (_uiManager != null)
+        {
+            ServiceLocator.Register<UIManager>(_uiManager.Initialize(), true);
+        }
         if (_beatManager != null)
         {
             ServiceLocator.Register<BeatManager>(_beatManager.Initialize(), true);
@@ -92,10 +96,6 @@ public class LevelLoader : AsyncLoader
         if (_cameraUtil != null)
         {
             ServiceLocator.Register<CameraUtil>(_cameraUtil.Initialize(), true);
-        }
-        if (_uiManager != null)
-        {
-            ServiceLocator.Register<UIManager>(_uiManager.Initialize(), true);
         }
 
         // Initialize level specific things here
@@ -123,6 +123,7 @@ public class LevelLoader : AsyncLoader
         _noteManager.SetBeatManager(_beatManager);
         _noteManager.SetHammers(_leftHammer, _rightHammer);
         _noteManager.SetDrums(_ship.RightDrum, _ship.LeftDrum);
+        _noteManager.SetShip(_ship);
     }
 
     private void SetupSceneStart()
@@ -180,7 +181,7 @@ public class LevelLoader : AsyncLoader
     {
         float elapsedTime = 0f;
 
-        _uiManager.FadeOutScreen(fadeOutTime);
+        _uiManager.FadeToBlack(fadeOutTime);
 
         while (elapsedTime < fadeOutTime)
         {

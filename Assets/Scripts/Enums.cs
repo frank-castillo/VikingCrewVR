@@ -15,6 +15,7 @@ public enum BeatDirection
     Left,
     Right,
     Both,
+    IgnoreDrums,
 }
 
 public enum DrumSide
