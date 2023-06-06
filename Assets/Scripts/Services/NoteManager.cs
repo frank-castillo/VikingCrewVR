@@ -14,7 +14,7 @@ public class NoteManager : MonoBehaviour
     private NoteCombo _currentCombo = null;
     private int _currentComboSet = 0;
     private int _currentComboCount = 0;
-    private bool _pauseDrums = false;
+    private bool _pauseBeat = false;
 
     [Header("Delays")]
     [SerializeField] private float _comboChangeDelay = 2.0f;
@@ -35,8 +35,6 @@ public class NoteManager : MonoBehaviour
     private Action<BeatTierType> _tierUpgrade = null;
 
     public BeatTierType CurrentTierType { get => _currentTierType; }
-    
-    public bool PauseDrums { get => _pauseDrums; }
 
     public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
     public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
@@ -71,6 +69,7 @@ public class NoteManager : MonoBehaviour
         LoadTier(_currentTierType);
 
         _beatManager.StartBeat();
+        _pauseBeat = false;
     }
 
     private NoteTier TranslateNoteTier(BeatTierType currentTierType)
@@ -105,14 +104,20 @@ public class NoteManager : MonoBehaviour
 
     public void PreBeat()
     {
-        BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
-        _feedbackManager.BeatBuildUpFeedback(nextBeat);
+        if (_pauseBeat == false)
+        {
+            BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
+            _feedbackManager.BeatBuildUpFeedback(nextBeat);
+        }
     }
 
     public void NoteBeat()
     {
-        BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
-        _feedbackManager.ConstantBeatFeedback(nextBeat);
+        if (_pauseBeat == false)
+        {
+            BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
+            _feedbackManager.ConstantBeatFeedback(nextBeat);
+        }
     }
 
     public void EndOfBeat()
@@ -190,7 +195,7 @@ public class NoteManager : MonoBehaviour
 
     private IEnumerator LoadNextSet()
     {
-        _pauseDrums = false;
+        _pauseBeat = true;
 
         yield return new WaitForSeconds(_comboChangeDelay);
 
@@ -212,7 +217,7 @@ public class NoteManager : MonoBehaviour
             }
         }
 
-        _pauseDrums = true;
+        _pauseBeat = false;
     }
 
     private void ResetSet()
@@ -238,7 +243,7 @@ public class NoteManager : MonoBehaviour
     public void DrumHit(DrumSide drumSide, HammerSide hammerSide)
     {
         BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
-        if (IsMatchingSideOrBoth(nextBeat, drumSide))
+        if (IsMatchingSideOrBoth(nextBeat, drumSide) && _pauseBeat == false)
         {
             if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
             {

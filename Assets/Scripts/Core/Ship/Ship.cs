@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
     [SerializeField] private DrumController _rightDrumController = null;
     [SerializeField] private DrumController _leftDrumController = null;
     [SerializeField] private SailController _sailController = null;
+    [SerializeField] private List<AnimationFeedback> _vikingsRowing = new List<AnimationFeedback>();
     private FeedbackHandler _feedbackHandler = null;
     private TierToggle _tierToggle = null;
 
@@ -28,5 +30,13 @@ public class Ship : MonoBehaviour
     public void ShipWrapUp()
     {
         
+    }
+
+    public void Row()
+    {
+        foreach(var rowFeedback in _vikingsRowing)
+        {
+            rowFeedback.Play();
+        }
     }
 }

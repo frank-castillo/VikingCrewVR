@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BeatManager : MonoBehaviour
 {
@@ -13,6 +12,7 @@ public class BeatManager : MonoBehaviour
     [SerializeField] private float _initialDelay = 5.0f;
 
     private NoteManager _noteManager = null;
+    private Ship _ship = null;
     private DrumController _rightDrum = null;
     private DrumController _leftDrum = null;
     private float _beatTimer = 0.0f;
@@ -24,6 +24,7 @@ public class BeatManager : MonoBehaviour
     public bool IsOnBeat { get => _isOnBeat; }
 
     public void SetNoteManager(NoteManager noteManager) { _noteManager = noteManager; }
+    public void SetShip(Ship ship) { _ship = ship; }
     public void SetBeatEnabled(bool enabled) { _beatEnabled = enabled; }
 
     public void SetDrums(DrumController rightDrum, DrumController leftDrum)
@@ -62,13 +63,6 @@ public class BeatManager : MonoBehaviour
 
     public void StartBeat()
     {
-        StartCoroutine(StartBeatCoroutine());
-    }
-
-    private IEnumerator StartBeatCoroutine()
-    {
-        yield return new WaitForSeconds(_initialDelay);
-
         _beatTimer = _beatDelay;
         _beatEnabled = true;
     }
@@ -96,10 +90,7 @@ public class BeatManager : MonoBehaviour
         _isOnBeat = true;
         _beatBuildUpPlayed = false;
 
-        if (_beatEnabled)
-        {
-            _noteManager.NoteBeat();
-        }
+        _noteManager.NoteBeat();
 
         _beatTimer = _beatDelay;
         _hitWindowTimer = _postHitWindowDelay;
