@@ -42,7 +42,7 @@ public class RegionTreadmill : MonoBehaviour
         }
 
         SetupEvents();
-
+        _finalRegion.gameObject.SetActive(false);
         ChangeSpeed(BeatTierType.T1);
         _initialized = true;
     }
