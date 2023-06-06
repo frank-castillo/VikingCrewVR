@@ -97,7 +97,8 @@ public class BeatManager : MonoBehaviour
         {
             _isOnBeat = false;
             ResetDrums();
-            _noteManager.LoadNextBeat();
+
+            _noteManager.EndOfBeat();
         }
     }
 
