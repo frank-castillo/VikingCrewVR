@@ -126,17 +126,19 @@ public class NoteManager : MonoBehaviour
 
     private void EvaluateBeat()
     {
-        if (_recentPlayerInput.Count == 1)
+        switch (_recentPlayerInput.Count)
         {
-            _currentPlayerCombo.Add(_recentPlayerInput[0]);
-        }
-        else if (_recentPlayerInput.Count == 2) // Left and right stored
-        {
-            _currentPlayerCombo.Add(BeatDirection.Both);
-        }
-        else
-        {
-            Debug.LogError($"More than 2 recent inputs. Please fix.");
+            case 0: // Empty
+                break;
+            case 1: // Left or Right
+                _currentPlayerCombo.Add(_recentPlayerInput[0]);
+                break;
+            case 2: // Both Left and Right stored
+                _currentPlayerCombo.Add(BeatDirection.Both);
+                break;
+            default:
+                Debug.LogError($"More than 2 recent inputs. Please fix.");
+                break;
         }
 
         _recentPlayerInput.Clear();
