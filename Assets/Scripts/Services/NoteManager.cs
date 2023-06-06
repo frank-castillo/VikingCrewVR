@@ -30,6 +30,7 @@ public class NoteManager : MonoBehaviour
 
     public BeatTierType CurrentTierType { get => _currentTierType; }
     public bool IsBeatEnabled { get => _beatEnabled; }
+    private bool IsBeatComboLoaded { get => _currentCombo == null; }
 
     public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
     public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
@@ -98,7 +99,7 @@ public class NoteManager : MonoBehaviour
 
     public void PreBeat()
     {
-        if (_currentCombo == null || _beatEnabled == false)
+        if (_beatEnabled == false)
         {
             return;
         }
@@ -109,7 +110,7 @@ public class NoteManager : MonoBehaviour
 
     public void NoteBeat()
     {
-        if (_currentCombo == null || _beatEnabled == false)
+        if (_beatEnabled == false)
         {
             return;
         }
