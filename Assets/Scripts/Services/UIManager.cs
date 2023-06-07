@@ -7,9 +7,12 @@ using UnityEditor;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private const float _defaultFadeTime = 2.0f;
+    [SerializeField] private GameObject _difficultySelectionUI = null;
+
     public UIManager Initialize()
     {
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
+        _difficultySelectionUI.SetActive(true);
 
         return this;
     }
@@ -22,6 +25,11 @@ public class UIManager : MonoBehaviour
     public void FadeToBlack(float fadeOutTime = _defaultFadeTime)
     {
         ScreenFader.Instance.FadeToBlack(fadeOutTime);
+    }
+
+    public void TurnOffDifficultySelection()
+    {
+        _difficultySelectionUI.SetActive(false);
     }
 
     //TODO: Delete this after tests are done!

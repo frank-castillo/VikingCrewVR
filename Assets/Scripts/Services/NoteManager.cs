@@ -23,6 +23,8 @@ public class NoteManager : MonoBehaviour
     private int _currentComboCount = 0;
     private bool _changingCombo = false;
     private bool _changingTier = false;
+    private DifficultyLevel _currentDifficultyLevel = DifficultyLevel.None;
+
 
     private UIManager _uiManager = null;
     private BeatManager _beatManager = null;
@@ -43,7 +45,7 @@ public class NoteManager : MonoBehaviour
 
     public bool IsBeatPaused()
     {
-        if (_changingCombo || _changingTier)
+        if (_changingCombo || _changingTier || _currentDifficultyLevel == DifficultyLevel.None)
         {
             return true;
         }
@@ -76,6 +78,7 @@ public class NoteManager : MonoBehaviour
 
         _levelLoader = ServiceLocator.Get<LevelLoader>();
         _uiManager = ServiceLocator.Get<UIManager>();
+        _currentDifficultyLevel = DifficultyLevel.None;
 
         return this;
     }
@@ -300,6 +303,12 @@ public class NoteManager : MonoBehaviour
 
     public void DrumHit(DrumSide drumSide, HammerSide hammerSide)
     {
+        if (_currentDifficultyLevel == DifficultyLevel.None)
+        {
+            SetDificultyLevel(drumSide, hammerSide);
+            return;
+        }
+
         if (IsBeatPaused())
         {
             HitOffBeat(drumSide, hammerSide);
@@ -408,5 +417,33 @@ public class NoteManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void SetDificultyLevel(DrumSide drumSide, HammerSide hammerSide)
+    { 
+        switch (drumSide)
+        {
+            case DrumSide.Left:
+                _currentDifficultyLevel = DifficultyLevel.Beginner;
+                break;
+            case DrumSide.Right:
+                _currentDifficultyLevel = DifficultyLevel.Expert;
+                break;
+            default:
+                Enums.InvalidSwitch(GetType(), drumSide.GetType());
+                break;
+        }
+
+        if(drumSide!=DrumSide.None)
+        {
+            _beatManager.SetDifficulty(_currentDifficultyLevel);
+            _uiManager.TurnOffDifficultySelection();
+
+            BeatDirection beatDirection = DrumSideToDirection(drumSide);
+            _feedbackManager.OnFirstBeatFeedback(beatDirection);
+            PlayHammerHaptic(hammerSide, HapticIntensity.High);
+
+            Debug.Log($"Difficulty selected! -> [{_currentDifficultyLevel}] <-");
+        }
     }
 }

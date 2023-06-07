@@ -1,12 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BeatManager : MonoBehaviour
 {
     [Header("Beat Timers")]
     [SerializeField] private float _beatDelay = 0.75f;
     [SerializeField] private float _beatBuildUp = 0.75f;
-    [SerializeField] private float _preHitWindowDelay = 0.2f; // On pre side
-    [SerializeField] private float _postHitWindowDelay = 0.2f; // On end side
+
+    private float _preHitWindowDelay = 0.0f; // On pre side
+    private float _postHitWindowDelay = 0.0f; // On end side
+
+    [SerializeField] private float _beginnerPreHitWindowDelay = 0.3f;
+    [SerializeField] private float _beginnerPostHitWindowDelay = 0.45f;
+    [SerializeField] private float _expertPreHitWindowDelay = 0.2f;
+    [SerializeField] private float _expertPostHitWindowDelay = 0.45f;
 
     //[Header("Delay")]
     //[SerializeField] private float _initialDelay = 5.0f;
@@ -117,5 +124,29 @@ public class BeatManager : MonoBehaviour
     {
         float delta = _beatTimer - _preHitWindowDelay;
         return delta < 0;
+    }
+
+    public void SetDifficulty(DifficultyLevel difficultyLevel)
+    {
+        switch (difficultyLevel)
+        {
+            case DifficultyLevel.None:
+                Debug.LogError("Wrong Difficulty Parameter!");
+                break;
+            case DifficultyLevel.Beginner:
+                _preHitWindowDelay = _beginnerPreHitWindowDelay;
+                _postHitWindowDelay = _beginnerPostHitWindowDelay;
+                break;
+            case DifficultyLevel.Expert:
+                _preHitWindowDelay = _expertPreHitWindowDelay;
+                _postHitWindowDelay = _expertPostHitWindowDelay;
+                break;
+
+            default:
+                Enums.InvalidSwitch(GetType(), difficultyLevel.GetType());
+                break;
+        }
+
+        Debug.Log($"Hit Window Parameters [{difficultyLevel.ToString()}]: Pre [{_preHitWindowDelay}] |  Post [{_postHitWindowDelay}]");
     }
 }

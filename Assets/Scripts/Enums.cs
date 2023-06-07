@@ -75,6 +75,12 @@ public enum VikingAnimationType
     Yawn,
 }
 
+public enum DifficultyLevel
+{
+    None = -1,
+    Beginner,
+    Expert
+}
 public class Enums
 {
     public static void InvalidSwitch(Type script, Type type)
