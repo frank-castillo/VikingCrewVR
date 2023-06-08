@@ -21,42 +21,30 @@ public class NoteManager : MonoBehaviour
     private NoteCombo _currentCombo = null;
     private int _currentComboSet = 0;
     private int _currentComboCount = 0;
-    private bool _changingCombo = false;
-    private bool _changingTier = false;
 
-    private UIManager _uiManager = null;
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
     private LevelLoader _levelLoader = null;
     private Ship _ship = null;
     private HammerController _leftHammer = null;
     private HammerController _rightHammer = null;
-    private DrumController _rightDrum = null;
-    private DrumController _leftDrum = null;
-
-    private List<BeatDirection> _recentPlayerInput = new List<BeatDirection>();
-    private List<BeatDirection> _currentPlayerCombo = new List<BeatDirection>();
+    private DrumController _drum = null;
 
     private Action<BeatTierType> _tierUpgrade = null;
 
     public BeatTierType CurrentTierType { get => _currentTierType; }
 
-    public bool IsBeatPaused()
-    {
-        if (_changingCombo || _changingTier)
-        {
-            return true;
-        }
-
-        return false;
-    }
 
     public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
     public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
 
     public void SetBeatManager(BeatManager beatManager) { _beatManager = beatManager; }
     public void SetFeedbackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
-    public void SetShip(Ship ship) { _ship = ship; }
+    public void SetShip(Ship ship)
+    {
+        _ship = ship;
+        _drum = ship.Drum;
+    }
 
     public void SetHammers(HammerController leftHammer, HammerController righthammer)
     {
@@ -64,10 +52,9 @@ public class NoteManager : MonoBehaviour
         _rightHammer = righthammer;
     }
 
-    public void SetDrums(DrumController rightDrum, DrumController leftDrum)
+    public void SetDrums(DrumController drum)
     {
-        _rightDrum = rightDrum;
-        _leftDrum = leftDrum;
+        _drum = drum;
     }
 
     public NoteManager Initialize()
@@ -75,18 +62,14 @@ public class NoteManager : MonoBehaviour
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
 
         _levelLoader = ServiceLocator.Get<LevelLoader>();
-        _uiManager = ServiceLocator.Get<UIManager>();
 
         return this;
     }
 
     public void SetupInitialNoteTier()
     {
-        _changingCombo = false;
-        _changingTier = false;
-
         _currentTierType = BeatTierType.T1;
-        LoadTier(_currentTierType, false);
+        LoadTier(_currentTierType);
 
         _beatManager.StartBeat();
     }
@@ -123,111 +106,31 @@ public class NoteManager : MonoBehaviour
 
     public void PreBeat()
     {
-        if (IsBeatPaused() == false)
-        {
-            BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
-            _feedbackManager.BeatBuildUpFeedback(nextBeat);
-        }
+        _feedbackManager.BeatBuildUpFeedback(BeatDirection.Both);
     }
 
     public void NoteBeat()
     {
-        if (IsBeatPaused() == false)
-        {
-            BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
-            _feedbackManager.ConstantBeatFeedback(nextBeat);
-        }
-
-        if (_changingTier == false)
-        {
-            _ship.Row();
-        }
+        _feedbackManager.ConstantBeatFeedback(BeatDirection.Both);
+        _ship.Row();
     }
 
     public void EndOfBeat()
     {
-        EvaluateBeat();
         LoadNextBeat();
-    }
-
-    private void EvaluateBeat()
-    {
-        switch (_recentPlayerInput.Count)
-        {
-            case 0: // Empty
-                break;
-            case 1: // Left or Right
-                _currentPlayerCombo.Add(_recentPlayerInput[0]);
-                break;
-            case 2: // Both Left and Right stored
-                _currentPlayerCombo.Add(BeatDirection.Both);
-                break;
-            default:
-                Debug.LogError($"More than 2 recent inputs. Please fix.");
-                break;
-        }
-
-        _recentPlayerInput.Clear();
     }
 
     private void LoadNextBeat()
     {
-        if (IsBeatPaused())
-        {
-            return;
-        }
-
         ++_currentComboCount;
         if (_currentComboCount >= _currentCombo.ComboList.Count)
         {
-            if (IsSuccessfulCombo())
-            {
-                StartCoroutine(LoadNextSet());
-            }
-            else
-            {
-                StartCoroutine(ResetSet());
-            }
-
-            _currentPlayerCombo.Clear();
+            LoadNextSet();
         }
     }
 
-    private bool IsSuccessfulCombo()
+    private void LoadNextSet()
     {
-        string playerInput = WriteList(_currentPlayerCombo);
-        Debug.Log($"Player Input: {playerInput}");
-
-        string requiredInput = WriteList(_currentCombo.ComboList);
-        Debug.Log($"Required Input: {requiredInput}");
-
-        if (string.Compare(playerInput, requiredInput) == 0)
-        {
-            Debug.Log("Combo Success - Loading New Combo");
-            return true;
-        }
-
-        Debug.Log("Combo Failed - Resetting");
-        return false;
-    }
-
-    private string WriteList(List<BeatDirection> comboList)
-    {
-        string text = "";
-        foreach (BeatDirection combo in comboList)
-        {
-            text += $" [{combo}]";
-        }
-
-        return text;
-    }
-
-    private IEnumerator LoadNextSet()
-    {
-        _changingCombo = true;
-
-        yield return new WaitForSeconds(_comboChangeDelay);
-
         _currentComboCount = 0;
         ++_currentComboSet;
 
@@ -241,43 +144,18 @@ public class NoteManager : MonoBehaviour
             else
             {
                 BeatTierType newTier = EvaluateNextTier();
-                LoadTier(newTier, true);
+                LoadTier(newTier);
             }
         }
         else
         {
             _currentCombo = _currentTier.NoteCombos[_currentComboSet];
         }
-
-        _changingCombo = false;
     }
 
-    private IEnumerator ResetSet()
-    {
-        _changingCombo = true;
-
-        yield return new WaitForSeconds(_comboChangeDelay);
-
-        _currentComboCount = 0;
-
-        _changingCombo = false;
-    }
-
-    private void LoadTier(BeatTierType currentTierType, bool fade)
+    private void LoadTier(BeatTierType currentTierType)
     {
         Debug.Log($"Loading New Tier [{currentTierType}]");
-        StartCoroutine(TierTransitionCoroutine(currentTierType, fade));
-    }
-
-    private IEnumerator TierTransitionCoroutine(BeatTierType currentTierType, bool fade)
-    {
-        _changingTier = true;
-
-        if (fade)
-        {
-            _uiManager.FadeToBlack(_fadeDuration);
-            yield return new WaitForSeconds(_postFadeToBlackDelay);
-        }
 
         _currentTierType = currentTierType;
         _currentTier = TranslateNoteTier(currentTierType);
@@ -288,53 +166,24 @@ public class NoteManager : MonoBehaviour
         _currentCombo = _currentTier.NoteCombos[_currentComboSet];
 
         _tierUpgrade?.Invoke(_currentTierType);
-
-        if (fade)
-        {
-            yield return new WaitForSeconds(_returnToCLearDelay);
-            _uiManager.FadeToClear(_fadeDuration);
-        }
-
-        _changingTier = false;
     }
 
-    public void DrumHit(DrumSide drumSide, HammerSide hammerSide)
+    public void DrumHit(HammerSide hammerSide)
     {
-        if (IsBeatPaused())
+        if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
         {
-            HitOffBeat(drumSide, hammerSide);
-            return;
-        }
-
-        BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
-        if (IsMatchingSideOrBoth(nextBeat, drumSide))
-        {
-            if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
-            {
-                HitOnBeat(drumSide, hammerSide);
-            }
-            else
-            {
-                HitOffBeat(drumSide, hammerSide);
-            }
+            HitOnBeat(hammerSide);
         }
         else
         {
-            HitOffBeat(drumSide, hammerSide);
+            HitOffBeat(hammerSide);
         }
     }
 
-    private void HitOnBeat(DrumSide drumSide, HammerSide hammerSide)
+    private void HitOnBeat(HammerSide hammerSide)
     {
-        BeatDirection beatDirection = DrumSideToDirection(drumSide);
-        if (beatDirection == BeatDirection.Left)
-        {
-            HitDrumOnBeat(beatDirection, _leftDrum, hammerSide);
-        }
-        else
-        {
-            HitDrumOnBeat(beatDirection, _rightDrum, hammerSide);
-        }
+        BeatDirection beatDirection = BeatDirection.Both;
+        HitDrumOnBeat(beatDirection, _drum, hammerSide);
     }
 
     private void HitDrumOnBeat(BeatDirection beatDirection, DrumController drum, HammerSide hammerSide)
@@ -342,7 +191,6 @@ public class NoteManager : MonoBehaviour
         if (drum.RecentlyHit == false)
         {
             _feedbackManager.OnFirstBeatFeedback(beatDirection);
-            _recentPlayerInput.Add(beatDirection);
         }
         else
         {
@@ -354,9 +202,9 @@ public class NoteManager : MonoBehaviour
         drum.SetRecentlyHit(true);
     }
 
-    private void HitOffBeat(DrumSide drumSide, HammerSide hammerSide)
+    private void HitOffBeat(HammerSide hammerSide)
     {
-        _feedbackManager.OffBeatFeedback(DrumSideToDirection(drumSide));
+        _feedbackManager.OffBeatFeedback(BeatDirection.Both);
         PlayHammerHaptic(hammerSide, HapticIntensity.Low);
     }
 
@@ -374,39 +222,5 @@ public class NoteManager : MonoBehaviour
                 Enums.InvalidSwitch(GetType(), hammerSide.GetType());
                 break;
         }
-    }
-
-    private BeatDirection DrumSideToDirection(DrumSide hammerType)
-    {
-        switch (hammerType)
-        {
-            case DrumSide.Left:
-                return BeatDirection.Left;
-            case DrumSide.Right:
-                return BeatDirection.Right;
-            default:
-                Enums.InvalidSwitch(GetType(), hammerType.GetType());
-                return BeatDirection.None;
-        }
-    }
-
-    private bool IsMatchingSideOrBoth(BeatDirection beatDirection, DrumSide drumSide)
-    {
-        if (beatDirection == BeatDirection.Both)
-        {
-            return true;
-        }
-
-        if (beatDirection == BeatDirection.Left && drumSide == DrumSide.Left)
-        {
-            return true;
-        }
-
-        if (beatDirection == BeatDirection.Right && drumSide == DrumSide.Right)
-        {
-            return true;
-        }
-
-        return false;
     }
 }
