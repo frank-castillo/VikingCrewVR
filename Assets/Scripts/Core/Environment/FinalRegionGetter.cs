@@ -7,15 +7,18 @@ public class FinalRegionGetter : MonoBehaviour
 
     private LevelLoader _levelLoader = null;
     private bool _experienceEnded = false;
+    private bool _initialized = false;
 
     public void Initialize()
     {
         _levelLoader = ServiceLocator.Get<LevelLoader>();
+
+        _initialized = true;
     }
 
     private void Update()
     {
-        if(_experienceEnded)
+        if (_experienceEnded || _initialized == false)
         {
             return;
         }

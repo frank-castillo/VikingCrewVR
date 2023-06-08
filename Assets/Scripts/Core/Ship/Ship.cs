@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    [SerializeField] private DrumController _rightDrumController = null;
-    [SerializeField] private DrumController _leftDrumController = null;
+    [SerializeField] private DrumController _drum = null;
     [SerializeField] private SailController _sailController = null;
     [SerializeField] private List<AnimationFeedback> _vikingsRowing = new List<AnimationFeedback>();
     private FeedbackHandler _feedbackHandler = null;
     private TierToggle _tierToggle = null;
 
-    public DrumController RightDrum { get => _rightDrumController; }
-    public DrumController LeftDrum { get => _leftDrumController; }
+    public DrumController Drum { get => _drum; }
 
     public void Initialize()
     {
@@ -22,8 +20,7 @@ public class Ship : MonoBehaviour
 
         _feedbackHandler.Initialize();
         _tierToggle.Initialize();
-        _rightDrumController.Initialize();
-        _leftDrumController.Initialize();
+        _drum.Initialize();
         _sailController.Initialize();
     }
 
