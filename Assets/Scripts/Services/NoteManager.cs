@@ -31,8 +31,7 @@ public class NoteManager : MonoBehaviour
     private Ship _ship = null;
     private HammerController _leftHammer = null;
     private HammerController _rightHammer = null;
-    private DrumController _rightDrum = null;
-    private DrumController _leftDrum = null;
+    private DrumController _drum = null;
 
     private List<BeatDirection> _recentPlayerInput = new List<BeatDirection>();
     private List<BeatDirection> _currentPlayerCombo = new List<BeatDirection>();
@@ -56,7 +55,11 @@ public class NoteManager : MonoBehaviour
 
     public void SetBeatManager(BeatManager beatManager) { _beatManager = beatManager; }
     public void SetFeedbackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
-    public void SetShip(Ship ship) { _ship = ship; }
+    public void SetShip(Ship ship)
+    {
+        _ship = ship;
+        _drum = ship.Drum;
+    }
 
     public void SetHammers(HammerController leftHammer, HammerController righthammer)
     {
@@ -64,10 +67,9 @@ public class NoteManager : MonoBehaviour
         _rightHammer = righthammer;
     }
 
-    public void SetDrums(DrumController rightDrum, DrumController leftDrum)
+    public void SetDrums(DrumController drum)
     {
-        _rightDrum = rightDrum;
-        _leftDrum = leftDrum;
+        _drum = drum;
     }
 
     public NoteManager Initialize()
@@ -125,8 +127,7 @@ public class NoteManager : MonoBehaviour
     {
         if (IsBeatPaused() == false)
         {
-            BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
-            _feedbackManager.BeatBuildUpFeedback(nextBeat);
+            _feedbackManager.BeatBuildUpFeedback(BeatDirection.Both);
         }
     }
 
@@ -134,8 +135,7 @@ public class NoteManager : MonoBehaviour
     {
         if (IsBeatPaused() == false)
         {
-            BeatDirection nextBeat = _currentCombo.ComboList[_currentComboCount];
-            _feedbackManager.ConstantBeatFeedback(nextBeat);
+            _feedbackManager.ConstantBeatFeedback(BeatDirection.Both);
         }
 
         if (_changingTier == false)
@@ -327,14 +327,7 @@ public class NoteManager : MonoBehaviour
     private void HitOnBeat(DrumSide drumSide, HammerSide hammerSide)
     {
         BeatDirection beatDirection = DrumSideToDirection(drumSide);
-        if (beatDirection == BeatDirection.Left)
-        {
-            HitDrumOnBeat(beatDirection, _leftDrum, hammerSide);
-        }
-        else
-        {
-            HitDrumOnBeat(beatDirection, _rightDrum, hammerSide);
-        }
+        HitDrumOnBeat(beatDirection, _drum, hammerSide);
     }
 
     private void HitDrumOnBeat(BeatDirection beatDirection, DrumController drum, HammerSide hammerSide)
