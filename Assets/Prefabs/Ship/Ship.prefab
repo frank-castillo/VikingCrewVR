@@ -2819,8 +2819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be988203b7af7e34fa0ee8c9ac7be429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rightDrumController: {fileID: 0}
-  _leftDrumController: {fileID: 8774699815642003198}
+  _drum: {fileID: 8774699815642003198}
   _sailController: {fileID: 3530456159537067465}
   _vikingsRowing:
   - {fileID: 6238688355921934687}
@@ -4181,11 +4180,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7205178868203544024}
     m_Modifications:
-    - target: {fileID: 4126224522024273644, guid: 81d705ec061601a4c9031aaa04246e12,
-        type: 3}
-      propertyPath: m_Name
-      value: Torches
-      objectReference: {fileID: 0}
     - target: {fileID: 2835303776934349445, guid: 81d705ec061601a4c9031aaa04246e12,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4240,6 +4234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126224522024273644, guid: 81d705ec061601a4c9031aaa04246e12,
+        type: 3}
+      propertyPath: m_Name
+      value: Torches
       objectReference: {fileID: 0}
     - target: {fileID: 3596553153753118916, guid: 81d705ec061601a4c9031aaa04246e12,
         type: 3}
