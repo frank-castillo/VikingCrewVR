@@ -31,15 +31,15 @@ public class RegionTreadmill : MonoBehaviour
 
         _noteManager = ServiceLocator.Get<NoteManager>();
 
-        foreach (Transform child in _regionFolder)
-        {
-            var region = child.GetComponent<Region>();
-            if (region.gameObject.activeInHierarchy)
-            {
-                region.Initialize();
-                _regions.Add(region);
-            }
-        }
+        //foreach (Transform child in _regionFolder)
+        //{
+        //    var region = child.GetComponent<Region>();
+        //    if (region.gameObject.activeInHierarchy)
+        //    {
+        //        region.Initialize();
+        //        _regions.Add(region);
+        //    }
+        //}
 
         SetupEvents();
         _finalRegion.gameObject.SetActive(false);
