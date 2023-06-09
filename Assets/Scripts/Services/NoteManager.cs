@@ -18,7 +18,7 @@ public class NoteManager : MonoBehaviour
 
     private BeatTierType _currentTierType = BeatTierType.None;
     private NoteTier _currentTier = null;
-    private NoteCombo _currentCombo = null;
+    private Notes _currentCombo = null;
     private int _currentComboSet = 0;
     private int _currentComboCount = 0;
 
@@ -122,11 +122,11 @@ public class NoteManager : MonoBehaviour
 
     private void LoadNextBeat()
     {
-        ++_currentComboCount;
-        if (_currentComboCount >= _currentCombo.ComboList.Count)
-        {
-            LoadNextSet();
-        }
+        //++_currentComboCount;
+        //if (_currentComboCount >= _currentCombo.ComboList.Count)
+        //{
+        //    LoadNextSet();
+        //}
     }
 
     private void LoadNextSet()
@@ -134,7 +134,7 @@ public class NoteManager : MonoBehaviour
         _currentComboCount = 0;
         ++_currentComboSet;
 
-        if (_currentComboSet >= _currentTier.NoteCombos.Count)
+        if (_currentComboSet >= _currentTier.NoteList.Count)
         {
             if (_currentTierType == BeatTierType.T3)
             {
@@ -149,7 +149,7 @@ public class NoteManager : MonoBehaviour
         }
         else
         {
-            _currentCombo = _currentTier.NoteCombos[_currentComboSet];
+            _currentCombo = _currentTier.NoteList[_currentComboSet];
         }
     }
 
@@ -163,7 +163,7 @@ public class NoteManager : MonoBehaviour
         _currentComboSet = 0;
         _currentComboCount = 0;
 
-        _currentCombo = _currentTier.NoteCombos[_currentComboSet];
+        _currentCombo = _currentTier.NoteList[_currentComboSet];
 
         _tierUpgrade?.Invoke(_currentTierType);
     }
