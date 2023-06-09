@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6824130996043186933}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Region4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,9 +119,18 @@ PrefabInstance:
     - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4152277749087704461, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2647483435002994456, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
+    - {fileID: 2647483435002994456, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
+    - {fileID: 2647483435002994456, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
+    - {fileID: 2647483435002994456, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
 --- !u!4 &8043878474955486499 stripped
 Transform:
@@ -221,7 +230,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4152277749087704461, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2647483435002994456, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
 --- !u!4 &5631053589614699318 stripped
 Transform:
@@ -314,9 +329,15 @@ PrefabInstance:
     - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4152277749087704461, guid: e00c568b2a9d0444b808660de9d1bf6d,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2647483435002994456, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
 --- !u!4 &6294738601999590284 stripped
 Transform:
@@ -409,14 +430,15 @@ PrefabInstance:
     - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 7709012541605622401, guid: e00c568b2a9d0444b808660de9d1bf6d,
+    - target: {fileID: 4152277749087704461, guid: e00c568b2a9d0444b808660de9d1bf6d,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2647483435002994456, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e00c568b2a9d0444b808660de9d1bf6d, type: 3}
 --- !u!4 &2807064396365522466 stripped
 Transform:

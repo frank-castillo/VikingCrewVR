@@ -114,7 +114,6 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
     {
         if (_isInitalized == false)
         {
-            Debug.LogError($"{GetType()} on {gameObject.name} is calling OnDestroy but is never Initialized");
             return;
         }
 
@@ -123,10 +122,10 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void OnFirstHitFeedback(BeatDirection beatDirection)
     {
-        if (IsCorrectDrum(beatDirection) == false)
-        {
-            return;
-        }
+        //if (IsCorrectDrum(beatDirection) == false)
+        //{
+        //    return;
+        //}
 
         switch (_noteManager.CurrentTierType)
         {
@@ -152,20 +151,20 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void ConstantBeatFeedback(BeatDirection beatDirection)
     {
-        if (IsMatchingSideOrBoth(beatDirection) == false)
-        {
-            return;
-        }
+        //if (IsMatchingSideOrBoth(beatDirection) == false)
+        //{
+        //    return;
+        //}
 
         PlayFeedbacks(_onConstantBeatFeedbacks);
     }
 
     private void OnMinorHitFeedback(BeatDirection beatDirection)
     {
-        if (IsCorrectDrum(beatDirection) == false)
-        {
-            return;
-        }
+        //if (IsCorrectDrum(beatDirection) == false)
+        //{
+        //    return;
+        //}
 
         switch (_noteManager.CurrentTierType)
         {
@@ -191,10 +190,10 @@ public class DrumResponseFeedbackHandler : MonoBehaviour
 
     private void OnMissFeedback(BeatDirection beatDirection)
     {
-        if (IsCorrectDrum(beatDirection) == false)
-        {
-            return;
-        }
+        //if (IsCorrectDrum(beatDirection) == false)
+        //{
+        //    return;
+        //}
 
         PlayFeedbacks(_onMissFeedbacks);
     }

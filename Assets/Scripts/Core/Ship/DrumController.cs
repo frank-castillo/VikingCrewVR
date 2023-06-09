@@ -80,7 +80,7 @@ public class DrumController : MonoBehaviour
                 hammerSde = HammerSide.Right;
             }
 
-            _noteManager.DrumHit(_drumSide, hammerSde);
+            _noteManager.DrumHit(hammerSde);
         }
     }
 
@@ -99,67 +99,17 @@ public class DrumController : MonoBehaviour
 
     private void PlayRuneSFX(BeatDirection beatDirection)
     {
-        if (IsMatchingSideOrBoth(beatDirection) == false)
-        {
-            return;
-        }
-
         _audioManager.PlaySFX(SFXType.DrumHum);
     }
 
     private void PlayVacuum(BeatDirection beatDirection)
     {
-        if (IsMatchingSideOrBoth(beatDirection) == false)
-        {
-            return;
-        }
-
         _vacuumParticles.Play();
         _audioManager.PlaySFX(SFXType.DrumVacuum);
     }
 
     private void PlaySuccessVFX(BeatDirection beatDirection)
     {
-        if (IsMatchingSide(beatDirection) == false)
-        {
-            return;
-        }
-
         _successVFX.Play();
-    }
-
-    private bool IsMatchingSide(BeatDirection beatDirection)
-    {
-        if (beatDirection == BeatDirection.Left && _drumSide == DrumSide.Left)
-        {
-            return true;
-        }
-
-        if (beatDirection == BeatDirection.Right && _drumSide == DrumSide.Right)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    private bool IsMatchingSideOrBoth(BeatDirection beatDirection)
-    {
-        if (beatDirection == BeatDirection.Both)
-        {
-            return true;
-        }
-
-        if (beatDirection == BeatDirection.Left && _drumSide == DrumSide.Left)
-        {
-            return true;
-        }
-
-        if (beatDirection == BeatDirection.Right && _drumSide == DrumSide.Right)
-        {
-            return true;
-        }
-
-        return false;
     }
 }
