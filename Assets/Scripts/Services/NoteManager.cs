@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteManager : MonoBehaviour
@@ -10,18 +8,8 @@ public class NoteManager : MonoBehaviour
     [SerializeField] private NoteTier _tier2NoteCombos = null;
     [SerializeField] private NoteTier _tier3NoteComobs = null;
 
-    [Header("Delays")]
-    [SerializeField] private float _comboChangeDelay = 2.0f;
-    [SerializeField] private float _fadeDuration = 2.0f;
-    [SerializeField] private float _postFadeToBlackDelay = 2.0f;
-    [SerializeField] private float _returnToCLearDelay = 2.0f;
-
     private BeatTierType _currentTierType = BeatTierType.None;
     private NoteTier _currentTier = null;
-    private Notes _currentCombo = null;
-    private int _currentComboSet = 0;
-    private int _currentComboCount = 0;
-
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
     private LevelLoader _levelLoader = null;
@@ -29,11 +17,15 @@ public class NoteManager : MonoBehaviour
     private HammerController _leftHammer = null;
     private HammerController _rightHammer = null;
     private DrumController _drum = null;
+    private Notes _nextNote = null;
+    private int _noteProgress = 0;
+    private int _currentTierProgress = 0;
+    private float _emitterDelay = 0.0f;
+    private bool _emitterActive = false;
 
     private Action<BeatTierType> _tierUpgrade = null;
 
     public BeatTierType CurrentTierType { get => _currentTierType; }
-
 
     public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
     public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
@@ -52,11 +44,6 @@ public class NoteManager : MonoBehaviour
         _rightHammer = righthammer;
     }
 
-    public void SetDrums(DrumController drum)
-    {
-        _drum = drum;
-    }
-
     public NoteManager Initialize()
     {
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
@@ -66,12 +53,27 @@ public class NoteManager : MonoBehaviour
         return this;
     }
 
+    private void Update()
+    {
+        if (_emitterActive == false)
+        {
+            return;
+        }
+
+        _emitterDelay -= Time.deltaTime;
+
+        if (_emitterDelay < 0.0f)
+        {
+            EmitNextParticle();
+        }
+    }
+
     public void SetupInitialNoteTier()
     {
         _currentTierType = BeatTierType.T1;
         LoadTier(_currentTierType);
 
-        _beatManager.StartBeat();
+        _emitterActive = true;
     }
 
     private NoteTier TranslateNoteTier(BeatTierType currentTierType)
@@ -106,50 +108,42 @@ public class NoteManager : MonoBehaviour
 
     public void PreBeat()
     {
-        _feedbackManager.BeatBuildUpFeedback(BeatDirection.Both);
+        _feedbackManager.BeatBuildUpFeedback();
     }
 
-    public void NoteBeat()
+    private void EmitNextParticle()
     {
-        _feedbackManager.ConstantBeatFeedback(BeatDirection.Both);
-        _ship.Row();
-    }
-
-    public void EndOfBeat()
-    {
+        _drum.EmitParticle();
         LoadNextBeat();
     }
 
     private void LoadNextBeat()
     {
-        //++_currentComboCount;
-        //if (_currentComboCount >= _currentCombo.ComboList.Count)
-        //{
-        //    LoadNextSet();
-        //}
-    }
-
-    private void LoadNextSet()
-    {
-        _currentComboCount = 0;
-        ++_currentComboSet;
-
-        if (_currentComboSet >= _currentTier.NoteList.Count)
+        ++_noteProgress;
+        if (_noteProgress >= _currentTier.NoteList.Count)
         {
-            if (_currentTierType == BeatTierType.T3)
-            {
-                Debug.Log($"Beat Tiers Cleared");
-                _levelLoader.WrapUpSequence();
-            }
-            else
-            {
-                BeatTierType newTier = EvaluateNextTier();
-                LoadTier(newTier);
-            }
+            LoadNextTier();
         }
         else
         {
-            _currentCombo = _currentTier.NoteList[_currentComboSet];
+            LoadNextNote();
+        }
+    }
+
+    private void LoadNextTier()
+    {
+        ++_currentTierProgress;
+
+        if (_currentTierType == BeatTierType.T3)
+        {
+            Debug.Log($"Beat Tiers Cleared");
+            _levelLoader.WrapUpSequence();
+            _emitterActive = false;
+        }
+        else
+        {
+            BeatTierType newTier = EvaluateNextTier();
+            LoadTier(newTier);
         }
     }
 
@@ -160,17 +154,24 @@ public class NoteManager : MonoBehaviour
         _currentTierType = currentTierType;
         _currentTier = TranslateNoteTier(currentTierType);
 
-        _currentComboSet = 0;
-        _currentComboCount = 0;
+        _currentTierProgress = 0;
+        _noteProgress = 0;
 
-        _currentCombo = _currentTier.NoteList[_currentComboSet];
+        LoadNextNote();
 
         _tierUpgrade?.Invoke(_currentTierType);
     }
 
+    private void LoadNextNote()
+    {
+        _nextNote = _currentTier.NoteList[_noteProgress];
+        _emitterDelay = _nextNote.SpawnDelay;
+    }
+
+
     public void DrumHit(HammerSide hammerSide)
     {
-        if (_beatManager.IsOnBeat || _beatManager.PreHitWindowCheck())
+        if (_beatManager.IsOnBeat)
         {
             HitOnBeat(hammerSide);
         }
@@ -182,19 +183,18 @@ public class NoteManager : MonoBehaviour
 
     private void HitOnBeat(HammerSide hammerSide)
     {
-        BeatDirection beatDirection = BeatDirection.Both;
-        HitDrumOnBeat(beatDirection, _drum, hammerSide);
+        HitDrumOnBeat(_drum, hammerSide);
     }
 
-    private void HitDrumOnBeat(BeatDirection beatDirection, DrumController drum, HammerSide hammerSide)
+    private void HitDrumOnBeat(DrumController drum, HammerSide hammerSide)
     {
         if (drum.RecentlyHit == false)
         {
-            _feedbackManager.OnFirstBeatFeedback(beatDirection);
+            _feedbackManager.OnFirstBeatFeedback();
         }
         else
         {
-            _feedbackManager.OnMinorBeatFeedback(beatDirection);
+            _feedbackManager.OnMinorBeatFeedback();
         }
 
         PlayHammerHaptic(hammerSide, HapticIntensity.High);
@@ -204,7 +204,7 @@ public class NoteManager : MonoBehaviour
 
     private void HitOffBeat(HammerSide hammerSide)
     {
-        _feedbackManager.OffBeatFeedback(BeatDirection.Both);
+        _feedbackManager.OffBeatFeedback();
         PlayHammerHaptic(hammerSide, HapticIntensity.Low);
     }
 

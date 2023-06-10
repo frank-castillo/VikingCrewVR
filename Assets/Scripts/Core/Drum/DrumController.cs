@@ -2,9 +2,6 @@
 
 public class DrumController : MonoBehaviour
 {
-    [Header("General")]
-    [SerializeField] private DrumSide _drumSide = DrumSide.None;
-
     [Header("Collision")]
     [SerializeField] private LayerType _hammerLayer = LayerType.None;
     private float _contactThreshold = 30.0f;
@@ -12,6 +9,9 @@ public class DrumController : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private ParticleSystem _vacuumParticles = null;
     [SerializeField] private UnityEventFeedback _successVFX = null;
+
+    [Header("References")]
+    [SerializeField] private DrumEmitter _drumEmitter = null;
 
     private AudioManager _audioManager = null;
     private NoteManager _noteManager = null;
@@ -33,7 +33,9 @@ public class DrumController : MonoBehaviour
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
         _feedbackHandler = GetComponent<FeedbackHandler>();
+
         _feedbackHandler.Initialize();
+        _drumEmitter.Initialize();
 
         FeedbackSubscriptions();
 
@@ -97,19 +99,24 @@ public class DrumController : MonoBehaviour
         return false;
     }
 
-    private void PlayRuneSFX(BeatDirection beatDirection)
+    private void PlayRuneSFX()
     {
         _audioManager.PlaySFX(SFXType.DrumHum);
     }
 
-    private void PlayVacuum(BeatDirection beatDirection)
+    private void PlayVacuum()
     {
         _vacuumParticles.Play();
         _audioManager.PlaySFX(SFXType.DrumVacuum);
     }
 
-    private void PlaySuccessVFX(BeatDirection beatDirection)
+    private void PlaySuccessVFX()
     {
         _successVFX.Play();
+    }
+
+    public void EmitParticle()
+    {
+        _drumEmitter.ActivateParticle();
     }
 }
