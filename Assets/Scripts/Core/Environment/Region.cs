@@ -3,23 +3,16 @@ using UnityEngine;
 
 public class Region : MonoBehaviour
 {
-    private Transform _riseBeginPoint = null;
-    private Transform _riseEndPoint = null;
-    private Transform _emergePoint = null;
     private List<RisingIsland> _islands = new List<RisingIsland>();
 
     public void Initialize(Transform riseBeginPoint, Transform riseEndPoint, Transform emergePoint)
     {
-        _riseBeginPoint = riseBeginPoint;
-        _riseEndPoint = riseEndPoint;
-        _emergePoint = emergePoint;
-
         foreach (Transform child in transform)
         {
             if (child.gameObject.activeInHierarchy)
             {
                 var island = child.GetComponent<RisingIsland>();
-                island.Initialize(_riseBeginPoint.position.y, _riseEndPoint.position.y, emergePoint);
+                island.Initialize(riseBeginPoint.position.y, riseEndPoint.position.y, emergePoint);
                 _islands.Add(island);
             }
         }
