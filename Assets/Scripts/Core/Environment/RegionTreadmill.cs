@@ -13,6 +13,9 @@ public class RegionTreadmill : MonoBehaviour
     [SerializeField] private Transform _startOfMap = null;
     [SerializeField] private Transform _regionFolder = null;
     [SerializeField] private Transform _finalRegion = null;
+    [SerializeField] private Transform _islandEmergenceTrigger = null;
+    [SerializeField] private Transform _riseBeginPoint = null;
+    [SerializeField] private Transform _riseEndPoint = null;
 
     private NoteManager _noteManager = null;
     private List<Region> _regions = new List<Region>();
@@ -31,15 +34,15 @@ public class RegionTreadmill : MonoBehaviour
 
         _noteManager = ServiceLocator.Get<NoteManager>();
 
-        //foreach (Transform child in _regionFolder)
-        //{
-        //    var region = child.GetComponent<Region>();
-        //    if (region.gameObject.activeInHierarchy)
-        //    {
-        //        region.Initialize();
-        //        _regions.Add(region);
-        //    }
-        //}
+        foreach (Transform child in _regionFolder)
+        {
+            if (child.gameObject.activeInHierarchy)
+            {
+                var region = child.GetComponent<Region>();
+                region.Initialize(_riseBeginPoint, _riseEndPoint, _islandEmergenceTrigger);
+                _regions.Add(region);
+            }
+        }
 
         SetupEvents();
         _finalRegion.gameObject.SetActive(false);
@@ -69,7 +72,7 @@ public class RegionTreadmill : MonoBehaviour
 
     private void Update()
     {
-        if( _initialized == false || _movementEnabled == false)
+        if (_initialized == false || _movementEnabled == false)
         {
             return;
         }
@@ -102,6 +105,8 @@ public class RegionTreadmill : MonoBehaviour
         {
             region.transform.position += Vector3.forward * _speed * Time.deltaTime;
 
+            region.CheckIfIslandIsReadyToEmerge();
+
             if (region.transform.position.z > _limitOfMap.position.z)
             {
                 if (_isEnding && !_finalIslandReadyToMove)
@@ -111,7 +116,7 @@ public class RegionTreadmill : MonoBehaviour
                 else if (!_isEnding)
                 {
                     region.transform.position = _startOfMap.position;
-                    region.MakeIslandsTransparent();
+                    region.ResetIslands();
                 }
             }
         }
