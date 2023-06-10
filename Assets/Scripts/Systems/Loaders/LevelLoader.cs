@@ -117,7 +117,7 @@ public class LevelLoader : AsyncLoader
 
         // Set References
         _beatManager.SetNoteManager(_noteManager);
-        _beatManager.SetDrums(_ship.Drum);
+        _beatManager.SetShip(_ship);
 
         _noteManager.SetFeedbackManager(_feedbackManager);
         _noteManager.SetBeatManager(_beatManager);

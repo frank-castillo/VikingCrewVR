@@ -9,15 +9,6 @@ public enum BeatTierType
     T3
 }
 
-public enum BeatDirection
-{
-    None = -1,
-    Left,
-    Right,
-    Both,
-    IgnoreDrums,
-}
-
 public enum DrumSide
 {
     None = -1,

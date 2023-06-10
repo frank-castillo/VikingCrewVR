@@ -4,26 +4,22 @@ public class BeatManager : MonoBehaviour
 {
     [Header("Beat Timers")]
     [SerializeField] private float _beatDelay = 0.75f;
-    [SerializeField] private float _beatBuildUp = 0.75f;
-    [SerializeField] private float _preHitWindowDelay = 0.2f; // On pre side
     [SerializeField] private float _postHitWindowDelay = 0.2f; // On end side
 
     private NoteManager _noteManager = null;
+    private Ship _ship = null;
     private DrumController _drum = null;
-    private float _beatTimer = 0.0f;
+    private FeedbackManager _feedbackManager = null;
     private float _hitWindowTimer = 0.0f;
     private bool _isOnBeat = false;
-    private bool _beatBuildUpPlayed = false;
-    private bool _beatEnabled = false;
 
     public bool IsOnBeat { get => _isOnBeat; }
 
     public void SetNoteManager(NoteManager noteManager) { _noteManager = noteManager; }
-    public void SetBeatEnabled(bool enabled) { _beatEnabled = enabled; }
-
-    public void SetDrums(DrumController drum)
+    public void SetShip(Ship ship)
     {
-        _drum = drum;
+        _ship = ship;
+        _drum = ship.Drum;
     }
 
     public BeatManager Initialize()
@@ -35,58 +31,23 @@ public class BeatManager : MonoBehaviour
 
     private void Update()
     {
-        if (_beatEnabled == false)
-        {
-            return;
-        }
-
-        _beatTimer -= Time.deltaTime;
-
-        EvaluateBeatBuildUp();
-
-        if (_beatTimer < 0)
-        {
-            Beat();
-        }
-        else if (_isOnBeat)
+        if (_isOnBeat)
         {
             EvaluateHitWindow();
         }
     }
 
-    public void StartBeat()
+    public void PreBeat()
     {
-        _beatTimer = _beatDelay;
-        _beatEnabled = true;
-    }
-
-    private void EvaluateBeatBuildUp()
-    {
-        if (_beatBuildUpPlayed == true)
-        {
-            return;
-        }
-
-        if (_beatTimer <= _beatBuildUp)
-        {
-            _beatBuildUpPlayed = true;
-
-            if (_beatEnabled)
-            {
-                _noteManager.PreBeat();
-            }
-        }
-    }
-
-    private void Beat()
-    {
+        _noteManager.PreBeat();
         _isOnBeat = true;
-        _beatBuildUpPlayed = false;
+    }
 
-        _noteManager.NoteBeat();
-
-        _beatTimer = _beatDelay;
+    public void Beat()
+    {
         _hitWindowTimer = _postHitWindowDelay;
+        _feedbackManager.ConstantBeatFeedback();
+        _ship.Row();
     }
 
     private void EvaluateHitWindow()
@@ -97,19 +58,11 @@ public class BeatManager : MonoBehaviour
         {
             _isOnBeat = false;
             ResetDrums();
-
-            _noteManager.EndOfBeat();
         }
     }
 
     private void ResetDrums()
     {
         _drum.SetRecentlyHit(false);
-    }
-
-    public bool PreHitWindowCheck()
-    {
-        float delta = _beatTimer - _preHitWindowDelay;
-        return delta < 0;
     }
 }
