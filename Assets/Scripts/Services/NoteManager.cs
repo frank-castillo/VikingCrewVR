@@ -7,6 +7,8 @@ public class NoteManager : MonoBehaviour
     [SerializeField] private NoteTier _tier1NoteCombos = null;
     [SerializeField] private NoteTier _tier2NoteCombos = null;
     [SerializeField] private NoteTier _tier3NoteComobs = null;
+    [SerializeField] private float _tierDelay = 2.0f;
+    private float _tierTimer = 0.0f;
 
     private BeatTierType _currentTierType = BeatTierType.None;
     private NoteTier _currentTier = null;
@@ -19,9 +21,9 @@ public class NoteManager : MonoBehaviour
     private DrumController _drum = null;
     private Notes _nextNote = null;
     private int _noteProgress = 0;
-    private int _currentTierProgress = 0;
     private float _emitterDelay = 0.0f;
     private bool _emitterActive = false;
+    private bool _loadingTierPause = false;
 
     private Action<BeatTierType> _tierUpgrade = null;
 
@@ -55,6 +57,13 @@ public class NoteManager : MonoBehaviour
 
     private void Update()
     {
+        if (_loadingTierPause)
+        {
+            EvaluateTierTimer();
+
+            return;
+        }
+
         if (_emitterActive == false)
         {
             return;
@@ -68,10 +77,20 @@ public class NoteManager : MonoBehaviour
         }
     }
 
+    private void EvaluateTierTimer()
+    {
+        _tierTimer -= Time.deltaTime;
+        if (_tierTimer < 0.0f)
+        {
+            _loadingTierPause = false;
+            Debug.Log($"Finished Loading");
+        }
+    }
+
     public void SetupInitialNoteTier()
     {
         _currentTierType = BeatTierType.T1;
-        LoadTier(_currentTierType);
+        LoadTier(_currentTierType, false);
 
         _emitterActive = true;
     }
@@ -132,8 +151,6 @@ public class NoteManager : MonoBehaviour
 
     private void LoadNextTier()
     {
-        ++_currentTierProgress;
-
         if (_currentTierType == BeatTierType.T3)
         {
             Debug.Log($"Beat Tiers Cleared");
@@ -143,23 +160,27 @@ public class NoteManager : MonoBehaviour
         else
         {
             BeatTierType newTier = EvaluateNextTier();
-            LoadTier(newTier);
+            LoadTier(newTier, true);
         }
     }
 
-    private void LoadTier(BeatTierType currentTierType)
+    private void LoadTier(BeatTierType currentTierType, bool tierPause)
     {
         Debug.Log($"Loading New Tier [{currentTierType}]");
 
         _currentTierType = currentTierType;
         _currentTier = TranslateNoteTier(currentTierType);
 
-        _currentTierProgress = 0;
         _noteProgress = 0;
-
         LoadNextNote();
 
         _tierUpgrade?.Invoke(_currentTierType);
+
+        if (tierPause)
+        {
+            _tierTimer = _tierDelay;
+            _loadingTierPause = true;
+        }
     }
 
     private void LoadNextNote()
@@ -167,7 +188,6 @@ public class NoteManager : MonoBehaviour
         _nextNote = _currentTier.NoteList[_noteProgress];
         _emitterDelay = _nextNote.SpawnDelay;
     }
-
 
     public void DrumHit(HammerSide hammerSide)
     {
