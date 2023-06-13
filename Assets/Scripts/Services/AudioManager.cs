@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Source")]
     [SerializeField] private AudioSource _drumAudioSource = null;
+    [SerializeField] private AudioSource _vacuumAudioSource = null;
     [SerializeField] private AudioSource _electricDrumAudioSource = null;
     [SerializeField] private AudioSource _vikingAudioSource = null;
     [SerializeField] private AudioSource _leftPaddlesAudioSource = null;
@@ -127,7 +128,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayDrumVacuumSFX()
     {
-        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[15].Clip);
+        _vacuumAudioSource.PlayOneShot(_sfxManifest.AudioItems[15].Clip);
     }
 
     private void PlayDrumElectricHitSFX()

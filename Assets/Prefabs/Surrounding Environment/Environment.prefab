@@ -276,7 +276,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 8e81069d13953544d892d23d2ccb73cc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.272
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -404,7 +404,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: de3a7275751b66d4194a030fd731c985, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.503
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -762,6 +762,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9024051220946665294, guid: 92ca9c948c5e1694385df43a8248fb24,
         type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9024051220946665294, guid: 92ca9c948c5e1694385df43a8248fb24,
+        type: 3}
       propertyPath: MinDistance
       value: 10
       objectReference: {fileID: 0}
@@ -1078,14 +1083,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 8.52
       objectReference: {fileID: 0}
-    - target: {fileID: 1290236010742077377, guid: 92ca9c948c5e1694385df43a8248fb24,
-        type: 3}
-      propertyPath: _sfxType
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 7523787898602485408, guid: 92ca9c948c5e1694385df43a8248fb24,
         type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9024051220946665294, guid: 92ca9c948c5e1694385df43a8248fb24,
+        type: 3}
+      propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9024051220946665294, guid: 92ca9c948c5e1694385df43a8248fb24,
@@ -1107,6 +1112,11 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290236010742077377, guid: 92ca9c948c5e1694385df43a8248fb24,
+        type: 3}
+      propertyPath: _sfxType
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92ca9c948c5e1694385df43a8248fb24, type: 3}
@@ -1135,11 +1145,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4459301780399943845}
     m_Modifications:
-    - target: {fileID: 5983457906505132317, guid: f58fae27fd3a4fc48a642512d193ae5c,
-        type: 3}
-      propertyPath: m_Name
-      value: WindController
-      objectReference: {fileID: 0}
     - target: {fileID: 5983457906505132318, guid: f58fae27fd3a4fc48a642512d193ae5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1194,6 +1199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983457906505132317, guid: f58fae27fd3a4fc48a642512d193ae5c,
+        type: 3}
+      propertyPath: m_Name
+      value: WindController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f58fae27fd3a4fc48a642512d193ae5c, type: 3}

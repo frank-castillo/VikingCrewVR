@@ -14,6 +14,6 @@ public class PlayAnimationSFX : MonoBehaviour
             _audioManager = ServiceLocator.Get<AudioManager>();
         }
 
-        _audioManager.PlaySFX(_sfxType);
+        //_audioManager.PlaySFX(_sfxType);
     }
 }
