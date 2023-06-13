@@ -5,6 +5,7 @@ public class DrumEmitter : MonoBehaviour
 {
     [Header("General")]
     [SerializeField] private float _preBeatPercentage = 0.9f;
+    [SerializeField] private float _onBeatPercentage = 0.95f;
 
     [Header("Durations")]
     [SerializeField] private float _travelDuration = 0.0f;
@@ -46,6 +47,7 @@ public class DrumEmitter : MonoBehaviour
         Vector3 endPosition = _destination.position;
 
         bool preBeatOccured = false;
+        bool onBeatOccured = false;
 
         while (timer < _travelDuration)
         {
@@ -58,6 +60,11 @@ public class DrumEmitter : MonoBehaviour
             {
                 _beatManager.PreBeat();
                 preBeatOccured = true;
+            }
+            if (progress > _onBeatPercentage && onBeatOccured == false)
+            {
+                _beatManager.ActivateOnBeat();
+                onBeatOccured = true;
             }
 
             yield return null;
