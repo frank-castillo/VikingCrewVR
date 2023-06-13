@@ -91,6 +91,8 @@ public class DrumEmitter : MonoBehaviour
         }
 
         note.gameObject.SetActive(false);
+        _beatManager.EndOnBeat();
+
         _notePool.ReturnObject(note.gameObject);
     }
 
