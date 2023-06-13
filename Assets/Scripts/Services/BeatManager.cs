@@ -13,7 +13,8 @@ public class BeatManager : MonoBehaviour
     private DrumController _drum = null;
     private FeedbackManager _feedbackManager = null;
     private bool _isOnBeat = false;
-    private bool _constantBeatonNextBeat = false;
+    private bool _constantBeatOnNextBeat = false;
+    private bool _initialized = true;
 
     public bool IsOnBeat { get => _isOnBeat; }
 
@@ -30,17 +31,36 @@ public class BeatManager : MonoBehaviour
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
+        _initialized = true;
+
         return this;
     }
 
     private void Update()
     {
+        if (_initialized == false)
+        {
+            return;
+        }
+
+        if (_noteManager.WrapUpActive)
+        {
+            _constantBeatTimer -= Time.deltaTime;
+
+            if (_constantBeatTimer < 0)
+            {
+                _constantBeatTimer = _constantBeatDelay;
+                _ship.Row();
+            }
+            return;
+        }
+
         if (_isOnBeat)
         {
             EvaluateHitWindow();
         }
 
-        if (_constantBeatonNextBeat == false)
+        if (_constantBeatOnNextBeat == false)
         {
             EvaluateConstantBeat();
         }
@@ -63,7 +83,7 @@ public class BeatManager : MonoBehaviour
     {
         _feedbackManager.ConstantBeatFeedback();
 
-        if (_constantBeatonNextBeat)
+        if (_constantBeatOnNextBeat)
         {
             ActivateConstantBeat();
         }
@@ -74,7 +94,7 @@ public class BeatManager : MonoBehaviour
         _ship.Row();
 
         _constantBeatTimer = _constantBeatDelay;
-        _constantBeatonNextBeat = false;
+        _constantBeatOnNextBeat = false;
     }
 
     private void EvaluateHitWindow()
@@ -91,7 +111,7 @@ public class BeatManager : MonoBehaviour
         _constantBeatTimer -= Time.deltaTime;
         if (_constantBeatTimer < 0)
         {
-            _constantBeatonNextBeat = true;
+            _constantBeatOnNextBeat = true;
         }
     }
 }

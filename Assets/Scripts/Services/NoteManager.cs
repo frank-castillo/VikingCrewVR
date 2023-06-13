@@ -22,12 +22,13 @@ public class NoteManager : MonoBehaviour
     private Notes _nextNote = null;
     private int _noteProgress = 0;
     private float _emitterDelay = 0.0f;
-    private bool _emitterActive = false;
     private bool _loadingTierPause = false;
+    private bool _wrapUpActive = false;
 
     private Action<BeatTierType> _tierUpgrade = null;
 
     public BeatTierType CurrentTierType { get => _currentTierType; }
+    public bool WrapUpActive { get => _wrapUpActive; }
 
     public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
     public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
@@ -57,15 +58,15 @@ public class NoteManager : MonoBehaviour
 
     private void Update()
     {
+        if (_wrapUpActive)
+        {
+            return;
+        }
+
         if (_loadingTierPause)
         {
             EvaluateTierTimer();
 
-            return;
-        }
-
-        if (_emitterActive == false)
-        {
             return;
         }
 
@@ -91,8 +92,6 @@ public class NoteManager : MonoBehaviour
     {
         _currentTierType = BeatTierType.T1;
         LoadTier(_currentTierType, false);
-
-        _emitterActive = true;
     }
 
     private NoteTier TranslateNoteTier(BeatTierType currentTierType)
@@ -155,7 +154,7 @@ public class NoteManager : MonoBehaviour
         {
             Debug.Log($"Beat Tiers Cleared");
             _levelLoader.WrapUpSequence();
-            _emitterActive = false;
+            _wrapUpActive = true;
         }
         else
         {
