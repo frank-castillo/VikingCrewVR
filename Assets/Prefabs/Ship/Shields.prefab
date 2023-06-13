@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2600319696812660754}
   - component: {fileID: 3599975084248591989}
   - component: {fileID: 5695963629467180467}
+  - component: {fileID: 8456237319232105079}
   m_Layer: 11
   m_Name: Shields
   m_TagString: Untagged
@@ -113,3 +114,16 @@ MonoBehaviour:
   initialDelay: 0
   _animator: {fileID: 3599975084248591989}
   _triggerName: Jump
+--- !u!114 &8456237319232105079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2600319696812660756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxType: 9
