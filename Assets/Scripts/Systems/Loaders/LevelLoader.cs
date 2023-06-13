@@ -81,13 +81,13 @@ public class LevelLoader : AsyncLoader
         {
             ServiceLocator.Register<UIManager>(_uiManager.Initialize(), true);
         }
-        if (_beatManager != null)
-        {
-            ServiceLocator.Register<BeatManager>(_beatManager.Initialize(), true);
-        }
         if (_feedbackManager != null)
         {
             ServiceLocator.Register<FeedbackManager>(_feedbackManager.Initialize(), true);
+        }
+        if (_beatManager != null)
+        {
+            ServiceLocator.Register<BeatManager>(_beatManager.Initialize(), true);
         }
         if (_noteManager != null)
         {

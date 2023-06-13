@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class DrumEmitter : MonoBehaviour
 {
+    [Header("General")]
+    [SerializeField] private float _preBeatPercentage = 0.9f;
+
     [Header("Durations")]
     [SerializeField] private float _travelDuration = 0.0f;
     [SerializeField] private float _wrapUpDuration = 0.0f;
@@ -14,9 +17,12 @@ public class DrumEmitter : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform _destination = null;
     [SerializeField] private ObjectPool _notePool = null;
+    private BeatManager _beatManager = null;
 
     public void Initialize()
     {
+        _beatManager = ServiceLocator.Get<BeatManager>();
+
         _notePool.SetupPool();
     }
 
@@ -37,6 +43,8 @@ public class DrumEmitter : MonoBehaviour
         Vector3 startPosition = transform.position;
         Vector3 endPosition = _destination.position;
 
+        bool preBeatOccured = false;
+
         while (timer < _travelDuration)
         {
             timer += Time.deltaTime;
@@ -44,8 +52,16 @@ public class DrumEmitter : MonoBehaviour
             float progress = timer / _travelDuration;
             particle.transform.position = Vector3.Lerp(startPosition, endPosition, progress);
 
+            if (progress > _preBeatPercentage && preBeatOccured == false)
+            {
+                _beatManager.PreBeat();
+                preBeatOccured = true;
+            }
+
             yield return null;
         }
+
+        _beatManager.Beat();
 
         StartCoroutine(WrapUpCoroutine(particle));
     }
