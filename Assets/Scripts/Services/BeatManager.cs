@@ -3,7 +3,6 @@
 public class BeatManager : MonoBehaviour
 {
     [Header("Beat Timers")]
-    [SerializeField] private float _postHitWindowDelay = 0.2f; // On end side
     [SerializeField] private float _constantBeatDelay = 2.0f;
     private float _hitWindowTimer = 0.0f;
     private float _constantBeatTimer = 0.0f;
@@ -13,7 +12,8 @@ public class BeatManager : MonoBehaviour
     private DrumController _drum = null;
     private FeedbackManager _feedbackManager = null;
     private bool _isOnBeat = false;
-    private bool _constantBeatonNextBeat = false;
+    private bool _constantBeatOnNextBeat = false;
+    private bool _initialized = true;
 
     public bool IsOnBeat { get => _isOnBeat; }
 
@@ -30,17 +30,31 @@ public class BeatManager : MonoBehaviour
 
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
+        _initialized = true;
+
         return this;
     }
 
     private void Update()
     {
-        if (_isOnBeat)
+        if (_initialized == false)
         {
-            EvaluateHitWindow();
+            return;
         }
 
-        if (_constantBeatonNextBeat == false)
+        if (_noteManager.WrapUpActive)
+        {
+            _constantBeatTimer -= Time.deltaTime;
+
+            if (_constantBeatTimer < 0)
+            {
+                _constantBeatTimer = _constantBeatDelay;
+                _ship.Row();
+            }
+            return;
+        }
+
+        if (_constantBeatOnNextBeat == false)
         {
             EvaluateConstantBeat();
         }
@@ -54,16 +68,23 @@ public class BeatManager : MonoBehaviour
     public void ActivateOnBeat()
     {
         _drum.SetRecentlyHit(false);
-
         _isOnBeat = true;
-        _hitWindowTimer = _postHitWindowDelay;
+    }
+
+    public void EndOnBeat()
+    {
+        _isOnBeat = false;
+        if (_drum.RecentlyHit == false)
+        {
+            _drum.PlayFailureVFX();
+        }
     }
 
     public void Beat()
     {
         _feedbackManager.ConstantBeatFeedback();
 
-        if (_constantBeatonNextBeat)
+        if (_constantBeatOnNextBeat)
         {
             ActivateConstantBeat();
         }
@@ -74,16 +95,7 @@ public class BeatManager : MonoBehaviour
         _ship.Row();
 
         _constantBeatTimer = _constantBeatDelay;
-        _constantBeatonNextBeat = false;
-    }
-
-    private void EvaluateHitWindow()
-    {
-        _hitWindowTimer -= Time.deltaTime;
-        if (_hitWindowTimer < 0)
-        {
-            _isOnBeat = false;
-        }
+        _constantBeatOnNextBeat = false;
     }
 
     private void EvaluateConstantBeat()
@@ -91,7 +103,7 @@ public class BeatManager : MonoBehaviour
         _constantBeatTimer -= Time.deltaTime;
         if (_constantBeatTimer < 0)
         {
-            _constantBeatonNextBeat = true;
+            _constantBeatOnNextBeat = true;
         }
     }
 }

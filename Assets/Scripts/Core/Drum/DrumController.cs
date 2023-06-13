@@ -118,7 +118,7 @@ public class DrumController : MonoBehaviour
         _successVFX.Play();
     }
 
-    private void PlayFailureVFX()
+    public void PlayFailureVFX()
     {
         _failureVFX.Play();
     }
