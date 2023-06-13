@@ -74,7 +74,7 @@ public class RunesProgressionController : MonoBehaviour
         _currentLevel = newLevel;
     }
 
-    private void OnBeatPulse(BeatDirection beatDirection)
+    private void OnBeatPulse()
     {
         _borderParticles.Play();
 

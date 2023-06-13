@@ -3,25 +3,25 @@ using System;
 
 public class FeedbackManager : MonoBehaviour
 {
-    private Action<BeatDirection> _beatBuildUp = null;
-    private Action<BeatDirection> _constantBeat = null;
-    private Action<BeatDirection> _onBeatFirstHit = null;
-    private Action<BeatDirection> _onBeatMinorHit = null;
-    private Action<BeatDirection> _offBeatMiss = null;
+    private Action _beatBuildUp = null;
+    private Action _constantBeat = null;
+    private Action _onBeatFirstHit = null;
+    private Action _onBeatMinorHit = null;
+    private Action _offBeatMiss = null;
 
     // Subscribe
-    public void SubscribeBeatBuildUp(Action<BeatDirection> action) { _beatBuildUp += action; }
-    public void SubscribeConstantBeat(Action<BeatDirection> action) { _constantBeat += action; }
-    public void SubscribeOnBeatFirstHit(Action<BeatDirection> action) { _onBeatFirstHit += action; }
-    public void SubscribeOnBeatMinorHit(Action<BeatDirection> action) { _onBeatMinorHit += action; }
-    public void SubscribeOffBeatMiss(Action<BeatDirection> action) { _offBeatMiss += action; }
+    public void SubscribeBeatBuildUp(Action action) { _beatBuildUp += action; }
+    public void SubscribeConstantBeat(Action action) { _constantBeat += action; }
+    public void SubscribeOnBeatFirstHit(Action action) { _onBeatFirstHit += action; }
+    public void SubscribeOnBeatMinorHit(Action action) { _onBeatMinorHit += action; }
+    public void SubscribeOffBeatMiss(Action action) { _offBeatMiss += action; }
 
     // Unsubscribe
-    public void UnsubscribeBeatBuildUp(Action<BeatDirection> action) { _beatBuildUp -= action; }
-    public void UnsubscribeConstantBeat(Action<BeatDirection> action) { _constantBeat -= action; }
-    public void UnsubscribeOnBeatFirstHit(Action<BeatDirection> action) { _onBeatFirstHit -= action; }
-    public void UnsubscribeOnBeatMinorHit(Action<BeatDirection> action) { _onBeatMinorHit -= action; }
-    public void UnsubscribeOffBeatMiss(Action<BeatDirection> action) { _offBeatMiss -= action; }
+    public void UnsubscribeBeatBuildUp(Action action) { _beatBuildUp -= action; }
+    public void UnsubscribeConstantBeat(Action action) { _constantBeat -= action; }
+    public void UnsubscribeOnBeatFirstHit(Action action) { _onBeatFirstHit -= action; }
+    public void UnsubscribeOnBeatMinorHit(Action action) { _onBeatMinorHit -= action; }
+    public void UnsubscribeOffBeatMiss(Action action) { _offBeatMiss -= action; }
 
     public FeedbackManager Initialize()
     {
@@ -30,29 +30,29 @@ public class FeedbackManager : MonoBehaviour
         return this;
     }
 
-    public void BeatBuildUpFeedback(BeatDirection direction)
+    public void BeatBuildUpFeedback()
     {
-        _beatBuildUp?.Invoke(direction);
+        _beatBuildUp?.Invoke();
     }
 
-    public void ConstantBeatFeedback(BeatDirection direction)
+    public void ConstantBeatFeedback()
     {
-        _constantBeat?.Invoke(direction);
+        _constantBeat?.Invoke();
     }
 
-    public void OnFirstBeatFeedback(BeatDirection direction)
+    public void OnFirstBeatFeedback()
     {
-        _onBeatFirstHit?.Invoke(direction);
-        _onBeatMinorHit?.Invoke(direction);
+        _onBeatFirstHit?.Invoke();
+        _onBeatMinorHit?.Invoke();
     }
 
-    public void OnMinorBeatFeedback(BeatDirection direction)
+    public void OnMinorBeatFeedback()
     {
-        _onBeatMinorHit?.Invoke(direction);
+        _onBeatMinorHit?.Invoke();
     }
 
-    public void OffBeatFeedback(BeatDirection direction)
+    public void OffBeatFeedback()
     {
-        _offBeatMiss?.Invoke(direction);
+        _offBeatMiss?.Invoke();
     }
 }

@@ -3,26 +3,34 @@ using UnityEngine;
 
 public class Region : MonoBehaviour
 {
-    private List<IslandMaterialSwapper> _islands = new List<IslandMaterialSwapper>();
+    private List<RisingIsland> _islands = new List<RisingIsland>();
 
-    public void Initialize()
+    public void Initialize(Transform riseBeginPoint, Transform riseEndPoint, Transform emergePoint)
     {
         foreach (Transform child in transform)
         {
-            var swapper = child.GetComponent<IslandMaterialSwapper>();
-            if (swapper.gameObject.activeInHierarchy)
+            if (child.gameObject.activeInHierarchy)
             {
-                swapper.Initialize();
-                _islands.Add(swapper);
+                var island = child.GetComponent<RisingIsland>();
+                island.Initialize(riseBeginPoint.position.y, riseEndPoint.position.y, emergePoint);
+                _islands.Add(island);
             }
         }
     }
 
-    public void MakeIslandsTransparent()
+    public void ResetIslands()
     {
-        foreach (IslandMaterialSwapper child in _islands)
+        foreach (RisingIsland island in _islands)
         {
-            child.MakeTransparent();
+            island.ResetInitialPosition();
+        }
+    }
+
+    public void CheckIfIslandIsReadyToEmerge()
+    {
+        foreach (RisingIsland island in _islands)
+        {
+            island.EvaluateIfReadyToEmerge();
         }
     }
 }
