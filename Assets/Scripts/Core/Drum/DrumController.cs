@@ -49,6 +49,7 @@ public class DrumController : MonoBehaviour
         _feedbackManager.SubscribeConstantBeat(PlayRuneSFX);
         _feedbackManager.SubscribeBeatBuildUp(PlayVacuum);
         _feedbackManager.SubscribeOnBeatFirstHit(PlaySuccessVFX);
+        _feedbackManager.SubscribeOffBeatMiss(PlayFailureVFX);
     }
 
     private void OnDestroy()
@@ -61,6 +62,7 @@ public class DrumController : MonoBehaviour
         _feedbackManager.UnsubscribeConstantBeat(PlayRuneSFX);
         _feedbackManager.UnsubscribeBeatBuildUp(PlayVacuum);
         _feedbackManager.UnsubscribeOnBeatFirstHit(PlaySuccessVFX);
+        _feedbackManager.UnsubscribeOffBeatMiss(PlayFailureVFX);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -114,6 +116,11 @@ public class DrumController : MonoBehaviour
     private void PlaySuccessVFX()
     {
         _successVFX.Play();
+    }
+
+    private void PlayFailureVFX()
+    {
+        _failureVFX.Play();
     }
 
     public void EmitParticle()
