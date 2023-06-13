@@ -4764,8 +4764,8 @@ Transform:
   m_LocalScale: {x: 0.64937603, y: 0.527618, z: 0.64937603}
   m_Children:
   - {fileID: 1648619623160875049}
-  - {fileID: 1578939703847010595}
   - {fileID: 7262760738155495402}
+  - {fileID: 1578939703847010595}
   m_Father: {fileID: 3912128974505041431}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9446,7 +9446,7 @@ GameObject:
   - component: {fileID: 7262760738155495402}
   - component: {fileID: 1431257955384273772}
   m_Layer: 0
-  m_Name: TrailMainInner
+  m_Name: TrailInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9464,7 +9464,7 @@ Transform:
   m_LocalScale: {x: 3.905749, y: 4.807076, z: 3.905749}
   m_Children: []
   m_Father: {fileID: 1648619623160900825}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &1431257955384273772
 TrailRenderer:
@@ -9579,6 +9579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3912128974505041431}
+  - component: {fileID: 882418918412720440}
   m_Layer: 11
   m_Name: Note Particle
   m_TagString: Untagged
@@ -9601,6 +9602,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &882418918412720440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7203212250825692284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329e2fe9909236645abbb23c58c3aba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trailRendererInner: {fileID: 1431257955384273772}
+  _trailRendererOuter: {fileID: 3932943433529457319}
 --- !u!1 &7744673821570633260
 GameObject:
   m_ObjectHideFlags: 0
@@ -9612,7 +9627,7 @@ GameObject:
   - component: {fileID: 1578939703847010595}
   - component: {fileID: 3932943433529457319}
   m_Layer: 0
-  m_Name: TrailMain
+  m_Name: TrailOuter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9630,7 +9645,7 @@ Transform:
   m_LocalScale: {x: 3.905749, y: 4.807076, z: 3.905749}
   m_Children: []
   m_Father: {fileID: 1648619623160900825}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &3932943433529457319
 TrailRenderer:

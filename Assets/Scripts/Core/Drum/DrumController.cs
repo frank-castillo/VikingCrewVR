@@ -8,6 +8,7 @@ public class DrumController : MonoBehaviour
 
     [Header("VFX")]
     [SerializeField] private ParticleSystem _vacuumParticles = null;
+    [SerializeField] private ParticleSystem _failureVFX = null;
     [SerializeField] private UnityEventFeedback _successVFX = null;
 
     [Header("References")]
