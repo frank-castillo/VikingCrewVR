@@ -29,15 +29,17 @@ public class DrumEmitter : MonoBehaviour
     public void ActivateParticle()
     {
         GameObject particle = _notePool.GetObject();
-        particle.transform.position = transform.position;
-        ChangeScale(particle.transform, _startingSize);
+        NoteController note = particle.GetComponent<NoteController>();
 
+        note.Reset();
+        note.transform.position = transform.position;
+        ChangeScale(note.transform, _startingSize);
         particle.SetActive(true);
 
-        StartCoroutine(TravelCoroutine(particle));
+        StartCoroutine(TravelCoroutine(note));
     }
 
-    private IEnumerator TravelCoroutine(GameObject particle)
+    private IEnumerator TravelCoroutine(NoteController note)
     {
         float timer = 0.0f;
         Vector3 startPosition = transform.position;
@@ -50,7 +52,7 @@ public class DrumEmitter : MonoBehaviour
             timer += Time.deltaTime;
 
             float progress = timer / _travelDuration;
-            particle.transform.position = Vector3.Lerp(startPosition, endPosition, progress);
+            note.transform.position = Vector3.Lerp(startPosition, endPosition, progress);
 
             if (progress > _preBeatPercentage && preBeatOccured == false)
             {
@@ -62,11 +64,12 @@ public class DrumEmitter : MonoBehaviour
         }
 
         _beatManager.Beat();
+        note.End();
 
-        StartCoroutine(WrapUpCoroutine(particle));
+        StartCoroutine(WrapUpCoroutine(note));
     }
 
-    private IEnumerator WrapUpCoroutine(GameObject particle)
+    private IEnumerator WrapUpCoroutine(NoteController note)
     {
         float timer = 0.0f;
         while (timer < _wrapUpDuration)
@@ -75,13 +78,13 @@ public class DrumEmitter : MonoBehaviour
 
             float progress = timer / _wrapUpDuration;
             float scale = Mathf.Lerp(_startingSize, _endingSize, progress);
-            ChangeScale(particle.transform, scale);
+            ChangeScale(note.transform, scale);
 
             yield return null;
         }
 
-        particle.SetActive(false);
-        _notePool.ReturnObject(particle);
+        note.gameObject.SetActive(false);
+        _notePool.ReturnObject(note.gameObject);
     }
 
     private void ChangeScale(Transform newTransform, float scale)
