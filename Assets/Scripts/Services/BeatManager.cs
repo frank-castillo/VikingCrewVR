@@ -49,13 +49,18 @@ public class BeatManager : MonoBehaviour
     public void PreBeat()
     {
         _noteManager.PreBeat();
+    }
+
+    public void ActivateOnBeat()
+    {
+        _drum.SetRecentlyHit(false);
+
         _isOnBeat = true;
+        _hitWindowTimer = _postHitWindowDelay;
     }
 
     public void Beat()
     {
-        _hitWindowTimer = _postHitWindowDelay;
-
         _feedbackManager.ConstantBeatFeedback();
 
         if (_constantBeatonNextBeat)
@@ -78,7 +83,6 @@ public class BeatManager : MonoBehaviour
         if (_hitWindowTimer < 0)
         {
             _isOnBeat = false;
-            ResetDrums();
         }
     }
 
@@ -89,10 +93,5 @@ public class BeatManager : MonoBehaviour
         {
             _constantBeatonNextBeat = true;
         }
-    }
-
-    private void ResetDrums()
-    {
-        _drum.SetRecentlyHit(false);
     }
 }
