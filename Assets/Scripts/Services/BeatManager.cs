@@ -28,6 +28,8 @@ public class BeatManager : MonoBehaviour
     {
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
 
+        _feedbackManager = ServiceLocator.Get<FeedbackManager>();
+
         return this;
     }
 
@@ -54,6 +56,8 @@ public class BeatManager : MonoBehaviour
     {
         _hitWindowTimer = _postHitWindowDelay;
 
+        _feedbackManager.ConstantBeatFeedback();
+
         if (_constantBeatonNextBeat)
         {
             ActivateConstantBeat();
@@ -62,7 +66,6 @@ public class BeatManager : MonoBehaviour
 
     private void ActivateConstantBeat()
     {
-        _feedbackManager.ConstantBeatFeedback();
         _ship.Row();
 
         _constantBeatTimer = _constantBeatDelay;
