@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
+    [Header("Progress")]
+    [SerializeField] private float _minimumSuccess = 1.0f;
+
     [Header("Tiers")]
     [SerializeField] private NoteTier _tier1NoteCombos = null;
     [SerializeField] private NoteTier _tier2NoteCombos = null;
@@ -15,7 +18,6 @@ public class NoteManager : MonoBehaviour
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
     private LevelLoader _levelLoader = null;
-    private Ship _ship = null;
     private HammerController _leftHammer = null;
     private HammerController _rightHammer = null;
     private DrumController _drum = null;
@@ -35,11 +37,7 @@ public class NoteManager : MonoBehaviour
 
     public void SetBeatManager(BeatManager beatManager) { _beatManager = beatManager; }
     public void SetFeedbackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
-    public void SetShip(Ship ship)
-    {
-        _ship = ship;
-        _drum = ship.Drum;
-    }
+    public void SetShip(Ship ship) { _drum = ship.Drum; }
 
     public void SetHammers(HammerController leftHammer, HammerController righthammer)
     {

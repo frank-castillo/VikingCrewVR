@@ -437,8 +437,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preBeatPercentage: 0.85
+  _onBeatPercentage: 0.95
   _travelDuration: 3
-  _wrapUpDuration: 0.5
+  _wrapUpDuration: 0.35
   _startingSize: 0.8
   _endingSize: 0.1
   _destination: {fileID: 2502066636517479950}
@@ -941,6 +942,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5699864171972788310}
     m_Modifications:
+    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: m_Name
+      value: Drum Model
+      objectReference: {fileID: 0}
     - target: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -995,11 +1001,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: m_Name
-      value: Drum Model
       objectReference: {fileID: 0}
     - target: {fileID: 2373604534260355867, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
