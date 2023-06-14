@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 1390308394791460139}
   - component: {fileID: 3301739106395337427}
   m_Layer: 11
-  m_Name: AudioFeedback
+  m_Name: TorchAudioFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6477073795550305515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1, y: 0, z: 3.4}
+  m_LocalPosition: {x: 0.04, y: 12.71, z: -30.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2835303776934349445}
@@ -81,8 +81,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -6742990206073217099, guid: f46e9706d32ad5a48a89cab00d12440a,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_PlayOnAwake: 0
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -667,6 +667,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Raised Torch Left
       objectReference: {fileID: 0}
+    - target: {fileID: 785420549542261230, guid: a855bce01c391ca47b7b6211dc73195b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a855bce01c391ca47b7b6211dc73195b, type: 3}
 --- !u!4 &2688137981896549408 stripped
@@ -741,6 +746,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Raised Torch Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 785420549542261230, guid: a855bce01c391ca47b7b6211dc73195b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a855bce01c391ca47b7b6211dc73195b, type: 3}

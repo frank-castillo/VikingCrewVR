@@ -9,9 +9,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioManifest _chantManifest = null;
     [SerializeField] private AudioManifest _torchManifest = null;
     [SerializeField] private AudioManifest _musicManifest = null;
+    [SerializeField] private AudioManifest _shieldManifest = null;
+    [SerializeField] private AudioClip _runeGlow = null;
 
     [Header("Audio Source")]
     [SerializeField] private AudioSource _drumAudioSource = null;
+    [SerializeField] private AudioSource _vacuumAudioSource = null;
     [SerializeField] private AudioSource _electricDrumAudioSource = null;
     [SerializeField] private AudioSource _vikingAudioSource = null;
     [SerializeField] private AudioSource _leftPaddlesAudioSource = null;
@@ -20,6 +23,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _rightSplashAudioSource = null;
     [SerializeField] private AudioSource _torchesAudioSource = null;
     [SerializeField] private AudioSource _musicAudioSource = null;
+    [SerializeField] private AudioSource _shieldAudioSource = null;
+    [SerializeField] private AudioSource _runeAudioSource = null;
 
     // Audio Levels
     private float _currentVolume = 0.0f;
@@ -30,6 +35,7 @@ public class AudioManager : MonoBehaviour
     private int _rowIndex = 0;
     private int _splashIndex = 0;
     private int _torchIndex = 0;
+    private int _shieldIndex = 0;
 
     public float CurrentVolume { set => _currentVolume = value; }
 
@@ -87,6 +93,12 @@ public class AudioManager : MonoBehaviour
             case SFXType.Torch:
                 PlayTorchSFX();
                 break;
+            case SFXType.ShieldSmash:
+                PlayShieldSmashSFX();
+                break;
+            case SFXType.RuneGlow:
+                PlayRuneGlowSFX();
+                break;
             default:
                 Enums.InvalidSwitch(GetType(), sfxType.GetType());
                 break;
@@ -116,7 +128,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayDrumVacuumSFX()
     {
-        _drumAudioSource.PlayOneShot(_sfxManifest.AudioItems[15].Clip);
+        _vacuumAudioSource.PlayOneShot(_sfxManifest.AudioItems[15].Clip);
     }
 
     private void PlayDrumElectricHitSFX()
@@ -143,14 +155,6 @@ public class AudioManager : MonoBehaviour
             _rowIndex = 0;
         }
         _leftPaddlesAudioSource.PlayOneShot(_rowingManifest.AudioItems[_rowIndex].Clip);
-        ++_rowIndex;
-
-
-        if (_rowIndex >= _rowingManifest.AudioItems.Count)
-        {
-            _rowIndex = 0;
-        }
-        _rightPaddlesAudioSource.PlayOneShot(_rowingManifest.AudioItems[_rowIndex].Clip);
         ++_rowIndex;
     }
 
@@ -185,5 +189,21 @@ public class AudioManager : MonoBehaviour
 
         _torchesAudioSource.PlayOneShot(_torchManifest.AudioItems[_torchIndex].Clip);
         ++_torchIndex;
+    }
+
+    private void PlayShieldSmashSFX()
+    {
+        if (_shieldIndex >= _shieldManifest.AudioItems.Count)
+        {
+            _shieldIndex = 0;
+        }
+
+        _shieldAudioSource.PlayOneShot(_shieldManifest.AudioItems[_shieldIndex].Clip);
+        ++_shieldIndex;
+    }
+
+    private void PlayRuneGlowSFX()
+    {
+        _runeAudioSource.PlayOneShot(_runeGlow);
     }
 }
