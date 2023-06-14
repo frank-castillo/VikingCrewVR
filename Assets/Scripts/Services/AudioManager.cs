@@ -156,14 +156,6 @@ public class AudioManager : MonoBehaviour
         }
         _leftPaddlesAudioSource.PlayOneShot(_rowingManifest.AudioItems[_rowIndex].Clip);
         ++_rowIndex;
-
-
-        if (_rowIndex >= _rowingManifest.AudioItems.Count)
-        {
-            _rowIndex = 0;
-        }
-        _rightPaddlesAudioSource.PlayOneShot(_rowingManifest.AudioItems[_rowIndex].Clip);
-        ++_rowIndex;
     }
 
     private void PlayLeftSplashSFX()
