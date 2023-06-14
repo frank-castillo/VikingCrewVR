@@ -4,7 +4,6 @@ public class BeatManager : MonoBehaviour
 {
     [Header("Beat Timers")]
     [SerializeField] private float _constantBeatDelay = 2.0f;
-    private float _hitWindowTimer = 0.0f;
     private float _constantBeatTimer = 0.0f;
 
     private NoteManager _noteManager = null;
@@ -76,8 +75,14 @@ public class BeatManager : MonoBehaviour
         _isOnBeat = false;
         if (_drum.RecentlyHit == false)
         {
-            _drum.PlayFailureVFX();
+            InactiveFail();
         }
+    }
+
+    private void InactiveFail()
+    {
+        _drum.PlayFailureVFX();
+        _noteManager.ProgressionFail();
     }
 
     public void Beat()
