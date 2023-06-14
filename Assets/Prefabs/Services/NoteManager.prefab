@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7669594986409673777}
   - component: {fileID: 3285556003926445386}
+  - component: {fileID: 1460880941129232678}
   m_Layer: 0
   m_Name: NoteManager
   m_TagString: Untagged
@@ -47,3 +48,16 @@ MonoBehaviour:
   _tier2NoteCombos: {fileID: 11400000, guid: 556dcd1a365812541929cdadd5a6c7c0, type: 2}
   _tier3NoteComobs: {fileID: 11400000, guid: c279b3c1a373d084a95e552aa13f67f5, type: 2}
   _tierDelay: 3
+--- !u!114 &1460880941129232678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4623787479851966848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4edaa022f569447aa91d93c60dab2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _requiredPercentage: 0.7
