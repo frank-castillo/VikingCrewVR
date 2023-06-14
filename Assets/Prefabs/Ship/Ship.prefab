@@ -2828,6 +2828,9 @@ MonoBehaviour:
   - {fileID: 6238688354922201080}
   - {fileID: 5876016998907398740}
   - {fileID: 5876016998574171852}
+  _rowingSoundFeedback:
+  - {fileID: 2993357091552276380}
+  - {fileID: 8696869403162963117}
 --- !u!114 &6602712041838194220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2849,11 +2852,8 @@ MonoBehaviour:
   - {fileID: 6505199800257180384}
   - {fileID: 6505199801668002745}
   - {fileID: 516362402716205931}
-  - {fileID: 2993357091552276380}
-  - {fileID: 8696869403162963117}
   - {fileID: 1844337018894735987}
-  _onMissFeedbacks:
-  - {fileID: 1633357494887441138}
+  _onMissFeedbacks: []
   _onFirstBeatT1Feedbacks: []
   _onFirstBeatT2Feedbacks: []
   _onFirstBeatT3Feedbacks: []
@@ -3220,6 +3220,18 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4832665876042247625, guid: eba6b100517b10f47a11032f95a54ce2,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 5270767737857255233, guid: f46e9706d32ad5a48a89cab00d12440a,
+        type: 2}
+    - target: {fileID: 8557671173206693369, guid: eba6b100517b10f47a11032f95a54ce2,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 5270767737857255233, guid: f46e9706d32ad5a48a89cab00d12440a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eba6b100517b10f47a11032f95a54ce2, type: 3}
 --- !u!114 &8696869403162963117 stripped
@@ -9011,8 +9023,7 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2658440816780922777, guid: 116df2771d8a18c42b75fcf74766ba58, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116df2771d8a18c42b75fcf74766ba58, type: 3}
 --- !u!4 &5732926479682785120 stripped
 Transform:
@@ -9275,9 +9286,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3595029022162612843, guid: 2ae362d6eefa46349b425f085c2355ac,
         type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -9090593146067247448, guid: f46e9706d32ad5a48a89cab00d12440a,
+        type: 2}
+    - target: {fileID: 3595029022162612843, guid: 2ae362d6eefa46349b425f085c2355ac,
+        type: 3}
       propertyPath: m_Volume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1744905934927578922, guid: 2ae362d6eefa46349b425f085c2355ac,
+        type: 3}
+      propertyPath: _onMissFeedbacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474390997983324479, guid: 2ae362d6eefa46349b425f085c2355ac,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -9090593146067247448, guid: f46e9706d32ad5a48a89cab00d12440a,
+        type: 2}
+    - target: {fileID: 5969137353937482085, guid: 2ae362d6eefa46349b425f085c2355ac,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -9090593146067247448, guid: f46e9706d32ad5a48a89cab00d12440a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ae362d6eefa46349b425f085c2355ac, type: 3}
 --- !u!114 &8774699815642003198 stripped
@@ -9365,6 +9399,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Torches
       objectReference: {fileID: 0}
+    - target: {fileID: 1390308394791460139, guid: 81d705ec061601a4c9031aaa04246e12,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -1304414054532603089, guid: f46e9706d32ad5a48a89cab00d12440a,
+        type: 2}
+    - target: {fileID: 1390308394791460139, guid: 81d705ec061601a4c9031aaa04246e12,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738706503024184906, guid: 81d705ec061601a4c9031aaa04246e12,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.52
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81d705ec061601a4c9031aaa04246e12, type: 3}
 --- !u!4 &2027180612744878756 stripped
@@ -9443,18 +9493,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f09120088fc6814f9e9d81a9975bcdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1633357494887441138 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3301739106395337427, guid: 81d705ec061601a4c9031aaa04246e12,
-    type: 3}
-  m_PrefabInstance: {fileID: 4285451871256662049}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2985c7b7cbb132c4ca98a5836939f968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6238688354669636616

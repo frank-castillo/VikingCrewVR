@@ -155,6 +155,7 @@ public class AudioManager : MonoBehaviour
             _rowIndex = 0;
         }
         _leftPaddlesAudioSource.PlayOneShot(_rowingManifest.AudioItems[_rowIndex].Clip);
+        _rightPaddlesAudioSource.PlayOneShot(_rowingManifest.AudioItems[++_rowIndex].Clip);
         ++_rowIndex;
     }
 
