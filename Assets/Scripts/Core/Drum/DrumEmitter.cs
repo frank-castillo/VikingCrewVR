@@ -6,6 +6,7 @@ public class DrumEmitter : MonoBehaviour
     [Header("General")]
     [SerializeField] private float _preBeatPercentage = 0.9f;
     [SerializeField] private float _onBeatPercentage = 0.95f;
+    [SerializeField] private float _explosionPercentage = 0.9f;
 
     [Header("Durations")]
     [SerializeField] private float _travelDuration = 0.0f;
@@ -79,6 +80,8 @@ public class DrumEmitter : MonoBehaviour
     private IEnumerator WrapUpCoroutine(NoteController note)
     {
         float timer = 0.0f;
+        bool explosionOccured = false;
+
         while (timer < _wrapUpDuration)
         {
             timer += Time.deltaTime;
@@ -87,11 +90,16 @@ public class DrumEmitter : MonoBehaviour
             float scale = Mathf.Lerp(_startingSize, _endingSize, progress);
             ChangeScale(note.transform, scale);
 
+            if (progress > _explosionPercentage && explosionOccured == false)
+            {
+                _beatManager.EndOnBeat();
+                explosionOccured = true;
+            }
+
             yield return null;
         }
 
         note.gameObject.SetActive(false);
-        _beatManager.EndOnBeat();
 
         _notePool.ReturnObject(note.gameObject);
     }

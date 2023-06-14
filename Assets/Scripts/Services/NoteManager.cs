@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
-    [Header("Progress")]
-    [SerializeField] private float _minimumSuccess = 1.0f;
-
     [Header("Tiers")]
     [SerializeField] private NoteTier _tier1NoteCombos = null;
     [SerializeField] private NoteTier _tier2NoteCombos = null;
@@ -13,19 +10,26 @@ public class NoteManager : MonoBehaviour
     [SerializeField] private float _tierDelay = 2.0f;
     private float _tierTimer = 0.0f;
 
-    private BeatTierType _currentTierType = BeatTierType.None;
-    private NoteTier _currentTier = null;
+    // Core Refrences
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
     private LevelLoader _levelLoader = null;
+    private ProgressEvaluation _progressionEvaluation = null;
     private HammerController _leftHammer = null;
     private HammerController _rightHammer = null;
     private DrumController _drum = null;
+
+    // Note Emmiter
+    private BeatTierType _currentTierType = BeatTierType.None;
+    private NoteTier _currentTier = null;
     private Notes _nextNote = null;
     private int _noteProgress = 0;
     private float _emitterDelay = 0.0f;
+
+    // Pause Bools
     private bool _loadingTierPause = false;
     private bool _wrapUpActive = false;
+    private bool _emitterActive = false;
 
     private Action<BeatTierType> _tierUpgrade = null;
 
@@ -51,12 +55,14 @@ public class NoteManager : MonoBehaviour
 
         _levelLoader = ServiceLocator.Get<LevelLoader>();
 
+        _progressionEvaluation = GetComponent<ProgressEvaluation>();
+
         return this;
     }
 
     private void Update()
     {
-        if (_wrapUpActive)
+        if (_wrapUpActive || _emitterActive == false)
         {
             return;
         }
@@ -90,6 +96,8 @@ public class NoteManager : MonoBehaviour
     {
         _currentTierType = BeatTierType.T1;
         LoadTier(_currentTierType, false);
+
+        _emitterActive = true;
     }
 
     private NoteTier TranslateNoteTier(BeatTierType currentTierType)
@@ -153,6 +161,7 @@ public class NoteManager : MonoBehaviour
             Debug.Log($"Beat Tiers Cleared");
             _levelLoader.WrapUpSequence();
             _wrapUpActive = true;
+            _emitterActive = false;
         }
         else
         {
@@ -170,6 +179,8 @@ public class NoteManager : MonoBehaviour
 
         _noteProgress = 0;
         LoadNextNote();
+
+        _progressionEvaluation.Prepare(_currentTier.NoteList.Count);
 
         _tierUpgrade?.Invoke(_currentTierType);
 
@@ -208,6 +219,7 @@ public class NoteManager : MonoBehaviour
         if (drum.RecentlyHit == false)
         {
             _feedbackManager.OnFirstBeatFeedback();
+            _progressionEvaluation.Success();
         }
         else
         {
@@ -223,6 +235,12 @@ public class NoteManager : MonoBehaviour
     {
         _feedbackManager.OffBeatFeedback();
         PlayHammerHaptic(hammerSide, HapticIntensity.Low);
+        ProgressionFail();
+    }
+
+    public void ProgressionFail()
+    {
+        _progressionEvaluation.Fail();
     }
 
     private void PlayHammerHaptic(HammerSide hammerSide, HapticIntensity hapticIntensity)
