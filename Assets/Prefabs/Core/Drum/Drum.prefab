@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2412683132546766644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.5, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: -0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2648649485174851958}
@@ -456,9 +456,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _preBeatPercentage: 0.85
   _onBeatPercentage: 0.95
-  _explosionPercentage: 0.4
+  _explosionPercentage: 0.6
   _travelDuration: 3
-  _wrapUpDuration: 0.35
+  _wrapUpDuration: 0.5
   _startingSize: 0.8
   _endingSize: 0.1
   _destination: {fileID: 2502066636517479950}
@@ -1090,6 +1090,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5699864171972788310}
     m_Modifications:
+    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: m_Name
+      value: Drum Model
+      objectReference: {fileID: 0}
     - target: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1144,11 +1149,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: m_Name
-      value: Drum Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6591edfa85f31c648bdddbf9d8361752, type: 3}
