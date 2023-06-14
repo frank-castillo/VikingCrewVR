@@ -2851,9 +2851,9 @@ MonoBehaviour:
   - {fileID: 516362402716205931}
   - {fileID: 2993357091552276380}
   - {fileID: 8696869403162963117}
-  - {fileID: 1633357494887441138}
   - {fileID: 1844337018894735987}
-  _onMissFeedbacks: []
+  _onMissFeedbacks:
+  - {fileID: 1633357494887441138}
   _onFirstBeatT1Feedbacks: []
   _onFirstBeatT2Feedbacks: []
   _onFirstBeatT3Feedbacks: []
@@ -2989,7 +2989,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3216,16 +3216,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1988270882447382997, guid: eba6b100517b10f47a11032f95a54ce2,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4832665876042247625, guid: eba6b100517b10f47a11032f95a54ce2,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8557671173206693369, guid: eba6b100517b10f47a11032f95a54ce2,
         type: 3}
       propertyPath: m_Volume
       value: 0
@@ -9374,11 +9364,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Torches
-      objectReference: {fileID: 0}
-    - target: {fileID: 1390308394791460139, guid: 81d705ec061601a4c9031aaa04246e12,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81d705ec061601a4c9031aaa04246e12, type: 3}
