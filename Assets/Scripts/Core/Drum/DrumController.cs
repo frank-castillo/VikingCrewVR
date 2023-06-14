@@ -121,6 +121,7 @@ public class DrumController : MonoBehaviour
     public void PlayFailureVFX()
     {
         _failureVFX.Play();
+        _audioManager.PlaySFX(SFXType.Torch);
     }
 
     public void EmitParticle()

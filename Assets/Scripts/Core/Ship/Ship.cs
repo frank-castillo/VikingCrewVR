@@ -6,6 +6,7 @@ public class Ship : MonoBehaviour
     [SerializeField] private DrumController _drum = null;
     [SerializeField] private SailController _sailController = null;
     [SerializeField] private List<AnimationFeedback> _vikingsRowing = new List<AnimationFeedback>();
+    [SerializeField] private List<Feedback> _rowingSoundFeedback = new List<Feedback>();
     private FeedbackHandler _feedbackHandler = null;
     private TierToggle _tierToggle = null;
 
@@ -22,6 +23,11 @@ public class Ship : MonoBehaviour
         _tierToggle.Initialize();
         _drum.Initialize();
         _sailController.Initialize();
+
+        foreach (var feedback in _rowingSoundFeedback)
+        {
+            feedback.Initialize();
+        }
     }
 
     public void ShipWrapUp()
@@ -34,6 +40,11 @@ public class Ship : MonoBehaviour
         foreach(var rowFeedback in _vikingsRowing)
         {
             rowFeedback.Play();
+        }
+
+        foreach (var soundFeedback in _rowingSoundFeedback)
+        {
+            soundFeedback.Play();
         }
     }
 }
