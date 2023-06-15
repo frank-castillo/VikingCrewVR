@@ -118,6 +118,11 @@ public class NoteManager : MonoBehaviour
 
     private BeatTierType EvaluateNextTier()
     {
+        if (_progressionEvaluation.MoveToNextTier() == false)
+        {
+            return _currentTierType;
+        }
+
         switch (_currentTierType)
         {
             case BeatTierType.T1:
@@ -180,7 +185,7 @@ public class NoteManager : MonoBehaviour
         _noteProgress = 0;
         LoadNextNote();
 
-        _progressionEvaluation.Prepare(_currentTier.NoteList.Count);
+        _progressionEvaluation.Prepare(_currentTierType, _currentTier.NoteList.Count);
 
         _tierUpgrade?.Invoke(_currentTierType);
 
