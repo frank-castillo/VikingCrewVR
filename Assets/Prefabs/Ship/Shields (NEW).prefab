@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 2433134414767722741}
   - component: {fileID: 6015074142418844037}
   - component: {fileID: 3877677773622300760}
-  - component: {fileID: 8519220689080755851}
-  - component: {fileID: 4705157713778707759}
-  - component: {fileID: 6374715740807046662}
   - component: {fileID: 3092080769247255256}
   m_Layer: 11
   m_Name: Shields (6)
@@ -82,53 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &8519220689080755851
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1083047074078054743}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94635ed2e8f1e0e4faf4a152425517e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4705157713778707759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1083047074078054743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _animator: {fileID: 8519220689080755851}
-  _triggerName: Jump
---- !u!114 &6374715740807046662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1083047074078054743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxType: 9
 --- !u!114 &3092080769247255256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4500,9 +4450,6 @@ GameObject:
   - component: {fileID: 2589332565768189708}
   - component: {fileID: 1775157289679224699}
   - component: {fileID: 933233738411288490}
-  - component: {fileID: 8216117810822462414}
-  - component: {fileID: 3165684617762036751}
-  - component: {fileID: 8581956253369518356}
   - component: {fileID: 1500209832570987801}
   m_Layer: 11
   m_Name: Shields (3)
@@ -4571,53 +4518,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &8216117810822462414
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606823538394244859}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94635ed2e8f1e0e4faf4a152425517e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3165684617762036751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606823538394244859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _animator: {fileID: 8216117810822462414}
-  _triggerName: Jump
---- !u!114 &8581956253369518356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606823538394244859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxType: 9
 --- !u!114 &1500209832570987801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8989,9 +8889,6 @@ GameObject:
   - component: {fileID: 5698365289864166835}
   - component: {fileID: 2318616956745244949}
   - component: {fileID: 542755456259006941}
-  - component: {fileID: 8075056192310296768}
-  - component: {fileID: 1151972865796567568}
-  - component: {fileID: 2554906958205508981}
   - component: {fileID: 7340067861134494529}
   m_Layer: 11
   m_Name: Shields (2)
@@ -9060,53 +8957,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &8075056192310296768
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842488880065399689}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94635ed2e8f1e0e4faf4a152425517e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1151972865796567568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842488880065399689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _animator: {fileID: 8075056192310296768}
-  _triggerName: Jump
---- !u!114 &2554906958205508981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842488880065399689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxType: 9
 --- !u!114 &7340067861134494529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13478,9 +13328,6 @@ GameObject:
   - component: {fileID: 9168501966919254483}
   - component: {fileID: 8178840658093802998}
   - component: {fileID: 5953873566491486436}
-  - component: {fileID: 4632079191162939901}
-  - component: {fileID: 6398853157478888242}
-  - component: {fileID: 5763351881241616335}
   - component: {fileID: 3430144258865003497}
   m_Layer: 11
   m_Name: Shields (5)
@@ -13549,53 +13396,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &4632079191162939901
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253050154860189234}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94635ed2e8f1e0e4faf4a152425517e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6398853157478888242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253050154860189234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _animator: {fileID: 4632079191162939901}
-  _triggerName: Jump
---- !u!114 &5763351881241616335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253050154860189234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxType: 9
 --- !u!114 &3430144258865003497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17967,9 +17767,6 @@ GameObject:
   - component: {fileID: 7467348444280465844}
   - component: {fileID: 944322392525810226}
   - component: {fileID: 1995616639437002309}
-  - component: {fileID: 9133521957483471816}
-  - component: {fileID: 2610751390559446270}
-  - component: {fileID: 6237589836740189469}
   - component: {fileID: 8537923033248247274}
   m_Layer: 11
   m_Name: Shields (1)
@@ -18037,53 +17834,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &9133521957483471816
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2315122229688844339}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94635ed2e8f1e0e4faf4a152425517e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2610751390559446270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2315122229688844339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _animator: {fileID: 9133521957483471816}
-  _triggerName: Jump
---- !u!114 &6237589836740189469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2315122229688844339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxType: 9
 --- !u!114 &8537923033248247274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22575,9 +22325,6 @@ GameObject:
   - component: {fileID: 7783363988149175799}
   - component: {fileID: 2505105253921899789}
   - component: {fileID: 9075234263726241602}
-  - component: {fileID: 5925458831118580802}
-  - component: {fileID: 7596895353592541078}
-  - component: {fileID: 8857125658521648932}
   - component: {fileID: 8919112519338274793}
   m_Layer: 11
   m_Name: Shields (4)
@@ -22646,53 +22393,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &5925458831118580802
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893734157712437493}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94635ed2e8f1e0e4faf4a152425517e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7596895353592541078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893734157712437493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _animator: {fileID: 5925458831118580802}
-  _triggerName: Jump
---- !u!114 &8857125658521648932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893734157712437493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxType: 9
 --- !u!114 &8919112519338274793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27064,9 +26764,6 @@ GameObject:
   - component: {fileID: 7573262634404753324}
   - component: {fileID: 4584933672154349923}
   - component: {fileID: 6526020101413105353}
-  - component: {fileID: 880184493800982738}
-  - component: {fileID: 7707778441688334298}
-  - component: {fileID: 947116752549340681}
   - component: {fileID: 5430101786898895708}
   m_Layer: 11
   m_Name: Shields (9)
@@ -27134,53 +26831,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &880184493800982738
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6213355609891360541}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94635ed2e8f1e0e4faf4a152425517e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7707778441688334298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6213355609891360541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _animator: {fileID: 880184493800982738}
-  _triggerName: Jump
---- !u!114 &947116752549340681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6213355609891360541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxType: 9
 --- !u!114 &5430101786898895708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31552,9 +31202,6 @@ GameObject:
   - component: {fileID: 3512888445129990971}
   - component: {fileID: 7289985368687607861}
   - component: {fileID: 3248135450605254229}
-  - component: {fileID: 2207655306333407176}
-  - component: {fileID: 4715026939330777583}
-  - component: {fileID: 2812051606002067946}
   - component: {fileID: 5829680568096234112}
   m_Layer: 11
   m_Name: Shields (7)
@@ -31623,53 +31270,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &2207655306333407176
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6795687597159007688}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94635ed2e8f1e0e4faf4a152425517e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4715026939330777583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6795687597159007688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _animator: {fileID: 2207655306333407176}
-  _triggerName: Jump
---- !u!114 &2812051606002067946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6795687597159007688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxType: 9
 --- !u!114 &5829680568096234112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36041,9 +35641,6 @@ GameObject:
   - component: {fileID: 4656412540423095117}
   - component: {fileID: 7479295902403956646}
   - component: {fileID: 4507552224768104230}
-  - component: {fileID: 8340422279846761341}
-  - component: {fileID: 924004755450284346}
-  - component: {fileID: 8689756088358428998}
   - component: {fileID: 2856731704190708802}
   m_Layer: 11
   m_Name: Shields (8)
@@ -36111,53 +35708,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &8340422279846761341
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087671920076615643}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94635ed2e8f1e0e4faf4a152425517e4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &924004755450284346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087671920076615643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbeb9060c4ecb834cb679faf1cb2b483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _animator: {fileID: 8340422279846761341}
-  _triggerName: Jump
---- !u!114 &8689756088358428998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087671920076615643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0089b225a880604694373e50686a8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxType: 9
 --- !u!114 &2856731704190708802
 MonoBehaviour:
   m_ObjectHideFlags: 0
