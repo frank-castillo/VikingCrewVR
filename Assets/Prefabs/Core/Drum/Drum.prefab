@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preBeatPercentage: 0.85
+  _trailEndPercentage: 0.95
   _explosionPercentage: 0.6
   _travelDuration: 3
   _wrapUpDuration: 0.6
@@ -462,6 +463,7 @@ MonoBehaviour:
   _endingSize: 0.1
   _destination: {fileID: 2502066636517479950}
   _notePool: {fileID: 5577146554799354712}
+  _impactVFX: {fileID: 4724523195383287588}
 --- !u!1 &3016092235194296024
 GameObject:
   m_ObjectHideFlags: 0
@@ -5859,7 +5861,7 @@ GameObject:
   - component: {fileID: 4724523195383287588}
   - component: {fileID: 7914882525830030521}
   m_Layer: 0
-  m_Name: GlowOrb
+  m_Name: Impact VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10629,11 +10631,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5699864171972788310}
     m_Modifications:
-    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: m_Name
-      value: Drum Model
-      objectReference: {fileID: 0}
     - target: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10688,6 +10685,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: m_Name
+      value: Drum Model
       objectReference: {fileID: 0}
     - target: {fileID: 2373604534260355867, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}

@@ -18,6 +18,7 @@ public class DrumEmitter : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform _destination = null;
     [SerializeField] private ObjectPool _notePool = null;
+    [SerializeField] private ParticleSystem _impactVFX = null;
     private BeatManager _beatManager = null;
 
     public void Initialize()
@@ -32,10 +33,7 @@ public class DrumEmitter : MonoBehaviour
         GameObject particle = _notePool.GetObject();
         NoteController note = particle.GetComponent<NoteController>();
 
-        note.Reset();
-        note.transform.position = transform.position;
-        ChangeScale(note.transform, _startingSize);
-        particle.SetActive(true);
+        note.Activate(transform.position, _startingSize);
 
         StartCoroutine(TravelCoroutine(note));
     }
@@ -47,7 +45,6 @@ public class DrumEmitter : MonoBehaviour
         Vector3 endPosition = _destination.position;
 
         bool preBeatOccured = false;
-        bool onBeatOccured = false;
 
         while (timer < _travelDuration)
         {
@@ -61,13 +58,14 @@ public class DrumEmitter : MonoBehaviour
                 _beatManager.PreBeat();
                 _beatManager.ActivateOnBeat();
                 preBeatOccured = true;
-                note.End();
             }
 
             yield return null;
         }
 
+        note.EndTrail();
         _beatManager.Beat();
+        _impactVFX.Play();
 
         StartCoroutine(WrapUpCoroutine(note));
     }
@@ -91,12 +89,12 @@ public class DrumEmitter : MonoBehaviour
             {
                 if (scaleProgress > 1.0f)
                 {
-                    note.gameObject.SetActive(false);
+                    note.HideCore();
                     particleActive = false;
                 }
                 else
                 {
-                    ChangeScale(note.transform, scale);
+                    note.ChangeScale(scale);
                 }
             }
 
@@ -109,11 +107,7 @@ public class DrumEmitter : MonoBehaviour
             yield return null;
         }
 
+        note.Disable();
         _notePool.ReturnObject(note.gameObject);
-    }
-
-    private void ChangeScale(Transform newTransform, float scale)
-    {
-        newTransform.localScale = new Vector3(scale, scale, scale);
     }
 }
