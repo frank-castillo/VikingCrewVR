@@ -4746,7 +4746,7 @@ GameObject:
   - component: {fileID: 1648619623175149893}
   - component: {fileID: 1648619623174116991}
   m_Layer: 0
-  m_Name: ParticleVFX
+  m_Name: Core VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4764,9 +4764,8 @@ Transform:
   m_LocalScale: {x: 0.64937603, y: 0.527618, z: 0.64937603}
   m_Children:
   - {fileID: 1648619623160875049}
-  - {fileID: 7262760738155495402}
   m_Father: {fileID: 3912128974505041431}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1648619623175149893
 ParticleSystem:
@@ -9460,10 +9459,10 @@ Transform:
   m_GameObject: {fileID: 6256473449569807075}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.64937603, y: 0.527618, z: 0.64937603}
   m_Children: []
-  m_Father: {fileID: 1648619623160900825}
-  m_RootOrder: 1
+  m_Father: {fileID: 3912128974505041431}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &1431257955384273772
 TrailRenderer:
@@ -9597,6 +9596,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 7262760738155495402}
   - {fileID: 1648619623160900825}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -9614,3 +9614,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trailRenderer: {fileID: 1431257955384273772}
+  _coreVFX: {fileID: 1648619623175149893}
