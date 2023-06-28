@@ -61,13 +61,13 @@ public class DrumEmitter : MonoBehaviour
                 _beatManager.PreBeat();
                 _beatManager.ActivateOnBeat();
                 preBeatOccured = true;
+                note.End();
             }
 
             yield return null;
         }
 
         _beatManager.Beat();
-        note.End();
 
         StartCoroutine(WrapUpCoroutine(note));
     }
