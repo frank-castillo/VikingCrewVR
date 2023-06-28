@@ -91,7 +91,7 @@ public class DrumController : MonoBehaviour
 
     private bool IsValidCollision(Collision collision)
     {
-        Vector3 validDirection = Vector3.down;
+        Vector3 validDirection = -transform.up;
         float hitAngle = Vector3.Angle(collision.GetContact(0).normal, validDirection);
 
         if (hitAngle <= _contactThreshold)

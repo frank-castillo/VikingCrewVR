@@ -4,7 +4,7 @@ using UnityEngine;
 public class FeedbackHandler : MonoBehaviour
 {
     [Header("Standard Feedbacks")]
-    [SerializeField] private List<Feedback> _onConstantBeatFeedbacks = new List<Feedback>();
+    [SerializeField] private List<Feedback> _buildUpFeedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onMissFeedbacks = new List<Feedback>();
 
     [Header("First Hit")]
@@ -34,7 +34,7 @@ public class FeedbackHandler : MonoBehaviour
 
     private void Subscriptions()
     {
-        _feedbackManager.SubscribeConstantBeat(ConstantBeatFeedback);
+        _feedbackManager.SubscribeBeatBuildUp(BuildUpFeedack);
         _feedbackManager.SubscribeOnBeatFirstHit(OnFirstHitFeedback);
         _feedbackManager.SubscribeOnBeatMinorHit(OnMinorHitFeedback);
         _feedbackManager.SubscribeOffBeatMiss(OnMissFeedback);
@@ -42,7 +42,7 @@ public class FeedbackHandler : MonoBehaviour
 
     private void UnsubscribeMethods()
     {
-        _feedbackManager.UnsubscribeConstantBeat(ConstantBeatFeedback);
+        _feedbackManager.UnsubscribeBeatBuildUp(BuildUpFeedack);
         _feedbackManager.UnsubscribeOnBeatFirstHit(OnFirstHitFeedback);
         _feedbackManager.UnsubscribeOnBeatMinorHit(OnMinorHitFeedback);
         _feedbackManager.UnsubscribeOffBeatMiss(OnMissFeedback);
@@ -57,7 +57,7 @@ public class FeedbackHandler : MonoBehaviour
 
     private void InitializeMiscFeedbacks()
     {
-        foreach (var feedback in _onConstantBeatFeedbacks)
+        foreach (var feedback in _buildUpFeedbacks)
         {
             feedback.Initialize();
         }
@@ -115,9 +115,9 @@ public class FeedbackHandler : MonoBehaviour
         UnsubscribeMethods();
     }
 
-    private void ConstantBeatFeedback()
+    private void BuildUpFeedack()
     {
-        PlayFeedbacks(_onConstantBeatFeedbacks);
+        PlayFeedbacks(_buildUpFeedbacks);
     }
 
     private void OnFirstHitFeedback()

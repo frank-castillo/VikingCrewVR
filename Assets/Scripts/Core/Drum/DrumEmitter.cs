@@ -5,7 +5,6 @@ public class DrumEmitter : MonoBehaviour
 {
     [Header("General")]
     [SerializeField] private float _preBeatPercentage = 0.9f;
-    [SerializeField] private float _onBeatPercentage = 0.95f;
     [SerializeField] private float _explosionPercentage = 0.9f;
 
     [Header("Durations")]
@@ -19,6 +18,7 @@ public class DrumEmitter : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform _destination = null;
     [SerializeField] private ObjectPool _notePool = null;
+    [SerializeField] private ParticleSystem _impactVFX = null;
     private BeatManager _beatManager = null;
 
     public void Initialize()
@@ -33,10 +33,7 @@ public class DrumEmitter : MonoBehaviour
         GameObject particle = _notePool.GetObject();
         NoteController note = particle.GetComponent<NoteController>();
 
-        note.Reset();
-        note.transform.position = transform.position;
-        ChangeScale(note.transform, _startingSize);
-        particle.SetActive(true);
+        note.Activate(transform.position, _startingSize);
 
         StartCoroutine(TravelCoroutine(note));
     }
@@ -48,7 +45,6 @@ public class DrumEmitter : MonoBehaviour
         Vector3 endPosition = _destination.position;
 
         bool preBeatOccured = false;
-        bool onBeatOccured = false;
 
         while (timer < _travelDuration)
         {
@@ -60,19 +56,16 @@ public class DrumEmitter : MonoBehaviour
             if (progress > _preBeatPercentage && preBeatOccured == false)
             {
                 _beatManager.PreBeat();
-                preBeatOccured = true;
-            }
-            if (progress > _onBeatPercentage && onBeatOccured == false)
-            {
                 _beatManager.ActivateOnBeat();
-                onBeatOccured = true;
+                preBeatOccured = true;
             }
 
             yield return null;
         }
 
+        note.EndTrail();
         _beatManager.Beat();
-        note.End();
+        _impactVFX.Play();
 
         StartCoroutine(WrapUpCoroutine(note));
     }
@@ -81,14 +74,29 @@ public class DrumEmitter : MonoBehaviour
     {
         float timer = 0.0f;
         bool explosionOccured = false;
+        bool particleActive = true;
 
         while (timer < _wrapUpDuration)
         {
             timer += Time.deltaTime;
 
             float progress = timer / _wrapUpDuration;
-            float scale = Mathf.Lerp(_startingSize, _endingSize, progress);
-            ChangeScale(note.transform, scale);
+
+            float scaleProgress = progress * 2.0f;
+            float scale = Mathf.Lerp(_startingSize, _endingSize, scaleProgress);
+
+            if (particleActive)
+            {
+                if (scaleProgress > 1.0f)
+                {
+                    note.HideCore();
+                    particleActive = false;
+                }
+                else
+                {
+                    note.ChangeScale(scale);
+                }
+            }
 
             if (progress > _explosionPercentage && explosionOccured == false)
             {
@@ -99,13 +107,7 @@ public class DrumEmitter : MonoBehaviour
             yield return null;
         }
 
-        note.gameObject.SetActive(false);
-
+        note.Disable();
         _notePool.ReturnObject(note.gameObject);
-    }
-
-    private void ChangeScale(Transform newTransform, float scale)
-    {
-        newTransform.localScale = new Vector3(scale, scale, scale);
     }
 }
