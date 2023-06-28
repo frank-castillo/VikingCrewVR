@@ -3,15 +3,15 @@
 public class BeatManager : MonoBehaviour
 {
     [Header("Beat Timers")]
-    [SerializeField] private float _constantBeatDelay = 2.0f;
-    private float _constantBeatTimer = 0.0f;
+    [SerializeField] private float _rowDelay = 2.0f;
+    private float _rowTimer = 0.0f;
 
     private NoteManager _noteManager = null;
     private Ship _ship = null;
     private DrumController _drum = null;
     private FeedbackManager _feedbackManager = null;
     private bool _isOnBeat = false;
-    private bool _constantBeatOnNextBeat = false;
+    private bool _rowOnNextBeat = false;
     private bool _initialized = true;
 
     public bool IsOnBeat { get => _isOnBeat; }
@@ -43,25 +43,35 @@ public class BeatManager : MonoBehaviour
 
         if (_noteManager.WrapUpActive)
         {
-            _constantBeatTimer -= Time.deltaTime;
+            _rowTimer -= Time.deltaTime;
 
-            if (_constantBeatTimer < 0)
+            if (_rowTimer < 0)
             {
-                _constantBeatTimer = _constantBeatDelay;
+                _rowTimer = _rowDelay;
                 _ship.Row();
             }
             return;
         }
-
-        if (_constantBeatOnNextBeat == false)
+        else
         {
-            EvaluateConstantBeat();
+            if (_rowOnNextBeat == false)
+            {
+                EvaluateConstantBeat();
+            }
         }
     }
 
     public void PreBeat()
     {
         _noteManager.PreBeat();
+
+        if (_rowOnNextBeat)
+        {
+            _ship.Row();
+
+            _rowTimer = _rowDelay;
+            _rowOnNextBeat = false;
+        }
     }
 
     public void ActivateOnBeat()
@@ -88,27 +98,14 @@ public class BeatManager : MonoBehaviour
     public void Beat()
     {
         _feedbackManager.ConstantBeatFeedback();
-
-        if (_constantBeatOnNextBeat)
-        {
-            ActivateConstantBeat();
-        }
-    }
-
-    private void ActivateConstantBeat()
-    {
-        _ship.Row();
-
-        _constantBeatTimer = _constantBeatDelay;
-        _constantBeatOnNextBeat = false;
     }
 
     private void EvaluateConstantBeat()
     {
-        _constantBeatTimer -= Time.deltaTime;
-        if (_constantBeatTimer < 0)
+        _rowTimer -= Time.deltaTime;
+        if (_rowTimer < 0)
         {
-            _constantBeatOnNextBeat = true;
+            _rowOnNextBeat = true;
         }
     }
 }
