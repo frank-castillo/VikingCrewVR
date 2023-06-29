@@ -5,6 +5,7 @@ public class FeedbackHandler : MonoBehaviour
 {
     [Header("Standard Feedbacks")]
     [SerializeField] private List<Feedback> _buildUpFeedbacks = new List<Feedback>();
+    [SerializeField] private List<Feedback> _onConstantFeedbacks = new List<Feedback>();
     [SerializeField] private List<Feedback> _onMissFeedbacks = new List<Feedback>();
 
     [Header("First Hit")]
@@ -35,6 +36,7 @@ public class FeedbackHandler : MonoBehaviour
     private void Subscriptions()
     {
         _feedbackManager.SubscribeBeatBuildUp(BuildUpFeedack);
+        _feedbackManager.SubscribeConstantBeat(OnConstantBeat);
         _feedbackManager.SubscribeOnBeatFirstHit(OnFirstHitFeedback);
         _feedbackManager.SubscribeOnBeatMinorHit(OnMinorHitFeedback);
         _feedbackManager.SubscribeOffBeatMiss(OnMissFeedback);
@@ -43,6 +45,7 @@ public class FeedbackHandler : MonoBehaviour
     private void UnsubscribeMethods()
     {
         _feedbackManager.UnsubscribeBeatBuildUp(BuildUpFeedack);
+        _feedbackManager.UnsubscribeConstantBeat(OnConstantBeat);
         _feedbackManager.UnsubscribeOnBeatFirstHit(OnFirstHitFeedback);
         _feedbackManager.UnsubscribeOnBeatMinorHit(OnMinorHitFeedback);
         _feedbackManager.UnsubscribeOffBeatMiss(OnMissFeedback);
@@ -58,6 +61,11 @@ public class FeedbackHandler : MonoBehaviour
     private void InitializeMiscFeedbacks()
     {
         foreach (var feedback in _buildUpFeedbacks)
+        {
+            feedback.Initialize();
+        }
+
+        foreach (var feedback in _onConstantFeedbacks)
         {
             feedback.Initialize();
         }
@@ -118,6 +126,11 @@ public class FeedbackHandler : MonoBehaviour
     private void BuildUpFeedack()
     {
         PlayFeedbacks(_buildUpFeedbacks);
+    }
+
+    private void OnConstantBeat()
+    {
+        PlayFeedbacks(_onConstantFeedbacks);
     }
 
     private void OnFirstHitFeedback()

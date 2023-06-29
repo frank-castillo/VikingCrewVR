@@ -135,11 +135,6 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    public void PreBeat()
-    {
-        _feedbackManager.BeatBuildUpFeedback();
-    }
-
     private void EmitNextParticle()
     {
         _drum.EmitParticle();
