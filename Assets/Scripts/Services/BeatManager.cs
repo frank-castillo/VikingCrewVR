@@ -63,8 +63,6 @@ public class BeatManager : MonoBehaviour
 
     public void PreBeat()
     {
-        _noteManager.PreBeat();
-
         if (_rowOnNextBeat)
         {
             _ship.Row();
@@ -78,6 +76,7 @@ public class BeatManager : MonoBehaviour
     {
         _drum.SetRecentlyHit(false);
         _isOnBeat = true;
+        _feedbackManager.BeatBuildUpFeedback();
     }
 
     public void EndOnBeat()

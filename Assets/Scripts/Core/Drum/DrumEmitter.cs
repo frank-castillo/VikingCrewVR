@@ -5,6 +5,7 @@ public class DrumEmitter : MonoBehaviour
 {
     [Header("General")]
     [SerializeField] private float _preBeatPercentage = 0.9f;
+    [SerializeField] private float _onBeatPercentage = 0.93f;
     [SerializeField] private float _explosionPercentage = 0.9f;
 
     [Header("Durations")]
@@ -16,6 +17,7 @@ public class DrumEmitter : MonoBehaviour
     [SerializeField] private float _endingSize = 0.0f;
 
     [Header("References")]
+    [SerializeField] private Transform _emitterStart = null;
     [SerializeField] private Transform _destination = null;
     [SerializeField] private ObjectPool _notePool = null;
     [SerializeField] private ParticleSystem _impactVFX = null;
@@ -33,7 +35,7 @@ public class DrumEmitter : MonoBehaviour
         GameObject particle = _notePool.GetObject();
         NoteController note = particle.GetComponent<NoteController>();
 
-        note.Activate(transform.position, _startingSize);
+        note.Activate(_emitterStart.position, _startingSize);
 
         StartCoroutine(TravelCoroutine(note));
     }
@@ -41,10 +43,11 @@ public class DrumEmitter : MonoBehaviour
     private IEnumerator TravelCoroutine(NoteController note)
     {
         float timer = 0.0f;
-        Vector3 startPosition = transform.position;
+        Vector3 startPosition = _emitterStart.position;
         Vector3 endPosition = _destination.position;
 
         bool preBeatOccured = false;
+        bool onBeatOccured = false;
 
         while (timer < _travelDuration)
         {
@@ -56,8 +59,12 @@ public class DrumEmitter : MonoBehaviour
             if (progress > _preBeatPercentage && preBeatOccured == false)
             {
                 _beatManager.PreBeat();
-                _beatManager.ActivateOnBeat();
                 preBeatOccured = true;
+            }
+            if (progress > _onBeatPercentage && onBeatOccured == false)
+            {
+                _beatManager.ActivateOnBeat();
+                onBeatOccured = true;
             }
 
             yield return null;
