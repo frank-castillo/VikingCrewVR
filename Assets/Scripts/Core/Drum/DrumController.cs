@@ -11,13 +11,11 @@ public class DrumController : MonoBehaviour
     [SerializeField] private ParticleSystem _failureVFX = null;
     [SerializeField] private UnityEventFeedback _successVFX = null;
 
-    [Header("References")]
-    [SerializeField] private DrumEmitter _drumEmitter = null;
-
     private AudioManager _audioManager = null;
     private NoteManager _noteManager = null;
     private FeedbackManager _feedbackManager = null;
     private FeedbackHandler _feedbackHandler = null;
+    private DrumEmitter _drumEmitter = null;
     private bool _initialized = false;
     private bool _recentlyHit = false;
 
@@ -34,6 +32,7 @@ public class DrumController : MonoBehaviour
         _feedbackManager = ServiceLocator.Get<FeedbackManager>();
 
         _feedbackHandler = GetComponent<FeedbackHandler>();
+        _drumEmitter = GetComponent<DrumEmitter>();
 
         _feedbackHandler.Initialize();
         _drumEmitter.Initialize();

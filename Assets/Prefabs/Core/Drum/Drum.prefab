@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1328168658}
-  - component: {fileID: 4119479761590720907}
   - component: {fileID: 692930968035056016}
   m_Layer: 11
-  m_Name: Rune Pulse
+  m_Name: Rune Pulse SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,38 +31,6 @@ Transform:
   m_Father: {fileID: 5881054616733457409}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4119479761590720907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1328168657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9327f94ae27ac4fbcaeb310c256164, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDelay: 0
-  _onPlay:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 198644185968026689}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  _successCounter: 1
-  _wrappedFeedbacks:
-  - {fileID: 692930968035056016}
 --- !u!114 &692930968035056016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,7 +386,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8638354800465401665}
-  - component: {fileID: 6735134464917837734}
   m_Layer: 11
   m_Name: Emitter
   m_TagString: Untagged
@@ -442,27 +408,66 @@ Transform:
   m_Father: {fileID: 5699864171972788310}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6735134464917837734
+--- !u!1 &5034209051389090784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1502145210873412608}
+  - component: {fileID: 7100568175181614024}
+  m_Layer: 11
+  m_Name: Rune Pulse VFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1502145210873412608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034209051389090784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5881054616733457409}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7100568175181614024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2412683132546766644}
+  m_GameObject: {fileID: 5034209051389090784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5048d99d913b42f42b9a183edcffa985, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b156f6d6d658d243ba1b3bf24ade7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _preBeatPercentage: 0.85
-  _explosionPercentage: 0.6
-  _travelDuration: 3
-  _wrapUpDuration: 0.6
-  _startingSize: 0.8
-  _endingSize: 0.1
-  _destination: {fileID: 2502066636517479950}
-  _notePool: {fileID: 5577146554799354712}
-  _impactVFX: {fileID: 4724523195383287588}
+  initialDelay: 0
+  _onPlay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 198644185968026689}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &5078223353853546318
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5699864171972788310}
   - component: {fileID: 6134451073659401127}
+  - component: {fileID: 2503695054688463899}
   - component: {fileID: 1744905934927578922}
   - component: {fileID: 7083963334812549365}
   - component: {fileID: 4638685558973176717}
@@ -565,7 +571,29 @@ MonoBehaviour:
   _vacuumParticles: {fileID: 4143324014862033426}
   _failureVFX: {fileID: 8719165963370240092}
   _successVFX: {fileID: 8815525401104916016}
-  _drumEmitter: {fileID: 6735134464917837734}
+--- !u!114 &2503695054688463899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699864171972788309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5048d99d913b42f42b9a183edcffa985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _preBeatPercentage: 0.85
+  _onBeatPercentage: 0.93
+  _explosionPercentage: 0.6
+  _travelDuration: 3
+  _wrapUpDuration: 0.6
+  _startingSize: 0.8
+  _endingSize: 0.1
+  _emitterStart: {fileID: 8638354800465401665}
+  _destination: {fileID: 2502066636517479950}
+  _notePool: {fileID: 5577146554799354712}
+  _impactVFX: {fileID: 4724523195383287588}
 --- !u!114 &1744905934927578922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +607,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buildUpFeedbacks: []
+  _onConstantFeedbacks:
+  - {fileID: 692930968035056016}
+  - {fileID: 7100568175181614024}
   _onMissFeedbacks:
   - {fileID: 1603711676}
   - {fileID: 4378383899037609692}
@@ -967,6 +998,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1328168658}
+  - {fileID: 1502145210873412608}
   m_Father: {fileID: 8578344795096044498}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5864,11 +5896,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5699864171972788310}
     m_Modifications:
-    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: m_Name
-      value: Drum Model
-      objectReference: {fileID: 0}
     - target: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5923,6 +5950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: m_Name
+      value: Drum Model
       objectReference: {fileID: 0}
     - target: {fileID: 2373604534260355867, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
@@ -6006,9 +6038,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6591edfa85f31c648bdddbf9d8361752, type: 3}
---- !u!4 &5488077920718281595 stripped
+--- !u!4 &5442301475081173337 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1660072141803872082, guid: 6591edfa85f31c648bdddbf9d8361752,
+  m_CorrespondingSourceObject: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
     type: 3}
   m_PrefabInstance: {fileID: 6566339636391445545}
   m_PrefabAsset: {fileID: 0}
@@ -6042,9 +6074,9 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 6566339636391445545}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5442301475081173337 stripped
+--- !u!4 &5488077920718281595 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
+  m_CorrespondingSourceObject: {fileID: 1660072141803872082, guid: 6591edfa85f31c648bdddbf9d8361752,
     type: 3}
   m_PrefabInstance: {fileID: 6566339636391445545}
   m_PrefabAsset: {fileID: 0}
