@@ -98,8 +98,8 @@ public class AudioManager : MonoBehaviour
     {
         if (tierType != TierType.None)
         {
-            //_musicClipToPlay = _musicManifest.AudioItems[((int)tierType)].Clip;
-            _musicClipToPlay = _musicManifest.AudioItems[1].Clip; // Testing
+            _musicClipToPlay = _musicManifest.AudioItems[((int)tierType)].Clip;
+            //_musicClipToPlay = _musicManifest.AudioItems[1].Clip; // Testing
         }
     }
 
