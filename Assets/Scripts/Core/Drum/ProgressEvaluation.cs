@@ -11,7 +11,7 @@ public class ProgressEvaluation : MonoBehaviour
 
     public void Prepare(TierType currentTierType, int totalNotes)
     {
-        _totalNotes = totalNotes;
+        _totalNotes = totalNotes - 2;
         _successCounter = 0;
 
         _repeatedTier = _lastTierType == currentTierType ? true : false;
