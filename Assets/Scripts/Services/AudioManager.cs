@@ -74,10 +74,6 @@ public class AudioManager : MonoBehaviour
     {
         _musicTimer += Time.deltaTime;
 
-        float progress = _musicTimer / _musicDelay;
-
-        Debug.Log($"Waiting Progress: {progress}%");
-
         if (_musicTimer > _musicDelay)
         {
             _musicAudioSource.clip = _musicClipToPlay;

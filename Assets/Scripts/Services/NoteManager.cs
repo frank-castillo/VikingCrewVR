@@ -8,6 +8,7 @@ public class NoteManager : MonoBehaviour
     [SerializeField] private NoteTier _tier2NoteCombos = null;
     [SerializeField] private NoteTier _tier3NoteComobs = null;
     [SerializeField] private float _tierDelay = 2.0f;
+    private TierType _upcomingTier = TierType.None;
     private float _tierTimer = 0.0f;
 
     // Core Refrences
@@ -89,8 +90,9 @@ public class NoteManager : MonoBehaviour
         _tierTimer -= Time.deltaTime;
         if (_tierTimer < 0.0f)
         {
-            _loadingTierPause = false;
             Debug.Log($"Finished Loading");
+            NextTier(_upcomingTier);
+            _loadingTierPause = false;
         }
     }
 
@@ -172,12 +174,26 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    private void LoadTier(TierType currentTierType, bool tierPause)
+    private void LoadTier(TierType newTier, bool tierPause)
     {
-        Debug.Log($"Loading New Tier [{currentTierType}]");
+        Debug.Log($"Loading New Tier [{newTier}]");
 
-        _currentTierType = currentTierType;
-        _currentTier = TranslateNoteTier(currentTierType);
+        if (tierPause)
+        {
+            _tierTimer = _tierDelay;
+            _loadingTierPause = true;
+            _upcomingTier = newTier;
+        }
+        else
+        {
+            NextTier(newTier);
+        }
+    }
+
+    private void NextTier(TierType newTier)
+    {
+        _currentTierType = newTier;
+        _currentTier = TranslateNoteTier(newTier);
 
         _noteProgress = 0;
         LoadNextNote();
@@ -186,12 +202,6 @@ public class NoteManager : MonoBehaviour
 
         _tierUpgrade?.Invoke(_currentTierType);
         _audioManager.PlayMusic(_currentTierType);
-
-        if (tierPause)
-        {
-            _tierTimer = _tierDelay;
-            _loadingTierPause = true;
-        }
     }
 
     private void LoadNextNote()
