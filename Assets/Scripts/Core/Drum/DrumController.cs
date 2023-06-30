@@ -45,7 +45,6 @@ public class DrumController : MonoBehaviour
 
     private void FeedbackSubscriptions()
     {
-        _feedbackManager.SubscribeConstantBeat(PlayRuneSFX);
         _feedbackManager.SubscribeBeatBuildUp(PlayVacuum);
         _feedbackManager.SubscribeOnBeatFirstHit(PlaySuccessVFX);
         _feedbackManager.SubscribeOffBeatMiss(PlayFailureVFX);
@@ -58,7 +57,6 @@ public class DrumController : MonoBehaviour
             return;
         }
 
-        _feedbackManager.UnsubscribeConstantBeat(PlayRuneSFX);
         _feedbackManager.UnsubscribeBeatBuildUp(PlayVacuum);
         _feedbackManager.UnsubscribeOnBeatFirstHit(PlaySuccessVFX);
         _feedbackManager.UnsubscribeOffBeatMiss(PlayFailureVFX);
@@ -101,15 +99,9 @@ public class DrumController : MonoBehaviour
         return false;
     }
 
-    private void PlayRuneSFX()
-    {
-        _audioManager.PlaySFX(SFXType.DrumHum);
-    }
-
     private void PlayVacuum()
     {
         _vacuumParticles.Play();
-        _audioManager.PlaySFX(SFXType.DrumVacuum);
     }
 
     private void PlaySuccessVFX()

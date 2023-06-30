@@ -4,12 +4,12 @@ public class ProgressEvaluation : MonoBehaviour
 {
     [SerializeField] private float _requiredPercentage = 0.7f;
     [SerializeField] private bool _autoSucceed = false;
-    private BeatTierType _lastTierType = BeatTierType.None;
+    private TierType _lastTierType = TierType.None;
     private int _successCounter = 0;
     private int _totalNotes = 0;
     private bool _repeatedTier = false;
 
-    public void Prepare(BeatTierType currentTierType, int totalNotes)
+    public void Prepare(TierType currentTierType, int totalNotes)
     {
         _totalNotes = totalNotes;
         _successCounter = 0;
