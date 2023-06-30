@@ -137,16 +137,16 @@ public class FeedbackHandler : MonoBehaviour
     {
         switch (_noteManager.CurrentTierType)
         {
-            case BeatTierType.None:
+            case TierType.None:
                 break;
-            case BeatTierType.T1:
+            case TierType.T1:
                 PlayFeedbacks(_onFirstBeatT1Feedbacks);
                 break;
-            case BeatTierType.T2:
+            case TierType.T2:
                 PlayFeedbacks(_onFirstBeatT1Feedbacks);
                 PlayFeedbacks(_onFirstBeatT2Feedbacks);
                 break;
-            case BeatTierType.T3:
+            case TierType.T3:
                 PlayFeedbacks(_onFirstBeatT1Feedbacks);
                 PlayFeedbacks(_onFirstBeatT2Feedbacks);
                 PlayFeedbacks(_onFirstBeatT3Feedbacks);
@@ -161,16 +161,16 @@ public class FeedbackHandler : MonoBehaviour
     {
         switch (_noteManager.CurrentTierType)
         {
-            case BeatTierType.None:
+            case TierType.None:
                 break;
-            case BeatTierType.T1:
+            case TierType.T1:
                 PlayFeedbacks(_onMinorBeatT1Feedbacks);
                 break;
-            case BeatTierType.T2:
+            case TierType.T2:
                 PlayFeedbacks(_onMinorBeatT1Feedbacks);
                 PlayFeedbacks(_onMinorBeatT2Feedbacks);
                 break;
-            case BeatTierType.T3:
+            case TierType.T3:
                 PlayFeedbacks(_onMinorBeatT1Feedbacks);
                 PlayFeedbacks(_onMinorBeatT2Feedbacks);
                 PlayFeedbacks(_onMinorBeatT3Feedbacks);
