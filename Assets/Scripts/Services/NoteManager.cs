@@ -8,9 +8,11 @@ public class NoteManager : MonoBehaviour
     [SerializeField] private NoteTier _tier2NoteCombos = null;
     [SerializeField] private NoteTier _tier3NoteComobs = null;
     [SerializeField] private float _tierDelay = 2.0f;
+    private TierType _upcomingTier = TierType.None;
     private float _tierTimer = 0.0f;
 
     // Core Refrences
+    private AudioManager _audioManager = null;
     private BeatManager _beatManager = null;
     private FeedbackManager _feedbackManager = null;
     private LevelLoader _levelLoader = null;
@@ -20,7 +22,7 @@ public class NoteManager : MonoBehaviour
     private DrumController _drum = null;
 
     // Note Emmiter
-    private BeatTierType _currentTierType = BeatTierType.None;
+    private TierType _currentTierType = TierType.None;
     private NoteTier _currentTier = null;
     private Notes _nextNote = null;
     private int _noteProgress = 0;
@@ -31,13 +33,13 @@ public class NoteManager : MonoBehaviour
     private bool _wrapUpActive = false;
     private bool _emitterActive = false;
 
-    private Action<BeatTierType> _tierUpgrade = null;
+    private Action<TierType> _tierUpgrade = null;
 
-    public BeatTierType CurrentTierType { get => _currentTierType; }
+    public TierType CurrentTierType { get => _currentTierType; }
     public bool WrapUpActive { get => _wrapUpActive; }
 
-    public void SubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade += action; }
-    public void UnsubscribeTierUpgrade(Action<BeatTierType> action) { _tierUpgrade -= action; }
+    public void SubscribeTierUpgrade(Action<TierType> action) { _tierUpgrade += action; }
+    public void UnsubscribeTierUpgrade(Action<TierType> action) { _tierUpgrade -= action; }
 
     public void SetBeatManager(BeatManager beatManager) { _beatManager = beatManager; }
     public void SetFeedbackManager(FeedbackManager feedbackManager) { _feedbackManager = feedbackManager; }
@@ -54,6 +56,7 @@ public class NoteManager : MonoBehaviour
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
 
         _levelLoader = ServiceLocator.Get<LevelLoader>();
+        _audioManager = ServiceLocator.Get<AudioManager>();
 
         _progressionEvaluation = GetComponent<ProgressEvaluation>();
 
@@ -87,28 +90,29 @@ public class NoteManager : MonoBehaviour
         _tierTimer -= Time.deltaTime;
         if (_tierTimer < 0.0f)
         {
-            _loadingTierPause = false;
             Debug.Log($"Finished Loading");
+            NextTier(_upcomingTier);
+            _loadingTierPause = false;
         }
     }
 
     public void SetupInitialNoteTier()
     {
-        _currentTierType = BeatTierType.T1;
+        _currentTierType = TierType.T1;
         LoadTier(_currentTierType, false);
 
         _emitterActive = true;
     }
 
-    private NoteTier TranslateNoteTier(BeatTierType currentTierType)
+    private NoteTier TranslateNoteTier(TierType currentTierType)
     {
         switch (currentTierType)
         {
-            case BeatTierType.T1:
+            case TierType.T1:
                 return _tier1NoteCombos;
-            case BeatTierType.T2:
+            case TierType.T2:
                 return _tier2NoteCombos;
-            case BeatTierType.T3:
+            case TierType.T3:
                 return _tier3NoteComobs;
             default:
                 Debug.LogError($"Invalid Tier Set: {currentTierType}");
@@ -116,7 +120,7 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    private BeatTierType EvaluateNextTier()
+    private TierType EvaluateNextTier()
     {
         if (_progressionEvaluation.MoveToNextTier() == false)
         {
@@ -125,13 +129,13 @@ public class NoteManager : MonoBehaviour
 
         switch (_currentTierType)
         {
-            case BeatTierType.T1:
-                return BeatTierType.T2;
-            case BeatTierType.T2:
-                return BeatTierType.T3;
+            case TierType.T1:
+                return TierType.T2;
+            case TierType.T2:
+                return TierType.T3;
             default:
                 Enums.InvalidSwitch(GetType(), _currentTierType.GetType());
-                return BeatTierType.None;
+                return TierType.None;
         }
     }
 
@@ -156,7 +160,7 @@ public class NoteManager : MonoBehaviour
 
     private void LoadNextTier()
     {
-        if (_currentTierType == BeatTierType.T3)
+        if (_currentTierType == TierType.T3)
         {
             Debug.Log($"Beat Tiers Cleared");
             _levelLoader.WrapUpSequence();
@@ -165,17 +169,31 @@ public class NoteManager : MonoBehaviour
         }
         else
         {
-            BeatTierType newTier = EvaluateNextTier();
+            TierType newTier = EvaluateNextTier();
             LoadTier(newTier, true);
         }
     }
 
-    private void LoadTier(BeatTierType currentTierType, bool tierPause)
+    private void LoadTier(TierType newTier, bool tierPause)
     {
-        Debug.Log($"Loading New Tier [{currentTierType}]");
+        Debug.Log($"Loading New Tier [{newTier}]");
 
-        _currentTierType = currentTierType;
-        _currentTier = TranslateNoteTier(currentTierType);
+        if (tierPause)
+        {
+            _tierTimer = _tierDelay;
+            _loadingTierPause = true;
+            _upcomingTier = newTier;
+        }
+        else
+        {
+            NextTier(newTier);
+        }
+    }
+
+    private void NextTier(TierType newTier)
+    {
+        _currentTierType = newTier;
+        _currentTier = TranslateNoteTier(newTier);
 
         _noteProgress = 0;
         LoadNextNote();
@@ -183,12 +201,7 @@ public class NoteManager : MonoBehaviour
         _progressionEvaluation.Prepare(_currentTierType, _currentTier.NoteList.Count);
 
         _tierUpgrade?.Invoke(_currentTierType);
-
-        if (tierPause)
-        {
-            _tierTimer = _tierDelay;
-            _loadingTierPause = true;
-        }
+        _audioManager.PlayMusic(_currentTierType);
     }
 
     private void LoadNextNote()

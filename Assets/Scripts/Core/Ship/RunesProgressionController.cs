@@ -45,17 +45,17 @@ public class RunesProgressionController : MonoBehaviour
         _noteManager.UnsubscribeTierUpgrade(CheckLevelUp);
     }
 
-    private void CheckLevelUp(BeatTierType beatTierType)
+    private void CheckLevelUp(TierType beatTierType)
     {
         switch (beatTierType)
         {
-            case BeatTierType.T1:
+            case TierType.T1:
                 LevelUp(1);
                 break;
-            case BeatTierType.T2:
+            case TierType.T2:
                 LevelUp(2);
                 break;
-            case BeatTierType.T3:
+            case TierType.T3:
                 LevelUp(3);
                 break;
             default:

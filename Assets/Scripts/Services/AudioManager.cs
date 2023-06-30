@@ -1,7 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("Music Delay")]
+    [SerializeField] private float _musicDelay = 5.0f;
+    private AudioClip _musicClipToPlay = null;
+    private float _musicTimer = 0.0f;
+
     [Header("Audio Manifest References")]
     [SerializeField] private AudioManifest _sfxManifest = null;
     [SerializeField] private AudioManifest _splashManifest = null;
@@ -29,7 +35,7 @@ public class AudioManager : MonoBehaviour
     // Audio Levels
     private float _currentVolume = 0.0f;
 
-    // Index references
+    // Indexes
     private int _drumIndex = 1;
     private int _electricIndex = 17;
     private int _rowIndex = 0;
@@ -37,13 +43,45 @@ public class AudioManager : MonoBehaviour
     private int _torchIndex = 0;
     private int _shieldIndex = 0;
 
+    // Refences
+    private bool _initialized = false;
+
     public float CurrentVolume { set => _currentVolume = value; }
 
     public AudioManager Initialize()
     {
         Debug.Log($"<color=Cyan> {this.GetType()} starting setup. </color>");
 
+        _initialized = true;
+
         return this;
+    }
+
+    private void Update()
+    {
+        if (_initialized == false)
+        {
+            return;
+        }
+
+        if (_musicClipToPlay != null)
+        {
+            MusicTimerUpdate();
+        }
+    }
+
+    private void MusicTimerUpdate()
+    {
+        _musicTimer += Time.deltaTime;
+
+        if (_musicTimer > _musicDelay)
+        {
+            _musicAudioSource.clip = _musicClipToPlay;
+            _musicAudioSource.Play();
+
+            _musicClipToPlay = null;
+            _musicTimer = 0.0f;
+        }
     }
 
     public void FadeAudioToExitExperience(float fadeOutTime)
@@ -56,9 +94,12 @@ public class AudioManager : MonoBehaviour
         AudioListener.volume = Mathf.Lerp(_currentVolume, 1.0f, fadeInTime);
     }
 
-    public void PlayMusic()
+    public void PlayMusic(TierType tierType)
     {
-        _musicAudioSource.PlayOneShot(_musicManifest.AudioItems[0].Clip);
+        if (tierType != TierType.None)
+        {
+            _musicClipToPlay = _musicManifest.AudioItems[((int)tierType)].Clip;
+        }
     }
 
     public void PlaySFX(SFXType sfxType)
@@ -128,6 +169,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayDrumVacuumSFX()
     {
+        //_musicAudioSource.PlayOneShot(_musicManifest.AudioItems[0].Clip);
         _vacuumAudioSource.PlayOneShot(_sfxManifest.AudioItems[15].Clip);
     }
 

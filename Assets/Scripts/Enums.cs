@@ -1,21 +1,6 @@
 using System;
 using UnityEngine;
 
-public enum BeatTierType
-{
-    None = -1,
-    T1,
-    T2,
-    T3
-}
-
-public enum DrumSide
-{
-    None = -1,
-    Left,
-    Right,
-}
-
 public enum HammerSide
 {
     None = -1,
@@ -59,6 +44,15 @@ public enum SFXType
     RuneGlow
 }
 
+public enum TierType
+{
+    None = -1,
+    T1,
+    T2,
+    T3
+}
+
+
 public enum VikingAnimationType
 {
     None = -1,
@@ -70,8 +64,8 @@ public enum VikingAnimationType
 
 public class Enums
 {
-    public static void InvalidSwitch(Type script, Type type)
+    public static void InvalidSwitch(Type script, Type enumType)
     {
-        Debug.LogError($"Enum type [{type}] in the {script} is invalid, please fix!");
+        Debug.LogError($"Enum type [{enumType}] in the {script} is invalid, please fix!");
     }
 }

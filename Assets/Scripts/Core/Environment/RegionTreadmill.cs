@@ -46,7 +46,7 @@ public class RegionTreadmill : MonoBehaviour
 
         SetupEvents();
         _finalRegion.gameObject.SetActive(false);
-        ChangeSpeed(BeatTierType.T1);
+        ChangeSpeed(TierType.T1);
         _initialized = true;
     }
 
@@ -80,17 +80,17 @@ public class RegionTreadmill : MonoBehaviour
         MoveRegions();
     }
 
-    private void ChangeSpeed(BeatTierType beatTierType)
+    private void ChangeSpeed(TierType beatTierType)
     {
         switch (beatTierType)
         {
-            case BeatTierType.T1:
+            case TierType.T1:
                 _speed = _t1Speed;
                 break;
-            case BeatTierType.T2:
+            case TierType.T2:
                 _speed = _t2Speed;
                 break;
-            case BeatTierType.T3:
+            case TierType.T3:
                 _speed = _t3Speed;
                 break;
             default:

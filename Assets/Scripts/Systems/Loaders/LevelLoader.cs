@@ -173,6 +173,7 @@ public class LevelLoader : AsyncLoader
         }
 
         _audioManager.CurrentVolume = 1.0f;
+
         //Debug.Log($"<color=Cyan> I am max volume </color>");
     }
 
