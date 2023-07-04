@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 804834954708006740}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rock (Rune)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,83 +64,6 @@ Transform:
   m_Father: {fileID: 6282417139556472694}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1338689891280417475
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7222333505421331577}
-  - component: {fileID: 5606434211752400806}
-  - component: {fileID: 1405381713810101428}
-  m_Layer: 10
-  m_Name: Island (Left) (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7222333505421331577
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338689891280417475}
-  m_LocalRotation: {x: -0, y: 0.98801804, z: -0, w: -0.15433823}
-  m_LocalPosition: {x: -18040, y: 2195, z: -6991}
-  m_LocalScale: {x: 18754.473, y: 43038.15, z: 18754.469}
-  m_Children: []
-  m_Father: {fileID: 1853119424282524616}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 197.75699, z: 0}
---- !u!33 &5606434211752400806
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338689891280417475}
-  m_Mesh: {fileID: 4300000, guid: ce96654f6651e2145b8592e806e8d186, type: 2}
---- !u!23 &1405381713810101428
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338689891280417475}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 3018c8ee42269e341b2f05e2f790eec0, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!1 &2461446748728658366
 GameObject:
   m_ObjectHideFlags: 0
@@ -14376,13 +14299,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4312419959430875589}
-  m_LocalRotation: {x: -0, y: 0.6168436, z: -0, w: 0.7870858}
-  m_LocalPosition: {x: 14116, y: 1663.8014, z: -12530}
-  m_LocalScale: {x: -23565.04, y: 54077.535, z: 23565.035}
+  m_LocalRotation: {x: -0, y: 0.50311136, z: -0, w: 0.8642216}
+  m_LocalPosition: {x: 5509, y: 2837, z: -13845}
+  m_LocalScale: {x: -38256.28, y: 54413.9, z: 38256.273}
   m_Children: []
   m_Father: {fileID: 1853119424282524616}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 76.172005, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 60.412003, z: 0}
 --- !u!33 &8979949855473925671
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19300,7 +19223,6 @@ Transform:
   - {fileID: 49362890377969788}
   - {fileID: 4379669183586282493}
   - {fileID: 708001903661837671}
-  - {fileID: 7222333505421331577}
   m_Father: {fileID: 6282417139556472694}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19313,7 +19235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6282417139556472694}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Final Island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29003,6 +28925,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockPrefab (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 455870655202699801, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4199428297039567914, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29156,6 +29083,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fantasy_rock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2809795850254400471, guid: b953ebaa5f93d314a8b6c903dd8971bf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2288547925351437008, guid: b953ebaa5f93d314a8b6c903dd8971bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29241,6 +29173,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.0004
       objectReference: {fileID: 0}
+    - target: {fileID: 1285338684874224538, guid: b953ebaa5f93d314a8b6c903dd8971bf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b953ebaa5f93d314a8b6c903dd8971bf, type: 3}
 --- !u!4 &1637425630584585663 stripped
@@ -29260,6 +29197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fantasy_rock (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809795850254400471, guid: b953ebaa5f93d314a8b6c903dd8971bf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2288547925351437008, guid: b953ebaa5f93d314a8b6c903dd8971bf,
         type: 3}
@@ -29345,6 +29287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285338684874224538, guid: b953ebaa5f93d314a8b6c903dd8971bf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b953ebaa5f93d314a8b6c903dd8971bf, type: 3}
@@ -29435,6 +29382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine_Tree (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
@@ -29536,6 +29488,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -29565,6 +29522,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPrefab (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 455870655202699801, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4199428297039567914, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
         type: 3}
@@ -29726,6 +29688,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -29825,6 +29792,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine_Tree (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
@@ -30021,6 +29993,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -30120,6 +30097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine_Tree (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
@@ -30521,6 +30503,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (56)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -30550,6 +30537,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPrefab (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 455870655202699801, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4199428297039567914, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
         type: 3}
@@ -30876,6 +30868,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -30975,6 +30972,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine_Tree (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
@@ -31181,6 +31183,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -31281,6 +31288,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -31310,6 +31322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPrefab (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 455870655202699801, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4199428297039567914, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
         type: 3}
@@ -31539,6 +31556,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fantasy_rock
       objectReference: {fileID: 0}
+    - target: {fileID: 2809795850254400471, guid: b953ebaa5f93d314a8b6c903dd8971bf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2288547925351437008, guid: b953ebaa5f93d314a8b6c903dd8971bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31673,6 +31695,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.12900001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285338684874224538, guid: b953ebaa5f93d314a8b6c903dd8971bf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b953ebaa5f93d314a8b6c903dd8971bf, type: 3}
@@ -31827,6 +31854,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -31951,6 +31983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPrefab (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 455870655202699801, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4199428297039567914, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
         type: 3}
@@ -32252,6 +32289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockPrefab (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 455870655202699801, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4199428297039567914, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32412,6 +32454,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -32512,6 +32559,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -32541,6 +32593,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPrefab (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 455870655202699801, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4199428297039567914, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
         type: 3}
@@ -32702,6 +32759,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -32802,6 +32864,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -32831,6 +32898,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPrefab (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 455870655202699801, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4199428297039567914, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
         type: 3}
@@ -32992,6 +33064,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -33092,6 +33169,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -33191,6 +33273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine_Tree (57)
+      objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
@@ -33366,6 +33453,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine_Tree (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
@@ -33627,6 +33719,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -33727,6 +33824,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -33756,6 +33858,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fantasy_rock (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809795850254400471, guid: b953ebaa5f93d314a8b6c903dd8971bf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2288547925351437008, guid: b953ebaa5f93d314a8b6c903dd8971bf,
         type: 3}
@@ -33841,6 +33948,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285338684874224538, guid: b953ebaa5f93d314a8b6c903dd8971bf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b953ebaa5f93d314a8b6c903dd8971bf, type: 3}
@@ -33931,6 +34043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine_Tree (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
@@ -34032,6 +34149,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -34132,6 +34254,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine_Tree (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 296271575105095825, guid: b64d0490016d38f4f9e7a11528859657,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3012693510697819742, guid: b64d0490016d38f4f9e7a11528859657,
         type: 3}
       propertyPath: m_CastShadows
@@ -34161,6 +34288,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockPrefab (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 455870655202699801, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4199428297039567914, guid: b3093dcbadfe4b049bd0384cdcfd4dda,
         type: 3}
