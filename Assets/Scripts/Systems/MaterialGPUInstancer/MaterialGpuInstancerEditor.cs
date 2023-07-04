@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if (UNITY_EDITOR) 
+using UnityEditor;
 using UnityEngine;
 
 // Copyright <2023> <William Dean Clark>
@@ -27,3 +28,4 @@ public class MaterialGpuInstancerEditor : Editor
         }
     }
 }
+#endif
