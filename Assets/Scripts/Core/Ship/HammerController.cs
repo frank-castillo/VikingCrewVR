@@ -25,7 +25,7 @@ public class HammerController : MonoBehaviour
 
     [Header("Hammer Smoothing")]
     [SerializeField] private Transform _hammerTransformTarget = null; // The transform the hand smoothly lerps towards
-    [SerializeField] private float _smoothingFactor = 0.85f; // Adjust this value to control the amount of smoothing on hammer to controller lerping
+    [Range(0.0f, 1.0f)] [SerializeField] private float _smoothingFactor = 0.85f; // Adjust this value to control the amount of smoothing on hammer to controller lerping
 
     // Data for lerping hammer to controller
     private Vector3 _currentControllerPosition = Vector3.zero;
