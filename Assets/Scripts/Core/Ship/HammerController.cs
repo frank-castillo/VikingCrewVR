@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Runtime.Serialization;
 using UnityEngine;
 
 public class HammerController : MonoBehaviour
@@ -24,8 +23,26 @@ public class HammerController : MonoBehaviour
     private int _currentLevel = 0;
     private bool _initialized = false;
 
+    [Header("Hammer Smoothing")]
+    [SerializeField] private Transform _hammerTransformTarget = null; // The transform the hand smoothly lerps towards
+    [SerializeField] private float _smoothingFactor = 0.85f; // Adjust this value to control the amount of smoothing on hammer to controller lerping
+
+    // Data for lerping hammer to controller
+    private Vector3 _currentControllerPosition = Vector3.zero;
+    private Quaternion _currentControllerRotation = Quaternion.identity;
+    private Vector3 _smoothedHammerPosition = Vector3.zero;
+    private Quaternion _smoothedHammerRotation = Quaternion.identity;
+
     public void Initialize()
     {
+#if UNITY_EDITOR
+        if (_hammerSide == HammerSide.Left)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+#endif
+
         _noteManager = ServiceLocator.Get<NoteManager>();
         _hamerMeshRenderer = _hammerMeshHolder.GetComponent<MeshRenderer>();
 
@@ -46,6 +63,15 @@ public class HammerController : MonoBehaviour
         }
 
         UnsubscribeEvents();
+    }
+
+    private void Update()
+    {
+        if (_initialized == false)
+        {
+            return;
+        }
+        UpdateHandTransform();
     }
 
     private void SetupEvents()
@@ -157,5 +183,20 @@ public class HammerController : MonoBehaviour
         OVRInput.SetControllerVibration(1, intesity, controller);
         yield return new WaitForSecondsRealtime(0.1f);
         OVRInput.SetControllerVibration(0, 0, controller);
+    }
+
+    private void UpdateHandTransform()
+    {
+        // Update the current hand position and rotation
+        _currentControllerPosition = _hammerTransformTarget.position;
+        _currentControllerRotation = _hammerTransformTarget.rotation;
+
+        // Apply low-pass filter to smooth hand movement
+        _smoothedHammerPosition = Vector3.Lerp(_smoothedHammerPosition, _currentControllerPosition, _smoothingFactor);
+        _smoothedHammerRotation = Quaternion.Slerp(_smoothedHammerRotation, _currentControllerRotation, _smoothingFactor);
+
+        // Use the smoothed position and rotation for rendering or other purposes
+        transform.position = _smoothedHammerPosition;
+        transform.rotation = _smoothedHammerRotation;
     }
 }
