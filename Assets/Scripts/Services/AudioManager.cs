@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
@@ -98,8 +97,8 @@ public class AudioManager : MonoBehaviour
     {
         if (tierType != TierType.None)
         {
-            _musicClipToPlay = _musicManifest.AudioItems[((int)tierType)].Clip;
-            //_musicClipToPlay = _musicManifest.AudioItems[2].Clip; // Testing
+            //_musicClipToPlay = _musicManifest.AudioItems[((int)tierType)].Clip;
+            _musicClipToPlay = _musicManifest.AudioItems[2].Clip; // Testing
         }
     }
 
