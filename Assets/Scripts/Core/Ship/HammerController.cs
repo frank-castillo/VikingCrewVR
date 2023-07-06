@@ -28,8 +28,6 @@ public class HammerController : MonoBehaviour
     [Range(0.0f, 1.0f)] [SerializeField] private float _smoothingFactor = 0.85f; // Adjust this value to control the amount of smoothing on hammer to controller lerping
 
     // Data for lerping hammer to controller
-    private Vector3 _currentControllerPosition = Vector3.zero;
-    private Quaternion _currentControllerRotation = Quaternion.identity;
     private Vector3 _smoothedHammerPosition = Vector3.zero;
     private Quaternion _smoothedHammerRotation = Quaternion.identity;
 
@@ -188,8 +186,8 @@ public class HammerController : MonoBehaviour
     private void UpdateHandTransform()
     {
         // Update the current hand position and rotation
-        _currentControllerPosition = _hammerTransformTarget.position;
-        _currentControllerRotation = _hammerTransformTarget.rotation;
+        Vector3 _currentControllerPosition = _hammerTransformTarget.position;
+        Quaternion _currentControllerRotation = _hammerTransformTarget.rotation;
 
         // Apply low-pass filter to smooth hand movement
         _smoothedHammerPosition = Vector3.Lerp(_smoothedHammerPosition, _currentControllerPosition, _smoothingFactor);
