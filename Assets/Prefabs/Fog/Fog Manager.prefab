@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2406937061476711342}
   - component: {fileID: 605857470353128119}
   - component: {fileID: 1298499550972501534}
+  - component: {fileID: 1818695570}
   m_Layer: 9
   m_Name: Inner Fog
   m_TagString: Untagged
@@ -667,7 +668,7 @@ ParticleSystem:
     donutRadius: 5
     m_Position: {x: 0, y: 0, z: 15}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 12, y: 10, z: 5}
+    m_Scale: {x: 12, y: 12, z: 5}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -744,7 +745,7 @@ ParticleSystem:
     m_TextureBilinearFiltering: 0
     randomDirectionAmount: 0
     sphericalDirectionAmount: 1
-    randomPositionAmount: 0
+    randomPositionAmount: 5
     radius:
       value: 15
       mode: 0
@@ -4752,6 +4753,25 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!95 &1818695570
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503570260834738786}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9a56acd805600646aa43202fe16e0a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6115028091072850903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4797,6 +4817,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeFog: {fileID: 605857470353128119}
-  _tier1FogEmmision: 15
-  _tier2FogEmmision: 12
-  _tier3FogEmmision: 10
+  _tier1FogEmmision: 18
+  _tier2FogEmmision: 10
+  _tier3FogEmmision: 4
