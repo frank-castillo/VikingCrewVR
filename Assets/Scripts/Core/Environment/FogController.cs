@@ -6,6 +6,7 @@ public class FogController : MonoBehaviour
     [SerializeField] private float _tier1FogEmmision = 35.0f;
     [SerializeField] private float _tier2FogEmmision = 20.0f;
     [SerializeField] private float _tier3FogEmmision = 10.0f;
+    [SerializeField] private float _wrapUpEmission = 0.0f;
     private ParticleSystem.EmissionModule _emission = default;
     private NoteManager _noteManager = null;
     private bool _initialized = false;
@@ -60,5 +61,10 @@ public class FogController : MonoBehaviour
                 Enums.InvalidSwitch(GetType(), beatTierType.GetType());
                 break;
         }
+    }
+
+    public void WrapUpFog()
+    {
+        _emission.rateOverTime = _wrapUpEmission;
     }
 }

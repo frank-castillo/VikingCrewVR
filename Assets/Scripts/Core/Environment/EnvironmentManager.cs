@@ -30,5 +30,6 @@ public class EnvironmentManager : MonoBehaviour
     public void EnvironmentWrapUp()
     {
         _environmentTreadmill.TreadmillWrapUp();
+        _fogController.WrapUpFog();
     }
 }
