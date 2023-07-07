@@ -667,7 +667,7 @@ ParticleSystem:
     donutRadius: 5
     m_Position: {x: 0, y: 0, z: 15}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 12, y: 10, z: 5}
+    m_Scale: {x: 12, y: 12, z: 5}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -744,7 +744,7 @@ ParticleSystem:
     m_TextureBilinearFiltering: 0
     randomDirectionAmount: 0
     sphericalDirectionAmount: 1
-    randomPositionAmount: 0
+    randomPositionAmount: 5
     radius:
       value: 15
       mode: 0
@@ -4797,6 +4797,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeFog: {fileID: 605857470353128119}
-  _tier1FogEmmision: 15
-  _tier2FogEmmision: 12
-  _tier3FogEmmision: 10
+  _tier1FogEmmision: 18
+  _tier2FogEmmision: 10
+  _tier3FogEmmision: 4
