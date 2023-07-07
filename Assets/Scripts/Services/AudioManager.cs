@@ -100,6 +100,11 @@ public class AudioManager : MonoBehaviour
         {
             _musicClipToPlay = _musicManifest.AudioItems[((int)tierType)].Clip;
             //_musicClipToPlay = _musicManifest.AudioItems[2].Clip; // Testing
+
+            if (tierType == TierType.T3)
+            {
+                _musicAudioSource.loop = true;
+            }
         }
     }
 
