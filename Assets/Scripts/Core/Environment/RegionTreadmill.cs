@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RegionTreadmill : MonoBehaviour
@@ -8,10 +9,16 @@ public class RegionTreadmill : MonoBehaviour
     [SerializeField] private float _t2Speed = 20.0f;
     [SerializeField] private float _t3Speed = 35.0f;
 
+    [Header("Wrap Up")]
+    [SerializeField] private float _finalDescendHeight = -100.0f;
+    [SerializeField] private float _descendingDuration = 5.0f;
+    [SerializeField] private float _finalIslandMovementDelay = 15.0f;
+    private float _finalIslandDelayTimer = 0.0f;
+
     [Header("References")]
+    [SerializeField] private GameObject _regionsFolder = null;
     [SerializeField] private Transform _limitOfMap = null;
     [SerializeField] private Transform _startOfMap = null;
-    [SerializeField] private Transform _regionFolder = null;
     [SerializeField] private Transform _finalRegion = null;
     [SerializeField] private Transform _islandEmergenceTrigger = null;
     [SerializeField] private Transform _riseBeginPoint = null;
@@ -23,7 +30,8 @@ public class RegionTreadmill : MonoBehaviour
     private float _speed = 0.0f;
     private bool _movementEnabled = false;
     private bool _isEnding = false;
-    private bool _finalIslandReadyToMove = false;
+    private bool _moveFinalIsland = false;
+    private bool _smallIslandsActive = false;
     private bool _initialized = false;
 
     public void EnableMovement(bool enable) { _movementEnabled = enable; }
@@ -34,7 +42,7 @@ public class RegionTreadmill : MonoBehaviour
 
         _noteManager = ServiceLocator.Get<NoteManager>();
 
-        foreach (Transform child in _regionFolder)
+        foreach (Transform child in _regionsFolder.transform)
         {
             if (child.gameObject.activeInHierarchy)
             {
@@ -77,7 +85,8 @@ public class RegionTreadmill : MonoBehaviour
             return;
         }
 
-        MoveRegions();
+        MoveSmallIslands();
+        MoveFinalIsland();
     }
 
     private void ChangeSpeed(TierType beatTierType)
@@ -99,8 +108,13 @@ public class RegionTreadmill : MonoBehaviour
         }
     }
 
-    private void MoveRegions()
+    private void MoveSmallIslands()
     {
+        if (_smallIslandsActive == false)
+        {
+            return;
+        }
+
         foreach (Region region in _regions)
         {
             region.transform.position += Vector3.forward * _speed * Time.deltaTime;
@@ -109,27 +123,64 @@ public class RegionTreadmill : MonoBehaviour
 
             if (region.transform.position.z > _limitOfMap.position.z)
             {
-                if (_isEnding && !_finalIslandReadyToMove)
-                {
-                    _finalIslandReadyToMove = true;
-                }
-                else if (!_isEnding)
+                if (!_isEnding)
                 {
                     region.transform.position = _startOfMap.position;
                     region.ResetIslands();
                 }
             }
         }
+    }
 
-        if (_finalIslandReadyToMove)
+    private void MoveFinalIsland()
+    {
+        if (_isEnding == false)
+        {
+            return;
+        }
+
+        if (_moveFinalIsland == false)
+        {
+            _finalIslandDelayTimer += Time.deltaTime;
+
+            if(_finalIslandDelayTimer >= _finalIslandMovementDelay)
+            {
+                _moveFinalIsland = true;
+            }
+        }
+        else
         {
             _finalRegion.position += Vector3.forward * _speed * Time.deltaTime;
         }
+
     }
 
     public void TreadmillWrapUp()
     {
         _isEnding = true;
         _finalRegion.gameObject.SetActive(true);
+
+        StartCoroutine(DescendIslandsCoroutine());
+    }
+
+    private IEnumerator DescendIslandsCoroutine()
+    {
+        Vector3 startPos = _regionsFolder.transform.position;
+        Vector3 targetPos = new Vector3(0, _finalDescendHeight, 0);
+
+        float timer = 0.0f;
+        while (timer < _descendingDuration)
+        {
+            timer += Time.deltaTime;
+            float progress = timer / _descendingDuration;
+
+            Vector3 newPosition = Vector3.Lerp(startPos, targetPos, progress);
+            _regionsFolder.transform.position = newPosition;
+
+            yield return null;
+        }
+
+        _regionsFolder.SetActive(false);
+        _smallIslandsActive = false;
     }
 }
