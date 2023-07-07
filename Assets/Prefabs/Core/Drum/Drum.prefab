@@ -584,8 +584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preBeatPercentage: 0.87
-  _onBeatPercentage: 0.98
-  _explosionPercentage: 0.45
+  _onBeatPercentage: 0.95
+  _explosionPercentage: 0.8
   _travelDuration: 3
   _wrapUpDuration: 0.4
   _startingSize: 0.8
@@ -5895,10 +5895,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5699864171972788310}
     m_Modifications:
-    - target: {fileID: 7106777135487673915, guid: 6591edfa85f31c648bdddbf9d8361752,
+    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
-      propertyPath: simulationSpeed
-      value: 1.5
+      propertyPath: m_Name
+      value: Drum Model
       objectReference: {fileID: 0}
     - target: {fileID: 1199825848620957040, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
@@ -5955,10 +5955,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1558522212389136980, guid: 6591edfa85f31c648bdddbf9d8361752,
+    - target: {fileID: 7106777135487673915, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
-      propertyPath: m_Name
-      value: Drum Model
+      propertyPath: simulationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292865820236584756, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: ShapeModule.m_Rotation.x
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2373604534260355867, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
@@ -5990,25 +5995,20 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 124.71668
       objectReference: {fileID: 0}
-    - target: {fileID: 2460695784880805857, guid: 6591edfa85f31c648bdddbf9d8361752,
+    - target: {fileID: 6571064346650911466, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
-      propertyPath: m_RenderMode
-      value: 4
+      propertyPath: m_LocalScale.x
+      value: 0.85
       objectReference: {fileID: 0}
-    - target: {fileID: 2460192000759833243, guid: 6591edfa85f31c648bdddbf9d8361752,
+    - target: {fileID: 6571064346650911466, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
-      propertyPath: m_RenderMode
-      value: 4
+      propertyPath: m_LocalScale.y
+      value: 0.85
       objectReference: {fileID: 0}
-    - target: {fileID: 2460159936361113539, guid: 6591edfa85f31c648bdddbf9d8361752,
+    - target: {fileID: 6571064346650911466, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
-      propertyPath: m_RenderMode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372841641817532503, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
+      propertyPath: m_LocalScale.z
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 7292865820221395920, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
@@ -6035,37 +6035,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6571064346650911466, guid: 6591edfa85f31c648bdddbf9d8361752,
+    - target: {fileID: 2460695784880805857, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.85
+      propertyPath: m_RenderMode
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 6571064346650911466, guid: 6591edfa85f31c648bdddbf9d8361752,
+    - target: {fileID: 2372841641817532503, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 6571064346650911466, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 7292865820236584756, guid: 6591edfa85f31c648bdddbf9d8361752,
-        type: 3}
-      propertyPath: ShapeModule.m_Rotation.x
-      value: -90
+      propertyPath: m_LocalRotation.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292865820221600916, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7292865820236687370, guid: 6591edfa85f31c648bdddbf9d8361752,
+    - target: {fileID: 2460192000759833243, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460159936361113539, guid: 6591edfa85f31c648bdddbf9d8361752,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292865820236642698, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: ShapeModule.m_Rotation.x
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 7292865820236642698, guid: 6591edfa85f31c648bdddbf9d8361752,
+    - target: {fileID: 7292865820236687370, guid: 6591edfa85f31c648bdddbf9d8361752,
         type: 3}
       propertyPath: ShapeModule.m_Rotation.x
       value: -90
