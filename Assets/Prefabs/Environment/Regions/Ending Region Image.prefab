@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 2184, y: 2184, z: 2184}
   m_Children: []
   m_Father: {fileID: 7496760730154455266}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &3944580247735630422
 SpriteRenderer:
@@ -188,7 +188,7 @@ Transform:
   m_Children:
   - {fileID: 3944580247744356337}
   m_Father: {fileID: 7496760730154455266}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!95 &3944580248361922613
 Animator:
@@ -209,36 +209,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &3944580248990341006
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3944580248990341005}
-  m_Layer: 10
-  m_Name: EndTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3944580248990341005
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3944580248990341006}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -562, y: 0, z: 5477}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7496760730154455266}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8798950047282076242
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +218,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7496760730154455266}
-  - component: {fileID: 3944580248465630638}
   - component: {fileID: 8798950047282076243}
   m_Layer: 10
   m_Name: Ending Region Image
@@ -266,28 +235,13 @@ Transform:
   m_GameObject: {fileID: 8798950047282076242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4, y: 45, z: -1755}
-  m_LocalScale: {x: 0.11216, y: 0.11216, z: 0.11216}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3944580248990341005}
   - {fileID: 3944580247735630417}
   - {fileID: 3944580248361922612}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3944580248465630638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8798950047282076242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd0e85a48327b240a15e650683c9a24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _experienceEndingTrigger: {fileID: 3944580248990341005}
-  _triggeringNode: {fileID: 0}
 --- !u!95 &8798950047282076243
 Animator:
   serializedVersion: 3
